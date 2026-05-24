@@ -53,6 +53,7 @@ Approved
 
 Status:
 Documentation alignment in progress
+Workspace transition model formalised
 
 Open Governance Work:
 - Complete governance document updates
@@ -61,9 +62,11 @@ Open Governance Work:
 - Validate repository boundaries
 - Prepare workspace transition readiness
 - Delay structural migration
+- Approve work movement governance
+- Classify work movement document
 
 Current Engagement:
-Workspace Document Formalisation
+Workspace Transition Formalisation
 
 Objective:
 Formalise repository ownership, workspace authority, and governance alignment before workspace redesign.

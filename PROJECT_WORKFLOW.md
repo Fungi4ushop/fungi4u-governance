@@ -19,6 +19,12 @@ Update Documents
 ↓
 Update Business State
 ↓
+Move Outputs To Workspace
+↓
+Repository Update
+↓
+Commit / Publication
+↓
 Operate
 ↓
 Monitor Again
@@ -80,6 +86,14 @@ Operating Rules
 - Archive is read-only
 
 Closure Rule:
+
+Workspace Rule
+
+Workspace is temporary execution state.
+
+Repository is managed state.
+
+Publication is optional unless required.
 
 Nothing closes
 until documentation alignment is complete.

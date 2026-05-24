@@ -89,7 +89,10 @@ Owner:
 Business Owner
 
 Status:
-Open
+Closed
+
+Closure Reason:
+Superseded by approved Workspace Transition Model.
 
 Review Trigger:
 Workspace governance stabilised
@@ -115,5 +118,27 @@ Open
 
 Review Trigger:
 Unmanaged documents discovered
+
+--------------------------------------------------
+
+ID: OA006
+
+Area:
+Governance
+
+Action:
+Classify WORK_MOVEMENT_MODEL.md ownership and repository placement.
+
+Reason:
+Workspace transition governance approved but repository ownership remains pending.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Repository governance changes
 
 --------------------------------------------------

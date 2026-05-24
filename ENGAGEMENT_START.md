@@ -88,8 +88,11 @@ What should exist afterwards?
 Step 7
 Identify Documentation Impact
 
-Question:
+Questions:
+
 Which documents require update?
+
+Which workspace outputs require classification?
 
 Step 8
 Confirm Scope
@@ -121,7 +124,11 @@ Closure Sequence
 
 5 Record open actions
 
-6 Confirm completion
+6 Identify repository actions
+
+7 Confirm publication decision
+
+8 Confirm completion
 
 --------------------------------------------------
 

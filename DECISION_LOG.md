@@ -290,3 +290,45 @@ Status:
 Approved
 
 --------------------------------------------------
+
+ID: 012
+Date: 2026-05-24
+
+Decision:
+Adopt Work Movement Model
+
+Lifecycle:
+
+Chat
+↓
+Workspace
+↓
+Repository
+↓
+Commit / Publication
+↓
+Operation
+↓
+Monitor
+
+Principles:
+
+- Interaction initiates work
+- Workspace performs work
+- Repository stores managed state
+- Publication distributes state
+- Operation executes approved state
+- Monitoring creates future engagements
+- Publication does not define truth
+
+Reason:
+Formalise movement of work while preserving document authority and repository roles.
+
+Impact:
+Workspace transitions become governed without changing repository structure.
+
+Review Trigger:
+Workspace governance redesign.
+
+Status:
+Approved

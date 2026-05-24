@@ -254,6 +254,36 @@ Examples:
 Git
 GitHub
 
+--------------------------------------------------
+
+Work Movement
+
+Interaction
+↓
+Workspace
+↓
+Repository
+↓
+Commit / Publication
+↓
+Operation
+↓
+Monitor
+
+Principles
+
+Chat enables engagement.
+
+Workspace performs work.
+
+Repository stores managed state.
+
+Publication distributes state.
+
+Operation executes approved state.
+
+Monitoring initiates future work.
+
 
 Rules
 
@@ -278,6 +308,7 @@ Governance:
 - ASSUMPTIONS.md
 - DONE_CRITERIA.md
 - REPOSITORY_MAP.md
+- WORK_MOVEMENT_MODEL.md
 
 Operations:
 - SOPs
