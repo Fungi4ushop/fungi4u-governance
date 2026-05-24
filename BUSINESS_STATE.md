@@ -1,0 +1,75 @@
+BUSINESS_STATE
+
+Purpose:
+Authoritative description of the current state of the business.
+
+Business Areas:
+- Governance
+- Operations
+- Projects
+- Systems
+- Data
+- Archive
+
+Current Phase:
+Phase 1 — Establish Business Workspace
+
+Current Status:
+Governance foundation approved
+
+Active Governance Decisions:
+001 Business Areas
+002 Document Ownership
+003 Engagement Model
+004 Workspace Principles
+005 Business Lifecycle
+008 Repository Role Classification
+009 operational-core Repository Classification
+010 stock-control Repository Classification
+011 Workspace Authority Model
+
+Current Constraints:
+- State recorded in documents
+- Projects are temporary
+- Operations persist
+- Documentation impact identified before implementation
+
+Repository Status:
+
+Repository Discovery:
+Complete
+
+Repository Roles:
+Approved
+
+Governance Repository:
+operational-core
+
+Implementation Repository:
+stock-control
+
+Workspace Authority:
+Approved
+
+Status:
+Documentation alignment in progress
+
+Open Governance Work:
+- Complete governance document updates
+- Formalise repository ownership
+- Formalise workspace authority
+- Validate repository boundaries
+- Prepare workspace transition readiness
+- Delay structural migration
+
+Current Engagement:
+Workspace Document Formalisation
+
+Objective:
+Formalise repository ownership, workspace authority, and governance alignment before workspace redesign.
+
+Status:
+Active
+
+Last Updated:
+2026-05-24
