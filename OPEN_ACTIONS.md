@@ -142,3 +142,29 @@ Review Trigger:
 Repository governance changes
 
 --------------------------------------------------
+
+
+ID: OA007
+
+Area:
+Governance
+
+Action:
+Progress operating system evolution.
+
+Reason:
+Governance repository established and future operating model approved.
+
+Reference:
+EVOLUTION_PATH.md
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Governance closure
+
+--------------------------------------------------
