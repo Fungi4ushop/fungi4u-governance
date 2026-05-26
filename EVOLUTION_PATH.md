@@ -7,7 +7,7 @@ Status:
 Vision
 
 Last Updated:
-2026-05-25
+2026-05-26
 
 
 Destination
@@ -50,24 +50,6 @@ Principles
 - Platforms execute but do not govern
 
 
-Target State
-
-Level 1
-Governed documents
-
-Level 2
-Reusable context packs
-
-Level 3
-Domain operating model
-
-Level 4
-Workspace automation
-
-Level 5
-Cross-device operation
-
-
 Operating Philosophy
 
 The system should require less memory than the work.
@@ -93,8 +75,17 @@ Complete
 Publication Workflow:
 Complete
 
+Entry Experience:
+Started
+
 Domain Model:
 Not Started
+
+Operating Rhythms:
+Identified
+
+SOP Framework:
+Identified
 
 Automation:
 Not Started
@@ -111,13 +102,32 @@ Progress is measured by:
 - increased recoverability
 
 
+Stabilisation Rules
+
+Do not redesign ahead of demand.
+
+Capture discoveries before implementation.
+
+Prefer temporary containment over permanent structure.
+
+Missing capability must become:
+- an open action
+- a future milestone
+- a review item
+
+until formalised.
+
+The system should never depend on remembering unfinished ideas.
+
+
 Next Milestones
 
 1. Create DOMAIN_REGISTER.md
-2. Define domain promotion rules
-3. Create START_HERE.md
+2. Create OPERATING_RHYTHMS.md
+3. Create SOP_FRAMEWORK.md
 4. Introduce context packs
-5. Validate operating model across multiple domains
+5. Validate multi-domain operation
+6. Introduce workspace automation
 
 
 Review Trigger
@@ -131,3 +141,4 @@ Repeated context reconstruction
 OR
 
 New major domain introduced
+

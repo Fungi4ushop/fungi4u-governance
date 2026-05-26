@@ -190,3 +190,31 @@ Review Trigger:
 Repeated classification confusion
 
 --------------------------------------------------
+
+ID: OA009
+
+Area:
+Governance
+
+Action:
+Formalise remaining operating system concepts.
+
+Scope:
+Operating Rhythms
+Domain Register
+SOP Framework
+Review Framework
+
+Reason:
+Prevent loss of discovered architecture.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Monthly operating review
+
+--------------------------------------------------
