@@ -1,138 +1,136 @@
 ENGAGEMENT_START
 
 Purpose:
-Guide every engagement so implementation and documentation remain aligned.
-
-Document Loading Rule
-
-Before startup:
-
-Load:
-- ENGAGEMENT_START.md
-- BUSINESS_STATE.md
-- REPOSITORY_MAP.md
-
-Plus any engagement-specific documents.
-
-If documents are unavailable:
-identify missing documents before continuing.
+Create a repeatable engagement process that survives across chats and platforms.
 
 
+Engagement Lifecycle
 
+Prepare
+↓
 
-Roles:
+Load Context
+↓
 
-Business Owner
-- Initiates engagement
-- Provides decisions
-- Approves outcomes
-
-Engagement Guide
-- Guides startup
-- Identifies impacts
-- Guides closure
-
-Execution Team
-- Performs work
-- Produces outputs
-
---------------------------------------------------
-
-Startup Sequence
-
-Step 1
-Identify Business Area
-
-Options:
-- Governance
-- Operations
-- Projects
-- Systems
-- Data
-- Archive
-
-Step 2
-Identify Engagement Type
-
-Options:
-- Governance
-- Project
-- Operations
-- Incident / Troubleshooting
-- Research / Exploration
-
-Step 3
-Define Objective
-
-Question:
-What outcome is expected?
-
-Step 4
-Identify Constraints
-
-Question:
-What may not change?
-
-Step 5
-Identify Inputs
-
-Question:
-Which documents participate?
-
-Step 6
-Identify Outputs
-
-Question:
-What should exist afterwards?
-
-Step 7
-Identify Documentation Impact
-
-Questions:
-
-Which documents require update?
-
-Which workspace outputs require classification?
-
-Step 8
-Confirm Scope
-
-Question:
-Proceed?
-
-Step 9
 Execute
+↓
 
---------------------------------------------------
+Generate Outputs
+↓
 
-Execution Rule
+Review
+↓
 
-No implementation begins
-until documentation impact is identified.
+Close
+↓
 
---------------------------------------------------
+Publish
 
-Closure Sequence
 
-1 Summarize changes
+Startup Requirements
 
-2 Update impacted documents
+Required:
 
-3 Update Business State
+□ Business Area identified
+□ Engagement identified
+□ Objective defined
+□ Constraints identified
+□ Inputs identified
+□ Expected outputs identified
 
-4 Record decisions
 
-5 Record open actions
+Context Rule
 
-6 Identify repository actions
+Load only authoritative context.
 
-7 Confirm publication decision
+Prefer minimum viable context.
 
-8 Confirm completion
+Do not reconstruct context from memory.
 
---------------------------------------------------
 
-Escalation Rule
+Document Interaction Rule
+
+When authoritative documents exist:
+
+1. Load documents
+2. Discuss
+3. Approve
+4. Generate replacement documents
+5. Review generated outputs
+6. Replace local documents
+7. Commit
+8. Publish
+
+
+Avoid:
+
+- generating editing instructions
+- searching chat for changes
+- maintaining undocumented state
+- reconstructing repository content manually
+
+
+Principle:
+
+Approval should produce document outputs rather than editing tasks.
+
+
+Authority Rule
+
+Documents define state.
+
+Repositories preserve state.
+
+Platforms execute work.
+
+Chats facilitate work.
+
+
+Closure Requirements
+
+Required:
+
+□ Outputs generated
+□ Documents updated
+□ Repository updated
+□ Commit completed
+□ Publication decision completed
+
+
+Operating Principles
+
+Discovery precedes design.
+
+Experiment precedes formalisation.
+
+Document generation precedes manual editing.
+
+Progress over perfection.
+
+The system must explain itself.
+
+
+Recovery Rule
 
 If uncertain:
-consult documents before proceeding.
+
+Load:
+
+START_HERE.md
+BUSINESS_STATE.md
+OPEN_ACTIONS.md
+
+and restart.
+
+
+Review Trigger
+
+Repeated manual document editing
+
+OR
+
+Repeated context reconstruction
+
+OR
+
+Process friction detected
