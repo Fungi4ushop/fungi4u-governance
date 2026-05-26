@@ -15,7 +15,11 @@ Execute
 ↓
 Validate
 ↓
-Update Documents
+Generate Document Outputs
+↓
+Review Outputs
+↓
+Replace Documents
 ↓
 Update Business State
 ↓
@@ -65,7 +69,9 @@ Gate 3 — Closure
 
 Required:
 
-[ ] Documents updated
+[ ] Documents generated
+[ ] Documents reviewed
+[ ] Documents replaced
 [ ] Business State updated
 [ ] Decisions recorded
 [ ] Open actions recorded
@@ -85,7 +91,28 @@ Operating Rules
 - State lives in documents
 - Archive is read-only
 
-Closure Rule:
+Document Update Rule
+
+When a change is approved:
+
+1. Identify impacted documents
+2. Generate complete replacement content
+3. Review generated documents
+4. Replace local files
+5. Commit
+6. Publish
+
+Avoid:
+
+- incremental edit instructions
+- searching through chat
+- manual reconciliation
+
+Principle:
+
+Approval should result in document outputs rather than editing tasks.
+
+Closure Rule
 
 Workspace Rule
 
@@ -137,4 +164,3 @@ Rules:
 - Git history is authoritative for published state.
 - Deferred publication must be intentional.
 - Documents may not remain unmanaged without ownership.
-

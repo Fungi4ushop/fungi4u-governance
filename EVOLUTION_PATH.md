@@ -46,6 +46,7 @@ Principles
 - Governance is shared across domains
 - Domains emerge when justified
 - Approval precedes persistence
+- Document generation precedes manual editing
 - The system must explain itself
 - Platforms execute but do not govern
 
@@ -78,6 +79,9 @@ Complete
 Entry Experience:
 Started
 
+Document Generation Workflow:
+Started
+
 Domain Model:
 Not Started
 
@@ -89,6 +93,27 @@ Identified
 
 Automation:
 Not Started
+
+
+Target State
+
+Level 1
+Governed documents
+
+Level 2
+Reusable context packs
+
+Level 2.5
+Document generation workflow
+
+Level 3
+Domain operating model
+
+Level 4
+Workspace automation
+
+Level 5
+Cross-device operation
 
 
 Progress Rules
@@ -125,9 +150,10 @@ Next Milestones
 1. Create DOMAIN_REGISTER.md
 2. Create OPERATING_RHYTHMS.md
 3. Create SOP_FRAMEWORK.md
-4. Introduce context packs
-5. Validate multi-domain operation
-6. Introduce workspace automation
+4. Introduce document generation workflow
+5. Introduce context packs
+6. Validate multi-domain operation
+7. Introduce workspace automation
 
 
 Review Trigger

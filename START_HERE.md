@@ -130,6 +130,7 @@ Plans
 Architecture
 Proposals
 
+
 □ Project
 
 Purpose:
@@ -143,6 +144,7 @@ Outputs:
 Implemented change
 Transition plan
 Updated operating state
+
 
 □ Formalisation
 
@@ -270,7 +272,16 @@ Work.
 
 Approve.
 
-Update impacted documents.
+Generate updated document outputs.
+
+Review.
+
+Replace impacted documents.
+
+
+Principle:
+
+Approval should produce document updates rather than editing instructions.
 
 
 --------------------------------------------------
@@ -282,9 +293,11 @@ Step 7 — Close
 Confirm:
 
 
-□ Documents updated
+□ Documents generated
 
-□ Open actions updated
+□ Documents reviewed
+
+□ Documents replaced
 
 □ Repository updated
 
