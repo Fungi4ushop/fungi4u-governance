@@ -6,10 +6,19 @@ Authoritative description of the current state of the business.
 Business Areas:
 - Governance
 - Operations
-- Projects
 - Systems
 - Data
 - Archive
+
+Engagement Types:
+- Discovery
+- Experiment
+- Design
+- Project
+- Formalisation
+- Execution
+- Review
+- Closure
 
 Current Phase:
 Phase 1 — Establish Business Workspace

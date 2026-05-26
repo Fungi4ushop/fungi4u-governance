@@ -168,3 +168,25 @@ Review Trigger:
 Governance closure
 
 --------------------------------------------------
+
+ID: OA008
+
+Area:
+Governance
+
+Action:
+Validate Business Area and Engagement separation.
+
+Reason:
+Projects moved from ownership to engagement.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Repeated classification confusion
+
+--------------------------------------------------

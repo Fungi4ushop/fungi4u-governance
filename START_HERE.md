@@ -40,18 +40,6 @@ Maintenance
 Deliveries
 
 
-□ Projects
-
-Purpose:
-Change how work is performed.
-
-Examples:
-Automation
-Workspace transition
-Building new capability
-Business improvements
-
-
 □ Systems
 
 Purpose:
@@ -142,6 +130,19 @@ Plans
 Architecture
 Proposals
 
+□ Project
+
+Purpose:
+Introduce approved change.
+
+Questions:
+What should improve?
+What capability should be added?
+
+Outputs:
+Implemented change
+Transition plan
+Updated operating state
 
 □ Formalisation
 

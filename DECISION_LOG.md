@@ -332,3 +332,41 @@ Workspace governance redesign.
 
 Status:
 Approved
+
+--------------------------------------------------
+
+ID: 013
+
+Date:
+2026-05-25
+
+Decision:
+Reclassify Projects from Business Area to Engagement Type
+
+Previous Model:
+Projects classified as a Business Area.
+
+New Model:
+Projects classified as an Engagement Type.
+
+Reason:
+Projects describe temporary change activity rather than ownership.
+
+Principle:
+
+Business Areas answer:
+Who owns this?
+
+Engagement Types answer:
+What type of work is happening?
+
+Impact:
+Reduce overlap between Projects and Systems.
+
+Review Trigger:
+Business operating model changes.
+
+Status:
+Approved
+
+--------------------------------------------------
