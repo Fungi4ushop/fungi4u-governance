@@ -1,136 +1,122 @@
 ENGAGEMENT_START
 
 Purpose:
-Create a repeatable engagement process that survives across chats and platforms.
+Convert completed startup decisions into a new engagement chat.
 
 
-Engagement Lifecycle
+How To Use
 
-Prepare
-↓
+1. Complete START_HERE.md
+2. Upload selected documents
+3. Fill the initiation block below
+4. Copy ONLY the initiation block
+5. Start the new chat
 
-Load Context
-↓
-
-Execute
-↓
-
-Generate Outputs
-↓
-
-Review
-↓
-
-Close
-↓
-
-Publish
+Do not copy this entire document.
 
 
-Startup Requirements
-
-Required:
-
-□ Business Area identified
-□ Engagement identified
-□ Objective defined
-□ Constraints identified
-□ Inputs identified
-□ Expected outputs identified
+--------------------------------------------------
 
 
-Context Rule
-
-Load only authoritative context.
-
-Prefer minimum viable context.
-
-Do not reconstruct context from memory.
+INPUTS REQUIRED
 
 
-Document Interaction Rule
-
-When authoritative documents exist:
-
-1. Load documents
-2. Discuss
-3. Approve
-4. Generate replacement documents
-5. Review generated outputs
-6. Replace local documents
-7. Commit
-8. Publish
+Business Area:
+(from START_HERE)
 
 
-Avoid:
-
-- generating editing instructions
-- searching chat for changes
-- maintaining undocumented state
-- reconstructing repository content manually
+Engagement:
+(from START_HERE)
 
 
-Principle:
-
-Approval should produce document outputs rather than editing tasks.
-
-
-Authority Rule
-
-Documents define state.
-
-Repositories preserve state.
-
-Platforms execute work.
-
-Chats facilitate work.
+Objective:
+(from START_HERE)
 
 
-Closure Requirements
-
-Required:
-
-□ Outputs generated
-□ Documents updated
-□ Repository updated
-□ Commit completed
-□ Publication decision completed
+Selected Documents:
+(from START_HERE)
 
 
-Operating Principles
-
-Discovery precedes design.
-
-Experiment precedes formalisation.
-
-Document generation precedes manual editing.
-
-Progress over perfection.
-
-The system must explain itself.
+Expected Outputs:
+(from START_HERE)
 
 
-Recovery Rule
+--------------------------------------------------
 
-If uncertain:
 
-Load:
+COPY ONLY THIS
+
+
+Business Area:
+<enter value>
+
+
+Engagement:
+<enter value>
+
+
+Objective:
+<enter value>
+
+
+Inputs:
+<upload selected documents>
+
+
+Expected Outputs:
+<enter value>
+
+
+Instructions:
+
+Use uploaded documents as authority.
+
+Load minimum viable context.
+
+Do not reconstruct missing information.
+
+Preserve existing decisions unless intentionally changed.
+
+Generate replacement documents for approved changes.
+
+Prefer complete document outputs over editing instructions.
+
+Review outputs before publication.
+
+Record impacts and open actions.
+
+Close only after repository update.
+
+
+Begin engagement.
+
+
+END OF TEXT TO COPY
+
+
+--------------------------------------------------
+
+
+Operator Notes
+
+
+Do not explain documents.
+
+Do not paste repository history.
+
+Do not paste governance.
+
+Use uploaded documents instead.
+
+
+--------------------------------------------------
+
+
+Recovery
+
+
+If startup is unclear:
+
+Return to:
 
 START_HERE.md
-BUSINESS_STATE.md
-OPEN_ACTIONS.md
-
-and restart.
-
-
-Review Trigger
-
-Repeated manual document editing
-
-OR
-
-Repeated context reconstruction
-
-OR
-
-Process friction detected

@@ -1,362 +1,488 @@
-START_HERE
+# START_HERE
 
 Purpose:
-Restart work reliably without depending on memory or chat history.
+Provide a consistent method for starting work within the operating system.
 
+This document is used to prepare an engagement before execution begins.
 
-Rule
+Execution starts only after ENGAGEMENT_START has been completed.
 
-Do not begin with documents.
+This document does not perform work.
 
-Begin with questions.
+It prepares work.
 
+---
 
-Step 1 — Choose Business Area
+# Core Principle
 
-Select the area that owns the work.
+The operating system contains three independent lifecycles:
 
+Repository Lifecycle
+Chat Lifecycle
+Engagement Lifecycle
 
-□ Governance
+These lifecycles answer different questions.
 
-Purpose:
-Define rules, ownership, structure, workflows, decisions, and operating principles.
+Repository Lifecycle:
+
+What is the authority status?
+
+Chat Lifecycle:
+
+Where is the work being performed?
+
+Engagement Lifecycle:
+
+What work is being performed?
+
+These lifecycles must not be treated as the same thing.
+
+---
+
+# Repository Lifecycle
+
+Authority progresses through:
+
+Proposed
+↓
+Approved
+↓
+Installed
+↓
+Published
+
+Definitions:
+
+Proposed:
+Candidate change.
+
+Approved:
+Accepted through Formalisation.
+
+Installed:
+Applied to repository files.
+
+Published:
+Committed and published.
+
+Repository artifacts are authoritative.
+
+Chats are not authoritative.
+
+---
+
+# Chat Lifecycle
+
+Work occurs within chats.
+
+Chats are temporary workspaces.
+
+A chat may contain multiple engagements.
+
+Chat lifecycle:
+
+Active Chat
+↓
+Continuation Review
+↓
+Continue
+OR
+Successor Chat
+OR
+Closed
+
+Continuation Review should be considered when:
+
+* Navigation becomes difficult
+* Context becomes difficult to manage
+* Response quality degrades
+* Multiple engagements accumulate
+* Workspace usability declines
+
+---
+
+# Engagement Lifecycle
+
+Work is performed through engagements.
+
+Available engagement types:
+
+Discovery
+Experiment
+Design
+Review
+Formalisation
+Project
+Execution
+Closure
+Continuation Review
+
+Each engagement has:
+
+* Business Area
+* Objective
+* Inputs
+* Outputs
+* Constraints
+
+---
+
+# Startup Process
+
+Step 1
+↓
+Select Business Area
+
+Step 2
+↓
+Select Engagement Type
+
+Step 3
+↓
+Define Objective
+
+Step 4
+↓
+Select Inputs
+
+Step 5
+↓
+Define Expected Outputs
+
+Step 6
+↓
+Assess Workspace Health
+
+Step 7
+↓
+Start ENGAGEMENT_START
+
+---
+
+# Step 1 — Select Business Area
+
+Business Area identifies ownership of the work.
+
+Available Business Areas:
+
+Governance
 
 Examples:
-Repository structure
-Decision making
-Operating model
-Policies
 
+* operating system
+* repository structure
+* governance documents
+* decision processes
 
-□ Operations
+---
 
-Purpose:
-Run existing activities and maintain continuity.
-
-Examples:
-Producing mushrooms
-Routine administration
-Maintenance
-Deliveries
-
-
-□ Systems
-
-Purpose:
-Build, improve, or operate technical systems.
+Operations
 
 Examples:
-Stock-control
-ESP32
-Home Assistant
-Infrastructure
-Software
 
+* production
+* maintenance
+* administration
 
-□ Data
+---
 
-Purpose:
-Organise, measure, record, and analyse information.
+Systems
 
 Examples:
-Databases
-Metrics
-Reports
-Tracking
-Recordkeeping
 
+* software
+* ESP32
+* automation
+* infrastructure
 
-□ Archive
+---
 
-Purpose:
-Retain completed or inactive information.
+Data
 
 Examples:
-Retired projects
-Historical decisions
-Old versions
 
+* databases
+* reporting
+* measurements
 
---------------------------------------------------
+---
 
+Archive
 
-Step 2 — Choose Engagement
+Examples:
 
-Select the type of work.
+* historical records
+* retired work
+* preserved artifacts
 
+Selected Business Area:
 
-□ Discovery
+---
 
-Purpose:
-Understand current reality.
+---
 
-Questions:
-What exists?
-What is true?
-What are the boundaries?
+# Step 2 — Select Engagement Type
 
-Outputs:
-Findings
-Classification
-Observations
+Select the work being performed.
 
-
-□ Experiment
+Discovery
 
 Purpose:
-Learn through controlled trial.
 
-Questions:
-Will this work?
-What assumptions exist?
+Understand current state.
 
-Outputs:
-Results
-Lessons
-Decision inputs
+---
 
-
-□ Design
+Experiment
 
 Purpose:
-Create a proposed future state.
 
-Questions:
-What should exist?
-How should it work?
+Test assumptions.
 
-Outputs:
-Plans
-Architecture
-Proposals
+---
 
-
-□ Project
+Design
 
 Purpose:
-Introduce approved change.
 
-Questions:
-What should improve?
-What capability should be added?
+Create proposed future state.
 
-Outputs:
-Implemented change
-Transition plan
-Updated operating state
+---
 
-
-□ Formalisation
+Review
 
 Purpose:
-Convert approved ideas into governed state.
 
-Questions:
-What becomes official?
+Evaluate existing work.
 
-Outputs:
-Documents
-Rules
-Ownership
+---
 
-
-□ Execution
+Formalisation
 
 Purpose:
-Perform approved work.
 
-Questions:
-How do we implement?
+Approve decisions and replacement documents.
 
-Outputs:
-Completed work
-Updated state
+Repository Lifecycle Transition:
 
+Proposed
+↓
+Approved
 
-□ Review
+---
 
-Purpose:
-Evaluate outcomes and alignment.
-
-Questions:
-Did we achieve the objective?
-
-Outputs:
-Corrections
-Validation
-Open actions
-
-
-□ Closure
+Project
 
 Purpose:
-Finish work and preserve state.
 
-Questions:
-What must be retained?
+Implement approved changes.
 
-Outputs:
-Updated documents
-Publication
-Next actions
+Repository Lifecycle Transition:
 
+Approved
+↓
+Installed
 
---------------------------------------------------
+---
 
+Execution
 
-Step 3 — Define Objective
+Purpose:
 
-Complete:
+Perform approved operational work.
+
+---
+
+Closure
+
+Purpose:
+
+Complete and preserve work.
+
+---
+
+Continuation Review
+
+Purpose:
+
+Assess workspace usability.
+
+Selected Engagement:
+
+---
+
+---
+
+# Step 3 — Define Objective
 
 Objective:
-_________________________________
 
+---
 
---------------------------------------------------
+Success Means:
 
+---
 
-Step 4 — Load Minimum Context
+---
 
+# Step 4 — Select Inputs
 
-Always load:
+Inputs should be selected intentionally.
 
-□ ENGAGEMENT_START.md
-□ BUSINESS_STATE.md
-□ OPEN_ACTIONS.md
+Not every engagement requires every document.
 
+---
 
-Load if governance changes:
+## Architecture Documents
 
-□ REPOSITORY_MAP.md
-□ PROJECT_WORKFLOW.md
-□ DONE_CRITERIA.md
+Used to understand how the operating system works.
 
+Examples:
 
-Load if direction matters:
+* LIFECYCLE_MODEL.md
+* OPERATING_SYSTEM_GLOSSARY.md
+* PROJECT_WORKFLOW.md
+* START_HERE.md
 
-□ EVOLUTION_PATH.md
+Load when architectural understanding is required.
 
+---
 
-Load domain documents only if required.
+## State Documents
 
+Used to understand current reality.
 
---------------------------------------------------
+Examples:
 
+* OPEN_ACTIONS.md
+* BUSINESS_STATE.md
+* DECISION_LOG.md
 
-Step 5 — Start Chat
+Load when current status is required.
 
+---
 
-Use:
+## Domain Documents
 
+Used to understand a specific subject area.
 
-Business Area:
-<selected>
+Examples:
 
-Engagement:
-<selected>
+* System architecture
+* Business architecture
+* Technical specifications
+* Project documents
 
-Objective:
-<completed>
+Load as required.
 
-Constraints:
-From BUSINESS_STATE
+---
 
+Selected Inputs:
 
---------------------------------------------------
+---
 
+---
 
-Step 6 — Execute
+# Step 5 — Define Expected Outputs
 
+Possible Outputs:
 
-Work.
+* Findings
+* Recommendations
+* Decisions
+* Approved Decisions
+* Replacement Documents
+* Installed Documents
+* Open Actions
+* Repository Updates
+* Chat Continuation Package
+* Closure Record
 
-Approve.
+Selected Outputs:
 
-Generate updated document outputs.
+---
 
-Review.
+---
 
-Replace impacted documents.
+# Step 6 — Assess Workspace Health
 
+Evaluate the current chat.
 
-Principle:
+Indicators:
 
-Approval should produce document updates rather than editing instructions.
+[ ] Navigation difficult
 
+[ ] Context difficult to manage
 
---------------------------------------------------
+[ ] Response quality degrading
 
+[ ] Multiple engagements accumulated
 
-Step 7 — Close
+[ ] Workspace becoming inefficient
 
+If one or more indicators are present:
 
-Confirm:
+Consider:
 
+Continuation Review
 
-□ Documents generated
+Purpose:
 
-□ Documents reviewed
+Determine whether work should continue in the current chat or move to a successor chat.
 
-□ Documents replaced
+---
 
-□ Repository updated
+# Step 7 — Start Execution
 
-□ Commit completed
+Open:
 
-□ Publication completed
+ENGAGEMENT_START.md
 
+Transfer:
 
---------------------------------------------------
+* Business Area
+* Engagement Type
+* Objective
+* Inputs
+* Outputs
+* Constraints
 
+Execution begins after ENGAGEMENT_START.
 
-Step 8 — Continue Evolution
+---
 
+# Operator Rules
 
-If work repeatedly needs memory:
+Repository is authoritative.
 
-Promote to domain.
+Chats are temporary.
 
+Engagements are bounded units of work.
 
-If work repeatedly needs process:
+Use architecture documents to understand the system.
 
-Promote to governance.
+Use state documents to understand current reality.
 
+Prefer replacement documents over editing instructions.
 
-If work repeatedly needs effort:
+Do not reconstruct context when repository artifacts exist.
 
-Consider automation.
+---
 
+# Recovery Rule
 
---------------------------------------------------
+If uncertain:
 
+Return to START_HERE.
 
-Operating Principles
+Determine:
 
+* Business Area
+* Engagement Type
+* Objective
+* Inputs
+* Outputs
 
-The system must explain itself.
+Then restart the engagement.
 
-Authority lives in documents.
 
-Platforms execute.
-
-Discovery precedes design.
-
-Experiment precedes formalisation.
-
-Progress over perfection.
-
-
---------------------------------------------------
-
-
-When Lost
-
-
-Load:
-
-START_HERE.md
-BUSINESS_STATE.md
-OPEN_ACTIONS.md
-
-
-and begin again.

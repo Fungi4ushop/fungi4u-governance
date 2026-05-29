@@ -1,9 +1,106 @@
-PROJECT_WORKFLOW
+# PROJECT_WORKFLOW
 
 Purpose:
-Ensure work execution and documentation remain aligned.
+Ensure work execution, governance, repository state, and publication remain aligned.
 
-Lifecycle:
+This workflow implements the lifecycle architecture defined by:
+
+* LIFECYCLE_MODEL.md
+* OPERATING_SYSTEM_GLOSSARY.md
+
+---
+
+# Core Principle
+
+The operating system contains three independent lifecycles:
+
+Repository Lifecycle
+Chat Lifecycle
+Engagement Lifecycle
+
+These lifecycles are related but independent.
+
+A state change in one lifecycle does not automatically imply a state change in another lifecycle.
+
+---
+
+# Repository Lifecycle
+
+Purpose:
+
+Track authority and publication state.
+
+States:
+
+Proposed
+↓
+Approved
+↓
+Installed
+↓
+Published
+
+State Transitions:
+
+Review
+↓
+Formalisation
+↓
+Repository Update
+↓
+Commit / Publication
+
+---
+
+# Chat Lifecycle
+
+Purpose:
+
+Track workspace state.
+
+States:
+
+Active Chat
+↓
+Continuation Review
+↓
+Continue
+OR
+Successor Chat
+OR
+Closed
+
+Purpose:
+
+Allow work continuity while keeping chats temporary.
+
+---
+
+# Engagement Lifecycle
+
+Purpose:
+
+Track work being performed.
+
+Available Engagement Types:
+
+Discovery
+Experiment
+Design
+Review
+Formalisation
+Project
+Execution
+Closure
+Continuation Review
+
+Purpose:
+
+Define the nature of the work being performed.
+
+---
+
+# Work Lifecycle
 
 Monitor
 ↓
@@ -11,156 +108,411 @@ Identify Need
 ↓
 Create Engagement
 ↓
-Execute
+Execute Engagement
 ↓
-Validate
-↓
-Generate Document Outputs
+Validate Outputs
 ↓
 Review Outputs
 ↓
-Replace Documents
+Formalise Decisions
 ↓
-Update Business State
+Implement Approved Changes
 ↓
-Move Outputs To Workspace
+Update Repository
 ↓
-Repository Update
-↓
-Commit / Publication
+Commit / Publish
 ↓
 Operate
 ↓
 Monitor Again
 
---------------------------------------------------
+---
 
-Execution Gates
+# Lifecycle Relationships
 
-Gate 1 — Startup
+## Discovery
+
+Produces:
+
+Proposed outputs
+
+Examples:
+
+* Findings
+* Questions
+* Constraints
+
+Repository State:
+
+Proposed
+
+---
+
+## Experiment
+
+Produces:
+
+Proposed outputs
+
+Examples:
+
+* Evidence
+* Test results
+* Recommendations
+
+Repository State:
+
+Proposed
+
+---
+
+## Design
+
+Produces:
+
+Proposed outputs
+
+Examples:
+
+* Architectures
+* Processes
+* Solutions
+
+Repository State:
+
+Proposed
+
+---
+
+## Review
+
+Produces:
+
+Proposed outputs
+
+Examples:
+
+* Findings
+* Lessons learned
+* Recommendations
+
+Repository State:
+
+Proposed
+
+---
+
+## Formalisation
+
+Purpose:
+
+Approve changes.
+
+Produces:
+
+* Approved decisions
+* Approved replacement documents
+
+Repository Lifecycle Transition:
+
+Proposed
+↓
+Approved
+
+Formalisation does not install repository changes.
+
+Formalisation does not publish repository changes.
+
+---
+
+## Project
+
+Purpose:
+
+Implement approved changes.
+
+Produces:
+
+* Installed capabilities
+* Installed repository artifacts
+
+Repository Lifecycle Transition:
+
+Approved
+↓
+Installed
+
+Examples:
+
+* Repository files replaced
+* Approved architecture implemented
+* Approved governance documents installed
+
+---
+
+## Execution
+
+Purpose:
+
+Perform approved operational work.
+
+Produces:
+
+Operational outcomes.
+
+---
+
+## Closure
+
+Purpose:
+
+Complete and preserve work.
+
+Produces:
+
+Closure artifacts and final status.
+
+---
+
+## Continuation Review
+
+Purpose:
+
+Assess workspace usability.
+
+Produces:
+
+* Current state summary
+* Lessons learned
+* Continuation decision
+* Chat Continuation Package
+
+Affects:
+
+Chat Lifecycle
+
+Does not directly affect Repository Lifecycle.
+
+---
+
+# Execution Gates
+
+## Gate 1 — Startup
 
 Required:
+
 [ ] Business Area identified
+
 [ ] Engagement Type identified
+
 [ ] Objective agreed
+
 [ ] Constraints identified
+
 [ ] Inputs identified
+
 [ ] Outputs identified
+
 [ ] Documentation impact identified
 
 Outcome:
-Approved to start
 
---------------------------------------------------
+Approved to start engagement.
 
-Gate 2 — Execution
+---
+
+## Gate 2 — Engagement Complete
 
 Required:
-[ ] Work completed
+
+[ ] Engagement objective achieved
+
+[ ] Outputs generated
+
 [ ] Validation completed
+
 [ ] Issues recorded
 
 Outcome:
-Approved to close
 
---------------------------------------------------
+Outputs ready for review or formalisation.
 
-Gate 3 — Closure
+---
+
+## Gate 3 — Formalisation Complete
 
 Required:
 
-[ ] Documents generated
-[ ] Documents reviewed
-[ ] Documents replaced
-[ ] Business State updated
-[ ] Decisions recorded
-[ ] Open actions recorded
-[ ] Publication readiness confirmed
-[ ] Repository committed
-[ ] Publication completed (if applicable)
+[ ] Decisions approved
+
+[ ] Replacement documents approved
+
+[ ] Open actions updated
 
 Outcome:
-Engagement complete
 
---------------------------------------------------
+Repository State = Approved
 
-Operating Rules
+---
 
-- Projects change the business
-- Operations run the business
-- State lives in documents
-- Archive is read-only
+## Gate 4 — Repository Installation
 
-Document Update Rule
+Required:
 
-When a change is approved:
+[ ] Approved documents installed
 
-1. Identify impacted documents
-2. Generate complete replacement content
-3. Review generated documents
-4. Replace local files
-5. Commit
-6. Publish
+[ ] Repository files replaced
 
-Avoid:
+[ ] Repository consistency verified
 
-- incremental edit instructions
-- searching through chat
-- manual reconciliation
+Outcome:
+
+Repository State = Installed
+
+---
+
+## Gate 5 — Publication
+
+Required:
+
+[ ] Changes committed
+
+[ ] Publication decision executed
+
+[ ] Push completed (if applicable)
+
+Outcome:
+
+Repository State = Published
+
+---
+
+# Continuation Review Triggers
+
+A Continuation Review may be initiated when:
+
+* Navigation becomes difficult
+* Context becomes difficult to manage
+* Response quality degrades
+* Multiple engagements accumulate
+* Workspace becomes inefficient
+* Operator judges review necessary
+
+---
+
+# Chat Rollover Process
+
+Continuation Review
+↓
+Continuation Decision
+↓
+Create Chat Continuation Package
+↓
+Create Successor Chat
+↓
+Resume Work
+
+---
+
+# Repository Update Rule
+
+When an approved change exists:
+
+1. Identify affected documents
+2. Generate replacement documents
+3. Review replacement documents
+4. Approve replacement documents
+5. Install replacement documents
+6. Verify repository consistency
+7. Commit changes
+8. Publish if required
 
 Principle:
 
-Approval should result in document outputs rather than editing tasks.
+Approved changes do not become repository state until installation occurs.
 
-Closure Rule
+---
 
-Workspace Rule
+# Open Action Rule
 
-Workspace is temporary execution state.
+Open actions must describe remaining work.
 
-Repository is managed state.
+Actions should reflect lifecycle state.
 
-Publication is optional unless required.
+Examples:
 
-Nothing closes
-until documentation alignment is complete.
+Good:
 
-Publication Rule
+Install approved glossary into repository.
 
-Authority updates are not complete until:
+Publish approved workflow update.
 
-1. Documents classified
-2. Repository placement decided
-3. Local repository updated
-4. Changes committed
-5. Publication decision executed
+Avoid:
 
-Document States:
+Create glossary.
 
-Unmanaged
-Exists outside repository
+Update workflow.
 
-Managed
-Stored in repository
+These actions do not indicate lifecycle state and may become ambiguous.
 
+---
+
+# Workspace Rule
+
+Chats are temporary workspaces.
+
+Repository artifacts preserve continuity.
+
+A chat may contain multiple engagements.
+
+An engagement may close without closing the chat.
+
+---
+
+# Publication Rule
+
+Authority progresses through:
+
+Proposed
+↓
+Approved
+↓
+Installed
+↓
 Published
-Committed and pushed
 
-Publication options:
+Repository state must accurately reflect the current lifecycle state of governance outputs.
 
-Publish:
-Add to repository → commit → push
+---
 
-Defer:
-Record publication deferral as open action
+# Operating Principles
 
-Archive:
-Store outside active repository with ownership recorded
+Repository First
 
-Rules:
+Repository artifacts are authoritative.
 
-- Publication platform does not define truth.
-- Repository membership must be intentional.
-- Git history is authoritative for published state.
-- Deferred publication must be intentional.
-- Documents may not remain unmanaged without ownership.
+---
+
+Lifecycle Separation
+
+Repository Lifecycle, Chat Lifecycle, and Engagement Lifecycle are distinct.
+
+---
+
+Explicit State
+
+All significant outputs should have a clearly identifiable lifecycle state.
+
+---
+
+Continuity Through Artifacts
+
+Continuity is achieved through repository artifacts and Chat Continuation Packages rather than indefinite chat growth.
+
+---
+
+Controlled Evolution
+
+The operating system evolves through review, formalisation, implementation, installation, and publication.
+
+
