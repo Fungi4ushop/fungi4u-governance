@@ -55,10 +55,10 @@ Area:
 Governance
 
 Action:
-Define Chat Continuation Package artifact.
+Define Chat Continuation Package artifact standard.
 
 Reason:
-Approved continuity model requires a standard artifact for transferring work between chats.
+The Chat Continuation Package concept has been defined and published, but a standard reusable artifact template has not yet been formalised.
 
 Owner:
 Business Owner
@@ -67,32 +67,7 @@ Status:
 Open
 
 Review Trigger:
-Continuation Review implementation
-
----
-
-ID: OA004
-
-Area:
-Governance
-
-Action:
-Prepare Business Workspace transition plan.
-
-Constraint:
-No migration until governance readiness confirmed.
-
-Owner:
-Business Owner
-
-Status:
-Closed
-
-Closure Reason:
-Superseded by approved Workspace Transition Model.
-
-Review Trigger:
-Workspace governance stabilised
+Continuation package usage across multiple chat rollovers
 
 ---
 
@@ -361,154 +336,6 @@ Initial humidification testing
 
 ---
 
-ID: OA015
-
-Area:
-Governance
-
-Action:
-Create OPERATING_SYSTEM_GLOSSARY.md.
-
-Reason:
-Operating-system terminology has become sufficiently specialised to require an authoritative vocabulary.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Glossary approved
-
----
-
-ID: OA016
-
-Area:
-Governance
-
-Action:
-Define Chat Continuation Review process.
-
-Reason:
-Pilot review identified workspace degradation, context overload, and continuity management as governance concerns.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Workflow update
-
----
-
-ID: OA017
-
-Area:
-Governance
-
-Action:
-Define Chat Continuation Package structure.
-
-Reason:
-Approved continuity model requires a standard method for transferring context between chats.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Continuation Review approved
-
----
-
-ID: OA018
-
-Area:
-Governance
-
-Action:
-Formalise Document Emergence principle.
-
-Reason:
-Pilot demonstrated that repository structure may evolve through discovery of new responsibilities and architectural boundaries.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Governance update cycle
-
----
-
-ID: OA019
-
-Area:
-Governance
-
-Action:
-Update START_HERE.md.
-
-Scope:
-
-* glossary integration
-* chat concept
-* engagement concept
-* continuation review
-* startup package clarification
-
-Reason:
-Pilot findings approved during formalisation.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Glossary approved
-
----
-
-ID: OA020
-
-Area:
-Governance
-
-Action:
-Update PROJECT_WORKFLOW.md.
-
-Scope:
-
-* workspace lifecycle
-* continuation review
-* continuation package
-* successor chat
-* chat rollover
-
-Reason:
-Pilot identified lifecycle-management gaps.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Continuation model approved
-
----
-
 ID: OA021
 
 Area:
@@ -524,7 +351,7 @@ Scope:
 * document purpose definitions
 
 Reason:
-Pilot identified uncertainty regarding startup context and governance document loading.
+Published lifecycle architecture introduced Architecture Documents, State Documents, and Domain Documents, but startup package standards remain undefined.
 
 Owner:
 Business Owner
@@ -533,6 +360,28 @@ Status:
 Open
 
 Review Trigger:
-Glossary approved
+Operating system review cycle
+
+---
+
+ID: OA022
+
+Area:
+Governance
+
+Action:
+Review lifecycle architecture after operational use.
+
+Reason:
+The lifecycle model has been published and successfully exercised once. Future operational experience may reveal improvements or simplifications.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Three successful lifecycle cycles completed
 
 ---
