@@ -99,10 +99,10 @@ Area:
 Governance
 
 Action:
-Classify WORK_MOVEMENT_MODEL.md ownership and repository placement.
+Apply Document Authority Framework to all business documents.
 
 Reason:
-Workspace transition governance approved but repository ownership remains pending.
+Decision 012 approved.
 
 Owner:
 Business Owner
@@ -111,11 +111,55 @@ Status:
 Open
 
 Review Trigger:
-Repository governance changes
+New unmanaged documents discovered
 
 ---
 
 ID: OA007
+
+Area:
+Systems
+
+Action:
+Move approved Systems Authority Stack documents under repository control.
+
+Reason:
+Systems Authority Stack approved and onboarded.
+
+Owner:
+Business Owner
+
+Status:
+Closed
+
+Outcome:
+Systems Authority Stack successfully onboarded into stock-control/docs.
+
+---
+
+ID: OA008
+
+Area:
+Governance
+
+Action:
+Maintain Document Register.
+
+Reason:
+Document governance now depends on a controlled inventory.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Document inventory changes
+
+---
+
+ID: OA009
 
 Area:
 Governance
@@ -140,57 +184,6 @@ Governance closure
 
 ---
 
-ID: OA008
-
-Area:
-Governance
-
-Action:
-Validate Business Area and Engagement separation.
-
-Reason:
-Projects moved from ownership to engagement.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Repeated classification confusion
-
----
-
-ID: OA009
-
-Area:
-Governance
-
-Action:
-Formalise remaining operating system concepts.
-
-Scope:
-
-* Operating Rhythms
-* Domain Register
-* SOP Framework
-* Review Framework
-
-Reason:
-Prevent loss of discovered architecture.
-
-Owner:
-Business Owner
-
-Status:
-Open
-
-Review Trigger:
-Monthly operating review
-
----
-
 ID: OA010
 
 Area:
@@ -199,24 +192,8 @@ Systems
 Action:
 Define exact environmental sensor placement.
 
-Scope:
-
-* room reference sensor placement
-* supply/plenum sensor placement
-* shielding requirements
-* maintenance accessibility
-
-Reason:
-Environmental sensing architecture approved but final positioning remains unvalidated.
-
-Owner:
-Business Owner
-
 Status:
 Open
-
-Review Trigger:
-ESP32 implementation phase
 
 ---
 
@@ -228,24 +205,8 @@ Systems
 Action:
 Define recovery-mode behaviour.
 
-Scope:
-
-* recovery duration
-* fan recovery profile
-* humidifier recovery logic
-* stabilization criteria
-
-Reason:
-Environmental state model approved but recovery behaviour remains undefined.
-
-Owner:
-Business Owner
-
 Status:
 Open
-
-Review Trigger:
-ESP32 commissioning
 
 ---
 
@@ -257,24 +218,8 @@ Systems
 Action:
 Validate duct airflow distribution.
 
-Scope:
-
-* hole balancing
-* airflow uniformity
-* localized air velocity
-* condensation behaviour
-
-Reason:
-Distributed airflow architecture approved but physical airflow behaviour remains unvalidated.
-
-Owner:
-Business Owner
-
 Status:
 Open
-
-Review Trigger:
-Initial circulation testing
 
 ---
 
@@ -286,24 +231,8 @@ Systems
 Action:
 Define fan-control implementation method.
 
-Options:
-
-* PWM
-* analog control
-* stepped-speed control
-* VFD interface
-
-Reason:
-Environmental control architecture approved but hardware control method remains undecided.
-
-Owner:
-Business Owner
-
 Status:
 Open
-
-Review Trigger:
-ESP32 hardware implementation
 
 ---
 
@@ -315,24 +244,8 @@ Systems
 Action:
 Validate humidifier carry-over behaviour.
 
-Scope:
-
-* droplet transport
-* plenum saturation
-* duct condensation
-* supply-air stability
-
-Reason:
-Ultrasonic humidification architecture approved but transport behaviour remains unvalidated.
-
-Owner:
-Business Owner
-
 Status:
 Open
-
-Review Trigger:
-Initial humidification testing
 
 ---
 
@@ -344,23 +257,8 @@ Governance
 Action:
 Define startup package standard.
 
-Scope:
-
-* mandatory startup documents
-* optional startup documents
-* document purpose definitions
-
-Reason:
-Published lifecycle architecture introduced Architecture Documents, State Documents, and Domain Documents, but startup package standards remain undefined.
-
-Owner:
-Business Owner
-
 Status:
 Open
-
-Review Trigger:
-Operating system review cycle
 
 ---
 
@@ -372,16 +270,8 @@ Governance
 Action:
 Review lifecycle architecture after operational use.
 
-Reason:
-The lifecycle model has been published and successfully exercised once. Future operational experience may reveal improvements or simplifications.
-
-Owner:
-Business Owner
-
 Status:
 Open
 
-Review Trigger:
-Three successful lifecycle cycles completed
-
 ---
+

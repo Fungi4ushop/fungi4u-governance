@@ -1,24 +1,26 @@
-BUSINESS_STATE
+# BUSINESS_STATE
 
 Purpose:
 Authoritative description of the current state of the business.
 
 Business Areas:
-- Governance
-- Operations
-- Systems
-- Data
-- Archive
+
+* Governance
+* Operations
+* Systems
+* Data
+* Archive
 
 Engagement Types:
-- Discovery
-- Experiment
-- Design
-- Project
-- Formalisation
-- Execution
-- Review
-- Closure
+
+* Discovery
+* Experiment
+* Design
+* Project
+* Formalisation
+* Execution
+* Review
+* Closure
 
 Current Phase:
 Phase 1 — Establish Business Workspace
@@ -36,12 +38,16 @@ Active Governance Decisions:
 009 operational-core Repository Classification
 010 stock-control Repository Classification
 011 Workspace Authority Model
+012 Document Authority Framework
+013 Systems Authority Stack
+014 Document Lifecycle Model
 
 Current Constraints:
-- State recorded in documents
-- Projects are temporary
-- Operations persist
-- Documentation impact identified before implementation
+
+* State recorded in documents
+* Projects are temporary
+* Operations persist
+* Documentation impact identified before implementation
 
 Repository Status:
 
@@ -60,28 +66,38 @@ stock-control
 Workspace Authority:
 Approved
 
+Document Authority Framework:
+Approved
+
+Systems Authority Stack:
+Approved
+
+Document Lifecycle Model:
+Approved
+
 Status:
-Documentation alignment in progress
 Workspace transition model formalised
+Document governance formalised
+Systems authority stack onboarded
 
 Open Governance Work:
-- Complete governance document updates
-- Formalise repository ownership
-- Formalise workspace authority
-- Validate repository boundaries
-- Prepare workspace transition readiness
-- Delay structural migration
-- Approve work movement governance
-- Classify work movement document
+
+* Apply Document Authority Framework
+* Create document inventory governance
+* Formalise repository ownership
+* Validate repository boundaries
+* Prepare workspace transition readiness
+* Delay structural migration
 
 Current Engagement:
-Workspace Transition Formalisation
+Document Register Reconciliation
 
 Objective:
-Formalise repository ownership, workspace authority, and governance alignment before workspace redesign.
+Bring governance records into alignment with the accepted Systems Authority Stack and Document Lifecycle Model.
 
 Status:
 Active
 
 Last Updated:
-2026-05-24
+2026-05-30
+
