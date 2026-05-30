@@ -1,35 +1,22 @@
 REPOSITORY_MAP
 
 Purpose:
-Describe how business information is organised.
+Describe how business information is organised and where authority resides.
 
 Principles:
-- Business owns structure
-- Projects are temporary
-- Operations persist
-- Documents have one owner
-- State is recorded in documents
-- Archive is read-only
 
-Target Business Workspace:
+* Business owns structure
+* Projects are temporary
+* Operations persist
+* Documents have one owner
+* State is recorded in documents
+* Archive is read-only
 
-Business
-├── Governance
-├── Operations
-├── Projects
-├── Systems
-├── Data
-└── Archive
-
-Document Ownership:
---------------------------------------------------
+---
 
 Repository Roles
 
-Governance Repository
-
-Purpose:
-Define governing principles.
+Constitutional Governance Repository
 
 Repository:
 operational-core
@@ -37,224 +24,156 @@ operational-core
 Authority:
 Constitutional
 
+Purpose:
+
+* Constitution
+* Vision
+* Amendments
+* Governance standards
+* Document register
+* Framework models
+
 Contains:
-Constitution
-Vision
-Architecture declarations
-Amendments
-Governance standards
+
+* CONSTITUTION.md
+* VISION.md
+* AMENDMENTS.md
+* DOCUMENT_REGISTER.md
+* WORK_MOVEMENT_MODEL.md
+* Architecture templates
 
 Must Not Contain:
-Implementation artifacts
-Runtime systems
-Operational state
 
+* Runtime systems
+* Domain implementation
+* Operational state
 
-Implementation Repository
+---
+
+Operational Governance Repository
+
+Repository:
+fungi4u-governance
+
+Authority:
+Operational Governance
 
 Purpose:
-Implement governed systems.
+
+* Business state
+* Decisions
+* Open actions
+* Engagement process
+* Governance workflows
+* Lifecycle operation
+
+Contains:
+
+* BUSINESS_STATE.md
+* DECISION_LOG.md
+* OPEN_ACTIONS.md
+* START_HERE.md
+* ENGAGEMENT_START.md
+* PROJECT_WORKFLOW.md
+* LIFECYCLE_MODEL.md
+* OPERATING_SYSTEM_GLOSSARY.md
+* EVOLUTION_PATH.md
+
+Must Not Contain:
+
+* Domain implementation artifacts
+* Runtime systems
+
+---
+
+Implementation Repository
 
 Repository:
 stock-control
 
-Domain:
-Economic Governance Domain
-
 Authority:
 Inherited from Governance
 
+Purpose:
+
+Implement governed systems.
+
 Contains:
-Architecture
-Migrations
-Infrastructure
-Operational execution
+
+* Systems authority stack
+* Architecture
+* Allocation
+* Operational controls
+* Implementation documents
 
 Must Not Contain:
-Governance authority
-Constitution amendments
-Strategic doctrine
 
+* Constitutional governance
+* Governance decisions
+* Strategic doctrine
 
-Relationship
+---
+
+Authority Relationships
 
 operational-core
-governs
+governs governance framework
+
+↓
+
+fungi4u-governance
+governs business operation
 
 ↓
 
 stock-control
-implements
+implements approved systems
 
---------------------------------------------------
+---
 
 Workspace Layers
 
 Authority Layer
 
-Purpose:
-Own approved truth.
+Owns approved truth.
 
 Examples:
-Business State
-Decision Log
-Constitution
 
+* Constitution
+* Business State
+* Decision Log
+* Systems Authority Stack
 
 Workspace Layer
 
-Purpose:
-Perform controlled work.
+Performs work.
 
 Examples:
-Local Linux repositories
-Generated outputs
-Working documents
 
+* Local repositories
+* Working documents
+* Generated outputs
 
 Interaction Layer
 
-Purpose:
-Enable engagement.
+Enables engagement.
 
 Examples:
-ChatGPT
-Android
-Linux desktop
 
+* ChatGPT
+* Linux desktop
+* Mobile devices
 
 Publication Layer
 
-Purpose:
-Publish and recover state.
+Publishes state.
 
 Examples:
-Git
-GitHub
 
+* Git
+* GitHub
 
-Rules
-
-Authority is independent of platform.
-
-Work may occur from any device.
-
-Durable outputs return to workspace.
-
-Git manages history.
-
-Publication does not define truth.
---------------------------------------------------
-
-Repository Roles
-
-Governance Repository
-
-Purpose:
-Define governing principles.
-
-Repository:
-operational-core
-
-Authority:
-Constitutional
-
-Contains:
-Constitution
-Vision
-Architecture declarations
-Amendments
-Governance standards
-
-Must Not Contain:
-Implementation artifacts
-Runtime systems
-Operational state
-
-
-Implementation Repository
-
-Purpose:
-Implement governed systems.
-
-Repository:
-stock-control
-
-Domain:
-Economic Governance Domain
-
-Authority:
-Inherited from Governance
-
-Contains:
-Architecture
-Migrations
-Infrastructure
-Operational execution
-
-Must Not Contain:
-Governance authority
-Constitution amendments
-Strategic doctrine
-
-
-Relationship
-
-operational-core
-governs
-
-↓
-
-stock-control
-implements
-
---------------------------------------------------
-
-Workspace Layers
-
-Authority Layer
-
-Purpose:
-Own approved truth.
-
-Examples:
-Business State
-Decision Log
-Constitution
-
-
-Workspace Layer
-
-Purpose:
-Perform controlled work.
-
-Examples:
-Local Linux repositories
-Generated outputs
-Working documents
-
-
-Interaction Layer
-
-Purpose:
-Enable engagement.
-
-Examples:
-ChatGPT
-Android
-Linux desktop
-
-
-Publication Layer
-
-Purpose:
-Publish and recover state.
-
-Examples:
-Git
-GitHub
-
---------------------------------------------------
+---
 
 Work Movement
 
@@ -272,70 +191,19 @@ Monitor
 
 Principles
 
-Chat enables engagement.
+* Chat enables engagement
+* Workspace performs work
+* Repository stores managed state
+* Publication distributes state
+* Operation executes approved state
+* Monitoring initiates future work
 
-Workspace performs work.
-
-Repository stores managed state.
-
-Publication distributes state.
-
-Operation executes approved state.
-
-Monitoring initiates future work.
-
-
-Rules
-
-Authority is independent of platform.
-
-Work may occur from any device.
-
-Durable outputs return to workspace.
-
-Git manages history.
-
-Publication does not define truth.
-
---------------------------------------------------
---------------------------------------------------
-
-
-Governance:
-- ENGAGEMENT_START.md
-- BUSINESS_STATE.md
-- DECISION_LOG.md
-- ASSUMPTIONS.md
-- DONE_CRITERIA.md
-- REPOSITORY_MAP.md
-- WORK_MOVEMENT_MODEL.md
-
-Operations:
-- SOPs
-- Maintenance
-- Operating records
-
-Projects:
-- PROJECT_STATE.md
-- PROJECT_WORKFLOW.md
-- Project documents
-
-Systems:
-- Firmware
-- ESPHome
-- Home Assistant
-- Supabase
-- Architecture
-
-Data:
-- Stock
-- Production
-- Reporting
-
-Archive:
-- Closed work
-- Historical records
+---
 
 Status:
-Concept approved
-Migration not started
+
+Repository model validated through operational use.
+
+Last Updated:
+2026-05-30
+

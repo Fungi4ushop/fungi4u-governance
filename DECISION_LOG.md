@@ -13,7 +13,7 @@ Impact:
 Review Trigger:
 Status:
 
---------------------------------------------------
+---
 
 ID: 001
 Date: 2026-05-23
@@ -32,7 +32,7 @@ Business model changes.
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 002
 Date: 2026-05-23
@@ -51,19 +51,12 @@ Workspace redesign.
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 003
 Date: 2026-05-23
 Decision:
 Adopt Engagement Model
-
-Decision Structure:
-Business Owner
-↓
-Engagement Guide
-↓
-Execution Team
 
 Reason:
 Separate governance from execution.
@@ -77,7 +70,7 @@ Collaboration model changes.
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 004
 Date: 2026-05-23
@@ -96,21 +89,12 @@ Governance review.
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 005
 Date: 2026-05-23
 Decision:
 Adopt Business Lifecycle
-
-Lifecycle:
-Monitor
-→ Identify
-→ Engage
-→ Execute
-→ Validate
-→ Update
-→ Operate
 
 Reason:
 Create closed-loop alignment.
@@ -124,11 +108,10 @@ Process review.
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 006
 Date: 2026-05-23
-
 Decision:
 Discovery precedes design.
 
@@ -144,10 +127,10 @@ Governance process review.
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 007
-
+Date: 2026-05-23
 Decision:
 Repository Discovery precedes Business Workspace Transition.
 
@@ -160,213 +143,133 @@ Migration paused.
 Status:
 Approved
 
---------------------------------------------------
-
---------------------------------------------------
+---
 
 ID: 008
 Date: 2026-05-24
-
 Decision:
-Adopt Repository Role Classification
-
-Repository Roles:
-Governance
-Implementation
-Operations
-Archive
-
-Reason:
-Repository Discovery established that repositories perform distinct business roles and should be classified before redesign.
-
-Impact:
-Repository responsibilities become explicit and redesign may proceed from documented ownership.
-
-Review Trigger:
-Repository model changes.
+Adopt Repository Role Classification.
 
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 009
 Date: 2026-05-24
-
 Decision:
-Classify operational-core Repository
-
-Classification:
-Governance Repository
-
-Role:
-Define constitutional authority, domain boundaries, architecture discipline, and strategic direction.
-
-Restriction:
-Must not contain implementation artifacts or runtime state.
-
-Reason:
-Repository Discovery validated operational-core as the governing layer.
-
-Impact:
-Governance authority becomes explicit.
-
-Review Trigger:
-Constitution revision.
+Classify operational-core Repository.
 
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 010
 Date: 2026-05-24
-
 Decision:
-Classify stock-control Repository
-
-Classification:
-Economic Governance Implementation Repository
-
-Role:
-Implement economic governance under Operational Core constitutional constraints.
-
-Restriction:
-Must not redefine governance.
-
-Reason:
-Repository Discovery validated stock-control as implementation of constitutional governance.
-
-Impact:
-Execution authority becomes explicit.
-
-Review Trigger:
-Domain redesign.
+Classify stock-control Repository.
 
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 011
 Date: 2026-05-24
-
 Decision:
-Adopt Workspace Authority Model
-
-Principle:
-Authority is independent of execution platform.
-
-Layers:
-
-Authority Layer
-Approved documents
-
-↓
-
-Workspace Layer
-Local repositories
-
-↓
-
-Interaction Layer
-Chat interfaces
-
-↓
-
-Publication Layer
-Git publication
-
-Reason:
-Prevent devices and platforms from becoming implicit authorities.
-
-Impact:
-Context handling becomes reproducible while preserving document authority.
-
-Review Trigger:
-Workspace architecture changes.
+Adopt Workspace Authority Model.
 
 Status:
 Approved
 
---------------------------------------------------
+---
 
 ID: 012
 Date: 2026-05-24
-
 Decision:
-Adopt Work Movement Model
+Adopt Document Authority Framework.
+
+Reason:
+Formalise document classes, authority relationships, ownership, status, and publication.
+
+Impact:
+Documents become governed artifacts with explicit lifecycle and authority.
+
+Review Trigger:
+Governance model redesign.
+
+Status:
+Approved
+
+---
+
+ID: 013
+Date: 2026-05-30
+Decision:
+Adopt Systems Authority Stack.
+
+Authority Stack:
+
+Architecture
+↓
+Allocation
+↓
+Allocation
+↓
+Operational
+↓
+Implementation
+
+Implemented By:
+
+HARDWARE_CONTROL_ARCHITECTURE.md
+GPIO_ALLOCATION.md
+TERMINAL_BLOCK_MAP.md
+CHANGE_MANAGEMENT.md
+WIRING_GUIDE.md
+
+Reason:
+Provide explicit precedence and ownership for systems implementation.
+
+Impact:
+Systems authority no longer depends on chat history.
+
+Review Trigger:
+Systems governance redesign.
+
+Status:
+Approved
+
+---
+
+ID: 014
+Date: 2026-05-30
+Decision:
+Adopt Document Lifecycle Model.
 
 Lifecycle:
 
-Chat
+Draft
 ↓
-Workspace
+Accepted
 ↓
-Repository
+Managed
 ↓
-Commit / Publication
+Published
 ↓
-Operation
-↓
-Monitor
-
-Principles:
-
-- Interaction initiates work
-- Workspace performs work
-- Repository stores managed state
-- Publication distributes state
-- Operation executes approved state
-- Monitoring creates future engagements
-- Publication does not define truth
+Archived
 
 Reason:
-Formalise movement of work while preserving document authority and repository roles.
+Operational use revealed a governance gap between Draft and Managed.
 
 Impact:
-Workspace transitions become governed without changing repository structure.
+Document status now accurately reflects governance state.
 
 Review Trigger:
-Workspace governance redesign.
+Lifecycle redesign.
 
 Status:
 Approved
 
---------------------------------------------------
-
-ID: 013
-
-Date:
-2026-05-25
-
-Decision:
-Reclassify Projects from Business Area to Engagement Type
-
-Previous Model:
-Projects classified as a Business Area.
-
-New Model:
-Projects classified as an Engagement Type.
-
-Reason:
-Projects describe temporary change activity rather than ownership.
-
-Principle:
-
-Business Areas answer:
-Who owns this?
-
-Engagement Types answer:
-What type of work is happening?
-
-Impact:
-Reduce overlap between Projects and Systems.
-
-Review Trigger:
-Business operating model changes.
-
-Status:
-Approved
-
---------------------------------------------------
+---
