@@ -2,29 +2,29 @@
 
 ## 1 Purpose
 
-This document defines the initial ESP32-based environmental control architecture for the Fungi4u fruiting room.
+This document defines the ESP32-based environmental control architecture for the Fungi4u fruiting room.
 
-The document separates:
+The document defines:
 
-* physical environmental architecture
-  from:
-* environmental control-system architecture.
-
-The purpose of the control system is to:
-
-* maintain stable fruiting conditions,
-* support continuous environmental circulation,
-* manage operational disturbances,
-* provide supervisory environmental control,
-* support future Home Assistant integration,
-* and provide a stable foundation for future automation expansion.
+* environmental sensing
+* environmental monitoring
+* humidity control
+* environmental telemetry
+* commissioning responsibilities
+* future automation boundaries
 
 This document does not define:
 
-* stock-control logic,
-* business logic,
-* economic logic,
-* or production analytics.
+* physical room construction
+* plenum construction
+* duct design
+* production management
+* yield analytics
+* business logic
+
+Physical environmental architecture is defined in:
+
+`ENVIRONMENTAL_SYSTEM_ARCHITECTURE.md`
 
 ---
 
@@ -32,18 +32,23 @@ This document does not define:
 
 The ESP32 controller is architecturally defined as:
 
-> Environmental State Controller
+> Environmental Monitoring and Humidity Control Controller
 
-The controller supervises:
+The controller is responsible for:
 
-* environmental sensing,
-* humidification control,
-* circulation control,
-* disturbance handling,
-* recovery handling,
-* and telemetry reporting.
+* environmental sensing
+* humidity control
+* environmental telemetry
+* future automation integration
 
-The ESP32 operates within the environmental conditioning architecture defined by the plenum and circulation system.
+The controller is not initially responsible for:
+
+* fresh-air control
+* circulation-fan control
+* CO₂ control
+* air-conditioner control
+
+The design prioritizes successful environmental commissioning before advanced automation.
 
 ---
 
@@ -51,24 +56,32 @@ The ESP32 operates within the environmental conditioning architecture defined by
 
 The environmental control philosophy is based on:
 
-* continuous low-speed circulation,
-* gradual environmental adjustment,
-* distributed airflow,
-* low turbulence near mushroom surfaces,
-* and environmental stability rather than aggressive correction.
+* environmental stability
+* gradual environmental change
+* simple control loops
+* low operational complexity
+* commissioning before automation
 
-The control architecture assumes:
+The architecture assumes:
 
-* the plenum performs primary air mixing,
-* the duct system distributes conditioned air evenly,
-* environmental changes propagate gradually through the room,
-* and continuous circulation is preferable to intermittent airflow.
+* the plenum performs environmental mixing
+* the duct system distributes conditioned air
+* circulation is continuous
+* environmental changes propagate gradually through the room
 
 The design intentionally avoids:
 
-* rapid environmental cycling,
-* aggressive airflow modulation,
-* and unstable correction loops.
+* aggressive environmental correction
+* unnecessary automation
+* complex control loops during commissioning
+
+The primary objective of the environmental system is:
+
+* improved yield
+* improved mushroom quality
+* improved production consistency
+
+Environmental monitoring and automation exist to support these objectives.
 
 ---
 
@@ -77,234 +90,257 @@ The design intentionally avoids:
 ## Included
 
 * ESP32 controller
-* Room DHT22 sensor
-* Supply/plenum DHT22 sensor
+* Room temperature and humidity sensor
+* Second temperature and humidity sensor
 * Door sensor
-* Variable-speed circulation fan control
-* Humidifier relay control
-* Home Assistant telemetry integration
+* Humidifier control
+* Environmental telemetry
+* Home Assistant integration
 
 ## Excluded
 
 * CO₂ sensor integration
 * Automatic fresh-air control
-* IR air-conditioner integration
+* Automatic circulation-fan control
+* Air-conditioner integration
 * Yield analytics
 * Production analytics
+* Advanced environmental optimization
 
 ---
 
 # 5 Sensor Architecture
 
-## 5.1 Room Reference Sensor
-
-Hardware:
-DHT22
+## 5.1 Room Authority Sensor
 
 Purpose:
-Authoritative room-condition measurement.
+
+Authoritative environmental measurement for humidity control.
 
 Responsibilities:
 
 * humidity control reference
-* room-condition telemetry
-* environmental history
+* environmental telemetry
 * operational monitoring
 
 Recommended placement:
 
-* canopy height
-* central fruiting zone
-* protected from direct supply airflow
+* representative fruiting location
 * protected from direct water droplets
+* protected from direct supply airflow
+
+The Room Authority Sensor is the environmental control reference during Phase 1 operation.
 
 ---
 
-## 5.2 Supply / Plenum Sensor
-
-Hardware:
-DHT22
+## 5.2 Validation Sensor
 
 Purpose:
-Observe conditioned air leaving the plenum.
+
+Validate environmental behaviour within the fruiting room.
 
 Responsibilities:
 
-* conditioned-air observation
-* humidification behaviour observation
-* environmental transport observation
-* plenum stability observation
+* environmental comparison
+* airflow validation
+* commissioning support
+* environmental uniformity assessment
 
-The supply/plenum sensor is not intended as a redundancy sensor.
+The Validation Sensor is not initially used for control decisions.
 
-Recommended placement:
+The Validation Sensor exists to answer questions such as:
 
-* upper plenum chamber
-  or
-* supply duct entry region.
+* Is the room becoming more uniform?
+* Is the airflow architecture functioning as intended?
+* Are temperature differences acceptable?
+* Are humidity differences acceptable?
+
+Final long-term placement remains subject to commissioning results.
+
+Possible future locations include:
+
+* secondary room position
+* plenum position
+* supply-air position
 
 ---
 
 ## 5.3 Door Sensor
 
 Purpose:
-Detect operational disturbance events.
+
+Detect room-access events and environmental disturbances.
 
 Responsibilities:
 
-* activate Access Mode
-* activate Recovery Mode
-* distinguish environmental drift from operator disturbance
+* door-state telemetry
+* environmental event correlation
+* commissioning support
+* operational monitoring
 
-The door sensor is considered part of the first implementation phase.
+Phase 1 Behaviour:
+
+* telemetry only
+* event detection only
+
+The door sensor is not initially used to trigger automatic environmental behaviour.
+
+Future Expansion:
+
+The door sensor may later support:
+
+* Access Mode
+* Recovery Mode
+* alarm suppression
+* disturbance analysis
+* environmental recovery optimization
+
+The door sensor is considered part of the intended environmental-control architecture.
 
 ---
 
 # 6 Actuator Architecture
 
-## 6.1 Variable-Speed Circulation Fan
+## 6.1 Humidifier Control
 
 Purpose:
-Primary airflow-conditioning actuator.
 
-The circulation fan:
+Primary humidity-correction actuator.
 
-* pulls return air from the fruiting room,
-* pushes air into the plenum,
-* influences circulation intensity,
-* influences environmental transport rate,
-* and influences plenum pressure behaviour.
+Implementation:
+
+* ESP32 controlled
+* Sonoff switched
+* ultrasonic humidification within the plenum
 
 Control philosophy:
 
-* continuous operation
-* low-speed baseline operation
-* gradual modulation only
-* no aggressive cycling
-
-Initial design assumptions:
-
-* moderate baseline speed
-* elevated recovery speed after disturbances
-* stable airflow preferred over rapid correction
-
----
-
-## 6.2 Humidifier Relay
-
-Purpose:
-Primary humidity-correction actuator.
-
-The humidifier introduces ultrasonic fog into the lower plenum chamber.
-
-Initial control philosophy:
-
 * simple hysteresis control
-* no PID control initially
+* gradual environmental correction
+* no PID control during initial implementation
 
-Reasoning:
-The plenum and duct architecture already introduce environmental smoothing and transport delay.
+Initial operating philosophy:
 
-Initial design targets:
-
-* humidifier ON below lower humidity threshold
-* humidifier OFF above upper humidity threshold
+* humidifier ON below lower threshold
+* humidifier OFF above upper threshold
 
 Exact thresholds remain configurable.
 
 ---
 
-# 7 Environmental State Model
-
-## 7.1 Stable Fruiting Mode
+## 6.2 Fresh-Air Fan
 
 Purpose:
+
+Provide controllable fresh-air introduction into the plenum.
+
+Architecture:
+
+* fresh air enters the plenum
+* fresh air mixes with conditioned return air
+* mixed air enters the supply duct system
+
+Control Authority:
+
+Phase 1:
+
+* manual adjustment
+
+Feedback Source:
+
+* Inkbird CO₂ monitor
+
+Future automation remains outside the initial implementation scope.
+
+---
+
+## 6.3 Circulation Fan
+
+Purpose:
+
+Provide continuous environmental circulation.
+
+Responsibilities:
+
+* move air from return duct
+* move air through plenum
+* distribute conditioned air through supply duct
+
+Control Authority:
+
+Phase 1:
+
+* manually commissioned operating speed
+
+The circulation fan is not initially controlled by the ESP32.
+
+The relationship between circulation speed, environmental uniformity, and yield remains subject to validation.
+
+Future automation remains an open design decision.
+
+---
+
+# 7 Environmental Operating Model
+
+## 7.1 Commissioning Mode
+
+Purpose:
+
+Validate the environmental architecture.
+
+Objectives:
+
+* validate airflow behaviour
+* validate humidity control
+* validate environmental uniformity
+* validate fresh-air strategy
+
+Characteristics:
+
+* manual fan adjustment
+* operator-guided CO₂ management
+* environmental observation
+
+---
+
+## 7.2 Stable Fruiting Mode
+
+Purpose:
+
 Normal fruiting operation.
 
 Characteristics:
 
-* door closed
 * continuous circulation
 * automatic humidity control
-* standard telemetry behaviour
+* environmental telemetry
+* manual fresh-air adjustment
 
----
-
-## 7.2 Access Mode
-
-Purpose:
-Manage environmental disturbance during room access.
-
-Activated when:
-
-* door opens.
-
-Typical behaviour:
-
-* humidity correction limited or paused
-* fan held at moderate stable speed
-* temporary alarms suppressed
-
-Purpose:
-Prevent unstable environmental over-correction during operator access.
-
----
-
-## 7.3 Recovery Mode
-
-Purpose:
-Restore environmental stability after door closure.
-
-Activated when:
-
-* door closes after Access Mode.
-
-Typical behaviour:
-
-* elevated circulation speed
-* humidification enabled
-* temporary stabilization period
-
-Recovery timing remains configurable.
-
----
-
-## 7.4 Safe Mode
-
-Purpose:
-Provide stable fallback behaviour during sensing failure.
-
-Activated when:
-
-* critical environmental sensing becomes invalid.
-
-Typical behaviour:
-
-* humidifier disabled
-* safe circulation maintained
-* alarm state raised
+The objective is environmental stability rather than aggressive correction.
 
 ---
 
 # 8 Telemetry Philosophy
 
-The ESP32 controller is intended to provide telemetry to Home Assistant.
+The ESP32 shall provide telemetry to Home Assistant.
 
-Telemetry responsibilities include:
+Telemetry may include:
 
 * room temperature
 * room humidity
-* supply/plenum temperature
-* supply/plenum humidity
+* validation-sensor temperature
+* validation-sensor humidity
 * door state
-* fan state
 * humidifier state
-* environmental operating state
-* alarm state
+* controller health
 
-The ESP32 provides environmental telemetry only.
+Telemetry exists to support:
 
-Business logic and production logic remain external to the environmental controller.
+* commissioning
+* troubleshooting
+* environmental understanding
+
+Telemetry does not replace operational observation of mushroom performance.
 
 ---
 
@@ -313,34 +349,41 @@ Business logic and production logic remain external to the environmental control
 Potential future developments include:
 
 * CO₂ sensing
-* automated fresh-air control
-* motorized dampers
-* advanced circulation control
+* automatic fresh-air control
+* automatic circulation-fan control
 * air-conditioner integration
+* plenum instrumentation
 * environmental data logging
 * alarm escalation
 * adaptive environmental control
-* airflow balancing refinement
+* Access Mode
+* Recovery Mode
 
-Future expansion must preserve:
+Future expansion shall preserve:
 
-* architectural separation,
-* environmental stability,
-* and operational simplicity.
+* simplicity
+* maintainability
+* environmental stability
+* yield-focused operation
+
+Automation shall be introduced only when supported by operational evidence.
 
 ---
 
 # 10 Open Questions
 
-The following areas still require validation or refinement:
+The following areas remain open:
 
-* exact environmental sensor placement
-* recovery-mode timing
-* fan-control implementation method
-* airflow balancing inside ducts
-* condensation behaviour inside plenum and ducts
+* final second-sensor placement
+* exact humidity-control thresholds
+* optimal circulation-fan speed
+* optimal fresh-air fan speed
+* duct airflow distribution
 * environmental response timing
 * humidifier carry-over behaviour
 * long-term circulation tuning
-* Home Assistant supervisory role definition
+* future CO₂-control strategy
+* future air-conditioner integration strategy
+* future door-event handling strategy
 
+These questions are expected to be resolved through commissioning and operational experience.

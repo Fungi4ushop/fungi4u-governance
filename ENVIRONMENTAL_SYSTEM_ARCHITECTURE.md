@@ -2,93 +2,106 @@
 
 ## 1 Purpose
 
-This document defines the physical structure, airflow design, and environmental conditioning philosophy of the Fungi4u fruiting room.
+This document defines the physical environmental architecture of the Fungi4u fruiting room.
 
-It serves as a reference for:
+It serves as the authoritative description of:
 
-* future upgrades and redesigns
-* ESP32 and Home Assistant integration
-* environmental control development
-* maintenance and troubleshooting
-* documentation of assumptions and constraints
-* expansion planning
+* room environmental design
+* airflow architecture
+* environmental conditioning architecture
+* plenum architecture
+* fresh-air architecture
+* environmental assumptions
+* commissioning philosophy
+* future environmental expansion
 
-The document captures both the current implementation and the intended final airflow architecture.
+The document exists to support:
 
-This document defines the physical environmental architecture only.
+* future upgrades
+* maintenance
+* troubleshooting
+* environmental-control development
+* ESP32 integration
+* Home Assistant integration
+* project continuity after interruptions in development
 
-ESP32 control-system behaviour is defined separately in:
+This document defines physical environmental architecture only.
 
-`ESP32_ENVIRONMENTAL_CONTROL_ARCHITECTURE.md`
+Environmental control-system behaviour is defined separately in:
+
+`ESP32_Environmental_Control_Architecture.md`
 
 ---
 
 # 2 System Intent
 
-The fruiting room is intended to provide a controlled environment for oyster mushroom fruiting with emphasis on:
+The fruiting room exists to provide a controlled fruiting environment for grey oyster mushrooms.
+
+The primary objective of the environmental system is:
+
+* improved yield
+* improved mushroom quality
+* improved production consistency
+
+The environmental architecture supports this objective through:
 
 * stable humidity
-* uniform temperature distribution
-* low direct airflow on mushrooms
-* controlled fresh air exchange
-* CO₂ management
-* modular future expansion
-* low operating cost
-* compatibility with automation systems
+* controlled temperature distribution
+* low-velocity airflow
+* controlled fresh-air introduction
+* environmental uniformity
+* gradual environmental stabilization
 
 The design prioritizes:
 
 * soft continuous circulation
-* gradual environmental stabilization
-* distributed airflow rather than point-source airflow
+* environmental stability
+* distributed airflow
 * plenum-based environmental conditioning
+* maintainability
+* future automation compatibility
 
-The design assumes that environmental stability is achieved primarily through:
+The architecture assumes that environmental stability is achieved primarily through:
 
 * continuous circulation
 * conditioned air distribution
 * gradual environmental adjustment
-* and proper environmental mixing.
+* environmental mixing
+
+rather than through aggressive environmental correction.
 
 ---
 
 # 3 Building Description
 
-The fruiting room is located inside an outbuilding positioned behind and close to the main house.
+The fruiting room is located within the outbuilding behind the main house.
 
 The building:
 
 * has a flat corrugated iron roof
+
 * is approximately rectangular
-* has outside dimensions:
+
+* is approximately:
 
   * 4650 mm on the shorter side
   * 7000 mm on the longer side
-* shares the left-side wall with the neighbour-side boundary fence
 
-The fruiting room occupies the left side of the outbuilding.
+* shares one side wall with the boundary wall
 
-Originally, the space contained two garage door openings:
+The fruiting room occupies the left-hand side of the outbuilding.
 
-* one at the front
-* one at the back
-
-Each opening is:
-
-* 2500 mm wide
-* 2200 mm high
+The space originated as a drive-through garage structure and was later converted into a mushroom-production environment.
 
 Construction details:
 
-* external walls: approximately 250 mm thick
-* internal dividing wall: approximately 75 mm thick
+* external walls approximately 250 mm thick
+* internal partition wall approximately 75 mm thick
 
 Ceiling height:
 
-* front (street side): 2720 mm
-* back: 2550 mm
-
-The room was converted from a drive-through garage space into a mushroom fruiting environment.
+* front approximately 2720 mm
+* rear approximately 2550 mm
 
 ---
 
@@ -96,119 +109,116 @@ The room was converted from a drive-through garage space into a mushroom fruitin
 
 ## Front Wall
 
-The front garage door was permanently fixed closed and insulated internally with:
+The front garage door remains in place and is insulated internally using:
 
 * 100 mm Isoboard insulation
 
-This reduced the usable room depth by approximately 100 mm.
-
-At floor level below the garage door:
+At floor level:
 
 * a gap of approximately 50 mm remains
-* the gap is covered with an aluminium plate
-* the plate contains:
+* the gap is covered by a perforated aluminium plate
 
-  * 8 mm holes
-  * 20 mm hole spacing
-
-This opening functions as a passive exhaust path for surplus air during fresh air exchange.
+The perforated opening functions as a passive exhaust path.
 
 ---
 
 ## Rear Wall
 
-The rear garage opening was closed externally using:
+The rear garage opening has been closed using:
 
-* double-layer dry wall construction
-* 50 mm insulated wall assembly
-* Isoboard insulation between wall layers
+* insulated dry-wall construction
+* Isoboard insulation
 
-A matching insulated access door is positioned centrally in this wall.
-
-Because the wall is mounted externally to the original opening:
-
-* approximately 250 mm of additional internal floor space is recovered across the width of the opening.
+An insulated access door is positioned centrally.
 
 ---
 
 ## Air Conditioner Position
 
-The air-conditioning unit is mounted:
+The air-conditioner is mounted:
 
 * above the rear access door
-* on the internal brick wall surface
+* on the internal wall surface
+
+The air-conditioner currently operates independently of the environmental-control system.
+
+Future integration remains possible.
 
 ---
 
 ## Interim Divider Wall
 
-An interim insulated partition currently divides the space into:
+The room currently operates in an interim configuration.
 
-* fruiting room (front section)
-* growing room (rear section)
+The divider separates:
 
-Divider construction:
+* fruiting room
+* grow room
 
-* 50 mm insulated dry wall
-* door positioned centrally
+The divider is insulated and includes a centrally positioned access door.
 
-Divider position:
-
-* 1720 mm from the front wall
-
-During this interim stage:
+During this phase:
 
 * airflow ducts remain installed
-* duct holes are sealed using duct tape
+* unused duct openings remain sealed
+
+Future full-room conversion remains planned.
 
 ---
 
 # 5 Environmental Design Philosophy
 
-The environmental design is based on the following principles:
+The environmental design is based on:
 
 * continuous low-velocity circulation
-* gradual environmental stabilization
-* even distribution of humidity and temperature
-* distributed airflow rather than point-source airflow
-* passive exhaust management
-* plenum-based air conditioning and mixing
-* modular airflow control
-* future automation compatibility
+* environmental stability
+* distributed airflow
+* environmental mixing
+* gradual environmental correction
+* low turbulence near mushroom surfaces
+* modular future expansion
 
 The system is designed to:
 
-* avoid strong drafts on mushrooms
-* prevent stagnant air zones
-* reduce humidity stratification
-* improve consistency across shelving levels
-* reduce aggressive environmental cycling
-* maintain stable environmental transport conditions
+* avoid direct airflow onto mushrooms
+* reduce environmental stratification
+* reduce dead zones
+* improve environmental consistency
+* improve production consistency
 
-The design assumes that proper air mixing is more important than high airflow volume.
+The design assumes that:
 
-Continuous circulation is considered preferable to intermittent high-speed airflow.
+* proper air mixing is more important than high airflow volume
+* stable conditions are preferable to aggressive correction
+* continuous circulation is preferable to intermittent high-speed airflow
+
+The architecture is intended to improve yield through improved environmental consistency.
 
 ---
 
 # 6 Airflow Architecture
 
-The airflow system is based on a closed circulation loop with controlled fresh air introduction.
+The airflow system is based on a circulation loop centred around the plenum.
 
-Main airflow path:
+Primary airflow path:
 
-1. Air is extracted from a low-level inlet duct
-2. Air moves through the circulation fan
-3. Air enters the central plenum
-4. Air is conditioned and humidified
-5. Air is redistributed through ceiling-level ducts
-6. Air returns through the room volume toward the low-level inlet duct
+1. Air is collected through the low-level return duct.
+2. Air enters the circulation fan.
+3. Air is delivered into the plenum.
+4. Air is mixed and conditioned within the plenum.
+5. Conditioned air enters the ceiling-level supply duct.
+6. Air returns through the room volume toward the return duct.
 
-Fresh air is introduced into the plenum for future CO₂ management.
+The plenum functions as the central environmental conditioning hub.
 
-Surplus air exits passively through:
+The airflow architecture is intended to create:
 
-* the perforated lower front wall exhaust opening
+* gentle circulation
+* environmental uniformity
+* stable environmental transport
+* low directional airflow stress on mushrooms
+
+The architecture prioritizes environmental consistency over airflow intensity.
 
 ---
 
@@ -216,57 +226,59 @@ Surplus air exits passively through:
 
 ## General Construction
 
-External dimensions:
+The plenum is the central environmental conditioning component.
+
+Approximate dimensions:
 
 * 520 mm × 520 mm
 * 660 mm high
 
-Construction materials:
+Construction:
 
 * 12 mm plywood
-* interior and exterior coated with roof waterproofing paint
+* waterproofed internally and externally
 
 The plenum is mounted:
 
-* against the right wall
 * near ceiling level
-* centrally positioned on the wall
+* on the right-hand wall
 
 The plenum functions as:
 
 * environmental mixing chamber
 * humidification chamber
+* fresh-air mixing chamber
 * pressure equalization chamber
-* conditioned supply preparation chamber
-
-The plenum therefore acts as the central environmental conditioning unit of the fruiting room.
+* supply-air preparation chamber
 
 ---
 
 ## Drainage Design
 
-The plenum base is sloped internally to direct water toward:
+The plenum includes:
 
-* a drain outlet fitted with a trap
+* sloped internal base
+* drain outlet
+* drain trap
 
-The trap prevents unintended air leakage.
+The trap prevents unwanted air leakage.
 
-The bottom panel is removable for:
+The base panel remains removable for:
 
-* cleaning
 * inspection
+* cleaning
 * maintenance
 
 ---
 
 ## Internal Configuration
 
-The plenum is internally divided into:
+The plenum is divided into:
 
 * lower chamber
 * upper chamber
 
-A central baffle separates the two chambers while leaving side gaps that allow airflow transfer.
+A central baffle separates the chambers while permitting controlled airflow transfer.
 
 ---
 
@@ -274,29 +286,27 @@ A central baffle separates the two chambers while leaving side gaps that allow a
 
 The lower chamber contains:
 
-* air inlet from circulation duct
-* fresh air inlet from outside
-* internal baffles for air mixing
-* water reservoir tub
-* float valve for automatic water level control
-* five-disk ultrasonic mist maker
+* circulation-air inlet
+* fresh-air inlet
+* airflow baffles
+* water reservoir
+* float valve
+* ultrasonic humidifier
 
 The lower chamber functions as:
 
-* mixing chamber
+* environmental mixing chamber
 * humidification chamber
 
 ---
 
 ## Upper Chamber Functions
 
-The upper chamber distributes conditioned air into:
+The upper chamber distributes conditioned air into the supply duct system.
 
-* ceiling-level ducts on both sides
+The upper chamber functions as:
 
-This chamber functions as:
-
-* final pressure equalization zone
+* pressure equalization zone
 * conditioned-air stabilization zone
 * air distribution chamber
 
@@ -304,21 +314,22 @@ This chamber functions as:
 
 # 8 Ducting Specification
 
-The ducting system uses:
+The duct system uses:
 
 * 110 mm PVC drain pipe
 
-Two primary duct runs are planned:
+Two primary duct runs are used.
 
 ## Low-Level Return Duct
 
 Location:
 
-* along the bottom of the left wall
+* along the lower section of one wall
 
 Function:
 
-* extract room air
+* collect room air
+* deliver room air to the circulation fan
 
 ---
 
@@ -326,7 +337,7 @@ Function:
 
 Location:
 
-* along the top of the right wall
+* along the upper section of the opposite wall
 
 Function:
 
@@ -336,131 +347,193 @@ Function:
 
 ## Air Distribution Holes
 
-Both ducts use:
+The ducts use distributed 10 mm holes.
 
-* distributed 10 mm holes
+Purpose:
 
-The hole system is intended to:
-
-* spread airflow evenly
 * reduce local air velocity
-* encourage uniform circulation
+* distribute airflow
+* improve environmental consistency
+* reduce directional airflow stress
+
+The final hole pattern remains subject to operational validation.
 
 ---
 
 # 9 Air Movement Strategy
 
-Air movement is generated using:
+Air movement is generated by:
 
-* a variable-speed circulation fan
+* variable-speed circulation fan
 
-The fan:
+The circulation fan:
 
-* pulls air from the low-level return duct
-* pushes air into the plenum
+* extracts air from the return duct
+* delivers air into the plenum
 * drives environmental circulation
-* controls circulation intensity
 * influences environmental transport rate
 
-The air then passes through:
-
-* the plenum
-* humidification section
-* mixing section
-
-Conditioned air is redistributed through:
-
-* ceiling-level supply ducts
-
-The system is designed to create:
-
-* soft continuous airflow
-* gentle circulation patterns
-* minimal turbulence near mushroom surfaces
-
-The distributed hole arrangement is intended to:
-
-* reduce dead zones
-* improve environmental consistency
-* prevent localized drying
-
-Continuous circulation is considered part of normal operation.
-
-The design assumes gradual fan-speed modulation rather than aggressive cycling.
-
----
-
-# 10 Environmental Control Assumptions
+The fan is intended to operate continuously.
 
 The design assumes:
 
-* humidity can be maintained primarily through ultrasonic fogging
-* air mixing inside the plenum is sufficient for environmental equalization
-* passive exhaust is adequate for surplus airflow removal
-* distributed airflow holes will reduce directional airflow stress
-* variable fan speed can regulate circulation intensity
-* fresh air input can manage CO₂ concentration
-* continuous low-speed circulation is preferable to intermittent high-speed airflow
+* low-speed operation
+* gradual adjustment
+* avoidance of aggressive airflow changes
 
-The design also assumes that:
+The distributed duct arrangement is intended to:
 
-* environmental control will eventually be automated
-* sensors and control systems will be integrated later
-* the plenum will become the central environmental conditioning point
-* environmental transport occurs gradually through the room volume
-* separate sensing of room conditions and conditioned supply air may be beneficial
-
-Detailed ESP32 environmental control logic is defined separately in:
-
-`ESP32_ENVIRONMENTAL_CONTROL_ARCHITECTURE.md`
+* reduce dead zones
+* improve environmental consistency
+* minimize local drying effects
 
 ---
 
-# 11 Future Expansion
+# 10 Fresh-Air Strategy
+
+Fresh air is introduced into the plenum.
+
+The fresh-air system consists of:
+
+* dedicated fresh-air fan
+* fresh-air connection to the plenum
+
+The current design uses a dedicated SFIB1-130-01 fan to introduce fresh air into the plenum.
+
+Fresh air mixes with recirculated air before entering the supply duct.
+
+This architecture was selected to:
+
+* reduce direct airflow disturbances
+* improve environmental mixing
+* support future CO₂ management
+* support future automation
+
+The previous direct-injection fresh-air fan is considered a temporary implementation and is intended to be retired once the plenum-fed fresh-air system is operational.
+
+During commissioning:
+
+* fresh-air fan speed is manually adjusted
+* CO₂ is monitored using an Inkbird CO₂ monitor
+
+Automatic CO₂ control remains a future development.
+
+---
+
+# 11 Environmental Instrumentation Philosophy
+
+Environmental instrumentation exists to support:
+
+* commissioning
+* troubleshooting
+* environmental understanding
+* future automation
+
+The architecture anticipates:
+
+* room environmental sensing
+* validation sensing
+* future plenum sensing
+* future CO₂ sensing
+* future door-event sensing
+
+The architecture intentionally allows instrumentation to evolve as operational understanding improves.
+
+Final sensor placement decisions remain subject to commissioning results.
+
+---
+
+# 12 Environmental Control Assumptions
+
+The design assumes:
+
+* ultrasonic humidification can maintain target humidity
+* the plenum provides effective environmental mixing
+* distributed airflow improves environmental consistency
+* passive exhaust is sufficient for surplus airflow removal
+* continuous circulation is preferable to intermittent circulation
+* fresh-air introduction through the plenum supports future CO₂ management
+
+The design further assumes that:
+
+* commissioning must precede automation
+* environmental behaviour should be validated before advanced control is implemented
+* airflow validation is a required project activity
+* yield improvement remains the primary objective
+
+The design anticipates future integration of:
+
+* ESP32 control
+* Home Assistant supervision
+* CO₂ sensing
+* automated fresh-air control
+* air-conditioner integration
+* door-event awareness
+
+---
+
+# 13 Commissioning Philosophy
+
+The immediate objective is to validate the environmental architecture.
+
+Commissioning activities include:
+
+* validating airflow distribution
+* validating humidity control
+* validating environmental uniformity
+* validating fresh-air strategy
+* understanding room CO₂ behaviour
+
+The commissioning phase intentionally emphasizes:
+
+* observation
+* operational learning
+* environmental validation
+
+before introducing advanced automation.
+
+The environmental architecture shall be validated before automated environmental optimization is attempted.
+
+---
+
+# 14 Future Expansion
 
 Potential future developments include:
 
-* automated ESP32 environmental control
-* dynamic fresh air control
-* CO₂-based airflow regulation
-* variable humidification control
-* integration with Home Assistant
-* additional sensors
-* improved plenum airflow balancing
-* full-room conversion after interim divider removal
+* CO₂ sensing
+* automated fresh-air control
+* automated circulation control
+* plenum instrumentation
+* air-conditioner integration
 * environmental data logging
-* automated fault detection
+* door-event monitoring
+* alarm escalation
+* adaptive environmental control
+* full-room conversion
 
-Possible future airflow enhancements:
+Future expansion shall preserve:
 
-* motorized fresh air dampers
-* condensation management improvements
-* additional airflow balancing baffles
-* positive pressure tuning
+* environmental stability
+* maintainability
+* simplicity
+* yield-focused operation
 
 ---
 
-# 12 Open Questions
+# 15 Open Questions
 
-The following areas still require validation or refinement:
+The following areas remain open and require operational validation:
 
-* final sizing of distributed duct holes
-* optimal fan capacity and operating range
-* actual airflow distribution patterns
-* effectiveness of passive exhaust sizing
-* condensation behavior inside ducts and plenum
-* cleaning accessibility of ducts
-* long-term durability of waterproofed plywood
-* fresh air intake positioning
-* optimal sensor placement
-* air velocity near mushroom clusters
-* balance between humidity retention and fresh air exchange
-* future integration of heating or cooling assistance
-* noise levels during continuous operation
-* impact of shelving layout on circulation patterns
-* recovery timing after operational disturbances
-* fan-control implementation method
+* final environmental sensor placement
+* duct airflow distribution
+* optimal circulation-fan operating speed
+* optimal fresh-air fan operating speed
 * environmental response timing
 * humidifier carry-over behaviour
+* condensation behaviour within ducts and plenum
+* long-term airflow balancing
+* future CO₂-control strategy
+* future air-conditioner integration strategy
+* future door-event handling strategy
 
-Additional validation through operational testing is expected to refine the final design.
+These questions are expected to be resolved through commissioning and operational experience.
