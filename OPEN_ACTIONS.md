@@ -192,8 +192,17 @@ Systems
 Action:
 Define exact environmental sensor placement.
 
+Reason:
+Environmental architecture intentionally leaves final placement of the second environmental sensor open pending commissioning and airflow validation.
+
+Owner:
+Business Owner
+
 Status:
 Open
+
+Review Trigger:
+Environmental commissioning completed
 
 ---
 
@@ -203,10 +212,19 @@ Area:
 Systems
 
 Action:
-Define recovery-mode behaviour.
+Define future recovery-mode behaviour after commissioning.
+
+Reason:
+Recovery Mode has been deferred from the initial ESP32 implementation and remains a future automation capability.
+
+Owner:
+Business Owner
 
 Status:
 Open
+
+Review Trigger:
+Post-commissioning automation review
 
 ---
 
@@ -218,8 +236,17 @@ Systems
 Action:
 Validate duct airflow distribution.
 
+Reason:
+Airflow validation is a primary commissioning objective for the environmental architecture.
+
+Owner:
+Business Owner
+
 Status:
 Open
+
+Review Trigger:
+Environmental commissioning completed
 
 ---
 
@@ -229,10 +256,19 @@ Area:
 Systems
 
 Action:
-Define fan-control implementation method.
+Determine whether automatic fan control is justified after commissioning.
+
+Reason:
+Initial architecture uses manual fresh-air fan adjustment and manually commissioned circulation-fan speed. Future automation requires operational evidence.
+
+Owner:
+Business Owner
 
 Status:
 Open
+
+Review Trigger:
+Environmental commissioning completed
 
 ---
 
@@ -244,8 +280,17 @@ Systems
 Action:
 Validate humidifier carry-over behaviour.
 
+Reason:
+Humidifier carry-over behaviour remains unverified within the plenum and duct architecture.
+
+Owner:
+Business Owner
+
 Status:
 Open
+
+Review Trigger:
+Environmental commissioning completed
 
 ---
 
@@ -274,4 +319,3 @@ Status:
 Open
 
 ---
-
