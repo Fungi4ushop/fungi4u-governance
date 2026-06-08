@@ -12,6 +12,7 @@ The document defines:
 * environmental telemetry
 * commissioning responsibilities
 * future automation boundaries
+* environmental authority rules
 
 This document does not define:
 
@@ -85,7 +86,120 @@ Environmental monitoring and automation exist to support these objectives.
 
 ---
 
-# 4 Initial Implementation Scope
+# 4 Environmental Authority Model
+
+## 4.1 Environmental Priority Hierarchy
+
+The environmental control architecture shall apply the following priority order:
+
+1. Temperature
+2. CO₂
+3. Humidity
+
+The purpose of this hierarchy is to maintain stable fruiting conditions while minimizing operational risk and control-system complexity.
+
+---
+
+## 4.2 Conflict Resolution
+
+### Temperature versus Humidity
+
+Temperature takes precedence over humidity.
+
+Humidity may temporarily deviate from target values when required to maintain acceptable temperature conditions.
+
+### CO₂ versus Temperature
+
+CO₂ takes precedence over temperature during normal operation.
+
+However, approved temperature safety limits override CO₂ control requirements.
+
+The controller shall not permit unsafe temperature excursions solely to achieve CO₂ targets.
+
+---
+
+## 4.3 Sensor Authority
+
+Environmental control decisions shall be based on a designated Primary Sensor.
+
+The Primary Sensor is selected by configuration rather than hardware type.
+
+The Primary Sensor is authoritative for:
+
+* environmental control decisions
+* environmental operating-state determination
+* environmental alarm evaluation
+
+Additional sensors may be used for:
+
+* validation
+* comparison
+* commissioning
+* diagnostics
+* future redundancy
+
+Validation sensors are not authoritative unless explicitly promoted to Primary Sensor status.
+
+---
+
+## 4.4 Sensor Failure Behaviour
+
+If the Primary Sensor becomes unavailable:
+
+1. Transfer authority to an approved fallback sensor if available.
+2. Raise a critical environmental alarm.
+3. Record the sensor-failure event in telemetry.
+
+If no approved fallback sensor exists:
+
+1. Enter Safe Mode.
+2. Maintain conservative environmental operation.
+3. Raise a critical alarm requiring operator attention.
+
+Operation using stale sensor values is not considered an approved control strategy.
+
+---
+
+## 4.5 System Responsibility Boundaries
+
+### ESP32 Responsibilities
+
+The ESP32 controller is responsible for:
+
+* environmental sensing
+* real-time environmental control
+* safety limits
+* environmental operating states
+* autonomous operation during Home Assistant outages
+
+Environmental control must remain functional when Home Assistant, Wi-Fi, or external services are unavailable.
+
+### Home Assistant Responsibilities
+
+Home Assistant is responsible for:
+
+* supervision
+* dashboards
+* alarms
+* operator interaction
+* configuration management
+
+Home Assistant is not required for basic environmental control operation.
+
+### Supabase Responsibilities
+
+Supabase is responsible for:
+
+* historical environmental records
+* reporting
+* analytics
+* future operational intelligence
+
+Supabase is not part of the real-time environmental control path.
+
+---
+
+# 5 Initial Implementation Scope
 
 ## Included
 
@@ -109,9 +223,9 @@ Environmental monitoring and automation exist to support these objectives.
 
 ---
 
-# 5 Sensor Architecture
+# 6 Sensor Architecture
 
-## 5.1 Room Authority Sensor
+## 6.1 Room Authority Sensor
 
 Purpose:
 
@@ -133,7 +247,7 @@ The Room Authority Sensor is the environmental control reference during Phase 1 
 
 ---
 
-## 5.2 Validation Sensor
+## 6.2 Validation Sensor
 
 Purpose:
 
@@ -165,7 +279,7 @@ Possible future locations include:
 
 ---
 
-## 5.3 Door Sensor
+## 6.3 Door Sensor
 
 Purpose:
 
@@ -187,8 +301,6 @@ The door sensor is not initially used to trigger automatic environmental behavio
 
 Future Expansion:
 
-The door sensor may later support:
-
 * Access Mode
 * Recovery Mode
 * alarm suppression
@@ -199,9 +311,9 @@ The door sensor is considered part of the intended environmental-control archite
 
 ---
 
-# 6 Actuator Architecture
+# 7 Actuator Architecture
 
-## 6.1 Humidifier Control
+## 7.1 Humidifier Control
 
 Purpose:
 
@@ -228,7 +340,7 @@ Exact thresholds remain configurable.
 
 ---
 
-## 6.2 Fresh-Air Fan
+## 7.2 Fresh-Air Fan
 
 Purpose:
 
@@ -254,7 +366,7 @@ Future automation remains outside the initial implementation scope.
 
 ---
 
-## 6.3 Circulation Fan
+## 7.3 Circulation Fan
 
 Purpose:
 
@@ -280,9 +392,9 @@ Future automation remains an open design decision.
 
 ---
 
-# 7 Environmental Operating Model
+# 8 Environmental Operating Model
 
-## 7.1 Commissioning Mode
+## 8.1 Commissioning Mode
 
 Purpose:
 
@@ -303,7 +415,7 @@ Characteristics:
 
 ---
 
-## 7.2 Stable Fruiting Mode
+## 8.2 Stable Fruiting Mode
 
 Purpose:
 
@@ -320,7 +432,7 @@ The objective is environmental stability rather than aggressive correction.
 
 ---
 
-# 8 Telemetry Philosophy
+# 9 Telemetry Philosophy
 
 The ESP32 shall provide telemetry to Home Assistant.
 
@@ -344,7 +456,7 @@ Telemetry does not replace operational observation of mushroom performance.
 
 ---
 
-# 9 Future Expansion
+# 10 Future Expansion
 
 Potential future developments include:
 
@@ -370,7 +482,7 @@ Automation shall be introduced only when supported by operational evidence.
 
 ---
 
-# 10 Open Questions
+# 11 Open Questions
 
 The following areas remain open:
 
@@ -387,3 +499,30 @@ The following areas remain open:
 * future door-event handling strategy
 
 These questions are expected to be resolved through commissioning and operational experience.
+
+---
+
+# 12 Revision History
+
+v1
+
+Initial architecture publication.
+
+v2
+
+Refined environmental monitoring and humidity-control architecture.
+
+v3
+
+Added Environmental Authority Model.
+
+Defined:
+
+* environmental priority hierarchy
+* conflict resolution rules
+* sensor authority model
+* sensor failure behaviour
+* ESP32 / Home Assistant / Supabase responsibility boundaries
+
+Resolved Home Assistant supervisory-role governance question.
+
