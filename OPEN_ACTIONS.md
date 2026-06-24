@@ -319,3 +319,182 @@ Status:
 Open
 
 ---
+
+ID: OA023
+
+Area:
+Governance
+
+Action:
+Onboard Repository-Aware Engineering governance documents into operational-core.
+
+Reason:
+The Repository-Aware Engineering governance foundation has been approved and verified but is not yet under repository control.
+
+Owner:
+Business Owner
+
+Status:
+Closed
+
+Outcome:
+Repository-Aware Engineering governance documents successfully onboarded into operational-core and placed under repository control.
+
+---
+
+ID: OA024
+
+Area:
+Governance
+
+Action:
+Update DOCUMENT_REGISTER.md to include Repository-Aware Engineering governance artifacts.
+
+Reason:
+All governed documents must be registered before publication.
+
+Owner:
+Business Owner
+
+Status:
+Closed
+
+Outcome:
+DOCUMENT_REGISTER.md updated and Repository-Aware Engineering governance artifacts registered.
+
+---
+
+ID: OA025
+
+Area:
+Governance
+
+Action:
+Define document metadata standard.
+
+Reason:
+The repository contains document statuses, governance artifacts, and document registration controls but does not currently contain an authoritative standard defining required document metadata fields and document header structure.
+
+Proposed Artifact:
+DOCUMENT_METADATA_STANDARD.md
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Governed document inconsistency identified
+
+---
+
+ID: OA026
+
+Area:
+Governance
+
+Action:
+Define Repository Authority Package templates.
+
+Reason:
+REPOSITORY_AUTHORITY_STANDARD.md defines required authority artifacts but does not yet define standard templates for repository authority implementation.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Repository-Aware Engineering implementation begins
+
+---
+
+ID: OA027
+
+Area:
+Governance
+
+Action:
+Create ENGINEERING_AGENT_WORKFLOW.md.
+
+Reason:
+Repository-Aware Engineering governance foundation established but operational workflow not yet formally defined.
+
+Owner:
+Business Owner
+
+Status:
+Closed
+
+Outcome:
+ENGINEERING_AGENT_WORKFLOW.md created, registered, committed and published in operational-core.
+
+---
+
+ID: OA028
+
+Area:
+Governance
+
+Action:
+Create OPENHANDS_PILOT_PLAN.md.
+
+Reason:
+OpenHands selected as the initial Repository-Aware Engineering pilot platform and requires a governed implementation plan.
+
+Owner:
+Business Owner
+
+Status:
+Closed
+
+Outcome:
+OPENHANDS_PILOT_PLAN.md created, registered, committed and published in operational-core.
+
+---
+
+ID: OA029
+
+Area:
+Governance
+
+Action:
+Certify operational-core for Repository-Aware Engineering readiness.
+
+Reason:
+Repository certification requires implementation of the Repository Authority Package and associated validation controls.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Authority package implemented
+
+---
+
+ID: OA030
+
+Area:
+Governance
+
+Action:
+Execute Inkbird MQTT Add-on Repository-Aware Engineering pilot.
+
+Reason:
+Inkbird MQTT Add-on selected as the first governed repository-aware engineering engagement.
+
+Owner:
+Business Owner
+
+Status:
+Open
+
+Review Trigger:
+Pilot environment available
+
+---
