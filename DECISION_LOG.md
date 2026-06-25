@@ -1,4 +1,4 @@
-DECISION_LOG
+# DECISION_LOG
 
 Purpose:
 Record business decisions so they do not depend on memory.
@@ -75,7 +75,7 @@ Approved
 ID: 004
 Date: 2026-05-23
 Decision:
-Adopt Workspace Principles
+Adopt Workspace Principles.
 
 Reason:
 Ensure business structure governs information.
@@ -94,7 +94,7 @@ Approved
 ID: 005
 Date: 2026-05-23
 Decision:
-Adopt Business Lifecycle
+Adopt Business Lifecycle.
 
 Reason:
 Create closed-loop alignment.
@@ -273,3 +273,81 @@ Status:
 Approved
 
 ---
+
+ID: 015
+Date: 2026-06-25
+
+Decision:
+Repository lifecycle state shall be maintained as repository metadata.
+
+Reason:
+Operational use demonstrated that document lifecycle state changes independently of document content.
+
+Impact:
+Lifecycle state is maintained by the authoritative DOCUMENT_REGISTER rather than embedded within governed documents.
+
+Review Trigger:
+Document lifecycle model redesign.
+
+Status:
+Approved
+
+---
+
+ID: 016
+Date: 2026-06-25
+
+Decision:
+Adopt Repository-Aware Engineering as the next evolution of CHLAE.
+
+Reason:
+Repository-aware engineering provides direct access to authoritative repository artifacts while preserving human governance.
+
+Impact:
+Future engineering engagements shall use repository authority in preference to conversational reconstruction whenever repository access is available.
+
+Review Trigger:
+Repository-aware engineering operating model redesign.
+
+Status:
+Approved
+
+---
+
+ID: 017
+Date: 2026-06-25
+
+Decision:
+Repository artifacts take precedence over conversational reconstruction.
+
+Reason:
+Authoritative repository content provides the enduring engineering record.
+
+Impact:
+Engineering agents shall resolve repository state from governed repository artifacts before relying on conversational context.
+
+Review Trigger:
+Repository authority model redesign.
+
+Status:
+Approved
+
+---
+
+ID: 018
+Date: 2026-06-25
+
+Decision:
+Repository readiness certification is required before granting Repository-Aware Engineering access.
+
+Reason:
+Repository-aware engineering requires repositories to expose sufficient governance, authority, traceability, and validation information before engineering agents are permitted to operate.
+
+Impact:
+Repository certification becomes a mandatory governance gate.
+
+Review Trigger:
+Repository readiness certification model redesign.
+
+Status:
+Approved
