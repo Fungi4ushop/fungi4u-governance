@@ -27,13 +27,26 @@ The ledger is technically ready for data capture (Stage 1 of the five-stage road
 ## What's broken or in progress
 
 - **Environmental telemetry is not yet flowing into Supabase.** Sensor readings currently go to Home Assistant only. The plan (see Business Stage above) is to also capture them in Supabase so the environment can actually be analyzed, not just observed live. Not yet built.
-- **Two additional sensors to be installed next** as part of the current climate-control rollout — details (type, placement, purpose) to be confirmed and documented once installed.
-- **Inkbird CO2/temp/humidity sensor** — not reporting into Home Assistant. Root cause chain identified and partially fixed on 2026-07-06:
+- **Inkbird CO2/temp/humidity sensor** — last known state: not reporting into Home Assistant, but this hasn't actually been re-checked since the fixes below were applied. Root cause chain identified and partially fixed on 2026-07-06:
   - The custom MQTT bridge add-on had never actually been installed on the Home Assistant host, despite existing in `stock-control` for weeks. Now deployed to `/addons/local/inkbird_mqtt/`.
   - The bridge script hardcoded the wrong Tuya protocol version (3.5 instead of the device's actual 3.4). Fixed in `inkbird_mqtt.py` and pushed to the host.
-  - The device's IP address has drifted across at least three different addresses over time (`10.0.0.13`, `10.0.0.23` reservation, `10.0.0.102` current lease) and a stale/unapplied DHCP reservation exists at the router for it.
   - **Underlying cause, confirmed 2026-07-06**: the device itself repeatedly drops its WiFi connection and only comes back after a physical power cycle. This is not a software/config bug — it's most likely the ~97% relative humidity environment it sits in causing WiFi module instability. Not yet fixed.
-  - **Next step, not yet done**: put the Inkbird on a smart plug controlled by Home Assistant, with an automation to power-cycle it on a schedule or when it's detected unreachable. This is a workaround, not a fix, and appropriate given the Inkbird is explicitly a secondary/verification sensor, not the primary one.
+
+## Next steps (not yet done, in no particular order)
+
+- **Re-check whether the Inkbird bridge is actually publishing now**, after the protocol-version fix and redeployment — this was never re-verified in Home Assistant after the fix was applied.
+- **Resolve the stale DHCP reservation**: the router has an unapplied reservation for the Inkbird's MAC (`1c:90:ff:9d:9b:7a`) at `10.0.0.23`, but its actual current lease is `10.0.0.102`. Low priority given the smart-plug plan below makes the exact address less critical, but it's an inconsistency nobody would otherwise know to look for.
+- **Put the Inkbird on a smart plug controlled by Home Assistant**, with an automation to power-cycle it on a schedule or when detected unreachable. A workaround, not a fix — appropriate since it's explicitly a secondary/verification sensor, not the primary one.
+- **Install the two RS485 sensors** (DFRobot SEN0659 CO2 + SEN0438 temp/humidity) replacing the DHT22 pair — register maps, wiring, and the addressing plan are documented in `stock-control/docs/HARDWARE_REFERENCE.md`.
+- **Set the CO2 sensor's Modbus address before wiring it in** (per the addressing plan in `HARDWARE_REFERENCE.md`) so it doesn't collide with the temp/humidity sensor on the shared bus.
+- **Write the actual ESPHome/Modbus sensor configuration** for both new sensors once physically installed — installing the hardware and writing the firmware config are two separate steps; only the first is currently planned in detail.
+- **Decommission the DHT22 sensors** once the RS485 replacements are validated and reporting correctly.
+- **Build the Supabase environmental telemetry pipeline** referenced above.
+- **Liquid culture and grain spawn cultivation stages** are still not documented anywhere (see `HANDBOOK.md`'s production cycle note) — capture this whenever there's time, don't assume it exists.
+
+## Planned future expansion (not started)
+
+Two more physical systems are planned, beyond climate control: **solar** (optimizing use of excess daytime generation) and **water** (the property isn't on municipal supply). Structural pattern already agreed: each gets its own `docs/SOLAR.md` / `docs/WATER.md` in `stock-control`, following the same design-doc + hardware-reference-doc pattern as `MICROCLIMATE.md`/`HARDWARE_REFERENCE.md` — no new repos, no new process. Nothing built yet; this is intent, not a spec.
 
 ## Recently cleaned up (2026-07-06)
 
