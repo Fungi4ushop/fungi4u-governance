@@ -48,6 +48,10 @@ The ledger is technically ready for data capture (Stage 1 of the five-stage road
 
 Two more physical systems are planned, beyond climate control: **solar** (optimizing use of excess daytime generation) and **water** (the property isn't on municipal supply). Structural pattern already agreed: each gets its own `docs/SOLAR.md` / `docs/WATER.md` in `stock-control`, following the same design-doc + hardware-reference-doc pattern as `MICROCLIMATE.md`/`HARDWARE_REFERENCE.md` — no new repos, no new process. Nothing built yet; this is intent, not a spec.
 
+## Possible improvements (not decided, just worth investigating)
+
+- **Automatic end-of-session reminder to update Status/Decisions.** Right now, keeping this document set current relies on remembering to ask "does this need updating?" at the end of a working session. Claude Code supports hooks that could prompt this automatically instead. Not set up — deliberately not added without being asked, since it's one more piece of configuration to maintain — but worth a look if the manual habit turns out to be unreliable in practice.
+
 ## Recently cleaned up (2026-07-06)
 
 - Replaced the `operational-core` / `fungi4u-governance` / `mcp-engineering-platform` governance apparatus with this handbook + status + decisions + safety document set (see `HANDBOOK.md` for why).
