@@ -12,7 +12,7 @@ A grey oyster mushroom cultivation business, run from home in Pretoria by one op
 ## Read additionally, depending on the task
 
 - **Climate control / microclimate / hardware / GPIO / wiring / RS485 / Modbus / sensor configuration work** → `stock-control/docs/MICROCLIMATE.md` and `stock-control/docs/HARDWARE_REFERENCE.md`
-- **Stock ledger / substrate / flush / processing / sales work** → `stock-control/index.html` and the Supabase schema/functions it calls (`substrate_batches`, `fn_process_oyster_packing`, `fn_post_stock_event`, `v_operational_snapshot`)
+- **Stock ledger / substrate / flush / processing / sales work** → `stock-control/docs/LEDGER.md` (design, current honest state, and adoption roadmap — read first), plus `stock-control/index.html` and the Supabase schema/functions it calls (`substrate_batches`, `fn_process_oyster_packing`, `fn_post_stock_event`, `v_operational_snapshot`)
 - **Inkbird sensor / MQTT bridge work** → `stock-control/home-assistant/inkbird-mqtt-addon/`
 - **Liquid culture / grain spawn / cultivation technique** → not yet documented as of 2026-07-06. Ask rather than assume — see the note in `HANDBOOK.md`'s production cycle section.
 

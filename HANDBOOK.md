@@ -4,6 +4,18 @@
 
 A grey oyster mushroom cultivation business, run from home in Pretoria. One operator. The goal: run it well enough that it could be handed over to someone else at any time — a child, a hired hand, or sold — without that person needing to reconstruct anything from memory or chat history.
 
+## Objectives (why the work is prioritised the way it is)
+
+The objectives form a chain, each supporting the one above it:
+
+1. **Top objective — a business that can be handed over.** Someone else should be able to take it on, or decide not to, without reconstructing context from chat history. This is why the governance docs (`STATUS`, `DECISIONS`, `SAFETY`, `HARDWARE_REFERENCE`, `MICROCLIMATE`) exist and are kept current — the documentation is *direct* work toward this objective, not overhead.
+2. **Supporting — R20,000 income per month.** A handoverable business must also be a viable one; R20,000/month is the target that makes it worth taking on.
+3. **Supporting — onboard new clients.** Income grows by taking on more clients to supply.
+4. **Supporting — improve yield.** Yield improvement is a *prerequisite* for onboarding new clients, not a competing concern: you cannot commit to reliably supplying a new client without the production capacity to back it. So yield gates client onboarding, which gates income. What matters is therefore **consistent, committable supply** — dependable volume a client can rely on — not just an occasional high flush.
+5. **Supporting — microclimate improvement, then the monitoring/alarm and telemetry work that safeguards and measures it** (the telemetry matters precisely because *consistency* has to be proven and held, not just peaked).
+
+Two legs, both required for the top objective: the business must be **viable** (earning toward R20,000/month) *and* **transferable** (documented). Neither substitutes for the other.
+
 ## The production cycle
 
 **Note: this section only covers the part currently tracked in the ledger, starting from bulk substrate.** The real cultivation process starts earlier — a liquid culture cycle, then a grain spawn cycle, both feeding into the bulk substrate step below. Not yet documented here; to be added once written up properly (see `DECISIONS.md`/`STATUS.md` for how this document set evolves). If you're reading this and those stages still aren't written up, ask about them explicitly rather than assuming the process starts at substrate.
