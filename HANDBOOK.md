@@ -20,13 +20,12 @@ Two legs, both required for the top objective: the business must be **viable** (
 
 **Note: this section only covers the part currently tracked in the ledger, starting from bulk substrate.** The real cultivation process starts earlier — a liquid culture cycle, then a grain spawn cycle, both feeding into the bulk substrate step below. Not yet documented here; to be added once written up properly (see `DECISIONS.md`/`STATUS.md` for how this document set evolves). If you're reading this and those stages still aren't written up, ask about them explicitly rather than assuming the process starts at substrate.
 
-1. **Substrate batch inserted** — a batch of growing substrate bags is logged (batch ID, bag count, total weight).
-2. **Flush 1 measured** — first harvest wave weighed and recorded against the batch.
-3. **Flush 2 measured** — second harvest wave weighed and recorded.
-4. **Harvest processed** — raw harvest weight converted into packed product (grey oyster, 250g packs) plus waste, recorded together in one step.
-5. **Packed sold** — units sold are deducted from packed stock.
+1. **Substrate batch inserted** — a batch of growing substrate bags is logged (batch ID, bag count, total weight). One batch a week, made on Tuesdays (~24 × 4kg bags from a 110L drum).
+2. **Pickings recorded** — mushrooms are **not** harvested in one event: each is picked as it's ready, over several days, and cold-stored just above freezing. Each **picking** is weighed and logged against its batch. A "flush" is many pickings; a batch gives two flushes (separated by a ~1–2 week rest), then its bags are removed. Flush number is inferred by the system from the rest-gap between pickings, not entered.
+3. **Harvest processed** — the accumulated raw stock (from cold storage) is cleaned and packed: raw is converted into packed product (grey oyster, 250g packs) plus waste. Processing consumes the whole accumulated raw balance, so it mixes pickings across batches.
+4. **Packed sold** — units sold are deducted from packed stock.
 
-Every step above is logged through the control panel (`stock-control/index.html`) into the Supabase ledger. The ledger is the only source of truth — see `SAFETY.md`.
+Every step above is logged through the control panel (`stock-control/index.html`) into the Supabase ledger. The ledger is the only source of truth — see `SAFETY.md`. **Note (2026-07-11):** the ledger/panel is mid-migration to this model — the per-picking capture exists; the panel and processing rework are in progress (see `stock-control/docs/LEDGER.md` and `DECISIONS.md`). The system was built earlier but never used with real data; disciplined capture (Phase C) also awaits a harvest scale (a flush exceeds the kitchen scale).
 
 ## The three systems
 
