@@ -38,13 +38,14 @@ Every step above is logged through the control panel (`stock-control/index.html`
 ## Where things live
 
 - **Code and configuration**: four git repositories under `Fungi4ushop` on GitHub — `stock-control` (the one repo that does real work), plus `operational-core`, `fungi4u-governance`, and (soon to be retired/simplified) `mcp-engineering-platform`.
-- **Business data**: Supabase (see `SAFETY.md` for access rules).
+- **Business data (operational)**: Supabase (see `SAFETY.md` for access rules) — the stock ledger tracks substrate/flush/processing/sales as operational stock and *units*, not money.
+- **Accounting & finance**: **Sage** does the accounting — it's capable of full accounting (invoicing, expenses, VAT, etc.) but is **not well utilised yet**, and is **not currently connected to the stock ledger** (the Supabase ledger's "sales" are operational units; the actual money lives in Sage, entered separately — no automatic reconciliation between the two). The business bank account is at **Capitec**. Logins for both are in Bitwarden, not here.
 - **Physical control**: Home Assistant, running on a Raspberry Pi (Home Assistant OS) on the home network.
 - **Credentials**: see "Credentials" below — do not go looking in Git or chat history for these.
 
 ## Credentials
 
-All real account credentials (GitHub, Supabase, Home Assistant login, router admin, MQTT broker) belong in **one password manager** — Bitwarden, since that's already the one referenced as a critical recovery account elsewhere in this repo's history. If you find a credential anywhere else (a chat transcript, a config file, a browser's saved passwords), treat that as a temporary leak to clean up, not a legitimate second home for it.
+All real account credentials (GitHub, Supabase, Home Assistant login, router admin, MQTT broker, **Sage accounting, Capitec business banking**) belong in **one password manager** — Bitwarden, since that's already the one referenced as a critical recovery account elsewhere in this repo's history. If you find a credential anywhere else (a chat transcript, a config file, a browser's saved passwords), treat that as a temporary leak to clean up, not a legitimate second home for it.
 
 Machine-local technical credentials created for AI-assisted engineering sessions (e.g. SSH keys for deploying to the Home Assistant host, GNOME-keyring entries used only by a coding assistant on one specific laptop) don't need to go in Bitwarden — they're disposable and regenerable, not business-critical.
 
