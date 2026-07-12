@@ -65,6 +65,7 @@ Two more physical systems are planned, beyond climate control: **solar** (optimi
 
 ## Possible improvements (not decided, just worth investigating)
 
+- **Ledger ↔ Sage reconciliation.** The Supabase stock ledger records sales as operational *units*, while the money is tracked separately in Sage (accounting) — the two are not connected, so there's no automatic reconciliation between units sold and income recorded (see `HANDBOOK.md`'s "Where things live"). Once Phase C real-data capture is running, connecting them — or at minimum a routine to cross-check ledger sales against Sage income — would catch discrepancies. Not urgent while Sage is underused and the ledger has no real data yet; revisit when both carry real numbers.
 - **Automatic end-of-session reminder to update Status/Decisions.** Right now, keeping this document set current relies on remembering to ask "does this need updating?" at the end of a working session. Claude Code supports hooks that could prompt this automatically instead. Not set up — deliberately not added without being asked, since it's one more piece of configuration to maintain — but worth a look if the manual habit turns out to be unreliable in practice.
 
 ## Recently cleaned up (2026-07-06)
