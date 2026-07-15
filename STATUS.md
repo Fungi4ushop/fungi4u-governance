@@ -18,6 +18,16 @@ The ledger is technically ready for data capture (Stage 1 of the five-stage road
 
 **Added complexity**: the fruiting room and grow room currently share one building, split by an interim divider wall (see `MICROCLIMATE.md` §4 "Interim Divider Wall"). The climate system has to work across this interim two-zone configuration, which makes the rollout more complex than a single dedicated room would be.
 
+## Finance snapshot (2026-07-15)
+
+First cash picture, built from real figures into `stock-control/finance/CASHFLOW.md` (a 13-week cash forecast; money of record stays in Sage/Capitec). Key findings:
+
+- **3 customers, ~31 punnets/week @ R40 → ~R5,370/mo revenue** (Lynnpark 20 cash-on-delivery, Vula 4 monthly, Orchard 6–8 on prompt). ~a quarter of the R20,000/mo objective.
+- **Known costs ~R3,100/mo** (Jesca R1,430, Capitec fee R400, substrate R680, punnets R270, gas R320) + minor sundries. **Cash surplus ~R2,000/mo — the operation is cash-positive.**
+- **Capitec (R3,407) roughly self-sustains** (Vula+Orchard ≈ Jesca+fee); the **Lynnpark cash (~R800/wk) is the real margin** but is untracked — banking/tracking it is the cash equivalent of the ledger discipline.
+- **The ~R34k of personal money that built the operation was mostly one-off *capital*, not running cost** — so the business shouldn't need personal top-up to *operate* going forward, and could send the operator ~R2,000/mo.
+- **Electricity is the one unmeasured cost** (24/7 room, currently in the home bill) — it decides true profit vs break-even. A plug meter on the room would settle it. This is the profitability blind spot most worth closing.
+
 ## What's working
 
 - **Stock ledger** (Supabase, via `stock-control/index.html`) — built and functional (the panel's substrate → flush → process → sale flow works), but **not actually in use: zero production data captured**. **Now reproducible from the repo** — Phase A complete 2026-07-11: the live schema is captured in a verified migration baseline (`supabase db reset` rebuilds it cleanly) and the remote migration history is reconciled. Remaining before real use: Phase B cleanup and Phase C capture. See the "what's broken/in progress" note below and the roadmap in `stock-control/docs/LEDGER.md`.
