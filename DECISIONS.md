@@ -158,4 +158,6 @@ The device was reachable at **10.0.0.23** throughout (Tuya port 6668 open); the 
 3. **REVERSES the 2026-07-11 open next-step "consider disabling the TP-Link's 2.4GHz radio."** It cannot be retired — the house printer is 2.4GHz-only and out of extender range, so the TP-Link 2.4G is its only path. Keep it, on a fixed clean channel.
 4. **If the printer still won't hold after the channel change, it's a coverage problem at the printer's location** (far from the router), fixed with a cheap 2.4G extender/powerline node near the printer — still not a router replacement. USB prints the Spar labels in the meantime regardless.
 
+**Fix applied and confirmed 2026-07-22: 2.4G set to channel 1, printer now connects and prints — congestion diagnosis validated, no router replacement.** 
+
 Confirmed incidentally: the fruiting-room ESP32 is on **`pret208-ext`** (the D-Link extender, channel 11) and the HA Pi is wired — neither rides the congested TP-Link 2.4G, which is why only the printer was affected. (Resolves the 2026-07-11 open item "confirm which AP the ESP32 is associated with.")
