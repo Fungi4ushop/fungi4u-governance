@@ -156,7 +156,29 @@ Nothing here is urgent alone. The point is that these are all **gated on the sam
 - **Pickings before 2026-07-22 are not recoverable** — there was no scale. **Do not back-fill them**; `SAFETY.md` says measured values only, and partial data also breaks gap-based flush inference.
 - **The 9 Jun batch is deliberately not in the ledger** (being physically discarded). Recording a batch purely to remove it would create a phantom zero-yield row dragging down every yield statistic. *The bags still need taking out — tracked on `todo.fungi4u`.*
 
-### ⚠️ Open gap — the ledger cannot represent two things that actually happen
+### ✅ CLOSED 2026-07-28 — the ledger now models bag movement, and the backfill is in
+
+**Bag state as recorded (this is now a query, not a walk to the room):**
+
+| Batch | Packed | Packed bags | Culled | Grow | Fruiting | Productive |
+|---|---|---:|---:|---:|---:|---:|
+| W25 | 18 Jun | 22 | 1 | 0 | **21** | 21 |
+| W26 | 23 Jun | 27 | 1 | 25 | **1** | 26 |
+| W27 | 30 Jun | 23 | 0 | 0 | **23** | 23 |
+| W28 | 7 Jul | 29 | 0 | 29 | 0 | 29 |
+| W29 | 14 Jul | 24 | 0 | 24 | 0 | 24 |
+| W30 | 21 Jul | 28 | 3 | 25 | 0 | 25 |
+| *(W23, 2 Jun)* | | 9 | 0 | — | — | — | *removed spent 07-28* |
+| **Live total** | | | **5** | **103** | **45** | **148** |
+
+- **✅ It reconciles independently against the 2026-07-26 physical count on all three batches that had one** — W25 21, W26 25 grow + 1 fruiting, W30 25. The count and the ledger were built from different sources and agree exactly.
+- **First spawn-run figures the business has ever had: 21, 26 and 30 days** packed→first move (W27, W25, W26). Every future move adds one for free.
+- **⚠️ W26 is lagging and it may be worth a look.** Packed 23 Jun, and 25 of its 26 bags were still in the grow room at 35 days, while W27 — packed a *week later* — moved across in full on 21 Jul. The single bag moved 23 Jul. That may be deliberate (one bag pulled early because it was pinning; a 30 Jul move was previously mooted), but if W26 is genuinely slow that is 25 bags of committable supply running late, right as the Spar trial tests demand.
+- **⚠️ W30's contamination is the outlier twice over: highest rate AND earliest onset.** 3 bags at **10.7%** against 3.7–4.5% on W25/W26 and **0% on W28 and W29** — so it is a spike, not a trend. Timing is the part worth acting on: **W30 lost 3 bags just 3 days after packing**, against 5 days (W25) and 15 days (W26) for one bag each. Contamination that early and that clustered points at **sterilising, spawn, or inoculation hygiene** rather than later ingress. **W31 is the test** — if it repeats, something in that process moved and it is worth money to find.
+- **Two artefacts, both known and harmless.** W23 shows 9 bags in the grow room while flagged removed — `fn_remove_batch` posts no SPENT movement (follow-up 3), and W23 predates this table so there is no honest history to record. The room views filter on `removed_at`, so nothing downstream sees it.
+- **Follow-ups now UNBLOCKED by the backfill** (all listed in the migration): point `v_current_biomass` at real fruiting-room bags — it currently counts all 148 live bags as fruiting-room biomass when only **45** are, a 3.3× overstatement feeding CO2 interpretation; guard `fn_record_picking` against batches with nothing in the fruiting room; have `fn_remove_batch` post a SPENT movement.
+
+**The gap this closed, kept for the reasoning:**
 
 - **Batches split across rooms.** 23 Jun has 25 bags growing + 1 fruiting. A batch is not in one place.
 - **Bags get culled for contamination. ✅ Operator-confirmed 2026-07-28**, and it matches the 26 Jul physical count exactly — two independent sources agreeing, so treat these as measured:
