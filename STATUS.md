@@ -170,6 +170,25 @@ Nothing here is urgent alone. The point is that these are all **gated on the sam
 - **Pickings before 2026-07-22 are not recoverable** — there was no scale. **Do not back-fill them**; `SAFETY.md` says measured values only, and partial data also breaks gap-based flush inference.
 - **The 9 Jun batch is deliberately not in the ledger** (being physically discarded). Recording a batch purely to remove it would create a phantom zero-yield row dragging down every yield statistic. *The bags still need taking out — tracked on `todo.fungi4u`.*
 
+### ✅ Processing capture corrected 2026-07-28 — weigh the off-cuts, derive the packed weight
+
+Raised by the operator **before the first processing session was ever run**, so this is a correction rather than a repair. Migration `stock-control/supabase/migrations/20260728220000_processing_capture_waste_not_packed.sql`, applied to production; panel deployed.
+
+- **The panel asked for a packed weight nobody measures.** Punnets are filled by eye to a bit over 250 g and counted, so the only way to fill the field was **units × 250 — an assumption wearing the costume of a measurement.** It would have corrupted three stored columns at once: `average_pack_weight` becomes exactly 250.0 every time (a tautology, in the one column whose job is to reveal overfill), `waste_weight` absorbs all the overfill, and `processing_yield` is understated by the same amount.
+- **Now the measurement and the derivation swap places.** Off-cuts are **weighed**; `packed = raw − off-cuts`. Every stored number is measured or derived from measured values, per `SAFETY.md`.
+- **The size of the error, measured on a local replica** (8.00 kg raw, 800 g off-cuts, 27 punnets):
+
+  | | Corrected | What units × 250 would have stored |
+  |---|---:|---:|
+  | Waste | 800 g | **1,250 g — 56% too high** |
+  | Packed | 7,200 g | 6,750 g |
+  | Processing yield | 0.900 | 0.844 |
+  | Avg per punnet | **266.7 g** | 250.0 g *(by construction)* |
+
+- **`average_pack_weight` is now a real number, and it is worth watching.** At 266.7 g into a 250 g punnet that is **~6.7% given away** — on a 27-punnet session, roughly 450 g, about 1.8 punnets. Invisible until now, and controllable once seen.
+- **⚠️ What the derivation assumes:** `packed = raw − waste` holds only if nothing *else* vanished between picking and packing. Raw is weighed at picking and cold-stored for days, so **any shrinkage is silently absorbed into packed weight — the direction that flatters.** The detector is `average_pack_weight` itself: if it reads far above what is actually being packed by eye, the excess is shrinkage hiding in the packed figure, not generosity.
+- **The parameter was renamed to `p_waste_weight` deliberately**, so a stale panel fails loudly (`PGRST202`) rather than silently reading a packed weight as waste — plausible-looking and badly wrong. Verified: the old call signature no longer resolves on production.
+
 ### ✅ CLOSED 2026-07-28 — the ledger now models bag movement, and the backfill is in
 
 **Bag state as recorded (this is now a query, not a walk to the room):**
