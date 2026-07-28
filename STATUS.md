@@ -159,10 +159,24 @@ Nothing here is urgent alone. The point is that these are all **gated on the sam
 ### ⚠️ Open gap — the ledger cannot represent two things that actually happen
 
 - **Batches split across rooms.** 23 Jun has 25 bags growing + 1 fruiting. A batch is not in one place.
-- **Bags get culled for contamination.** Counted shortfalls: 18 Jun 22→21, 23 Jun 27→26, 21 Jul 28→25.
-- **Consequences:** yield per bag is wrong (the denominator counts culled bags — the 21 Jul batch would be understated ~11%, and that is the number meant to prove committable supply); contamination rate is invisible; biomass for CO2 interpretation is overstated.
-- **Fix shape:** an append-only **bag-movement table** (packed / moved to fruiting / culled / spent) with per-location counts derived. Mirrors the `stock_ledger` pattern but **must stay a separate table** — `SAFETY.md` forbids merging biological tracking into ledger logic.
-- **⛔ The draft at `stock-control/supabase/drafts/20260726150000_batch_location_fruiting.sql` assumes whole-batch moves and is FALSIFIED by the split-batch finding. Do not apply it.**
+- **Bags get culled for contamination. ✅ Operator-confirmed 2026-07-28**, and it matches the 26 Jul physical count exactly — two independent sources agreeing, so treat these as measured:
+
+  | Batch | Packed | Ledger bags | Culled | **Actual** | Cull rate |
+  |---|---|---:|---:|---:|---:|
+  | SUB-2026-W25 | 18 Jun | 22 | 1 | **21** | 4.5% |
+  | SUB-2026-W26 | 23 Jun | 27 | 1 | **26** | 3.7% |
+  | SUB-2026-W30 | 21 Jul | 28 | 3 | **25** | 10.7% |
+  | *(W23, W27, W28, W29)* | | 85 | 0 | 85 | 0% |
+  | **Total** | | **162** | **5** | **157** | **3.1%** |
+
+  **⚠️ W30 is the outlier and it is the NEWEST batch — 3 bags at 7 days old, against 1 apiece on batches four to six weeks older.** Contamination shows up early, so this is not W30 catching up; it is a worse batch. **One batch is not a trend** — but it is the first cull-rate signal the business has ever been able to see, and if W31 does the same, something changed in the substrate or sterilising process and it is worth money to find. **The ledger cannot store any of this**, which is the point of this section. *(Cull dates were not recorded and are not recoverable — capture them going forward.)*
+- **Consequences:** yield per bag is wrong (the denominator counts culled bags — W30 is understated by exactly the 10.7% above, and that is the number meant to prove committable supply to Spar); contamination rate is invisible; biomass for CO2 interpretation is overstated.
+- **✅ FIX BUILT AND VERIFIED 2026-07-28, NOT YET APPLIED — `stock-control/supabase/migrations/20260728120000_bag_movements.sql`.** Append-only `bag_movements` table (TO_FRUITING / CULLED / SPENT), **per bag count, not per batch**, with `v_batch_bag_state`, `v_fruiting_room_bags` and `v_batch_contamination` deriving counts, and three narrow RPCs that refuse any movement driving a room negative. Separate table per `SAFETY.md`; mirrors the `stock_ledger` append-only trigger pattern without sharing its logic. Verified end-to-end on a local stack: arithmetic, every guard, immutability, and the anon surface (views readable, base table denied, RPCs enforcing through REST).
+  - **It is deliberately INERT — it changes no existing view, table or function**, so applying it breaks nothing and nothing improves until movements are recorded. **That is the lesson from the falsified draft**, which tightened the picking dropdown and `fn_record_picking` on day one and would have stopped data capture entirely until backfilled.
+  - **⚠️ The backfill is the blocker, and it needs facts nobody has yet:** the cull *dates* (never recorded, not recoverable) and *which room* each cull happened in, plus the current grow/fruiting split per batch. Cull **counts** are known (W25 1, W26 1, W30 3). Until then every batch reports as wholly grow-room — honest about the data, wrong about the world. Template is at the bottom of the migration, commented out.
+  - **Follow-ups deliberately deferred to after the backfill** (listed in the migration): point `v_current_biomass` at real fruiting-room bags; guard `fn_record_picking`; have `fn_remove_batch` post a SPENT movement; add panel cards.
+- **⛔ The draft at `stock-control/supabase/drafts/20260726150000_batch_location_fruiting.sql` assumes whole-batch moves and is FALSIFIED by the split-batch finding. Do not apply it** — it is superseded by the migration above. *(Its backfill note also names batch IDs from before the 07-26 week renumbering; do not lift dates or IDs out of it.)*
+- **⚠️ Unrelated finding, from testing the above: `harvest_pickings` still carries Supabase's default anon grants** (SELECT/INSERT/UPDATE/DELETE). It was created in a Phase B migration that ran *after* the security migration's `revoke` block, so it never got stripped. **Not currently exploitable** — RLS is enabled with no policies, so it default-denies, which is why it returns an empty array rather than "permission denied". But it means that table's safety rests on RLS alone instead of grants *and* RLS like every other table. **One-line fix: `revoke all on table public.harvest_pickings from anon, authenticated;`**
 
 ## Not built / not installed
 
