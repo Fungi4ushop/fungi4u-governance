@@ -260,6 +260,21 @@ Found while testing the bag-movement migration. **`stock-control/supabase/migrat
   - **The humidity cost is the concrete one.** Room 13.4 g/m³ absolute; the grow-room air the fan supplies is ~12.2 g/m³ (17.7 °C / 81%), a deficit of only ~1.2 g/m³. Pretoria winter outdoor air is realistically 5–8 g/m³. **Air entering through the holes instead of through the fan costs the humidifier 4–7× more per m³.**
   - **⛔ Do not seal them all** — the fan needs a relief path. **The limiting constraint is that CO2 headroom is only ~35 ppm** (room ~765 true vs 800 target), so choking the relief path pushes CO2 over target fast.
   - **🎯 Prediction recorded in advance.** *Good case (cutting uncontrolled infiltration):* humidifier duty drops, bottom-shelf gradient stays flat, CO2 rises <50 ppm. *Too far (choking the relief path):* CO2 climbs >100 ppm and keeps climbing. **CO2 is the discriminator — temperature and humidity look better in BOTH cases, which is the trap.** Watch `sensor.humidifier_duty_24h`, `co2_shelf_delta` and displayed CO2 against ~450 (= 800 true), over 24h, not a spot check. The Inkbird returned to the bottom shelf 2026-07-27 ~12:00, so gradient monitoring is live.
+  - **🔬 EXPERIMENT RUNNING — every second hole sealed with duct tape 2026-07-28 ~13:15.** On schedule against the plan (baseline 07-27 ~13:00 → seal 07-28 ~13:00 → read 07-29 ~13:00). **Read the 22:00–06:00 window, before vs after — not the 24h mean**, because stack effect scales with ΔT and peaks pre-dawn.
+  - **📋 BASELINE, captured from the recorder before the seal — 22:00–06:00, 07-27→07-28, vents fully open:**
+
+    | Metric | min | **mean** | max |
+    |---|---:|---:|---:|
+    | `humidifier_duty_1h` | 55.8 | **76.3** | 87.5 |
+    | CO2 primary (displayed) | 459 | **485** | 519 |
+    | RH (controller) | 87.4 | **90.5** | 92.1 |
+    | Temp (controller) | 16.4 | **16.8** | 17.2 |
+    | `co2_shelf_delta` | −42 | **−7** | 128 |
+    | `temp_shelf_delta` | −0.2 | **+0.2** | +0.6 |
+
+  - **⚠️ THE BASELINE IS WORSE FOR CO2 THAN THE PLAN ASSUMED — margins are thin.** The prediction above was written against "room ~765 true vs 800 target, ~35 ppm headroom". **Overnight actually runs 485 displayed ≈ 835 true — already ~35 ppm OVER target, not under.** The abort line (displayed >600 sustained 3h) is therefore only ~115 ppm away, and the "too far" signature (>100 ppm rise) lands almost exactly on it. **CO2 is the discriminator and it starts with very little room.**
+  - **⚠️ RH starts ~3 points from its abort**, at 90.5 mean / 92.1 max against ">95% sustained 1h" — and sealing is *expected* to push RH up. The todo already calls this the likeliest abort to bite; the baseline confirms it.
+  - **⚠️ DUCT TAPE CAN PRODUCE A FALSE NULL.** Adhesion in ~90% RH is unreliable. If the tape peels overnight the vents silently reopen and the "after" data looks like a null result — which would be read as "the holes don't matter" when in fact the seal failed. **Physically check the tape is still down when reading the result**, before drawing any conclusion. That check is the difference between a null and a void experiment.
   - **Still worth doing regardless: a power-monitoring smart plug on the fresh-air fan.** Sealing softens the consequence of a fan death; the plug makes it *detectable*. The fan is an unmonitored single point of failure — no tacho, two predecessors dead in that position.
 
 ## Decided against (so it isn't re-litigated)
