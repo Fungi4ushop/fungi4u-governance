@@ -360,7 +360,7 @@ Found while testing the bag-movement migration. **`stock-control/supabase/migrat
   - **⛔ THE VARIAC IS NOT JUSTIFIED — and for a reason not previously considered.** The pre-registered "mixed" outcome that would have warranted it (CO2 falls **but duty climbs**) **did not occur** — CO2 improved *and* duty improved. **High beats low on every axis, so there is no evidence of an optimum in between.** And decisively: **a variac can only reduce voltage below mains.** If the best setting is full-speed high, a variac has nothing to offer here. **This is the second time today the variac question has resolved to "do not fit it."** Keep it for a future need; it is not this one.
   - **➡️ NEXT MOVE — the vents are the real variable actuator: partially REOPEN.** Halving the aperture moved CO2 +110 ppm; the fan claws back only 24. So the aperture is the control, and **duct tape is infinitely adjustable one hole at a time** — the continuously-variable actuator this position has been wanting was never the fan. **Unseal half of what was sealed (from every second hole to every fourth) and read the same 22:00–06:00 window.** Expect CO2 between 548 and 462 displayed, and duty between 63.8 and 76.3 — the aim is the point where CO2 approaches ~500 displayed (~850 true) while duty stays under ~70.
   - **❓ And the question the instruments cannot settle: is ~898 ppm true acceptable to the crop?** The humidity win is real and worth having — duty **76.3 → 63.8** across the whole exercise, which is meaningful insurance given pinned duty is the documented leading indicator of failure. The cost is ~98 ppm over target. **Elevated CO2 shows up in oyster morphology as longer stems and smaller caps, so the next flush is the judge, not the sensors.** Tie this to the lower-shelf crop observation already on the list.
-  - **🔬 ARM D RUNNING — half the sealed holes reopened 2026-07-30 ~09:00.** Now **every fourth hole sealed** (was every second), fan stays **HIGH**. 13 hours of settling before the window — the cleanest arm yet. **Read 2026-07-30 22:00 → 07-31 06:00.**
+  - **🔬 ARM D — half the sealed holes reopened 2026-07-30 ~09:00**, so **every fourth hole sealed** (was every second), fan stays **HIGH**. 13 hours of settling. **✅ READ 2026-07-31 — results and verdict below the prediction.**
   - **🎯 QUANTITATIVE PREDICTION, recorded in advance.** Using the 06:00 points, sealing 50% of the aperture cost **+109.9 ppm** (461.9 → 571.8) and the fan gives back **−24.1**. If flow is roughly proportional to open area, 25% closure should cost about half of 110:
 
     | | Predicted at 06:00 | Predicted duty |
@@ -368,9 +368,53 @@ Found while testing the bag-movement migration. **`stock-control/supabase/migrat
     | **Arm D (¼ sealed, fan high)** | **~493 displayed** (~843 true) | **~69** |
 
     **That would hit the target almost exactly** (CO2 ≤ ~500 displayed with duty < 70) — so this arm is a real test of the linear-aperture model, not just a data point. **If CO2 comes in much above ~520 or duty much above ~72, the aperture does not behave linearly** and the remaining holes are doing more than their share.
+
+  - **✅ ARM D READ 2026-07-31 — tape confirmed still down by the operator, so this is a valid result, not a void one.**
+
+    | Metric | A open/low | B ½seal/low | C ½seal/HIGH | **D ¼seal/HIGH** |
+    |---|---:|---:|---:|---:|
+    | `humidifier_duty_1h` | 76.3 | 66.5 | 63.8 | **68.5** |
+    | CO2 displayed — mean | 484.9 | 568.5 | 570.7 | **531.5** |
+    | CO2 displayed — **at 06:00** | 464 | 575 | 545 | **512** |
+    | RH | 90.5 | 90.4 | 90.4 | **90.4** |
+    | Temp | 16.8 | 17.3 | 17.5 | **17.5** |
+    | `co2_shelf_delta` | −7.1 | −42.9 | −50.4 | **−51.6** |
+    | `temp_shelf_delta` | +0.2 | −0.3 | −0.1 | **−0.0** |
+    | VPD | 0.19 | 0.2 | 0.2 | **0.2** |
+    | **stack ΔT — MEASURED** | **5.7** | **7.3** | **5.4** | **7.9** |
+
+    **CO2 fell all night** — 536 → 545 → 539 → 536 → 532 → 526 → 522 → 512. The clearing shape held.
+
+  - **⚠️ THE PREDICTION WAS RIGHT FOR THE WRONG REASON — and Arm D is CONFOUNDED.** The forecast-based revision assumed *"the warmest night of the four, ΔT ~4.8, the weakest stack yet"* and moved the prediction up to 505–520. **Measured via Open-Meteo, this was the COLDEST night: outdoor mean 9.6 °C, ΔT 7.9 — the strongest stack of all four arms.** The forecast was wrong by 3.1 °C of driving force, in the opposite direction. 512 landed inside the band by luck.
+    - **Corrected reading:** on a night with **21% more buoyancy than arm C** (√7.9 vs √5.4) *and* double the aperture, CO2 came back only **35.7 ppm** against the ~55 that linear aperture scaling predicts. **Aperture and driving force rose together, both pushing CO2 down and duty up. One night cannot separate them.**
+    - **⚠️ The uncontrolled variable is now larger than the treatment.** ΔT ranged **5.4–7.9** across four arms; the fan's entire measured effect was 24 ppm. **Single-night arms cannot resolve effects this size** while ΔT moves freely.
+    - **The only ΔT-matched pair in the series is A vs C (5.7 vs 5.4)**, and it carries the one solid result: **half-sealing costs ~86 ppm even with the fan on high.**
+    - **Duty climbed through the night** — 62.6 at 23:00 → 74.7 by 05:00, peaking **82.5** — as the stack strengthened and pulled in dry outdoor air. On a colder night that pins, and **pinned duty is the documented leading indicator of failure.**
+
+  - **⛔ THE LOAD-BEARING ASSUMPTION, named 2026-07-31 — and it does not hold up.**
+    **⚠️ Hinges on:** *that the room's CO2 headroom is worth spending to cut humidifier duty from 76.3%.* **If wrong:** the tape comes off entirely and four nights bought a worse room.
+    - **This entry set the constraint before the first hole was taped:** *"the limiting constraint is that **CO2 headroom is only ~35 ppm**"* — and the pre-registered failure condition: *"**Too far:** CO2 climbs >100 ppm and keeps climbing."*
+    - **Arm B came in at +110 ppm. That is the pre-registered "too far" outcome, breached on the very first arm, against 35 ppm of headroom.** By the rule written in advance, the correct move at arm B was to revert. Arms C and D have instead been clawing back toward the baseline, and have not reached it: **against arm A, CO2 is 48 ppm worse and duty 7.8 points better.**
+    - **76.3% duty was never pinned.** The documented failure indicator is duty *pinned near 100%*. 76.3 leaves ~24 points of headroom, while the CO2 headroom being spent was ~35 ppm of a ~35 ppm budget.
+
+  - **🎯 THE MISSING ARM — never run, and it may dominate everything tested.** Arm A was vents open with the fan on **LOW**. Arm C proved the fan on **HIGH** is worth **−24 ppm CO2 and −2.7 duty, for free**. **Nobody has ever run vents-open + fan-HIGH.** Extrapolating C's fan effect onto A:
+
+    | Configuration | CO2 displayed | duty |
+    |---|---:|---:|
+    | A — open, fan low *(measured)* | 464 | 76.3 |
+    | D — ¼ sealed, fan high *(measured)* | 512 | 68.5 |
+    | **open, fan HIGH — NEVER RUN** | **~440** | **~73.6** |
+
+    If that holds it **beats arm D on CO2 by ~72 ppm** for ~5 points of duty, with duty still nowhere near pinned. **The fan change was free and reversible; the tape spends headroom the room did not have. The two were never separated at full aperture.**
+    - **➡️ NEXT AND PROBABLY LAST ARM: strip ALL the tape, leave the fan on HIGH, read the same 22:00–06:00 window.** Free, reversible, and it measures the arm the series skipped. **If CO2 lands near 440 with duty under ~75, the tape comes off permanently and the vent question closes.**
+    - **Run it on a night with ΔT near 5.5** so it is comparable with arms A and C. `stock-control/tools/outdoor_history.py` confirms afterwards what it actually was.
+
+  - **✅ Method note — the arm A–C figures were re-verified 2026-07-31 and are sound.** Recomputed from the recorder with explicit SAST windows: duty **76.3 / 66.5 / 63.8** and CO2 mean **484.9 / 568.5 / 570.7**, matching the published values to the decimal. *(The HA history API returns UTC timestamps; reading them as local shifts the window two hours and gives 79.2 / 471.4 for arm A — nothing like the published figures, which confirms the original reads were done correctly. The `@06:00` points differ by 2–3 ppm on endpoint convention, which changes no conclusion.)*
   - **⚠️ CONFOUNDER, and it should have been raised at Arm A: outdoor temperature is UNCONTROLLED and currently UNMEASURABLE.** Stack effect scales with ΔT, and this entry's own reasoning puts that driving force at **15–20× the grow-room loop's 0.71 °C** — so **outdoor temperature is the dominant driver of the very mechanism being tested**, and it is different every night. Checked 2026-07-30 against `weather.forecast_home`: the recorder holds **n=1, n=1 and n=5 temperature points** for the three windows, at 23.1 / 22.7 / 20.3 °C — implausible for a Pretoria winter night (this entry assumes ~3–8 °C) and almost certainly stale forecast values carried between state changes. **The data cannot answer the question.**
     - **Consequence for how these results are read:** prefer **within-night trajectory** (does CO2 rise or fall across the night?) over **cross-night means**, because trajectory is far less sensitive to the absolute ΔT. That is exactly why Arm C's verdict rests on the shape inversion rather than the mean.
     - **✅ Free fix for the FUTURE:** `weather.forecast_home` exposes temperature as an *attribute*, which the recorder only logs when the entity's **state** changes. **Add a template sensor** exposing it as its own numeric sensor — mirrored in `stock-control/home-assistant/outdoor_conditions_sensors.yaml`, which also derives outdoor absolute humidity and a `stack_delta_t` (room − outdoors). Monitoring only; hot-reloads, no restart.
+    - **⬜ STILL NOT DEPLOYED as of 2026-07-31** — checked against HA's entity list: no `outdoor_*` and no `stack_delta_t` entity exists, so the file has never been loaded. **This is the single highest-value free action left on the vent work**, because Arm D's confounder was invisible in real time and only recoverable afterwards. *(Task moved here 2026-07-31 from `personal/STATUS.md`, where it had been mis-filed under House — it is fruiting-room work and belongs on this board.)*
+    - **⛔ AND IT MAKES AN OUTDOOR TEMPERATURE SENSOR NOT WORTH BUYING.** Asked directly 2026-07-31. A physical sensor's only advantage over Open-Meteo is measuring air at the actual front wall rather than a gridded 1394 m analysis — but **that difference is a systematic offset, and a systematic offset cancels in cross-arm comparison.** Every arm is compared against every other; if the grid reads 1.5 °C cool at the wall, it reads 1.5 °C cool on all four nights. What matters is night-to-night *variation*, which reanalysis tracks well and which is the entire confounder. **It would buy accuracy on the axis that is not used.** It would earn its keep only for closed-loop ΔT compensation (declined — no actuator authority), frost alerts, or wind (which a temperature sensor does not measure and Open-Meteo already provides). **Deploy the template sensor; buy nothing.**
     - **✅✅ AND THE PAST IS RECOVERABLE — confounder now RESOLVED for arms A–C.** Open-Meteo's forecast endpoint serves **hourly analysed history** via `past_days`, free and with no API key, for ~90 days. Script: `stock-control/tools/outdoor_history.py`. Measured for the actual windows:
 
       | Arm | Vents / fan | Outdoor mean | Room | **Stack ΔT** | Outdoor AH |
