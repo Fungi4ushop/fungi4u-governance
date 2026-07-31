@@ -406,8 +406,25 @@ Found while testing the bag-movement migration. **`stock-control/supabase/migrat
     | **open, fan HIGH — NEVER RUN** | **~440** | **~73.6** |
 
     If that holds it **beats arm D on CO2 by ~72 ppm** for ~5 points of duty, with duty still nowhere near pinned. **The fan change was free and reversible; the tape spends headroom the room did not have. The two were never separated at full aperture.**
-    - **➡️ NEXT AND PROBABLY LAST ARM: strip ALL the tape, leave the fan on HIGH, read the same 22:00–06:00 window.** Free, reversible, and it measures the arm the series skipped. **If CO2 lands near 440 with duty under ~75, the tape comes off permanently and the vent question closes.**
-    - **Run it on a night with ΔT near 5.5** so it is comparable with arms A and C. `stock-control/tools/outdoor_history.py` confirms afterwards what it actually was.
+  - **🔬 ARM E RUNNING — ALL TAPE REMOVED 2026-07-31 ~13:30 by the operator.** Vents fully open, fan stays **HIGH**. **8h25m of settling** before the window — better than arm C's 4h10m and comparable to the seal arm's 8h45m. **Read 2026-07-31 22:00 → 2026-08-01 06:00.**
+
+    **🎯 PREDICTION, RECORDED IN ADVANCE (written 13:34, before any data exists).** Built from arm A (open, fan LOW: 464 displayed / duty 76.3) plus arm C's measured fan effect (**−24 ppm, −2.7 duty**):
+
+    | | CO2 @06:00 | duty |
+    |---|---:|---:|
+    | **Arm E (open, fan HIGH)** | **~440 displayed** (~790 true) | **~73.6** |
+
+    **⚠️ CONDITIONAL ON ΔT — and the forecast is not to be trusted.** Open-Meteo currently forecasts tonight at outdoor ~11.9 °C, **ΔT ~5.6**, which would be near-ideal (arm A 5.7, arm C 5.4). **But last night's forecast said 4.8 and delivered 7.9** — wrong by 3.1 °C, which is larger than the entire spread between arms. So:
+    - **If ΔT lands 5.0–6.0:** the figures above stand as a clean, comparable read against A and C.
+    - **If ΔT lands ≥ 7:** buoyancy flow scales ~√ΔT, so expect **~420 displayed and duty ~78** instead — and the arm is **confounded again**, exactly as D was. Read trajectory, not the mean.
+    - **Confirm what it actually was** with `stock-control/tools/outdoor_history.py --nights 2 --room 17.5` before drawing any conclusion.
+
+    **📋 THE DECISION RULE, pre-registered — and this time it gets honoured.** *(Arm B breached its pre-registered "too far" threshold at +110 ppm and the series continued anyway. That is the mistake this rule exists to prevent.)*
+    - **✅ Tape stays off permanently, vent question CLOSES:** CO2 **≤ ~460 displayed** and duty **≤ ~76.3** (arm A's level). The fan alone did the work, the tape was spending headroom the room did not have, and nothing needs buying or fitting.
+    - **⚖️ The tape was doing real work after all:** duty climbs **materially past 76.3** while CO2 improves only marginally on arm D. Then the humidity cost of the open vents is genuine, arm D's configuration is defensible, and the tape goes back to every fourth hole.
+    - **❌ Something is wrong with the model:** CO2 comes in **above ~500** with the vents fully open. That would mean arm C's fan effect does not transfer to full aperture, and the whole linear picture needs rethinking rather than another arm.
+
+    **This is the last planned arm.** ΔT moves more between nights (5.4–7.9) than any treatment measured (24–110 ppm), so further single-night arms cannot resolve anything. **After this, the crop is the judge** — elevated CO2 shows in oyster morphology as longer stems and smaller caps, which ties to the lower-shelf crop observation already on the list.
 
   - **✅ Method note — the arm A–C figures were re-verified 2026-07-31 and are sound.** Recomputed from the recorder with explicit SAST windows: duty **76.3 / 66.5 / 63.8** and CO2 mean **484.9 / 568.5 / 570.7**, matching the published values to the decimal. *(The HA history API returns UTC timestamps; reading them as local shifts the window two hours and gives 79.2 / 471.4 for arm A — nothing like the published figures, which confirms the original reads were done correctly. The `@06:00` points differ by 2–3 ppm on endpoint convention, which changes no conclusion.)*
   - **⚠️ CONFOUNDER, and it should have been raised at Arm A: outdoor temperature is UNCONTROLLED and currently UNMEASURABLE.** Stack effect scales with ΔT, and this entry's own reasoning puts that driving force at **15–20× the grow-room loop's 0.71 °C** — so **outdoor temperature is the dominant driver of the very mechanism being tested**, and it is different every night. Checked 2026-07-30 against `weather.forecast_home`: the recorder holds **n=1, n=1 and n=5 temperature points** for the three windows, at 23.1 / 22.7 / 20.3 °C — implausible for a Pretoria winter night (this entry assumes ~3–8 °C) and almost certainly stale forecast values carried between state changes. **The data cannot answer the question.**
