@@ -25,6 +25,24 @@ The objective is income for the family, via *committable* supply → new clients
 
 **The trap:** microclimate and monitoring work is more tractable and more enjoyable than sales, so it will keep pulling attention. Treat that pull as the cue to re-read this list. As of 2026-07-26 the room is fully in band and has no live crop emergency — so there is nothing here justifying more room work ahead of demand.
 
+### 🔴 THE OBJECTIVE OF ALL THE ROOM WORK IS NOT BEING MEASURED (named 2026-08-01)
+
+**The operator states the objective plainly: every change to the fruiting and grow rooms was to lift yield to what can be expected — *about double* what it was before the changes began.** That is the correct objective and it is the one this board serves.
+
+**⚠️ It cannot currently be answered, and on the present course it never will be.**
+
+- **There is no baseline in the system.** `stock-control/docs/LEDGER.md` Phase C records the **first real production data ever captured on 2026-07-24** — batch `SUB-2026-W24` and one picking. Everything before that date is unrecorded.
+- **The pre-change yield number exists only in the operator's head.** It is the denominator of the entire programme. **If it is not written down it stops being recoverable**, and "did we double?" becomes permanently unanswerable.
+- **The instrument exists.** The bench scale was priority #1 until it was bought on 2026-07-22, and `LEDGER.md` calls it *"the yield instrument… required tooling for the objective, not overhead."*
+
+**The asymmetry is worth stating baldly: this room's CO2 is measured to the ppm across five instrumented nights, and its *yield* — the thing all of it was for — has one week of data and no baseline.**
+
+**➡️ Two actions, both cheap, both this week:**
+1. **Write down the pre-change baseline** — kg/week or kg/batch, however it was held, with the rough date it applies to. An approximate remembered number, labelled as such, is worth far more than no number.
+2. **Weigh every flush separately, by batch, before combining** — per `LEDGER.md`. That is what turns *"bigger mushrooms"* into the measured claim a new client can be committed on.
+
+**This outranks every remaining microclimate item**, because it is the difference between knowing the work succeeded and believing it did.
+
 ## Business snapshot
 
 - **3 customers, ~31 punnets/week @ R40 → ~R5,370/mo.** Lynnpark 20 (cash on delivery), Vula 4 (monthly), Orchard 6–8 (prompt). About a quarter of the R20,000/mo objective.
@@ -424,6 +442,10 @@ Found while testing the bag-movement migration. **`stock-control/supabase/migrat
     - **⚖️ The tape was doing real work after all:** duty climbs **materially past 76.3** while CO2 improves only marginally on arm D. Then the humidity cost of the open vents is genuine, arm D's configuration is defensible, and the tape goes back to every fourth hole.
     - **❌ Something is wrong with the model:** CO2 comes in **above ~500** with the vents fully open. That would mean arm C's fan effect does not transfer to full aperture, and the whole linear picture needs rethinking rather than another arm.
 
+  - **✅✅ THE CROP HAS ANSWERED — operator observation 2026-08-01: BIGGER mushrooms, and more EVEN production across all the shelves.** This was the pending question and it resolves favourably.
+    - **The CO2 worry is parked.** `MICROCLIMATE.md` §"Optimization" names the failure signature precisely: *"Only revisit… if cap quality shows CO2 stress — **long stems / small caps**."* **Bigger caps is the opposite of that signature.** So ~862–900 ppm true has not visibly cost morphology, and the load-bearing assumption behind recommending arm D — *that ~862 true is tolerable to the crop* — **holds on the evidence available.**
+    - **⚠️ But the operator is right that CO2 itself cannot be judged: too many things changed at once.** What is claimable is the *absence of the damage signature*, not a causal read on CO2. **Do not upgrade this into "CO2 doesn't matter."**
+    - **✅ The evenness is independent corroboration of the positive-pressure work.** `temp_shelf_delta` recovered −0.3 → −0.0 across arms C/D, and the bottom-shelf gradient was the thing that work targeted. **The instrument and the crop now agree**, which is a stronger result than either alone.
   - **✅ ARM E READ 2026-08-01. The pre-registered "close it" branch is NOT met — duty went the wrong way, hard. ➡️ Recommend reverting to arm D (every fourth hole).**
 
     | Metric | A open/low | B ½/low | C ½/HIGH | D ¼/HIGH | **E OPEN/HIGH** |
