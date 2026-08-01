@@ -27,21 +27,46 @@ The objective is income for the family, via *committable* supply → new clients
 
 ### 🔴 THE OBJECTIVE OF ALL THE ROOM WORK IS NOT BEING MEASURED (named 2026-08-01)
 
-**The operator states the objective plainly: every change to the fruiting and grow rooms was to lift yield to what can be expected — *about double* what it was before the changes began.** That is the correct objective and it is the one this board serves.
+**The operator states the objective plainly: every change to the fruiting and grow rooms was to lift yield to what can be expected — roughly *double* current output.**
 
-**⚠️ It cannot currently be answered, and on the present course it never will be.**
+**✏️ CORRECTED 2026-08-01, by the operator, and it changes the required action.** An earlier version of this entry said the pre-change number *"exists only in the operator's head"* and asked for it to be written down. **Wrong — it does not exist at all.** *"There is no baseline from measurements in this business. My expectation is because of industry results that I hope to also achieve."*
 
-- **There is no baseline in the system.** `stock-control/docs/LEDGER.md` Phase C records the **first real production data ever captured on 2026-07-24** — batch `SUB-2026-W24` and one picking. Everything before that date is unrecorded.
-- **The pre-change yield number exists only in the operator's head.** It is the denominator of the entire programme. **If it is not written down it stops being recoverable**, and "did we double?" becomes permanently unanswerable.
-- **The instrument exists.** The bench scale was priority #1 until it was bought on 2026-07-22, and `LEDGER.md` calls it *"the yield instrument… required tooling for the objective, not overhead."*
+**So the target is ABSOLUTE, not relative — and that is better news, because an absolute target needs no baseline.** "Did we double?" was never the answerable question. **"Are we at industry yield?" is**, and it can be answered from the very next batch.
 
-**The asymmetry is worth stating baldly: this room's CO2 is measured to the ppm across five instrumented nights, and its *yield* — the thing all of it was for — has one week of data and no baseline.**
+- **The metric is biological efficiency** — **kg fresh mushrooms per kg substrate**. It is self-normalising: it needs no history, no before-and-after, and it is directly comparable to published industry figures.
+- **✅ The ledger already derives it.** `v_substrate_biological_kpi` computes it from `harvest_pickings`, per `stock-control/docs/LEDGER.md` Phase B. **Nothing needs building.**
+- **✅ The instrument already exists.** The bench scale was priority #1 until it was bought on 2026-07-22; `LEDGER.md` calls it *"the yield instrument… required tooling for the objective, not overhead."*
+- **⬜ What is missing is only the habit and the number to compare against.**
+
+**The asymmetry is still worth stating baldly: this room's CO2 is measured to the ppm across five instrumented nights, and its *yield* — the thing all of it was for — has one week of data.**
 
 **➡️ Two actions, both cheap, both this week:**
-1. **Write down the pre-change baseline** — kg/week or kg/batch, however it was held, with the rough date it applies to. An approximate remembered number, labelled as such, is worth far more than no number.
+1. **Write down the industry figure being aimed at, and where it came from.** Grey oyster BE is commonly quoted around **75–125% of dry substrate weight**, or roughly **15–25% of *wet* block weight** across all flushes — but **the ranges are wide and definitions differ (dry vs wet basis, one flush vs total), so a number without its basis is not a target.** Record the operator's own source, on its own basis. **Without this the KPI has nothing to be measured against.**
 2. **Weigh every flush separately, by batch, before combining** — per `LEDGER.md`. That is what turns *"bigger mushrooms"* into the measured claim a new client can be committed on.
 
 **This outranks every remaining microclimate item**, because it is the difference between knowing the work succeeded and believing it did.
+
+### 🧱 REMOVING THE DIVIDER WALL — first-pass capacity answer (2026-08-01)
+
+_Operator's concern, and it is the right one to raise: **"I am not sure the equipment will be able to maintain the microclimate in the bigger fruiting room."** Dimensions from `stock-control/docs/MICROCLIMATE.md` §1: **4650 × 7000 mm, ceiling 2720 front → 2550 rear** ≈ **86 m³ for the whole building**, so removing the divider adds at most ~40 m³ to the fruiting room._
+
+**➡️ Volume is NOT the binding constraint. The AIR CONDITIONER is.**
+
+- **The fill transient is trivial.** Raising the added volume from ~50% to 92% RH at 17.5 °C is a step of **6.3 g/m³** (7.45 → 13.7). Over ~40 m³ that is **~250 g of water — a quarter of a litre.** A 12-disc ultrasonic does litres per hour. **Minutes, not a capacity problem.**
+- **Steady-state load is set by outside-air exchange, not by volume** — and the leak paths do not move. The infiltration this room fights is the **front-wall floor openings**, which are already in the fruiting room (they are what five nights of vent experiments were about). **Removing the divider adds volume, not infiltration.**
+- **A larger volume actually helps stability** — more moisture and thermal mass per unit of disturbance, so slower swings and a longer buffer when a door opens.
+
+**🔴 But the aircon is a dehumidifier, and the wall is currently what buffers it.** It sits above the rear door, *inside* the space that would become one room held at **90–95% RH**. Air at 90%+ crossing a cold evaporator coil condenses, and that water leaves down the condensate drain. **Humidifier and aircon then work against each other continuously, by design, in the same room.**
+
+- Today the divider partially separates them — coupling is via the doorway only, which is exactly why `MICROCLIMATE.md` records the rooms as thermally coupled but the fruiting room as the humid one.
+- **Remove the wall and that buffer goes.** The humidifier is at **63–85% duty** *now*, on the smaller room, with the coil one door away. **This is the number to worry about, and it is not a volume calculation.**
+- **The spare 12-disc unit and the fresh discs stop being "margin" and become a prerequisite** — but adding humidifier capacity to out-run a dehumidifier is fighting the symptom. **The real question is whether the aircon can be relocated, ducted, or run in a mode that does not condense** — and that should be answered *before* the wall comes down, not after.
+
+**⚠️ Hinges on:** *that the rear half's envelope is no leakier than the front.* The rear wall is insulated drywall + Isoboard with its own external access door. **If that door or the drywall leaks materially, steady-state load rises with it** and the "infiltration does not change" argument weakens. One smoke-pencil pass would settle it.
+
+**✅ And the ducts are in better shape than feared.** `MICROCLIMATE.md` §1: *"**Airflow ducts are already run for the full room**; unused duct openings are sealed for now."* **The duct runs were sized for the combined space from the start.** What is unvalidated is the **hole pattern** — and note that the room currently runs with **both end caps off**, which the same doc calls *"a live interim workaround, not the settled design."*
+
+**➡️ So the operator's unease about the hole count and size is well founded, and it has a clear consequence: do not carry a fruiting-room-only workaround into the bigger room.** The parked revert test — fan to LOW, then return cap on, then supply cap — was blocked behind the vent experiment. **That experiment is now closed, so the revert test is unblocked.** It is a **prerequisite for the wall removal**, not work for this week: scaling a workaround is worse than scaling a design.
 
 ## Business snapshot
 
