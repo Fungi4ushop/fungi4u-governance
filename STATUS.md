@@ -46,6 +46,26 @@ The objective is income for the family, via *committable* supply → new clients
 
 **This outranks every remaining microclimate item**, because it is the difference between knowing the work succeeded and believing it did.
 
+### 🧭 ROOM PROGRAMME — where it stands, 2026-08-01 (a checkpoint, not the end)
+
+_Operator, 2026-08-01: **"a very good checkpoint but definitely not the end of the work on the rooms."** Correct, and it corrects an overstatement made the same day — "nothing left worth building" was true of the **vent experiment series**, not of the room programme. **The tuning phase is closed. The design is not finished.** Phases below are `stock-control/docs/MICROCLIMATE.md`'s own._
+
+**✅ What is genuinely done.** Phases 0–2 have substantially run. The room is in band on every KPI, the humidifier is off its pin, the bottom-shelf gradient is closed, and — as of today — **the crop independently confirms it: bigger mushrooms, evenly across the shelves.** That is a real checkpoint and it should be banked.
+
+**⬜ What remains, in dependency order. Only the first is this week's work.**
+
+| # | Work | Why it is where it is |
+|---|---|---|
+| **1** | **Capture yield per flush, per batch** *(Phase 3 / KPI #0)* | **The gate on everything.** Free, the scale exists, the view exists. Until flushes are in the ledger, **nothing above can be shown to have improved the crop** — and no client can be committed on supply that cannot be demonstrated |
+| **2** | **Restore the circulation design** — the parked revert test: fan → LOW, then return end cap, then supply end cap, one at a time | Was blocked behind the vent experiment, **now unblocked.** The room runs on a workaround the docs call *"not the settled design"*. Settle it **before** scaling it |
+| **3** | **Fan run-confirmation** — power-monitoring plug upstream of the variac | **Orphaned safety item.** It lost its host when the Fan 2 rework was cancelled. The blindness has bitten once: a dead fan showed "82%" in HA for ~24 h. **Do not let it lapse again** |
+| **4** | **Aircon: can it be kept out of the humid air?** Relocate, duct, or run without condensing | **The actual gate on the wall** — not volume. See below |
+| **5** | **Humidifier capacity for the combined room** — spare 12-disc unit + fresh discs, already on hand | Size it **after** #4. Adding capacity to out-run a dehumidifier is treating the symptom |
+| **6** | **Remove the divider wall** | Dissolves the documented three-way tension (separation vs temperature vs grow-room ventilation) |
+| **7** | **Re-validate in the new geometry, then Phase 4 automation** | ⚠️ **Automating before the wall comes down is wasted work** — every setpoint, duty baseline and gradient changes when the room does |
+
+**The honest sequencing point: #1 is the only item that pays off regardless of whether the wall ever comes down.** Everything from #2 down is investment in a room that is about to change shape. **That is an argument for doing #1 now and the rest deliberately — not for doing none of it.**
+
 ### 🧱 REMOVING THE DIVIDER WALL — first-pass capacity answer (2026-08-01)
 
 _Operator's concern, and it is the right one to raise: **"I am not sure the equipment will be able to maintain the microclimate in the bigger fruiting room."** Dimensions from `stock-control/docs/MICROCLIMATE.md` §1: **4650 × 7000 mm, ceiling 2720 front → 2550 rear** ≈ **86 m³ for the whole building**, so removing the divider adds at most ~40 m³ to the fruiting room._
