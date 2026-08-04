@@ -37,6 +37,41 @@ Every step above is logged through the control panel (`stock-control/index.html`
 | **Climate control (fruiting room)** | Primary environmental control — temperature, humidity, CO2, fan and humidifier control. Runs on an ESPHome device with RS485/Modbus sensors as authoritative — a DFRobot SEN0659 for CO2 and a SEN0438 for temperature/humidity (an earlier plan named a Senseair S8 as the CO2 sensor, but it was never installed — see `DECISIONS.md`). Also has an **Inkbird CO2/temp/humidity sensor as a secondary, verification-only input** — never authoritative, and as of 2026-07-06 known to have a WiFi stability problem (see `STATUS.md`), so operations don't depend on it. Design and reasoning: `MICROCLIMATE.md`. Exact GPIO/wiring/terminal reference: `HARDWARE_REFERENCE.md`. | `stock-control/esphome/fruiting-room-controller.yaml` (primary); `stock-control/home-assistant/inkbird-mqtt-addon/` (secondary sensor bridge) |
 | **Home Assistant** | The supervisory platform, separate from any one sensor or controller. Hosts the MQTT broker (Mosquitto), runs the Inkbird bridge add-on, provides dashboards/alarms/operator interaction, and (added 2026-07-05/06) exposes an MCP interface so an AI coding session can read live state directly. Not authoritative for safety — per `SAFETY.md`, the ESPHome device enforces its own limits regardless of whether Home Assistant is up. | Raspberry Pi (Home Assistant OS) on the home network |
 
+## Routine maintenance
+
+**This section exists because there was no maintenance list at all until 2026-08-04**, and a physical consumable was found degrading the crop environment with no alarm and no record that it needed attention. Recurring physical obligations were previously scattered through `STATUS.md` as one-off notes, which is how they get lost at handover. **A successor should be able to keep this operation alive from this list alone.**
+
+### ⚠️ Grow-room air conditioner — filter cleaning
+
+**This is the fruiting room's only heat source, and it has no telemetry of any kind.**
+
+- **Why it is crop-critical, not comfort equipment.** The aircon is in the **grow room**, above the rear door — the fruiting room has never had its own temperature control and is conditioned *indirectly*, by air moving between the rooms (`stock-control/docs/MICROCLIMATE.md` §Fresh air, operator insight 2026-07-22). If this unit weakens, the fruiting room follows it down.
+- **Why it loads faster than a domestic unit.** It shares a building with a room held at **90–95% RH**, full of grey-oyster spores, and straw is chopped on the property every Monday. That is an unusually dirty airstream.
+- **⛔ Nothing will tell you it has degraded.** There is **no `climate.*` entity in Home Assistant** — the aircon is not linked to HA at all, and the IR transmitter (TB11) is wired but never mounted. No dashboard, alarm or automation observes this unit. **The only instrument that sees it is the weekly `room_check.py` temperature scorecard**, and only indirectly.
+- **Interval: not yet established.** Set one after the first clean, based on how dirty the filter actually is. Do not invent a figure before then.
+
+**The failure signature, recorded from the 2026-08-01 → 08-04 event so it is recognisable next time:**
+
+- **Both rooms cool together over days** — fruiting room 17.29 → 14.73 °C daily mean, grow room 17.73 → 14.52 — with the fruiting room tracking the grow room **0.2–0.5 °C above it throughout**.
+- **The outdoors moves the other way.** Outdoor nights *warmed* 8.2 → 12.8 °C across the same window. **Two rooms falling while the outdoors rises cannot be weather, and points at the shared heat source rather than at the fruiting room's own configuration.**
+- **The decline decelerates toward a new equilibrium** (−0.85, −0.92, −0.34, −0.38 °C/day) rather than continuing to fall. **That distinguishes *weak* output from *absent* output** — a unit that is off or tripped keeps falling toward the envelope's no-heat balance point. The grow room also kept gaining heat each afternoon, confirming it was running.
+- **Consequences seen:** fruiting room to **14.20 °C — below the 15 °C band floor and at the firmware's own `temp_floor`** — and the humidifier pinned at **95.4% overnight** chasing a colder, leakier room. Temperature in band fell from 99.8% to 78.4%.
+- **What it is NOT:** humidity control was independently exonerated. RH held 90.4–91.2% throughout, and the absolute-humidity fall was predicted from temperature and RH alone to within **0.05 g/m³** on all five days.
+
+**⚠️ Status as of 2026-08-04: the filter is the operator's diagnosis and the data is consistent with it, but the clean has not yet been done and the cause is UNCONFIRMED.** The recorder can only say "reduced heat output" — low refrigerant, a fouled coil, or a changed setpoint would look identical. The filter is the right first move because it is free, not because it is proven. **Confirmation test: clean it, change nothing else, and expect the grow room to recover first with the fruiting room following toward ~17.3 °C within a day.** If it does not recover, the filter was not the cause and the next candidates cost money. Re-run `room_check.py` ~24h after.
+
+### Other recurring obligations, already documented elsewhere
+
+Listed here so the list is complete; the detail stays where it lives.
+
+| Item | Cadence | Where |
+|---|---|---|
+| **`room_check.py` room health check** | **Weekly**, and after anything physical changes | `todo.fungi4u`, `MICROCLIMATE.md` §6 |
+| **Roof water tank fill** | **Daily, manual, ~18 min** — ⚠️ a single manual action stands between this business and no water, and nothing alarms on it | `STATUS.md` |
+| **Straw chopping** | **Weekly, Mondays** — bespoke converted lawnmower, no backup and no spare | `HANDBOOK.md` production cycle, `STATUS.md` |
+| **Confirm both fans physically turn** | After **any** reboot, reflash or power event — neither fan has a tacho, so HA cannot tell a spinning fan from a dead one | `STATUS.md`, `DECISIONS.md` 2026-07-17 |
+| **Fan bearings in the ~90% RH airstream** | Watch — better than the SEAFLOs they replaced, not immortal | `STATUS.md` |
+
 ## Where things live
 
 - **Code and configuration**: four git repositories under `Fungi4ushop` on GitHub — `stock-control` (the one repo that does real work), plus `operational-core`, `fungi4u-governance`, and (soon to be retired/simplified) `mcp-engineering-platform`.
