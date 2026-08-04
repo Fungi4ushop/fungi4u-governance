@@ -273,6 +273,25 @@ Nothing here is urgent alone. The point is that these are all **gated on the sam
 - **Pickings before 2026-07-22 are not recoverable** — there was no scale. **Do not back-fill them**; `SAFETY.md` says measured values only, and partial data also breaks gap-based flush inference.
 - **The 9 Jun batch is deliberately not in the ledger** (being physically discarded). Recording a batch purely to remove it would create a phantom zero-yield row dragging down every yield statistic. *The bags still need taking out — tracked on `todo.fungi4u`.*
 
+### ✅ CAPTURE CORRECTIONS BUILT AND THE 4 AUG SESSION REPAIRED — and the blind spot behind it is closed
+
+**Three pickings went in within 2m41s on 2026-08-04, and two of them were wrong.** W25 1010 g ✅, W26 2752 g ✅, then **the same W26 2752 g submitted again 2m22s later** — and the entry that was actually intended, **2324 g against W27, was never recorded at all.** The previous entry was resubmitted instead of a new one being captured, which produced a phantom *and* lost a real harvest.
+
+- **⚠️ The fault was reported as "a W27 picking of 2752 that should have been 2324" — and that matched nothing in the database.** There has never been a 2752 g picking on W27. **The guard caught it, not the diagnosis:** migration `20260804150100` refused to act on a weight it could not identify uniquely and printed W27's real pickings instead, which is how the true fault surfaced. **A naive `update … where grams = 2752` would have hit the wrong batch, or both rows.**
+- **✅ Repaired on production. Raw 22,686 → 22,258 g**, verified against `v_operational_snapshot` before and after.
+- **The mechanism, now permanent** (`20260804150000`, `20260804160000`): a `PICKING_CORRECTION` reason code, an **append-only `picking_corrections` table** mirroring `bag_movements`, `fn_correct_picking` (give it the weight the picking *should* read; it derives the delta) and `fn_void_picking` for a capture that never happened.
+  - **Corrections deliberately do NOT touch `harvest_pickings`.** Editing `grams` would erase the evidence an error was made, in an operation whose rule is measured-values-only; appending a negative *picking* row would corrupt gap-based flush inference. Voided rows are dropped **before** the gap arithmetic for the same reason.
+  - **`v_substrate_biological_kpi` needed no change** — it sums `grams` from `v_harvest_pickings`, so corrections reach the yield KPI automatically.
+  - Verified end to end on a local stack: guards fire, corrections compose, re-runs change nothing, and anon stays denied the base table.
+- **⚠️ This is the third instance of the wrong-batch dropdown fault** (24 and 26 Jul were the first two). The hard guard added on 07-28 only blocks batches with *no fruiting bags* — W25, W26 and W27 are all pickable, so **it structurally cannot catch choosing the wrong *pickable* batch.**
+
+#### 🔴 The blind spot was the root cause, and it was self-inflicted
+
+**Operator, 2026-08-04: *"i find that it is a blind spot not to be able to see what was captured."*** Correct — and the reason is uncomfortable. **The 2026-07-28 anon-grant revoke correctly closed a leak that exposed every picking ever recorded, and in doing so it removed the panel's ability to show the operator their own work. Nothing replaced it.** The only remaining feedback is a client-side "recorded this session" log that does not survive a refresh. That is why today's error had to be described from memory, and was described wrongly.
+
+- **✅ `v_recent_captures` built and live** (`20260804170000`) — the last 20 pickings with **captured vs effective weight** and a `VOIDED` / `CORRECTED` / `OK` status, so a repair is visible rather than silent. **A deliberate, bounded re-grant to anon, not a regression:** the leak was unbounded history readable *by accident*; this is a 20-row window granted *on purpose*, carrying no more than `v_operational_snapshot` already does. Verified that `v_harvest_pickings` and `picking_corrections` remain denied.
+- **⬜ REMAINING — the panel does not yet show it.** The view exists; `index.html` needs a "Recent captures" card reading it, then a redeploy to the Pi. **Until that ships the operator still cannot see what was captured, which is the whole point.**
+
 ### ✅ Processing capture corrected 2026-07-28 — weigh the off-cuts, derive the packed weight
 
 Raised by the operator **before the first processing session was ever run**, so this is a correction rather than a repair. Migration `stock-control/supabase/migrations/20260728220000_processing_capture_waste_not_packed.sql`, applied to production; panel deployed.
