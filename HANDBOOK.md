@@ -68,7 +68,7 @@ Every step above is logged through the control panel (`stock-control/index.html`
 
 | Consumable | Used at | Rate | Reorder at | Note |
 |---|---|---|---|---|
-| **Cable ties** | Closing the **top** of each filled bag | **~24/batch = ~24/week ≈ 100/month** | **100 left (one month's buffer)** | Buy in **1000s** — roughly a year's supply for around R150–250, which is immaterial against ~R3,100/mo of known costs. Running out costs a production day; the bulk pack costs nothing worth counting. |
+| **Cable ties** | Closing the **top** of each filled bag | **~24/batch = ~24/week ≈ 104/month** | **100 left (one month's buffer)** | **Spec in use: SP30, 150 × 3.5 mm.** Measured price 2026-08-04: **R49.98 per 100 = R0.50/tie**, so **~R12/batch ≈ R52/month**. |
 | **PVC tape for the bag-sealing device** | Closing the **bottom** of each tube | ~24/batch | Keep **one spare roll** unopened | The same stockout on this item would be worse — it has no equivalent fallback, whereas the tape device *can* substitute for cable ties |
 | **Layflat tubing** | The bag itself | ~24/batch | Not established | Record consumption per roll to set one |
 
