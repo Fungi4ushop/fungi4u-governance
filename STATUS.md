@@ -151,18 +151,46 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **Food labelling** — name, net weight, producer, batch/date, origin, barcode. Overlaps the Spar label work.
 - **Business/tax registration** — CIPC / SARS / VAT threshold. May already be sorted.
 
-## Room state (verified 2026-07-28 off a 48h `room_check.py` run)
+## Room state (verified 2026-08-04 off a 48h `room_check.py` run)
 
-**The room itself remains in the best measured state it has been in. The instrumentation is the problem, not the room.**
+### 🔴 LIVE — BOTH ROOMS HAVE BEEN COOLING SINCE 2026-08-01, AND IT IS NOT THE WEATHER
+
+**This is the first thing to action. It was found by the weekly `room_check.py` on 2026-08-04 (the run was one day overdue).** The fruiting room has fallen **17.29 → 14.73 °C** in daily mean over four days and is **still falling**; today's minimum is **14.20 °C — below the 15 °C band floor and at the ESP32's own `temp_floor` of 14 °C.**
+
+| Daily mean | 07-31 | 08-01 | 08-02 | 08-03 | 08-04 |
+|---|---:|---:|---:|---:|---:|
+| **Fruiting room** | 17.29 | 16.54 | 15.76 | 15.50 | **14.73** |
+| **Grow room** | 17.73 | 16.84 | 15.95 | 15.79 | **14.52** |
+| **Outdoor, 22:00–06:00** | 8.2 | 9.2 | 10.1 | 10.1 | **12.8** |
+
+- **⛔ The outdoors got 4.6 °C WARMER while both rooms fell ~3 °C.** That inverse correlation rules out weather as the cause. Measured with `tools/outdoor_history.py`.
+- **The grow room is the driver, not the fruiting room.** It fell further (−3.2 vs −2.6 °C) and the fruiting room tracks it **0.2–0.5 °C above, throughout** — which is the documented coupling working exactly as designed.
+- **✅ This RULES OUT a fan death, cheaply and without a physical check.** Tight tracking between the two rooms means the fresh-air fan is moving air. The expensive theory is disposed of first, not last.
+- **➡️ So the question is what stopped heating the GROW room, and the aircon is the only candidate with no telemetry.** It is still not linked to HA (no `climate.*` entity exists), so a mode change, a setpoint change, a tripped breaker or a failure would be **invisible to every dashboard**. **Check it physically: is it running, what mode, what setpoint, is its breaker on.** Check the grow room's own external access door at the same time.
+- **⚠️ Hinges on:** *that the grow room's heat source changed.* **If the aircon is found running normally at its usual setpoint, the alternative is a new envelope leak in the grow room** — its external door or the rear drywall — which is the same smoke-pencil check already flagged for the divider-wall question. Either way the answer is in that room, not in the fruiting room.
+
+**Humidifier duty is now PINNED — 93.7% overall, 95.4% overnight, 96.1% midday**, worse than any measured vent arm. Two compounding causes, neither of them a humidifier fault:
+
+1. **The room is still in arm E's configuration.** The 08-01 recommendation to revert to **arm D (every fourth hole sealed, fan HIGH)** was never actioned. Arm D was worth ~13 duty points.
+2. **The cheap air path got expensive.** Outdoor absolute humidity has halved (**4.7 → 2.8 g/m³**), and the grow-room air the fan supplies is now **~9.0 g/m³** (14.9 °C / 70.2%) against the **12.2** the vent reasoning was built on. Every m³ entering costs more moisture than it did a week ago.
+
+**✅ Humidity control itself is NOT broken — verified, not assumed.** RH held at **90.4–91.2%** every day through the fall. The absolute-humidity drop (13.38 → 11.53 g/m³) is **fully explained by the temperature drop at constant RH**: predicted from T and RH alone it comes out 13.36 / 12.78 / 12.18 / 11.96 / 11.49 — matching measurement to **within 0.05 g/m³ on all five days**. The humidifier is pinned because it is chasing a colder, leakier room, not because it has failed. *(This is the "use absolute humidity, not RH" method from `DECISIONS.md` 2026-07-17, run in the other direction to exonerate a component.)*
+
+### Scorecard, 48h to 2026-08-04 09:19
 
 | KPI | State |
 |---|---|
-| Temperature | ✅ 99.8% in band — 16.10–18.20 °C, mean 17.03 |
-| VPD | ✅ 100% in band — 0.15–0.30, mean 0.19 |
-| Absolute humidity | ✅ 100% in band — 12.2–14.0 g/m³, mean 13.15 |
-| Humidifier duty | ⚠️ 73.6% overall, **76.8% overnight** — not pinned, but above the ~70% KPI |
-| Bottom-shelf gradient | ✅ Flat |
-| **Both** CO2 sensors | ⛔ Now reading ~**350 ppm low** — the primary since 07-25, the Inkbird since 07-27. The cross-check is blind; see the live issue below. |
+| Temperature | ⛔ **78.4% in band** — 14.20–16.70 °C, mean 15.49, **trending down** |
+| VPD | ✅ 100% in band — 0.13–0.23, mean 0.17 |
+| Absolute humidity | ✅ 99.9% in band — 10.9–12.8 g/m³, mean 12.01 — but at the bottom of the band and falling |
+| RH | ⚠️ 80.1% in band, mean 90.68 — read via VPD/AH, not raw |
+| Humidifier duty | ⛔ **93.7% overall, 95.4% overnight — PINNED, no headroom** (KPI is under ~70%) |
+| Bottom-shelf gradient | ✅ Flat — `temp_shelf_delta` mean +0.27, `rh_shelf_delta` mean +0.32 |
+| CO2 | ✅ displayed trough 435 ≈ **785 true** — on target, the best it has been |
+| Sensor health | ✅ Clean — 0.0% bad on all three controller entities, 1.2% on the Inkbird |
+| **Both** CO2 sensors | ⛔ Still reading ~**350 ppm low** — the primary since 07-25, the Inkbird since 07-27. The cross-check is blind; see the live issue below. |
+
+**Note the trap in that CO2 row: it looks like the best result of the whole vent series, and it is an artefact of the fault.** A colder room with a stronger stack effect flushes harder. Do not read arm E's configuration as vindicated by it.
 
 - **Temperature was fixed by the fresh-air fan**, which buffers the fruiting room against the grow room. The aircon itself hasn't changed and is still not linked to HA. Consequence: aircon IR integration (TB11) is now a nice-to-have, not the only control path.
 - **The humidifier was fixed by cutting a hole in one side of the tub** (2026-07-25). It had been running flat out feeding a sealed box — mist condensed on the tub walls and drained back. Same RH and AH across the step, roughly half the duty. **The discs were never worn**, so the queued disc swap and spare 12-disk unit are redundancy only, and the humidifier power-monitoring smart plug lost most of its purpose.
