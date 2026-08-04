@@ -22,6 +22,8 @@ Two legs, both required for the top objective: the business must be **viable** (
 
 **Before step 1 — straw is cut on Mondays (added 2026-07-29).** The week's straw is chopped the **day before** the batch is made, using a **converted lawnmower** as the chopper. **Two bales of straw yield one 110 L drum of cut straw**, which is exactly one batch — so the weekly rhythm is *cut Monday, make Tuesday*. This step was previously undocumented; a successor reading only the numbered steps below would not know the substrate has to be prepared a day ahead, or with what. See `STATUS.md` for what still needs recording about the machine itself.
 
+**Bagging — how a bag is actually made (added 2026-08-04, previously undocumented).** **Pasteurisation happens to the straw BEFORE bagging, not after**, so nothing about the bag or its closure has to survive heat. Each bag is cut from a **roll of plastic layflat tubing**. The **bottom end is closed with a tape device that uses PVC tape**; the bag is then filled, and the **top is closed with a cable tie**. Two different closure methods, two different consumables — and the tape device is **already proven on this same tubing**, which matters when one of the two runs out. See "Routine maintenance" for reorder points.
+
 1. **Substrate batch inserted** — a batch of growing substrate bags is logged (batch ID, bag count, total weight). One batch a week, made on Tuesdays (~24 × 4kg bags from a 110L drum).
 2. **Pickings recorded** — mushrooms are **not** harvested in one event: each is picked as it's ready, over several days, and cold-stored just above freezing. Each **picking** is weighed and logged against its batch. A "flush" is many pickings; a batch gives two flushes (separated by a ~1–2 week rest), then its bags are removed. Flush number is inferred by the system from the rest-gap between pickings, not entered.
 3. **Harvest processed** — the accumulated raw stock (from cold storage) is cleaned and packed: raw is converted into packed product (grey oyster, 250g packs) plus waste. Processing consumes the whole accumulated raw balance, so it mixes pickings across batches.
@@ -59,6 +61,18 @@ Every step above is logged through the control panel (`stock-control/index.html`
 - **What it is NOT:** humidity control was independently exonerated. RH held 90.4–91.2% throughout, and the absolute-humidity fall was predicted from temperature and RH alone to within **0.05 g/m³** on all five days.
 
 **⚠️ Status as of 2026-08-04: the filter is the operator's diagnosis and the data is consistent with it, but the clean has not yet been done and the cause is UNCONFIRMED.** The recorder can only say "reduced heat output" — low refrigerant, a fouled coil, or a changed setpoint would look identical. The filter is the right first move because it is free, not because it is proven. **Confirmation test: clean it, change nothing else, and expect the grow room to recover first with the fruiting room following toward ~17.3 °C within a day.** If it does not recover, the filter was not the cause and the next candidates cost money. Re-run `room_check.py` ~24h after.
+
+### Production consumables — reorder points
+
+**Added 2026-08-04, after cable ties ran out on a Tuesday and blocked the bagging of an already-pasteurised batch.** These are cheap items whose absence stops production outright. **None of them appear in `stock-control/finance/CASHFLOW.md`'s cost list**, which is defensible on materiality but is also why nobody was watching the level.
+
+| Consumable | Used at | Rate | Reorder at | Note |
+|---|---|---|---|---|
+| **Cable ties** | Closing the **top** of each filled bag | **~24/batch = ~24/week ≈ 100/month** | **100 left (one month's buffer)** | Buy in **1000s** — roughly a year's supply for around R150–250, which is immaterial against ~R3,100/mo of known costs. Running out costs a production day; the bulk pack costs nothing worth counting. |
+| **PVC tape for the bag-sealing device** | Closing the **bottom** of each tube | ~24/batch | Keep **one spare roll** unopened | The same stockout on this item would be worse — it has no equivalent fallback, whereas the tape device *can* substitute for cable ties |
+| **Layflat tubing** | The bag itself | ~24/batch | Not established | Record consumption per roll to set one |
+
+**⚠️ The two closure methods are a redundancy worth knowing about.** The tape device is already validated on this tubing at the bottom end, so **it is the first fallback if cable ties run out** — not string or twine. **Closure tightness is a contamination-control variable**, and a hand-tied substitute is not equivalent to a cinched tie or a taped seal. **Do not introduce an improvised closure during a batch whose contamination rate is being watched** (see `STATUS.md` on W30's 10.7% cull rate and W31 as the test) — a looser seal would confound exactly the measurement in progress. If an improvised closure is ever unavoidable, **record it against the batch** so the result can be read honestly.
 
 ### Other recurring obligations, already documented elsewhere
 
