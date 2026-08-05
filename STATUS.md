@@ -292,6 +292,30 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **✅ BUT THE NEXT REMOVAL DISCRIMINATES, AND IT IS IMMINENT.** W26 and W27 disagree: **by pack date you pull W26; by time-in-fruiting you pull W27**, which has been in the room two days longer despite being the younger batch. **Whichever one goes next identifies the rule actually in force — for free, with no experiment.** Note it when it happens.
 - **➡️ WHAT THE RULE SHOULD PROBABLY BE, once there is data to support it: remove on PRODUCTIVITY, not on age.** `v_batch_residence` now carries `last_picked_on` and `grams_per_bag_per_week` — a batch that has stopped producing has earned its eviction; a batch still picking on the day it is pulled, as W25 was, has not. **Pack date was a reasonable proxy while nothing better existed. Something better now exists.**
 
+#### 🔴🔴 THE INTENTION IS TWO FLUSHES, AND THE ROOM CANNOT PHYSICALLY DELIVER THEM (named 2026-08-05)
+
+**Operator, 2026-08-05: *"I intention is to take a second flush."*** So W25 being pulled mid-first-flush was **not** the plan. **It is not a discipline problem — it is arithmetic, and the two numbers have never been put side by side before:**
+
+- **Two flushes need roughly 4–6 weeks of fruiting residence** — first flush, a 1–2 week rest, second flush.
+- **The room allows ~3 weeks.** Capacity is **3 batches**; input is **1 batch/week**; so mean residence cannot exceed 3 batches ÷ 1 per week = **21 days** without the queue growing without bound. **W25's actual residence was exactly 21 days.**
+
+**➡️ THE STATED INTENTION AND THE ROOM ARE INCOMPATIBLE BY ROUGHLY A FACTOR OF TWO. Every batch will keep being pulled mid-cycle, whatever rule is used to choose it, until either capacity rises or the pack cadence falls.** This is the single cleanest explanation yet offered for the low BE, and it was invisible while residence went unmeasured.
+
+**⚠️ AND THE OBVIOUS FIX MAY BE BACKWARDS — this needs measuring before it is acted on.** If **slots** are the binding constraint, what matters is yield per slot per *week*, not per batch. Illustratively, using the only figures that exist:
+
+| | Residence | Yield/bag | **Per bag per week** |
+|---|---:|---:|---:|
+| One flush, fast turn *(W25 actual)* | 21 d | 318 g | **106 g** |
+| Two flushes, slow turn *(assumed +60%)* | ~42 d | ~510 g | **~85 g** |
+
+**On those numbers a second flush LOWERS weekly output**, because the rest period is unproductive occupancy of a scarce slot. **That is counterintuitive and it may well be wrong — but it is the calculation that decides the question, and nobody has run it.**
+
+**⚠️ Hinges on:** *the size of the second flush and the length of the rest* — the one input nobody has measured, because no batch on record has been held for one. **A second flush at 60% of the first loses; at 100% it wins.** Substrate cost does not settle it either way (R680/mo against ~R5,370 revenue, so halving substrate per kg is a small effect); **slot-throughput dominates.**
+
+**➡️ THIS GIVES THE DIVIDER-WALL REMOVAL A BUSINESS CASE IT DID NOT HAVE.** It has been framed as a microclimate and capacity question gated on the aircon. **It is actually the thing that would let both flushes be taken without surrendering throughput** — more slots dissolve the trade instead of choosing a side of it. **That belongs in the wall decision above, which currently reasons only about humidity and temperature.**
+
+**➡️ Cheapest way to get the missing number: hold ONE batch to a full second flush and measure it.** It costs one slot for ~3 extra weeks and produces the figure the whole decision turns on. **W26 is the natural candidate** — it is the one an age-based rule would evict next, and it has already been penalised twice (longest colonisation, earliest eviction).
+
 **➡️ Next honest read: W26 and W27 on removal** — capture has been continuous for their whole fruiting life, so they will be **the first trustworthy BE figures this business has ever had.**
 - **⛔ THE ANALYSIS CANNOT BE TAKEN FURTHER FROM HERE, AND THAT IS BY DESIGN.** `v_recent_captures` is hard-limited to **20 rows**, and the 2026-08-04 migration header explicitly says *"Do not widen it to full history without revisiting 20260728140000's reasoning."* `v_harvest_pickings`, `v_current_biomass` and `v_substrate_biological_kpi` are all correctly closed to anon. **The numbers above are one week, three batches, and no substrate-weight denominator — treat them as a signal, not a result.**
 - **✅ BUILT AND LOCALLY VERIFIED 2026-08-05 — `v_batch_residence`, migration `20260805100000_batch_residence_view.sql`. ⬜ NOT YET PUSHED.** One read view over existing tables — no schema change, nothing new to capture. It reports per batch: **days colonising**, **days in fruiting room**, first/last picking, flush count, harvested grams net of corrections and voids, biological efficiency, and **`grams_per_bag_per_week`** — yield per bag per week of fruiting-room occupancy, the throughput figure BE cannot express.
