@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-28
+Last updated: 2026-08-05
 
 **What this document is.** A plain answer to *what is true right now*. It is deliberately short.
 
@@ -151,7 +151,7 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **Food labelling** — name, net weight, producer, batch/date, origin, barcode. Overlaps the Spar label work.
 - **Business/tax registration** — CIPC / SARS / VAT threshold. May already be sorted.
 
-## Room state (verified 2026-08-04 off a 48h `room_check.py` run)
+## Room state (verified 2026-08-05 off a 48h `room_check.py` run)
 
 ### 🔴 LIVE — BOTH ROOMS HAVE BEEN COOLING SINCE 2026-08-01, AND IT IS NOT THE WEATHER
 
@@ -169,13 +169,99 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **➡️ So the question is what stopped heating the GROW room, and the aircon is the only candidate with no telemetry.** It is still not linked to HA (no `climate.*` entity exists), so a mode change, a setpoint change, a tripped breaker or a failure would be **invisible to every dashboard**.
 - **🔧 OPERATOR DIAGNOSIS 2026-08-04: the aircon filter needs cleaning — and the data is consistent with it.** Two details support *weak* output rather than *absent* output: the decline **decelerates** toward a new equilibrium near ~14.5 °C (−0.85, −0.92, −0.34, −0.38 °C/day on a like-for-like 00:00–09:00 window) instead of falling toward the envelope's no-heat balance point, and **the grow room still gains heat every afternoon** (16.6 → 18.35 °C between 11:00 and 16:00 on 08-01, with daily peaks 19.2 → 18.6 → 18.0 → 18.0). The unit is running and delivering progressively less.
 - **⚠️ UNCONFIRMED — the recorder can only say "reduced heat output".** Low refrigerant, a fouled coil or a changed setpoint would look identical from the data. **The filter is the right first move because it is free, not because it is proven.** **Confirmation test: clean it, change nothing else (leave the vents alone — changing two things at once is how the vent series lost four nights), and expect the grow room to recover first with the fruiting room following toward ~17.3 °C within a day.** Re-run `room_check.py` ~24h after. If it does not recover, the filter was not the cause and the remaining candidates cost money or a technician.
-- **🔬 FILTERS CLEANED 2026-08-04 ~09:30 SAST (plural — there was more than one). Result pending; read the 22:00–06:00 window on the morning of 08-05.** Nothing else was changed: the vents stay in arm E and the fan stays HIGH, so this is a single-variable test.
+- **🔬 FILTERS CLEANED 2026-08-04 ~09:30 SAST (plural — there was more than one). ⚖️ READ OUT 2026-08-05: THE DECLINE STOPPED AND REVERSED, BUT THE TEST WAS CONFOUNDED AND THE VERDICT IS NOT PROVEN.** Nothing else was changed: the vents stay in arm E and the fan stays HIGH, so this was intended as a single-variable test.
+  - **The four-day slide broke.** Overnight 22:00–06:00 means, grow room: 15.61 → 15.32 → 15.07 → **15.96** for the nights of 08-01 → 08-04. The trend had been −0.25 to −0.29 °C/night; this night came in **+0.89**, about **+1.15 °C against the extrapolated trend**. Fruiting room followed at **15.6** (from 15.1), **0.2–0.5 °C above the grow room throughout** — the predicted signature, grow room leading.
+  - **✅ The room stopped breaching the band floor.** Overnight minimum **15.2 °C**, back above the 15 °C floor and off the ESP32's 14 °C `temp_floor`; the 48h in-band figure rose 78.4% → **84.9%**.
+  - **⛔ BUT THE NIGHT WAS 1.7 °C WARMER OUTDOORS, AND THE FORECAST WAS WRONG AGAIN — BY 1.3 °C, FOR THE THIRD TIME.** The test was designed on a forecast 22:00–06:00 mean of 10.5 °C against 10.1 on both deep pre-clean nights. **Measured actual: 11.8 °C** (`tools/outdoor_history.py`). So the ΔT was **not** comparable and the confound the design was built to exclude is present after all. *The standing instruction to confirm retrospectively against measurement, never on the forecast, has now paid for itself three times — treat it as a rule, not a caution.*
+  - **⚠️ And read the size honestly: +0.89 °C is LESS than a passive envelope would give for a 1.7 °C warmer night.** That is not proof of failure — the building's 250 mm walls mean one night's outdoor step does not fully propagate — but it is the opposite of a result that clears the bar with room to spare.
+  - **⛔ Recovery is far short of target.** The confirmation criterion was the room heading toward **~17.3 °C** within a day. The grow room is at **15.96**, against **17.75 on 07-30**. Roughly a third of the lost ground, at best.
+  - **⛔ Humidifier duty did NOT come off its pin** — the other half of the predicted signature. Overnight **91.3%** on the post-clean night (100% on 08-03, 87.6% on 08-02), and **98.9% overnight / 97.7% overall** across the 48h window. No headroom, no improvement.
+  - **⛔⛔ THIRD CONFOUND, AND IT IS THE ONE THAT KILLS THE TEST: 08-04 WAS A TUESDAY — the weekly heavy-access day for packing, removing bags and taking the last harvest (operator, 2026-08-05). THERE IS A RECURRING TUESDAY WARM BUMP, AND IT HAS A CLEAN CONTROL CASE.**
+    - **Grow-room overnight means, Tuesday minus the Monday before:** 07-28 **17.85 vs 17.05 = +0.80**; 08-04 **15.96 vs 15.07 = +0.89**. **Near-identical bumps.**
+    - **🎯 07-28 IS THE CONTROL — no filter was cleaned that week, and the weather moved the WRONG WAY.** Outdoor fell 11.8 → 10.2 °C (**−1.6**) between Mon 07-27 and Tue 07-28 while the grow room *rose* 0.80 °C. **Weather cannot produce that, and no maintenance was performed. The bump is the access day itself.**
+    - **The bump decays:** Wed 07-29 fell back to 17.35 (**−0.50** off the Tuesday peak).
+    - **✅ THE TUESDAY CADENCE IS CONFIRMED FROM THE LEDGER, NOT FROM RECOLLECTION** (`v_batch_bag_state`, read 2026-08-05). **Every substrate batch on record was packed on a Tuesday** — W26 06-23, W27 06-30, W28 07-07, W29 07-14, W30 07-21, W31 07-28, W32 08-04 (only W25, 06-18, is off-cadence). **Both batch removals were Tuesdays too**: W23 on 07-28 11:15 SAST, W25 on 08-04 13:58 SAST. **The access day is a fixed weekly rhythm and is already captured — future experiment windows can and must be checked against it.**
+    - **🎯 AND THE TUESDAY STEP LANDS IN THE GROW ROOM, WHICH IS THE ROOM UNDER INVESTIGATION.** Fresh bags are packed into the **grow** room — `moved_to_fruiting` is **0** for W29, W30, W31 and W32. So each Tuesday adds a batch of freshly-packed, actively-colonising blocks to the *same room* whose heat source the aircon investigation is trying to explain, and removes a spent one. **This is not a passing disturbance to discount; it is a recurring step change in the grow room's own thermal load, on the exact day the filter was cleaned.**
+    - **➡️ So the +0.89 °C on 08-04 is fully accounted for by the ordinary Tuesday effect (+0.80 measured the week before), with no residual left to attribute to the filter.** The clean happened at 09:30 on the one day of the week the rooms are opened up all day. **The single-variable test was never single-variable — the confound is weekly, predictable, and was in the recorder the whole time.**
+    - **The underlying decline is real and untouched — the week-over-week shift is uniform across matched weekdays:** Mon 17.05 → 15.07 (**−1.98**), Tue 17.85 → 15.96 (**−1.89**). **A ~1.9 °C/week loss, on top of which Tuesday adds a ~0.85 °C one-night bump.** Reading the bump as recovery inverts the picture.
+  - **⚠️ Duty corroborates the Tuesday effect, and points the same way:** overnight duty on Tue 07-28 was **66.5% — the lowest of that week** (Mon 76.3, Sat/Sun ~74.8), and Tue 08-04's 91.3% sits below Mon 08-03's 100%. **The access day leaves the room warmer AND the humidifier working less.** Mechanism not established — see the open question below; **do not write one down until the operator confirms what physically changes in the room on a Tuesday.**
+  - **📏 DOCTRINE NOTE — sparse `humidifier_duty_1h` logging is itself the pin signal, not missing data.** The sensor only writes on change, so a pinned humidifier stops logging: n=228 on Tue 07-28 (cycling healthily) against **n=1 on Mon 08-03** — that lone "100.0%" is not a thin sample to be distrusted, it is the room sitting at 100% all night. **Read n alongside the mean; a collapsing n is a leading indicator of the pin.**
+  - **➡️ VERDICT: THE FILTER CLEAN HAS NO SURVIVING EVIDENCE IN ITS FAVOUR. Not refuted either — it was never actually tested.** Do not close this item, do not yet buy a technician, and **do not record the filter as the fix.**
+  - **➡️ TONIGHT (Wed 08-05) IS THE REAL FIRST READ, and the Tuesday bump gives it a sharp prior:** off the 07-28 → 07-29 precedent, a room with an *unimproved* aircon should **fall back ~0.5 °C to ~15.4–15.5 °C**. Holding at ~15.96 or climbing is the first genuine evidence the filter did anything. **⚠️ Outdoor is forecast much warmer again tonight (~13.8 °C mean), so confirm against `tools/outdoor_history.py` and lean on the decoupling test below rather than the absolute number.**
+  - **➡️ THE NEXT DISCRIMINATOR IS BETTER THAN WAITING FOR A MATCHED NIGHT — and matched nights are not coming: outdoor is already at a 13.8 °C mean tonight and warming.** Over the healthy period 07-26 → 07-31 the grow room's overnight mean regressed on outdoor temperature with a slope of **+0.02 °C/°C — statistically nil.** *A working aircon regulates, so a healthy room is decoupled from outdoors.* **That is the test: over the next 2–3 nights, does the room climb toward ~17.3 °C independently of outdoor, or does it merely track outdoor upward?** Climbing while outdoor holds or falls confirms the filter. Tracking outdoor 1:1 means the aircon is still weak and the remaining candidates — refrigerant, fouled coil, changed setpoint — are live. **This needs no matched night, which is what makes it usable now.**
   - **⛔ Do NOT read this afternoon as the result.** The grow room climbs naturally from ~11:00 to ~16:00 every day (daily peaks 19.2 → 18.6 → 18.0 → 18.0 through the decline), so a rise today proves nothing. **The discriminator is the overnight window**, where the pre-clean nights are already in the recorder and directly comparable via `tools/arm_read.py`.
   - **Pre-clean baseline, like-for-like 00:00–09:00 SAST** — fruiting 17.23 / 16.38 / 15.46 / 15.12 / **14.74** and grow 17.24 / 16.26 / 15.00 / 14.80 / **14.52** for 07-31 → 08-04. **As of 09:00 on 08-04, every hour from 06:00 was still colder than the same hour on 08-03**, so the decline had not yet turned of its own accord.
-  - **✅ Tonight is a well-matched night, which makes this a cleaner test than any arm in the vent series.** Open-Meteo forecasts outdoor 22:00–06:00 at **mean 10.5 °C**, against **10.1 on both 08-02 and 08-03** — so ΔT is near-identical to the two deepest pre-clean nights and cannot explain a recovery. **⚠️ Confirm retrospectively with `tools/outdoor_history.py`, never on the forecast** — it has been wrong by 3.1 °C and 3.6 °C on the two occasions it was checked against measurement.
-  - **What confirms it:** grow room recovers first, fruiting room follows 0.2–0.5 °C above it, toward ~17.3 °C, with humidifier duty falling off its 95.4% overnight pin. **What refutes it:** the overnight window comes in at or below 08-03's, on a comparable ΔT — in which case the filter was not the cause and the remaining candidates (refrigerant, coil, setpoint) cost money or a technician.
+  - **⛔ FALSIFIED BY MEASUREMENT — this claim is kept only as the record of how the test was lost.** It read: *"Tonight is a well-matched night… Open-Meteo forecasts outdoor 22:00–06:00 at mean 10.5 °C, against 10.1 on both 08-02 and 08-03 — so ΔT is near-identical and cannot explain a recovery."* **The night came in at 11.8 °C measured.** The forecast had already been wrong by 3.1 °C and 3.6 °C on the two prior occasions it was checked; it was wrong by 1.3 °C again here, and the note warning about exactly this sat one line below the claim it should have blocked. **A forecast is never a control variable — do not design a single-variable test on one again.**
+  - **The confirm/refute criteria as written were:** grow room recovers first, fruiting follows 0.2–0.5 °C above it, toward ~17.3 °C, humidifier duty off its pin; refuted by an overnight window at or below 08-03's on a comparable ΔT. **Outcome: the first two clauses passed, the ~17.3 °C and the duty clauses failed, and "comparable ΔT" never held — so neither branch fires.** Superseded by the decoupling test above, which does not need a matched night.
 - **📋 Written up as a maintenance item — `HANDBOOK.md` §"Routine maintenance".** There was no maintenance list anywhere in these docs until 2026-08-04; recurring physical obligations were scattered through this file as one-off notes. The new section carries the failure signature above so it is recognisable next time, and collects the other recurring obligations (weekly `room_check.py`, the daily water-tank fill, Monday straw chopping, post-reflash fan confirmation). **Cleaning interval deliberately left unset until the first clean shows how dirty it actually is.**
 - **⚠️ Hinges on:** *that the grow room's heat source changed.* **If the aircon is found running normally at its usual setpoint, the alternative is a new envelope leak in the grow room** — its external door or the rear drywall — which is the same smoke-pencil check already flagged for the divider-wall question. Either way the answer is in that room, not in the fruiting room.
+
+### 🔴 LIVE — THE FRUITING ROOM HOLDS THREE BATCHES AGAINST A WEEKLY PACK CADENCE (found in the ledger 2026-08-05)
+
+**This was found while chasing the aircon, and it outranks it — it lands on priority #1, committable supply.**
+
+**⚠️ An earlier version of this section called the grow room a 95-bag backlog. That was wrong and is corrected here.** With packing every Tuesday and roughly four weeks of colonisation, a steady-state grow room *should* hold about four batches at the 1/2/3/4-week marks — which is exactly what is there. **The grow room is the normal buffer, not a pile-up.** Read off `v_batch_bag_state`:
+
+| Batch | Packed | Bags | → fruiting | In grow | In fruiting |
+|---|---|---:|---:|---:|---:|
+| W26 | 06-23 | 27 | 25 | 1 | **25** |
+| W27 | 06-30 | 23 | 23 | 0 | **22** |
+| W28 | 07-07 | 29 | 29 | 0 | **29** |
+| W29 | 07-14 | 24 | **0** | **24** | 0 |
+| W30 | 07-21 | 28 | **0** | **25** | 0 |
+| W31 | 07-28 | 25 | **0** | **25** | 0 |
+| W32 | 08-04 | 21 | **0** | **21** | 0 |
+| | | | | **96** | **76** |
+
+- **The fruiting room holds three batches — W26, W27 and W28 — totalling 76 bags. W28 moved in on 04/08**, four weeks after being packed.
+- **The grow room holds four batches (96 bags) at roughly the 1, 2, 3 and 4-week colonisation marks.** Normal, given the cadence.
+- **🎯 THE BINDING ARITHMETIC IS IN THE FRUITING ROOM, AND IT IS SIMPLE.** Capacity is **three batches**; input is **one batch per week**. **So the pipeline only balances if a batch's fruiting-room residence is about three weeks.** Longer than that and the queue must grow — there is nowhere else for it to go. **The operator's own read — *"they are all staying longer than what I think they should"* — is exactly this constraint being felt rather than measured.**
+- **⚠️ Whether the queue is ACTUALLY growing yet is not established.** W28 moved in at four weeks post-pack; if W29 moves at the same point it is due ~11/8 and nothing is late. **The test is whether successive batches move in at a widening gap — which needs the `bag_movements` dates, not the bag counts.**
+- **✅ CONFIRMED BY THE OPERATOR 2026-08-05 — THIS IS REAL, NOT A CAPTURE GAP.** *"23/6; 30/6; and 7/7 is in the fruiting room. 14/7; 21/7; 28/7; and 4/8 is in the grow room."* **The ledger is accurate and the physical room matches it.** The alternative reading — that `fn_move_bags_to_fruiting` simply was not being called since `bag_movements` was created on 07-28 — is ruled out. *Worth banking separately: the bag-movement capture is trustworthy, which is not something that could be assumed of a two-week-old table.*
+- **➡️ SO THIS IS A SUPPLY STORY, NOT A MICROCLIMATE ONE.** The environment has been tuned to the ppm while the throughput constraint — how fast batches clear the fruiting room — has never been measured at all.
+- **✅ W29 IS READY AND SPACE-GATED — operator, 2026-08-05: *"w29 looks good. if i remove an old batch from the fruiting room it can be moved in."*** So the backlog is not a colonisation delay. **The fruiting room is full, and the queue is waiting on an eviction, not on biology.** W30 (21/7) is a week behind it; W31 and W32 are within normal colonisation time and are exactly where they should be.
+- **The move is arithmetically clean:** fruiting holds 76 (W26 25 + W27 22 + W28 29). **Removing W26 — the oldest at 6 weeks — frees 25 slots for W29's 24 bags**, landing the room at 75.
+
+### 🔴 THE REAL CONSTRAINT IS RESIDENCE TIME, AND IT IS THE ONE THING NEVER MEASURED (named 2026-08-05)
+
+**Operator, 2026-08-05, and this reframes the entire room programme:** *"They are all staying longer than what i think they should but that then was the reason the micro climate improvement was initiated."*
+
+**➡️ THE MICROCLIMATE WORK WAS STARTED TO FIX RESIDENCE TIME, AND SUCCESS WAS THEN MEASURED ENTIRELY IN ENVIRONMENTAL KPIs — VPD, temperature, RH, CO2, uniformity. None of those measure residence time. So the programme has never been able to tell whether it achieved its own stated purpose.** This is sharper than the yield-measurement gap already named above: it is not merely that yield is uncaptured, it is that **the specific quantity the work exists to improve has no instrument at all.**
+
+**⚠️ And the committed KPI is blind to it by construction.** Biological efficiency — kg fresh per kg substrate — is a **ratio with no time in it**. A batch yielding 15 kg over 8 weeks and one yielding 15 kg over 4 weeks score **identically on BE**, while the second doubles what the room delivers per week. **Committable supply is `bags × yield-per-bag ÷ residence weeks`.** Residence time is a direct multiplier on weekly supply and it is absent from the scorecard.
+
+**🔬 MEASURED 2026-08-05 off `v_batch_residence`, first read against production. Two guesses made earlier today are corrected by it — in opposite directions.**
+
+| Batch | Packed | Moved in | Days colonising | Days fruiting | Picks | Grams | g/bag | **BE %** | **g/bag/wk** |
+|---|---|---|---:|---:|---:|---:|---:|---:|---:|
+| W25 | 18/6 | 14/7 | 26 | **21** *(complete)* | 8 | 6,676 | 317.9 | **6.1** | **106.0** |
+| W26 | 23/6 | 23/7 | 30 | 13 *(open)* | 6 | 9,214 | 368.6 | **7.6** | **198.5** |
+| W27 | 30/6 | 21/7 | 21 | 15 *(open)* | 9 | 12,428 | 540.3 | **10.4** | **252.2** |
+| W28 | 7/7 | 4/8 | 28 | 1 *(open)* | — | — | — | — | — |
+
+- **⛔ CORRECTION 1 — fruiting-room residence is ~2–3 WEEKS, not the 5–7 implied this morning.** W25 completed its whole fruiting life in **21 days**; W26 and W27 are 13 and 15 days in. The earlier figure came from treating batch age as residence and was wrong by roughly a factor of three.
+- **⛔ CORRECTION 2 — the room is NOT structurally oversubscribed.** The balance point for 3 batches of capacity at one batch per week is ~21 days, and **W25 came in at exactly 21.** The pipeline is running close to balance, not 2× over it. **Delete the "oversubscribed by 2×" reading; it was arithmetic on a wrong residence figure.**
+- **🎯 SO THE LONG POLE IS COLONISATION, NOT FRUITING — and that is the opposite of where the room programme has been looking.** Colonising takes **21–30 days (mean 26)**; fruiting takes **13–21**. Bags spend **more than half their life in the grow room**, which is the room with no ventilation, no supply duct, and no KPI of its own. **W29 at 22 days is inside the normal colonisation range — it is not late, and "the fruiting room is full" and "W29 is ready" are both true without anything being broken.**
+- **⚠️ HYPOTHESIS, NOT ESTABLISHED — the cold grow room and the throughput constraint may be the same problem.** The grow room has been running **~14.5 °C instead of ~17.7 °C** since 08-01 (see the aircon issue above), and cold slows colonisation. **If that is real, the aircon fault is not merely a comfort issue — it is lengthening the long pole of the whole production cycle.** **The test is free and already instrumented:** W29 (packed 14/7) colonised mostly before the cold; **W31 (28/7) and W32 (4/8) are colonising through it.** If their `days_colonising` comes in above ~30 when they move, that is the evidence. **Do not act on this until those two batches move.**
+- **✅ W28's apparent zero-production anomaly is RESOLVED and was never an anomaly** — one day in the fruiting room when the captures were read. Nothing wrong with the batch or the capture habit.
+- **⚠️ The g/bag/wk column is NOT yet a like-for-like comparison.** W25 is complete, so its 106.0 is a lifetime average including its declining tail. W26 and W27 are **mid-life and still producing**, so their 198.5 and 252.2 will fall as they age. **W26 is not "underperforming W27" and neither is beating W25 — the comparison only becomes fair between completed batches.** First honest read: when W26 and W27 are removed.
+
+#### 🔴 AND THE HEADLINE THE VIEW WAS BUILT TO SURFACE: BIOLOGICAL EFFICIENCY IS 6–10%, AGAINST THE 15–25% THIS FILE ITSELF NAMES AS THE TARGET
+
+**This is the first time the question at the top of this document — *"are we at industry yield?"* — has had a number attached.** The answer on current data is **no, by a factor of roughly two to three.** W25, the only *completed* batch, came in at **6.1%**.
+
+**⚠️ Hinges on:** *that `total_substrate_grams` is WET substrate weight and that harvest capture is complete for these batches.* Both are load-bearing and neither is confirmed:
+- **If the figure is a dry-weight basis, 6–10% against a 75–125% dry-basis norm would be implausibly catastrophic** — which is itself the argument that it must be wet. **Confirm what is actually being typed into that field before treating 6.1% as real.**
+- **Capture completeness is the bigger doubt, and it points the same way — the number is more likely understated than overstated.** Every batch's first recorded picking is **on or after 24/7**, which is about when harvest capture became a habit. W27 moved in 21/7 and was first picked 24/7 — a plausible 3 days. But **W25 moved in on 14/7 and shows nothing until 24/7 — a 10-day gap that probably means its early flush was harvested and never recorded.**
+- **`flush_count` reads 1 for all three**, so on the data these batches have had a single flush. If a second flush follows, BE rises. **If W25 was genuinely removed after one flush at 21 days, that is the finding** — and it would mean batches are being cleared before their second flush, which is a very different problem from anything the microclimate work has been addressing.
+
+**➡️ The cheapest next step is not a measurement, it is a definition:** confirm the substrate-weight basis, then judge W26 and W27 on removal, when their numbers are complete and capture has been continuous for their whole life. **Those two batches will be the first trustworthy BE figures this business has ever had.**
+- **⛔ THE ANALYSIS CANNOT BE TAKEN FURTHER FROM HERE, AND THAT IS BY DESIGN.** `v_recent_captures` is hard-limited to **20 rows**, and the 2026-08-04 migration header explicitly says *"Do not widen it to full history without revisiting 20260728140000's reasoning."* `v_harvest_pickings`, `v_current_biomass` and `v_substrate_biological_kpi` are all correctly closed to anon. **The numbers above are one week, three batches, and no substrate-weight denominator — treat them as a signal, not a result.**
+- **✅ BUILT AND LOCALLY VERIFIED 2026-08-05 — `v_batch_residence`, migration `20260805100000_batch_residence_view.sql`. ⬜ NOT YET PUSHED.** One read view over existing tables — no schema change, nothing new to capture. It reports per batch: **days colonising**, **days in fruiting room**, first/last picking, flush count, harvested grams net of corrections and voids, biological efficiency, and **`grams_per_bag_per_week`** — yield per bag per week of fruiting-room occupancy, the throughput figure BE cannot express.
+  - Verified on a local stack against a seeded scenario: the colonising/residence split, the SAST timezone boundary (a 01:00 SAST move is 23:00 UTC the previous day and would otherwise understate every duration by a day), NULL-not-zero for unmoved batches, no division error for a batch moved today, correction and void arithmetic, and the anon boundary — per-picking and per-movement detail stays blocked.
+  - **`supabase migration list --linked` shows no drift**; this is the only local-ahead migration.
+- **⚠️ Hinges on:** *that yield does not simply shift later when batches are pulled earlier.* If the final weeks contribute meaningfully once a batch's own flush rhythm is accounted for, pulling early trades yield for throughput and could be net-neutral. **The three-batch table above cannot distinguish "old batches are spent" from "these particular batches were between flushes that week."** That distinction is worth roughly the difference between a ~50% supply increase and none — and it is exactly what the residence view would settle. **Do not restructure the rotation on one week of data.**
+- **🔬 It also gives the aircon investigation a candidate that costs nothing to check: 96 bags stacked in the grow room is a large physical change in that room, and if any of it obstructs the aircon's air path or return it would reduce delivered heat progressively — which looks identical in the recorder to a dirty filter.** W31 went in 07-28; the decline began 07-31/08-01. **Look at where the bags are stacked relative to the unit before spending money on refrigerant or a technician.**
 
 **Humidifier duty is now PINNED — 93.7% overall, 95.4% overnight, 96.1% midday**, worse than any measured vent arm. Two compounding causes, neither of them a humidifier fault:
 
@@ -184,19 +270,23 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 
 **✅ Humidity control itself is NOT broken — verified, not assumed.** RH held at **90.4–91.2%** every day through the fall. The absolute-humidity drop (13.38 → 11.53 g/m³) is **fully explained by the temperature drop at constant RH**: predicted from T and RH alone it comes out 13.36 / 12.78 / 12.18 / 11.96 / 11.49 — matching measurement to **within 0.05 g/m³ on all five days**. The humidifier is pinned because it is chasing a colder, leakier room, not because it has failed. *(This is the "use absolute humidity, not RH" method from `DECISIONS.md` 2026-07-17, run in the other direction to exonerate a component.)*
 
-### Scorecard, 48h to 2026-08-04 09:19
+### Scorecard, 48h to 2026-08-05 10:40
 
 | KPI | State |
 |---|---|
-| Temperature | ⛔ **78.4% in band** — 14.20–16.70 °C, mean 15.49, **trending down** |
-| VPD | ✅ 100% in band — 0.13–0.23, mean 0.17 |
-| Absolute humidity | ✅ 99.9% in band — 10.9–12.8 g/m³, mean 12.01 — but at the bottom of the band and falling |
-| RH | ⚠️ 80.1% in band, mean 90.68 — read via VPD/AH, not raw |
-| Humidifier duty | ⛔ **93.7% overall, 95.4% overnight — PINNED, no headroom** (KPI is under ~70%) |
-| Bottom-shelf gradient | ✅ Flat — `temp_shelf_delta` mean +0.27, `rh_shelf_delta` mean +0.32 |
-| CO2 | ✅ displayed trough 435 ≈ **785 true** — on target, the best it has been |
-| Sensor health | ✅ Clean — 0.0% bad on all three controller entities, 1.2% on the Inkbird |
+| Temperature | ⛔ **84.9% in band** — 14.20–16.50 °C, mean 15.55. **Decline arrested** (was 78.4%, trending down); the 14.20 min is the pre-clean night still inside the window |
+| VPD | ✅ 100% in band — 0.13–0.25, mean 0.17 |
+| Absolute humidity | ✅ 99.9% in band — 10.9–12.6 g/m³, mean 12.02 — still at the bottom of the band |
+| RH | ⚠️ 75.3% in band, mean 90.48 — read via VPD/AH, not raw |
+| Humidifier duty | ⛔ **97.7% overall, 98.9% overnight — PINNED and WORSE than a day ago** (was 93.7/95.4; KPI is under ~70%). Power 117.3 W avg, 2.81 kWh/day, **~R432/mo** |
+| Bottom-shelf gradient | ✅ Flat — overnight `temp_shelf_delta` mean +0.1 |
+| CO2 | ✅ displayed trough 450 ≈ **800 true** — on target |
+| Sensor health | ✅ Clean — 0.0% bad on all three controller entities, 1.1% on the Inkbird |
 | **Both** CO2 sensors | ⛔ Still reading ~**350 ppm low** — the primary since 07-25, the Inkbird since 07-27. The cross-check is blind; see the live issue below. |
+
+**⚠️ `room_check.py` flagged a CO2 offset step of −51 ppm at 08-04 11:00 — this is almost certainly the filter cleaning, not drift.** The disturbance list puts someone in the room at 10:32–11:02 the same morning, ~1 h after the 09:30 clean. Per §6 doctrine the step detector flags but does not diagnose; a known physical event at the same timestamp is the explanation. **No action — but do not let it be re-read later as fresh evidence of sensor drift.**
+
+**⚠️ Humidifier duty went the WRONG WAY and the arm-D revert is still not actioned.** The 08-01 recommendation to revert from arm E to **arm D (every fourth hole sealed, fan HIGH)** — worth ~13 duty points — remains outstanding. With duty now pinned at 98.9% overnight and costing ~R432/mo in power, this is the cheapest lever on the board and it is free. **⚠️ But do not run it while the aircon decoupling test is live** — that is the mistake the vent series already paid four nights for. Sequence it after the aircon verdict.
 
 **Note the trap in that CO2 row: it looks like the best result of the whole vent series, and it is an artefact of the fault.** A colder room with a stronger stack effect flushes harder. Do not read arm E's configuration as vindicated by it.
 
