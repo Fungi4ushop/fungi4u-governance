@@ -278,6 +278,20 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 
 **⚠️ If bags ARE being cleared before a second flush, it is not a mistake — it is the fruiting room's capacity constraint expressing itself, and the two sides of that trade are now both measurable for the first time.** Three batches of capacity against one batch a week forces a choice: **hold a batch for its second flush, or free the slot for the queue.** `grams_per_bag_per_week` prices the throughput side; a completed second flush would price the yield side. **Until both are measured the trade is being made implicitly, every Tuesday.**
 
+**🔴 AND THE OPERATOR HAS NAMED THE LIKELY MECHANISM (2026-08-05): *"if the batch was removed because it was the oldest in the fruiting room even though it was not there long, it might not have had a chance for a second flush."*** **If removal is decided on PACK DATE, the rule is measuring the wrong thing — and it penalises exactly the batches that colonised longest.**
+
+- **The penalty compounds, and it is arithmetic, not opinion.** W25 was removed at **47 days total age** having had **21 days** of fruiting. Apply that same age threshold to the two now in the room, given when they actually went in:
+
+  | Batch | Packed | Moved in | Age-47 falls on | **Fruiting days it would get** |
+  |---|---|---|---|---:|
+  | W26 | 23/6 | 23/7 | ~09/8 | **17** |
+  | W27 | 30/6 | 21/7 | ~16/8 | **26** |
+
+  **A 53% difference in productive time, from nothing but a 9-day difference in colonisation.** W26 already sat longest in the grow room; an age-based removal rule then charges it for that a second time. **Double-penalised for being slow to colonise.**
+- **⚠️ THE W25 REMOVAL CANNOT TELL US WHICH RULE IS IN USE — it was oldest on BOTH measures.** On 04/08 W25 was both the oldest by pack date *and* the longest-resident in the fruiting room (21 days, against W26's 12 and W27's 14). **The two candidate rules agree on that case, so it is not evidence either way.**
+- **✅ BUT THE NEXT REMOVAL DISCRIMINATES, AND IT IS IMMINENT.** W26 and W27 disagree: **by pack date you pull W26; by time-in-fruiting you pull W27**, which has been in the room two days longer despite being the younger batch. **Whichever one goes next identifies the rule actually in force — for free, with no experiment.** Note it when it happens.
+- **➡️ WHAT THE RULE SHOULD PROBABLY BE, once there is data to support it: remove on PRODUCTIVITY, not on age.** `v_batch_residence` now carries `last_picked_on` and `grams_per_bag_per_week` — a batch that has stopped producing has earned its eviction; a batch still picking on the day it is pulled, as W25 was, has not. **Pack date was a reasonable proxy while nothing better existed. Something better now exists.**
+
 **➡️ Next honest read: W26 and W27 on removal** — capture has been continuous for their whole fruiting life, so they will be **the first trustworthy BE figures this business has ever had.**
 - **⛔ THE ANALYSIS CANNOT BE TAKEN FURTHER FROM HERE, AND THAT IS BY DESIGN.** `v_recent_captures` is hard-limited to **20 rows**, and the 2026-08-04 migration header explicitly says *"Do not widen it to full history without revisiting 20260728140000's reasoning."* `v_harvest_pickings`, `v_current_biomass` and `v_substrate_biological_kpi` are all correctly closed to anon. **The numbers above are one week, three batches, and no substrate-weight denominator — treat them as a signal, not a result.**
 - **✅ BUILT AND LOCALLY VERIFIED 2026-08-05 — `v_batch_residence`, migration `20260805100000_batch_residence_view.sql`. ⬜ NOT YET PUSHED.** One read view over existing tables — no schema change, nothing new to capture. It reports per batch: **days colonising**, **days in fruiting room**, first/last picking, flush count, harvested grams net of corrections and voids, biological efficiency, and **`grams_per_bag_per_week`** — yield per bag per week of fruiting-room occupancy, the throughput figure BE cannot express.
