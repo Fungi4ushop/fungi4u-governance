@@ -61,14 +61,41 @@ _Operator, 2026-08-01: **"a very good checkpoint but definitely not the end of t
 | **3** | **Fan run-confirmation** — power-monitoring plug upstream of the variac | **Orphaned safety item.** It lost its host when the Fan 2 rework was cancelled. The blindness has bitten once: a dead fan showed "82%" in HA for ~24 h. **Do not let it lapse again** |
 | **4** | **Aircon: can it be kept out of the humid air?** Relocate, duct, or run without condensing | **The actual gate on the wall** — not volume. See below |
 | **5** | **Humidifier capacity for the combined room** — spare 12-disc unit + fresh discs, already on hand | Size it **after** #4. Adding capacity to out-run a dehumidifier is treating the symptom |
-| **6** | **Remove the divider wall** | Dissolves the documented three-way tension (separation vs temperature vs grow-room ventilation) |
+| **6** | **Remove the divider wall** | Dissolves the documented three-way tension (separation vs temperature vs grow-room ventilation) — **and, added 2026-08-05, it is the only structural fix for the second-flush constraint: 3 batches of fruiting capacity against a weekly pack cadence caps residence at ~21 days, while a second flush needs 4–6 weeks. The yield case is now the stronger one.** |
 | **7** | **Re-validate in the new geometry, then Phase 4 automation** | ⚠️ **Automating before the wall comes down is wasted work** — every setpoint, duty baseline and gradient changes when the room does |
 
 **The honest sequencing point: #1 is the only item that pays off regardless of whether the wall ever comes down.** Everything from #2 down is investment in a room that is about to change shape. **That is an argument for doing #1 now and the rest deliberately — not for doing none of it.**
 
 ### 🧱 REMOVING THE DIVIDER WALL — first-pass capacity answer (2026-08-01)
 
-_Operator's concern, and it is the right one to raise: **"I am not sure the equipment will be able to maintain the microclimate in the bigger fruiting room."** Dimensions from `stock-control/docs/MICROCLIMATE.md` §1: **4650 × 7000 mm, ceiling 2720 front → 2550 rear** ≈ **86 m³ for the whole building**, so removing the divider adds at most ~40 m³ to the fruiting room._
+_Operator's concern, and it is the right one to raise: **"I am not sure the equipment will be able to maintain the microclimate in the bigger fruiting room."**_
+
+**📐 MEASURED 2026-08-06 — the divider position was captured and it revises the numbers this section was built on.** It sits **1820 mm from the front wall, 2280 mm from the back**; with the 75 mm partition that is 4175 mm internal, which identifies **4650 mm as the front-to-back axis and 7000 mm as the width** (the 7000 axis cannot fit 1820 + 2280). Full working: `stock-control/docs/MICROCLIMATE.md` §1.
+
+| | Depth | Floor | Volume |
+|---|---:|---:|---:|
+| **Fruiting** (front) | 1820 mm | **12.7 m²** | **~34 m³** |
+| **Grow** (rear) | 2280 mm | **16.0 m²** | **~41 m³** |
+| **Combined** | 4175 mm | **28.7 m²** | **~76 m³** |
+
+- **⛔ THE FRUITING ROOM IS THE SMALLER OF THE TWO.** Nothing in these files said so, and the wall discussion has read throughout as though the fruiting room were the larger space being modestly extended. **It is not.**
+- **⛔ "~86 m³ for the whole building" is an EXTERNAL-dimension figure** and overstates the usable interior by ~13%. **Internal is ~76 m³.** *(The ~40 m³ added by removing the divider was right; the base it is added to was not.)*
+- **➡️ So the wall is a 2.2× VOLUME and 2.25× FLOOR increase to the fruiting room, not an extension.** Every argument below that turns on "how much bigger" should be read at that scale.
+- **✅ And bag density is now a MEASURED figure, corroborated across two independently stocked rooms:** fruiting 76 bags / 12.7 m² = **5.97/m²**; grow 96 bags / 16.0 m² = **6.02/m²**. **Agreement to within 1%.**
+
+**🎯 WHICH SETTLES THE SECOND-FLUSH CAPACITY QUESTION — it is now arithmetic, not assertion.** At ~6 bags/m² the combined room holds **~171 bags ≈ 7 batches**. At one batch per week that is **~7 weeks of fruiting residence**, against the **4–6 weeks** two flushes require. **The wall removal clears the constraint with margin** — where this morning the same claim rested on "roughly half the building".
+
+**🔴🔴 AND THEN THE RACKING WAS MEASURED THE SAME DAY, WHICH CHANGES THE RECOMMENDATION: THE CONSTRAINT IS TROLLEYS, NOT FLOOR AREA — SO THE WALL IS NOT THE CHEAPEST ROUTE TO A SECOND FLUSH, OR EVEN A NEEDED ONE.**
+
+**Trolleys are 1200 × 450 mm, four racks at 400 mm pitch. The fruiting room has 3 of them, 8 bags per shelf, ONE TROLLEY PER BATCH** (operator, 2026-08-06).
+
+- **3 × 4 × 8 = 96 bag capacity, holding 76 — and one trolley per batch means exactly 3 batches, which is what `v_batch_residence` independently shows.** Two records agreeing.
+- **⛔ That uses 1.62 m² of the fruiting room's 12.7 m² — 13% of the floor.** Five trolleys across the 7000 mm width, two rows plus a 920 mm aisle, gives **10 trolleys / 320 bags on 43% of the floor: 3.3× current capacity inside the existing room.**
+- **🎯 Trolley count IS residence in weeks, at one batch per week: 3 → 21 days (now), 4 → 28 days, 6 → 42 days. One extra trolley reaches the two-flush window; three clear it.**
+
+**➡️ SO THE WALL'S YIELD CASE, MADE ABOVE, IS DEMOTED — NOT WITHDRAWN.** It remains true that the wall would deliver ~7 batches of capacity. **But the same outcome is available for the price of one to three trolleys, with no aircon question, no new grow room and no construction.** ⚠️ **Do not spend on the wall for capacity reasons until the trolley route has been tried and found wanting.** The wall's *climate* case — the documented three-way tension between separation, temperature and grow-room ventilation — is untouched and stands on its own.
+
+**⚠️ Hinges on:** *that the environment carries the extra load, which is the real open question.* **CO2 has no active control** since the fresh-air fan was removed, so more biomass raises it with nothing to correct it. Humidifier duty could move either way — a fruiting crop transpires, so bags may be a net moisture *source* — but that is untested. **Establish both, plus the cost of a trolley, before buying.**
 
 **➡️ Volume is NOT the binding constraint. The AIR CONDITIONER is.**
 
@@ -78,7 +105,7 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 **🔴 But the aircon is a dehumidifier, and the wall is currently what buffers it.** It sits above the rear door, *inside* the space that would become one room held at **90–95% RH**. Air at 90%+ crossing a cold evaporator coil condenses, and that water leaves down the condensate drain. **Humidifier and aircon then work against each other continuously, by design, in the same room.**
 
-- Today the divider partially separates them — coupling is via the doorway only, which is exactly why `MICROCLIMATE.md` records the rooms as thermally coupled but the fruiting room as the humid one.
+- Today the divider partially separates them. **⛔ Corrected 2026-08-06: the coupling is NOT "via the doorway" — the divider door stays CLOSED unless access is required (operator).** The rooms still track within 0.2–0.5 °C, so the path is the **~18.6 m² of 75 mm insulated partition**, which cannot be opened or closed. **That kills the "three-way tension" framing carried through these files** — separation was never being traded against fruiting-room temperature, because the closed configuration is the one already running.
 - **Remove the wall and that buffer goes.** The humidifier is at **63–85% duty** *now*, on the smaller room, with the coil one door away. **This is the number to worry about, and it is not a volume calculation.**
 - **The spare 12-disc unit and the fresh discs stop being "margin" and become a prerequisite** — but adding humidifier capacity to out-run a dehumidifier is fighting the symptom. **The real question is whether the aircon can be relocated, ducted, or run in a mode that does not condense** — and that should be answered *before* the wall comes down, not after.
 
@@ -87,6 +114,62 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 **✅ And the ducts are in better shape than feared.** `MICROCLIMATE.md` §1: *"**Airflow ducts are already run for the full room**; unused duct openings are sealed for now."* **The duct runs were sized for the combined space from the start.** What is unvalidated is the **hole pattern** — and note that the room currently runs with **both end caps off**, which the same doc calls *"a live interim workaround, not the settled design."*
 
 **➡️ So the operator's unease about the hole count and size is well founded, and it has a clear consequence: do not carry a fruiting-room-only workaround into the bigger room.** The parked revert test — fan to LOW, then return cap on, then supply cap — was blocked behind the vent experiment. **That experiment is now closed, so the revert test is unblocked.** It is a **prerequisite for the wall removal**, not work for this week: scaling a workaround is worse than scaling a design.
+
+**🔴 ADDED 2026-08-05 — THE WALL HAS A YIELD CASE, NOT JUST A CLIMATE ONE, AND IT IS THE STRONGER ARGUMENT.** Everything above this line reasons about humidity, temperature and duct geometry. **None of it is the reason to remove the wall.** The residence findings below establish that:
+
+- **The fruiting room holds 3 batches against a 1-batch-per-week pack cadence, so mean residence cannot exceed ~21 days** without the queue growing without bound. W25's actual residence was exactly 21 days.
+- **The stated intention is to take a second flush, which needs ~4–6 weeks.** The room and the intention are **incompatible by roughly a factor of two**, so batches keep being pulled mid-cycle whatever rule selects them.
+- **More fruiting slots is the only change that dissolves that trade instead of choosing a side of it.** Cutting the pack cadence would also balance the pipeline, but at the cost of throughput; the wall buys both.
+
+**⚠️ This does NOT reorder the prerequisites — the aircon still gates the wall, and the revert test still gates the design.** What changes is *why the wall is worth doing at all*: it moves from a climate-and-comfort argument to the **only structural fix for the second-flush constraint**, which sits on priority #1. **⚠️ Hinges on:** *that a second flush is worth its slot-time* — unmeasured, and the cheap test (hold W26 through one) is recorded below. **If the second flush turns out to be small, the wall's yield case weakens and the climate case stands alone.**
+
+### 🧩 THE NEW GROW ROOM — named 2026-08-05, and it is the undesigned half of the wall plan
+
+**Operator, 2026-08-05: the wall removal is part of a future expansion that includes building a NEW grow room — and *"the new grow room has not been thought through"*.** Recording it because **every prerequisite list in this file treats the wall as a standalone step, and it is not one.** Absorbing the grow room into the fruiting room leaves ~96 bags of colonising substrate with nowhere to live. **The wall cannot come down before the new grow room exists.**
+
+**➡️ AND TODAY'S DATA PROMOTES IT FROM A SHED TO THE MAIN EVENT: colonisation is the LONG POLE (21–30 days, mean 26) against fruiting's 13–21.** Bags spend **more than half their life** in the room nobody has designed. Anything that shortens colonisation compounds across every batch forever.
+
+**🔬 THE STRONGEST DESIGN HYPOTHESIS, and it is testable before anything is built: the current grow room is COLD FOR COLONISATION.** Grey oyster colonises fastest around **24–27 °C**; this grow room runs **15–18 °C** — and lately **14.5** — because it shares the fruiting room's aircon and coupling. **It is being held at *fruiting* temperature, not colonising temperature.** Oyster on pasteurised straw at proper warmth typically colonises in 14–21 days; this operation measures 21–30. **If temperature is the limiter, a warm grow room could cut ~10 days off every batch's cycle** — which also *reduces* the number of colonising slots needed, compounding again.
+
+**🎯 AND THIS MAY BE THE ANSWER TO THE AIRCON GATE, WHICH IS THE THING ACTUALLY BLOCKING THE WALL.** The recorded problem is that the aircon is a dehumidifier inside a space to be held at 90–95% RH. **But a grow room does not need high humidity.** So:
+
+- **Move the aircon to the new grow room**, where warmth is wanted and condensation on the coil costs nothing.
+- **The fruiting room is then free of it entirely** — no dehumidifier fighting the humidifier, which is precisely the condition item #4 above asks for.
+- **One relocation resolves both the aircon gate and the colonisation-temperature problem.** It is the "relocate" option of "relocate, duct, or run without condensing", given a destination that did not previously exist in the plan.
+
+**⬜ Requirements to settle before costing anything** — none of these are decided:
+1. **Capacity — size for the FUTURE cadence, not today's.** At one batch/week and 26-day colonisation the steady state is ~4 batches / ~100 bags. **At two batches/week it is ~8 batches / ~200.** The expansion's pack rate is the input and it has not been chosen.
+2. **Temperature control of its own**, warm and independent of the fruiting room — the point of the whole exercise.
+3. **Ventilation, designed in.** The current grow room has essentially zero air exchange and has gone stuffy; that is a documented contamination and heat-build-up risk, not a nice-to-have.
+4. **No humidification** — and confirm that, because it is what makes the aircon relocation work.
+
+**⚠️ Hinges on:** *that colonisation here is temperature-limited rather than substrate- or spawn-limited.* **Unmeasured.** If the 26 days is really about spawn rate or substrate prep, a warm room buys nothing and the new grow room is only a capacity building. **This is cheap to probe before building anything — the natural range already in the data (21–30 days) plus W31/W32 colonising through the current cold spell is a free first look.**
+
+**⛔ BUT THE RELOCATION AS WRITTEN ABOVE STRANDS THE FRUITING ROOM — operator, 2026-08-05: *"taking the aircon away to where the new grow room will be leaves the fruiting room with no temperature control."* Correct, and it is fatal to that proposal as stated.** The fruiting room's *only* temperature control today is indirect coupling to the grow-room aircon — **through the insulated partition, not through the door, which stays closed (corrected 2026-08-06).** Move the unit out and the combined room has **nothing** — no heating against the winter cold-draft through the front-wall floor openings, and no cooling at all in a Pretoria summer, for a cool-fruiting crop with a 15–18 °C band.
+
+**🎯 AND A SETPOINT, NOT A BUILD — established 2026-08-06: the grow room's temperature can be SET AND CONTROLLED on the aircon.** These files have treated it as an uncontrolled by-product throughout. **So "run colonisation at 24–27 °C" is a dial** — and colonisation is the long pole of the cycle (21–30 days against 13–21 in fruiting). **Free test: raise the grow setpoint one step to ~20 °C and read the fruiting room overnight.** Fruiting rising ~1 °C per 4 °C of grow rise means ~25% coupling and room to push further; tracking near 1:1 means the rooms cannot be held apart and a separate colonisation space is needed after all. **In winter this helps both rooms — the fruiting room is currently below its 15 °C floor. In summer it inverts, and THAT is what still argues for the new grow room.** ⚠️ **Hinges on the aircon delivering it — recovery from the 08-01 fault is incomplete (16.3 against a pre-fault 17.25). Let it settle first or the setpoint change confounds the filter verdict.** Full working: `stock-control/docs/MICROCLIMATE.md`.
+
+**➡️ The relocation does not CREATE that problem, it REVEALS one that already exists and is biting right now.** This file already records that the fruiting room has never had its own temperature control. **The current 14.2–15.5 °C excursion below the band floor is exactly that weakness failing** — the room is 0.2–0.5 °C above the grow room, entirely passively. **So "the fruiting room needs its own climate control that does not dehumidify" is a requirement of the expansion whether the aircon moves or not.**
+
+**🔬 AND THE BLOCKING CONSTRAINT IS SEASONAL, NOT ABSOLUTE — this file has been overstating it.** Everywhere above, the aircon is described flatly as *"a dehumidifier sitting inside a space to be held at 90–95% RH."* **That is true in COOLING mode only.** In **heating** mode a reverse-cycle unit's indoor coil is the *condenser* — hot, not cold — so **moisture condenses on the OUTDOOR coil and nothing is stripped from the room.** Heating air at constant absolute humidity does lower RH, so the humidifier works harder, but **that is a load, not a loss of water, and the humidifier can answer it.**
+
+- **Evidence this unit is reverse-cycle: it is being used for heating now** — the whole 08-04 filter diagnosis was about *reduced heat output*, and the grow room gains heat every afternoon.
+- **➡️ So in WINTER the aircon could serve the combined fruiting room with no dehumidification conflict at all. The conflict is a SUMMER problem.** That is a materially smaller obstacle than "the aircon gates the wall" implies, and it means **the wall does not have to wait for a year-round answer — it needs a summer answer.**
+- **⚠️ Hinges on:** *that the unit is genuinely reverse-cycle rather than cooling-only with a separate heat source.* Cheap to confirm by looking at the nameplate, and it changes the whole seasonal argument.
+- **⬜ The summer question is still open and is now the real one:** cooling a 90–95% RH room without condensing. Candidates not yet assessed — evaporative cooling (thermodynamically the right tool for a room that wants moisture, but limited by wet-bulb and only effective on dry make-up air), conditioning outside air and supplying it via the plenum, or a coil held above the room's ~15.8 °C dewpoint, which a conventional split cannot do. **Do not treat this as solved by the relocation idea.**
+
+### 🧱 THE CEILING — construction recorded for the first time, 2026-08-05
+
+**Operator: the roof has *insulation wool* and a *painted shade-cloth ceiling*.** Recording it because **no document described the ceiling at all** — `MICROCLIMATE.md` §1 lists insulation on the front wall, rear wall and divider, and mentions the roof only as *"flat corrugated iron"*. That silence is now filled.
+
+**⛔ AND IT KILLS A RECOMMENDATION MADE EARLIER THE SAME DAY.** An "insulate the roof" case was built here — ~8 kW of summer solar gain, ~1.75 kW of winter loss, R6,500–11,000 of Isoboard, two-year payback. **It was explicitly conditioned on the roof being uninsulated, and it is not. The whole calculation is void. Do not resurrect those numbers.** *Recorded rather than deleted because the reasoning pattern was sound and the failure was one of premise: absence of documentation was treated as evidence of absence.* **This file did not describe the ceiling; that is not the same as there being no ceiling.**
+
+**⬜ BUT THE CONSTRUCTION RAISES TWO QUESTIONS THAT ARE NOT ANSWERED ANYWHERE, AND BOTH ARE CHEAP TO CHECK. ⚠️ These are questions, not findings — do not act on them until looked at.**
+
+1. **Is the wool still dry, and therefore still working?** Mineral and glass wool lose a large fraction of their R-value when damp and do not readily dry out. **This room runs at 90–95% RH under a *permeable* ceiling with no vapour barrier recorded**, so there is a continuous moisture drive upward into the insulation, and the underside of a flat iron roof radiates to the night sky and can fall below ambient. **If the wool is wet, the room has less working insulation than anyone believes — and wet wool over a food crop is also a mould and drip risk.** *Check: feel it, look for sagging, compression, staining or condensation marks on the underside of the iron.*
+2. **Shade cloth is not an air barrier — so is humidified air continuously escaping into the roof void?** The design deliberately runs the room at **slight positive pressure**, and the plenum and both ducts are mounted at ceiling level. **Positive pressure beneath a permeable fabric ceiling would push moist air up through it by design, giving a standing, unmeasured moisture-loss path.** This has never been considered in any of the humidifier-duty investigations, which have looked at the tub, the ducts, the discs and the room temperature. *Check: smoke pencil held just under the ceiling — does air move up through the cloth?*
+
+**⚠️ Hinges on:** *whether the shade cloth is genuinely permeable once painted.* Paint may have sealed it into something much closer to an air barrier, which would answer question 2 on its own. **The smoke pencil settles it in a minute and costs nothing.**
 
 ## Business snapshot
 
@@ -186,8 +269,24 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
     - **The underlying decline is real and untouched — the week-over-week shift is uniform across matched weekdays:** Mon 17.05 → 15.07 (**−1.98**), Tue 17.85 → 15.96 (**−1.89**). **A ~1.9 °C/week loss, on top of which Tuesday adds a ~0.85 °C one-night bump.** Reading the bump as recovery inverts the picture.
   - **⚠️ Duty corroborates the Tuesday effect, and points the same way:** overnight duty on Tue 07-28 was **66.5% — the lowest of that week** (Mon 76.3, Sat/Sun ~74.8), and Tue 08-04's 91.3% sits below Mon 08-03's 100%. **The access day leaves the room warmer AND the humidifier working less.** Mechanism not established — see the open question below; **do not write one down until the operator confirms what physically changes in the room on a Tuesday.**
   - **📏 DOCTRINE NOTE — sparse `humidifier_duty_1h` logging is itself the pin signal, not missing data.** The sensor only writes on change, so a pinned humidifier stops logging: n=228 on Tue 07-28 (cycling healthily) against **n=1 on Mon 08-03** — that lone "100.0%" is not a thin sample to be distrusted, it is the room sitting at 100% all night. **Read n alongside the mean; a collapsing n is a leading indicator of the pin.**
-  - **➡️ VERDICT: THE FILTER CLEAN HAS NO SURVIVING EVIDENCE IN ITS FAVOUR. Not refuted either — it was never actually tested.** Do not close this item, do not yet buy a technician, and **do not record the filter as the fix.**
-  - **➡️ TONIGHT (Wed 08-05) IS THE REAL FIRST READ, and the Tuesday bump gives it a sharp prior:** off the 07-28 → 07-29 precedent, a room with an *unimproved* aircon should **fall back ~0.5 °C to ~15.4–15.5 °C**. Holding at ~15.96 or climbing is the first genuine evidence the filter did anything. **⚠️ Outdoor is forecast much warmer again tonight (~13.8 °C mean), so confirm against `tools/outdoor_history.py` and lean on the decoupling test below rather than the absolute number.**
+  - **✅✅ VERDICT 2026-08-06 — THE FILTER CLEAN WORKED. The Wednesday-night test passed cleanly, and it was the test designed to fail if it had not.** *(This supersedes the 08-05 verdict of "no surviving evidence in its favour", which was correct on the one confounded Tuesday night then available. The Wednesday night is the discriminating datum.)*
+
+    | Night | Grow room | Outdoor | Note |
+    |---|---:|---:|---|
+    | 08-01 Sat | 15.61 | 9.2 | declining |
+    | 08-02 Sun | 15.32 | 10.1 | declining |
+    | 08-03 Mon | 15.07 | 10.1 | declining |
+    | 08-04 Tue | 15.96 | 11.8 | **filters cleaned 09:30** — confounded by the access day |
+    | 08-05 Wed | **16.28** | **11.7** | **the clean test** |
+
+    - **🎯 THE PREDICTION WAS EXPLICIT AND IT WAS FALSIFIED IN THE RIGHT DIRECTION.** Off the 07-28 → 07-29 precedent, an *unimproved* room should have shed the Tuesday bump and **fallen to ~15.4–15.5**. It **rose to 16.28** — about **+0.8 above the no-improvement prediction**, and **+1.7 above the pre-clean decline trend extrapolated** (−0.25 to −0.29/night from Monday's 15.07 gives ~14.5 by Wednesday).
+    - **✅ WEATHER IS EXCLUDED, AND MORE STRONGLY THAN PLANNED.** Outdoor was **flat: 11.8 → 11.7**. Better still, the **forecast said 13.8 and the measured night came in at 11.7** — 2.1 °C *colder* than forecast, the fourth miss on the trot, but this time in the direction that makes the result harder, not easier. **The room warmed on a night that was marginally colder.**
+    - **✅ THE DECOUPLING SIGNATURE IS PRESENT.** Room-minus-outdoor widened **4.16 → 4.58 K** while outdoor held. A room tracking the weather cannot do that; a regulating heat source can. **This is the test set up on 08-05 that needed no matched night, and it fired.**
+    - **✅ THE CAUSAL ORDERING IS RIGHT — the grow room leads and the fruiting room follows.** The fruiting-minus-grow offset has inverted through the episode: **+0.22, +0.10, 0.00, −0.34, −0.49** across 08-01 → 08-05. During the decline the fruiting room sat *above* the grow room; now that the grow room is being heated it sits *below* it. **The room with the heat source leads in whichever direction heat is flowing — exactly the documented coupling, with its sign flipped.**
+  - **⬜ RECOVERY IS REAL BUT INCOMPLETE — about 1 °C short.** Pre-decline the grow room ran a ~**17.25** overnight mean (07-26 → 07-31). It is at 16.28 and rising, with the rate decelerating (+0.89, then +0.32), so it is approaching an equilibrium that may or may not be the old one. **Do not close the item until it settles; if it asymptotes near ~16.5 the filter was a partial fix and something else remains.**
+  - **⚠️ HUMIDIFIER DUTY DID NOT COME OFF ITS PIN (91.3 → 93.7%), BUT THAT PREDICTION WAS BAD PHYSICS AND SHOULD NOT BE READ AS A REFUTATION.** It was written expecting duty to fall as the room recovered. **At constant RH a WARMER room needs MORE absolute moisture, not less** — so a recovering room should raise humidifier demand, not lower it. The duty leg of the confirmation criteria was wrong when it was written; **the temperature leg is the one that carries the verdict.**
+  - **⏳ AND THE CLEAN WINDOW HAS NOW CLOSED — reading it today was not optional.** Outdoor jumps to a **~15.3 °C** mean tonight, up 3.6 °C. **Every night from here is confounded by a warming trend, so 08-05 was the last cleanly interpretable night. The verdict rests on it.**
+  - **✅ Room in band through the test:** RH 91.5%, VPD 0.2 kPa, overnight minimum 15.3 °C — back above the 15 °C floor and clear of the ESP32's 14 °C `temp_floor`.
   - **➡️ THE NEXT DISCRIMINATOR IS BETTER THAN WAITING FOR A MATCHED NIGHT — and matched nights are not coming: outdoor is already at a 13.8 °C mean tonight and warming.** Over the healthy period 07-26 → 07-31 the grow room's overnight mean regressed on outdoor temperature with a slope of **+0.02 °C/°C — statistically nil.** *A working aircon regulates, so a healthy room is decoupled from outdoors.* **That is the test: over the next 2–3 nights, does the room climb toward ~17.3 °C independently of outdoor, or does it merely track outdoor upward?** Climbing while outdoor holds or falls confirms the filter. Tracking outdoor 1:1 means the aircon is still weak and the remaining candidates — refrigerant, fouled coil, changed setpoint — are live. **This needs no matched night, which is what makes it usable now.**
   - **⛔ Do NOT read this afternoon as the result.** The grow room climbs naturally from ~11:00 to ~16:00 every day (daily peaks 19.2 → 18.6 → 18.0 → 18.0 through the decline), so a rise today proves nothing. **The discriminator is the overnight window**, where the pre-clean nights are already in the recorder and directly comparable via `tools/arm_read.py`.
   - **Pre-clean baseline, like-for-like 00:00–09:00 SAST** — fruiting 17.23 / 16.38 / 15.46 / 15.12 / **14.74** and grow 17.24 / 16.26 / 15.00 / 14.80 / **14.52** for 07-31 → 08-04. **As of 09:00 on 08-04, every hour from 06:00 was still colder than the same hour on 08-03**, so the decline had not yet turned of its own accord.
