@@ -236,7 +236,41 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 
 ## Room state (verified 2026-08-05 off a 48h `room_check.py` run)
 
-### 🔴 LIVE — BOTH ROOMS HAVE BEEN COOLING SINCE 2026-08-01, AND IT IS NOT THE WEATHER
+### ✅ CLOSED 2026-08-07 — THE ROOMS COOLED, THE FILTER WAS THE CAUSE, AND BOTH HAVE RECOVERED
+
+**Full recovery confirmed. Temperature is 100% in band** — 15.20–17.50 °C, mean 16.28, against **78.4% when the fault was found**. VPD and absolute humidity both 100%. **The grow room is at 17.78 °C overnight, slightly above its pre-fault 17.25.**
+
+| night | grow | fruiting | outdoor | fruiting − grow |
+|---|---:|---:|---:|---:|
+| 08-03 | 15.07 | 15.07 | 10.1 | 0.00 |
+| 08-04 *(filters cleaned)* | 15.96 | 15.62 | 11.8 | −0.34 |
+| 08-05 *(the clean test)* | 16.28 | 15.79 | 11.7 | −0.49 |
+| 08-06 | **17.78** | **16.32** | 13.4 | **−1.46** |
+
+**⚠️ One honest qualification, kept because it would otherwise be re-argued: the 08-06 rise was largely weather-assisted** — outdoor +1.7 and grow +1.50, near 1:1 — and **grow-minus-outdoor held flat at 4.2–5.0 K throughout the recovery, which is passive-envelope behaviour rather than thermostatic control** (the healthy period's slope was 0.02, i.e. decoupled). **The verdict rests on 08-05, where outdoor was flat and the room rose anyway. The regulation test is the next cold night: does it hold ~17.5 as outdoor falls?**
+
+### 🎯 AND THE PARTITION COUPLING MEASURED ITSELF — the setpoint experiment, run by the weather
+
+**The fruiting−grow gap widened 0.00 → −1.46 °C over four nights while the aircon recovered.** Grow rose **+2.71**, fruiting **+1.25** — so **coupling is 46% over the recovery, 35% on the last night alone.** This is the number `MICROCLIMATE.md` set up a deliberate experiment to obtain; it arrived free.
+
+| Grow setpoint | Fruiting lands at | |
+|---|---|---|
+| 20 °C | 17.1–17.3 | ✅ in band |
+| **21 °C** | **17.4–17.8** | ✅ **in band — available now, for nothing** |
+| 22 °C | 17.8–18.3 | ⛔ out of band |
+| 25 °C | 18.8–19.6 | ⛔ out of band |
+
+**➡️ So the grow room can run ~3 °C warmer without pushing fruiting out of band — but 24–27 °C is unreachable while the rooms share a wall.** That splits the colonisation question in two: **21 °C is free and testable on W31/W32 now; the 24–27 °C optimum needs the separate grow room.** It is a partial win, and it prices the new grow room against a real alternative for the first time.
+
+**⚠️ Hinges on:** *this being conduction rather than both rooms responding independently to outdoor.* **Probably conservative** — the fruiting room has the front-wall floor openings, so it is *more* outdoor-exposed and should have risen *more*, not less.
+
+### ⛔ AND ONE THING GOT WORSE — humidifier duty is PINNED at 99.2% overnight, 98.0% overall, R433/mo
+
+**Exactly as predicted: a warmer room needs more absolute moisture at the same RH, so recovery raised duty rather than lowering it.** It is now **the only failing KPI**. **➡️ Arm D is unblocked and is the next move** — free, ~13 duty points, and the aircon verdict it waited on is in.
+
+---
+
+### 🗄️ RESOLVED — the original fault report, kept for the signature
 
 **This is the first thing to action. It was found by the weekly `room_check.py` on 2026-08-04 (the run was one day overdue).** The fruiting room has fallen **17.29 → 14.73 °C** in daily mean over four days and is **still falling**; today's minimum is **14.20 °C — below the 15 °C band floor and at the ESP32's own `temp_floor` of 14 °C.**
 
