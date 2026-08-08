@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-08-05
+Last updated: 2026-08-08
 
 **What this document is.** A plain answer to *what is true right now*. It is deliberately short.
 
@@ -15,7 +15,7 @@ Last updated: 2026-08-05
 
 The objective is income for the family, via *committable* supply → new clients. Ranked by distance to that objective:
 
-1. **Demand / new clients** — the Menlo Park Spar step. Demand is the binding constraint, not yield.
+1. **Demand / new clients.** Demand is the binding constraint, not yield. **⛔ The Menlo Park Spar step — the only concrete route ever identified — is BLOCKED as of 2026-08-08 (see below). Priority #1 is now to find a replacement route, NOT to fall through to #2.**
 2. **Cheap yield levers** — single-variable airflow/humidity experiments.
 3. **Everything else** — microclimate build-out, monitoring, telemetry, dashboards, doc hygiene. Enabler or insurance, not the front of the queue.
 
@@ -24,6 +24,8 @@ The objective is income for the family, via *committable* supply → new clients
 **Standing test for any task:** does it move committable supply or a client this month? If not, it waits.
 
 **The trap:** microclimate and monitoring work is more tractable and more enjoyable than sales, so it will keep pulling attention. Treat that pull as the cue to re-read this list. As of 2026-07-26 the room is fully in band and has no live crop emergency — so there is nothing here justifying more room work ahead of demand.
+
+**🔴 AND 2026-08-08 IS EXACTLY WHEN THAT TRAP SPRINGS.** Spar is blocked, so the only *actionable* work left on the board is room and yield work — which will feel like the queue reordering itself honestly. **It is not.** The ranking above is by distance to income, and losing the route to income does not move room work closer to it. **A yield gain with no new customer produces unsold mushrooms:** the 3 existing customers won't take more, so extra output is worth only the substrate saved (~R680/mo total), not the R40/punnet it looks like. **Finding a second demand route is still the whole game.**
 
 ### 🔴 THE OBJECTIVE OF ALL THE ROOM WORK IS NOT BEING MEASURED (named 2026-08-01)
 
@@ -147,7 +149,7 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 **⛔ BUT THE RELOCATION AS WRITTEN ABOVE STRANDS THE FRUITING ROOM — operator, 2026-08-05: *"taking the aircon away to where the new grow room will be leaves the fruiting room with no temperature control."* Correct, and it is fatal to that proposal as stated.** The fruiting room's *only* temperature control today is indirect coupling to the grow-room aircon — **through the insulated partition, not through the door, which stays closed (corrected 2026-08-06).** Move the unit out and the combined room has **nothing** — no heating against the winter cold-draft through the front-wall floor openings, and no cooling at all in a Pretoria summer, for a cool-fruiting crop with a 15–18 °C band.
 
-**🎯 AND A SETPOINT, NOT A BUILD — established 2026-08-06: the grow room's temperature can be SET AND CONTROLLED on the aircon.** These files have treated it as an uncontrolled by-product throughout. **So "run colonisation at 24–27 °C" is a dial** — and colonisation is the long pole of the cycle (21–30 days against 13–21 in fruiting). **Free test: raise the grow setpoint one step to ~20 °C and read the fruiting room overnight.** Fruiting rising ~1 °C per 4 °C of grow rise means ~25% coupling and room to push further; tracking near 1:1 means the rooms cannot be held apart and a separate colonisation space is needed after all. **In winter this helps both rooms — the fruiting room is currently below its 15 °C floor. In summer it inverts, and THAT is what still argues for the new grow room.** ⚠️ **Hinges on the aircon delivering it — recovery from the 08-01 fault is incomplete (16.3 against a pre-fault 17.25). Let it settle first or the setpoint change confounds the filter verdict.** Full working: `stock-control/docs/MICROCLIMATE.md`.
+**⛔ "A SETPOINT, NOT A BUILD" — WITHDRAWN 2026-08-08. THE SETPOINT IS ALREADY 21 °C AND THE ROOM DELIVERS 17.8.** *(Original claim, kept so it is not re-derived: established 2026-08-06 that the grow room's temperature can be set on the aircon, so "run colonisation at 24–27 °C" is a dial, and the free test was to raise the setpoint one step to ~20 °C.)* **The operator confirms it has been set to 21 °C for a long time, unchanged.** So the dial was already past the proposed setting, the room misses it by 3.2–5.9 °C, and **there is no free test — there is a unit not meeting its target.** Full working in the Room state section. **➡️ Colonisation at 24–27 °C is therefore not reachable by adjustment, which puts the separate grow room back as the only route.** Fruiting rising ~1 °C per 4 °C of grow rise means ~25% coupling and room to push further; tracking near 1:1 means the rooms cannot be held apart and a separate colonisation space is needed after all. **In winter this helps both rooms — the fruiting room is currently below its 15 °C floor. In summer it inverts, and THAT is what still argues for the new grow room.** ⚠️ **Hinges on the aircon delivering it — recovery from the 08-01 fault is incomplete (16.3 against a pre-fault 17.25). Let it settle first or the setpoint change confounds the filter verdict.** Full working: `stock-control/docs/MICROCLIMATE.md`.
 
 **➡️ The relocation does not CREATE that problem, it REVEALS one that already exists and is biting right now.** This file already records that the fruiting room has never had its own temperature control. **The current 14.2–15.5 °C excursion below the band floor is exactly that weakness failing** — the room is 0.2–0.5 °C above the grow room, entirely passively. **So "the fruiting room needs its own climate control that does not dehumidify" is a requirement of the expansion whether the aircon moves or not.**
 
@@ -185,7 +187,19 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 **The gate has moved from yield to demand.** With grey oyster as the only product, the 3 existing customers won't take more however much is grown. Growth needs new customers. *(Product diversification is the other untested demand lever — not explored.)*
 
-- **Menlo Park Spar** will test grey oyster on shelf **if there's a barcode on the label**. First new-client approach.
+### ⛔ SPAR IS BLOCKED — NOT REFUSED, AND NOT ON ANYTHING WE DID (operator, 2026-08-08)
+
+**Menlo Park Spar is under HEAD OFFICE MANAGEMENT for a while and will not take on local suppliers until everything has settled.** So the shelf trial is **deferred by the store's own circumstances**, not lost on price, product, compliance or the barcode.
+
+- **⛔ THE DEMAND EXPERIMENT IS OFF THE TABLE, AND THAT IS THE REAL COST — not the R202.40.** Every document in this repo rests on *"demand is the binding constraint"*, which is an **assumption that has never been tested**. The Spar trial was going to measure it directly, at the store's risk, for ~R280. **There is now no cheap instrument for the single load-bearing belief of the whole strategy.** That matters more than the lost shelf.
+- **✅ NOTHING SPENT IS WASTED — the GTIN work is channel-agnostic and permanent.** GTIN `6001651378474` is a **once-off** licence, Active, published in Activate, and the printed label scans. It applies to **any** retail route — another Spar, a different chain, a farm stall, a deli, an online listing. **Do not re-buy or re-do any of it.** The one step that was outstanding (getting Spar to load the GTIN into their POS) simply moves to whichever retailer comes next.
+- **⚠️ BUT ONE PREMISE OF THE COMPLIANCE READ HAS FLIPPED, AND IT IS NOT COSMETIC.** The light-touch position — *"Spar stores are individually owned, so the owner can shelf local produce on his own authority; formal central supplier onboarding may not bind here at all"* — **was true of an independently owned store.** Under head office management it is **exactly the opposite**: a central supplier process is likely to bind, which usually means a supplier code, a **Certificate of Acceptability**, food-safety paperwork and possibly an audit. **So if this store reopens as the route, it reopens as a HARDER one than the trial that was on offer.** Re-read `Regulatory & compliance` before assuming the old terms survive.
+- **⬜ Re-approach trigger, so this does not simply fade:** the block is temporary by its own description. **Ask the owner what "settled" means and roughly when, and whether he wants to be approached again or will make contact.** A dated diary entry is the difference between a deferral and a dead lead. Until that date exists, this item cannot be planned around.
+- **➡️ THE ACTIONABLE CONSEQUENCE: priority #1 is now to find a SECOND demand route, and none has ever been identified.** Spar was not the first of several candidates — it was the only one. **That gap is the most important open item in this file.** ⚠️ **Hinges on:** *that demand really is the binding constraint.* **If it is wrong, everything above is mis-prioritised** — but the experiment that would have settled it is precisely what was just lost, so the assumption now has to be carried unverified or tested some other way. **Size of the move if wrong: it inverts the entire priority order, putting yield and capacity first.**
+
+**⬇️ EVERYTHING BELOW IS PARKED, NOT DELETED.** It is the fully-worked trial design — terms, pricing, margin arithmetic, capture mechanism — and it is **reusable as-is for whichever retailer comes next.** Read it as a template, not as live work.
+
+- **Menlo Park Spar** will test grey oyster on shelf **if there's a barcode on the label**. First new-client approach. **⛔ SUPERSEDED 2026-08-08 — see the block above.**
 - **Barcode: ✅ DONE 2026-07-27. GTIN `6001651378474`** — check digit verified valid. Paid R202.40 (R176 + R26.40 VAT); account `fungi4ushop@gmail.com` at `gs1zace.gs1za.org`, product record created in **GS1 Activate** (`activate.gs1.org`).
   - **Product record as finalised:** brand `Fungi4u`, functional name `Grey Oyster Mushrooms`, net content `250 Gram`, GPC `Oyster Mushrooms 10006031`, country of sale `South Africa`, product type **`Sold to consumers, fixed, single product`**.
   - **⚠️ The product-type field defaulted to "NOT sold to consumers" and had to be corrected before finalising.** That setting means a business-to-business trade item (case/carton/pallet), which takes a case-level GTIN-14/ITF-14 rather than a retail EAN-13 — it would have produced the wrong symbology and filed the punnet as a case in retailer data feeds. **Check this field on any future product.**
@@ -202,12 +216,12 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 - **✅ Label designed and printed 2026-07-28.** Artwork is in the `stock-control` repo.
 - **✅ GTIN WORK COMPLETE 2026-07-28 — verified in Activate, not inferred. ONE step remains, and it is not ours.**
   1. **✅ SCAN-TESTED 2026-07-28 — the printed label scans correctly.** Print quality, quiet zone and scaling are all fine, so the print run stands and the reprint risk is closed. *(Worth having confirmed the scanner showed `6001651378474` specifically, not merely that it read: artwork generated from a mistyped number scans perfectly, because the generator computes a valid check digit for whatever body it is given — a typo yields a legitimate-looking EAN-13 belonging to another company.)*
-  2. **⚠️ Give the GTIN to the Spar owner so it is loaded into THEIR POS.** The "scans as unknown" risk is **Spar's system, not GS1's database**. The store must create the item against `6001651378474` with a description, 250 g and the R59 shelf price. Until they do, the barcode fails at the till however good the label is. An independently owned Spar does this themselves — so it is a request to the owner, not a central process.
+  2. **⏸️ PARKED 2026-08-08 — carry this step to whichever retailer comes next.** The "scans as unknown" risk is **the retailer's system, not GS1's database**. Whoever shelves it must create the item against `6001651378474` with a description, 250 g and the shelf price. Until they do, the barcode fails at the till however good the label is. **An independently owned store does this itself; a head-office-managed one will not** — which is part of why the Spar route got harder, not just later.
   3. **✅ PUBLISHED — CONFIRMED IN ACTIVATE 2026-07-28.** The product summary (`activate.gs1.org/#/product/summary/1993610`) reads **`● Active`** with **no Finalise button outstanding**, carrying the GS1 registration badge. Every attribute matches what was recorded: GTIN `6001651378474`, GPC `Oyster Mushrooms (10006031)`, Countries of sale `South Africa`, and **Product Type `Sold to consumers, fixed, single product`** — the field that had defaulted wrong and is confirmed correct. **The `STATUS` vs `todo` conflict is resolved in `STATUS`'s favour: the record was real all along and the todo was stale.**
      - **The whole "no account" scare was a wrong-door problem, nothing more.** Login works, the licence is Active with Integration Successful, and the product is Active. Route recorded above; nothing was broken at any point.
      - **Optional, free, and worth doing once:** the summary shows **`-no image-`**. A product photo enriches the Verified by GS1 record that retailers and marketplaces read. Not blocking, not urgent.
      - **Residual belt-and-braces check, no longer blocking:** search the GTIN at **Verified by GS1** (`gs1.org/services/verified-by-gs1`, free, 30/day) to see what the outside world sees. Expect it to resolve. **Traps if you do:** GEPIR no longer exists (`gepir.gs1.org` 301-redirects there, though GS1 SA still links to it); allow for propagation, so a "not found" immediately after publishing proves nothing; and ignore third-party barcode apps (Open Food Facts, barcodelookup) — they are not the GS1 registry.
-- **Next action, and it scopes everything else: get Spar's full supplier requirement list.** The barcode is unlikely to be the only blocker, and their onboarding checklist tells you exactly which regulations bind — so you comply with what's required rather than everything imaginable.
+- **⏸️ Was the next action, now unavailable: get Spar's full supplier requirement list.** The barcode is unlikely to be the only blocker, and an onboarding checklist tells you exactly which regulations bind — so you comply with what's required rather than everything imaginable. **The principle survives the store: ask ANY prospective retailer for their supplier requirements before doing compliance work speculatively.** It is the cheapest way to avoid gold-plating.
 - **⚠️ THE RISK HAS FLIPPED — supply → sell-through (2026-07-27).** The owner said directly: **give him the barcode and he will put it on the shelf to monitor demand.** That is a *trial*, not a supply agreement — small volumes, no committed quantity — so the old worry ("Spar onboarded on an expectation, committable volume unproven, failing to supply a Spar is worse than never approaching one") is largely defused. **The new failure mode is that it doesn't sell.** Presentation on shelf and shelf life now matter more than production volume: mushrooms that sit and degrade unsold report weak demand for reasons that are not demand.
 - **This is the demand experiment, and it is nearly free.** That demand is the binding constraint is an *assumption* everywhere in these docs. A shelf trial measures it directly, at the store's risk. Treat the result as the most valuable data the business can currently obtain.
 - **Terms as at 2026-07-27: mushrooms supplied FREE for the trial; Spar considering R59 shelf price.**
@@ -263,6 +277,85 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 **➡️ So the grow room can run ~3 °C warmer without pushing fruiting out of band — but 24–27 °C is unreachable while the rooms share a wall.** That splits the colonisation question in two: **21 °C is free and testable on W31/W32 now; the 24–27 °C optimum needs the separate grow room.** It is a partial win, and it prices the new grow room against a real alternative for the first time.
 
 **⚠️ Hinges on:** *this being conduction rather than both rooms responding independently to outdoor.* **Probably conservative** — the fruiting room has the front-wall floor openings, so it is *more* outdoor-exposed and should have risen *more*, not less.
+
+#### 🔴🔴 THE SETPOINT IS ALREADY 21 °C AND HAS BEEN "FOR A LONG TIME" (operator, 2026-08-08) — WHICH VOIDS THE TABLE ABOVE AND THE 08-06 RECOMMENDATION
+
+**The grow room is asked for 21 °C. It has delivered 15.07, 15.96, 16.28 and 17.78 on the last four nights. That is a standing shortfall of 3.2–5.9 °C against its own setpoint, and it is not new.**
+
+- **⛔ THE "FREE SETPOINT DIAL" IS GONE. There is nothing to turn up.** The 08-06 entry recommended *"raise the grow setpoint one step to ~20 °C"* and called 21 °C *"available now, for nothing"*. **It was already there the whole time.** The proposal was to move a control that is already past where it was going to be moved to.
+- **⛔ AND THE COUPLING TABLE IS NOT A MENU OF OPTIONS.** Its rows (20 → 17.1–17.3, 21 → 17.4–17.8, 22 → 17.8–18.3, 25 → 18.8–19.6) were extrapolated from four nights of recovery **on the assumption that a setpoint is reached.** The room does not reach 21, so **22 and 25 are not choices that were rejected for pushing fruiting out of band — they are states this equipment cannot produce.** The measured 35–46% coupling figure still stands; **what it was used to predict does not.**
+- **✅ AND IT EXPLAINS AN ANOMALY THIS FILE ALREADY RECORDED BUT COULD NOT ACCOUNT FOR.** The 08-07 entry notes *"grow-minus-outdoor held flat at 4.2–5.0 K throughout the recovery, which is passive-envelope behaviour rather than thermostatic control"*, and that the 08-06 rise tracked outdoor near 1:1. **A room that never reaches setpoint has no thermostatic behaviour to show.** The observation was right and the explanation was missing; this is it.
+- **🔴 SO THE 08-07 "FULL RECOVERY" VERDICT IS PARTIAL, NOT WRONG.** *"Temperature is 100% in band"* was scored against the **fruiting room's** 15–18 °C band. **The grow room's own target was never checked, because nobody in these files knew what it was.** A unit sitting 3.2 °C below setpoint on its best night has not demonstrably recovered — the filter clean helped, and that is all that was shown.
+
+**➡️ THE STRATEGIC CONSEQUENCE, AND IT RUNS THE OTHER WAY FROM 08-06: THIS STRENGTHENS THE NEW GROW ROOM RATHER THAN DEFERRING IT.** The 08-06 finding was read as *"a setpoint, not a build"* — that colonisation temperature was a dial, which *"prices the new grow room against a real alternative for the first time."* **That alternative does not exist.** The dial is already at 21 and the room delivers 17.8, so **24–27 °C is not merely blocked by the shared wall — it is beyond what this equipment delivers in this space at all.** A separate, independently heated colonisation space is back to being the only route.
+
+**⬜ WHY IT MISSES SETPOINT IS UNKNOWN, AND THE CHEAP CAUSES MUST BE ELIMINATED FIRST — do not book a technician or price refrigerant on this.** In rough order of cost to check:
+
+1. ~~**MODE** — a unit set to COOL at 21 °C in a room at 17.8 °C is satisfied and never runs.~~ **⛔ ELIMINATED 2026-08-08: it is on AUTO.** AUTO at 21 in a room at 17.8 calls for heat.
+2. ~~**Is it actually running** — idle, fan-only, or on a timer.~~ **⛔ ELIMINATED 2026-08-08: operator confirms it runs 24 × 7.**
+3. **⭐ STRATIFICATION OR RECIRCULATION DECEIVING THE THERMOSTAT — the leading candidate.** The unit is mounted high, above the rear door, and regulates on **its own return-air temperature**. If the ceiling zone reaches 21 °C while the bags sit at 17.8, the unit is "at setpoint" exactly where its sensor is looking and nowhere else. **The grow room has no circulation of any kind**, which is precisely the condition that lets a room stratify. *Check: a thermometer at bag level vs up at the unit.* **Same fault class as the fruiting room's bottom-shelf gradient, which circulation fixed.**
+4. **Airflow obstruction — still live, still free to check, and it feeds candidate 3.** 96 bags are stacked in that room, and the 08-05 entry notes *"if any of it obstructs the aircon's air path or return it would reduce delivered heat progressively."* **Obstruction can also short-circuit supply straight back into the return**, so the unit reads its own warm output and cuts out early.
+5. **Where is the grow-room sensor?** If it sits low, near the external door, or in a draught, it may be reading a genuine cold spot rather than the room. **Cheapest of all to check and it has never been asked.**
+6. **Output or capacity shortfall.** Only after 3–5.
+
+#### ⛔ CORRECTION, 2026-08-08 20:30 — "24 × 7" MEANS POWERED, NOT RUNNING CONTINUOUSLY. **THE COMPRESSOR CYCLES.**
+
+**Operator: *"The aircon is switched on 24 × 7 but it starts and stops all the time. It is not stuck at on."*** **An earlier version of this section took "runs 24 × 7" to mean the compressor never stops, eliminated stratification on that basis, and concluded the unit was running flat out and losing. All of that is withdrawn.** *(It was flagged at the time as the load-bearing assumption — *"'runs 24×7' meaning the compressor genuinely never cycles off, rather than the unit merely being left switched on… the distinction decides everything above."* It did.)*
+
+**🔑 AND CYCLING IS THE MORE INFORMATIVE FACT, BECAUSE IT MEANS SOMETHING IS STOPPING THE UNIT WHILE THE ROOM IS 3 °C BELOW ITS SETPOINT.** A unit that is genuinely undersized would run and run. **This one stops.** So either it believes it has arrived, or it is stopping for its own reasons. **Two families, and they need different fixes:**
+
+- **A — IT THINKS IT IS SATISFIED (a sensing problem).** Candidates 3, 4 and 5 above. **The unit is fine; the air it measures is not the air the bags are in.** ➡️ Fix is circulation or sensor placement, and it is cheap.
+- **B — IT IS STOPPING FOR ITS OWN REASONS (a plant problem).** ⭐ **DEFROST CYCLING is the strongest new candidate and it fits every symptom.** In heating mode at Pretoria winter temperatures the **outdoor coil frosts**, and the unit periodically reverses to melt it — delivering **no heat, or briefly cold air**, while it does. Frequent defrost is a large net loss of heat output, it presents exactly as *"starts and stops all the time"*, and **it is invisible from indoors.** It would also explain the room tracking outdoor rather than holding setpoint.
+
+**➡️ ONE HOUR OF WATCHING SEPARATES THEM, AND IT COSTS NOTHING.**
+
+| Observation | Reads as |
+|---|---|
+| Cycle interval **regular** (~30–60 min) regardless of room temperature; outdoor unit **steams, drips or is iced**; indoor air goes **cool** during a stop | **B — defrost** |
+| Cycle interval **varies with load**; indoor air stays **warm** right up to each stop; outdoor coil **clean and dry** | **A — sensing** |
+
+**⭐ AND TAKE THE SUPPLY-AIR TEMPERATURE WHILE IT IS RUNNING — still the single best diagnostic and still never taken.** A healthy reverse-cycle split in heating delivers **35–50 °C** at the outlet. **20–25 °C means it is barely heating even when it is on.** One thermometer in the outlet stream, one minute.
+
+**⬜ Then, cheapest first:** look at the **outdoor unit for ice** (settles B outright); **thermometer at bag level vs at the unit** (settles A); **check the bag stacking** against supply and return; and the **smoke-pencil pass on the rear wall and its external door**, which the wall-removal section already wants for its own reasons — **run it once, use it twice.**
+
+**⚠️ Hinges on:** *the grow-room temperature sensor being representative of the room.* Everything above treats 17.8 °C as what the room is. **If that sensor is in a cold spot, the room may be nearer setpoint than these files think and the whole shortfall shrinks.** **Establish where it physically sits before spending anything.**
+
+##### 🌡️ THE TEMPERATURE READINGS TO TAKE — procedure, written 2026-08-08. Four readings, one visit, ~5 minutes.
+
+**⚠️ Take all four AT THE SAME MOMENT and WHILE THE COMPRESSOR IS RUNNING, and write down which it was.** Mixing readings from a running and a stopped cycle produces a rise figure that means nothing. **If the unit stops partway through, wait for it to restart and take the whole set again.**
+
+| # | Reading | Where exactly |
+|---|---|---|
+| **①** | **Supply air** | **In** the airstream leaving the indoor unit, a few cm in front of the outlet louvres, mid-flow. Wait 20–30 s for the reading to stop climbing |
+| **②** | **Return air** | At the unit's **intake grille** (top or front face of a high wall split), a few cm off it. **This is the air the thermostat senses and it is what decides when the unit stops** |
+| **③** | **Bag level** | Mid-room, at the height the bags actually sit, **out of the direct blast** from the unit |
+| **④** | **Unit height / ceiling** | Near the ceiling, away from the outlet. If only one extra reading is possible, make it this one |
+
+**Also record: where the grow-room HA sensor physically sits** (height, distance from the external door or a wall) **and its reading at the same moment.**
+
+**📋 HOW TO READ THE RESULT**
+
+| Comparison | Outcome | Verdict |
+|---|---|---|
+| **① − ②** *(the rise)* | **15–25 °C** | ✅ Unit is heating properly |
+| | **under ~8 °C** | ⛔ Barely heating even when on — **family B, a plant problem** |
+| **② vs ③** | within ~1 °C | No stratification — the thermostat is not being fooled |
+| | **② warmer by 2–4 °C** | ⭐ **STRATIFICATION CONFIRMED — family A.** It cuts out on air the bags never see |
+| **④ vs ③** | large gap | Same finding, seen directly as a vertical gradient |
+| **③ vs the HA sensor** | disagree | The sensor is in a cold spot — **part of the shortfall is measurement, not heat** |
+
+- **🔑 THE LOAD-BEARING PAIR IS ② AGAINST ③.** If the return reads ~21 while the bags read ~17.8, **the mystery is solved and the fix is circulation — cheap — not a new aircon.**
+- **⚠️ Use the RISE (① − ②), not the absolute supply figure.** A heat pump's outlet temperature depends on how warm the air entering it is, so 35 °C means something quite different in a 17 °C room than in a 21 °C one. **Judging output off ① alone will mislead.**
+- **Instrument: a cheap instant-read probe thermometer.** ⚠️ **The Inkbird will do at a pinch but reports at 1 °C resolution**, which is coarse for a 3 °C question — the same limitation that already killed the horizontal-uniformity read on 07-27.
+
+**⬜ RESULTS — not yet taken.** *(Record ①②③④, running/stopped, the HA sensor's value and position, and the time. Then score against the table above.)*
+
+**✅ HINGE CLOSED 2026-08-08 — operator: *"it is in the grow room so it can only directly control the grow room."*** The 21 °C is unambiguously the **grow room's** setpoint. **The shortfall reading stands as written: the room is asked for 21 and delivers 17.8.** *(The alternative — that it was set for the fruiting room's benefit, which would have inverted the whole reading — is ruled out.)*
+
+**➡️ AND STATING IT PLAINLY, BECAUSE NO SINGLE LINE IN THIS FILE HAS: NEITHER ROOM IS UNDER EFFECTIVE TEMPERATURE CONTROL.** The grow room has a setpoint and misses it by 3.2–5.9 °C. **The fruiting room has no setpoint at all** — this file already records that its only temperature control is passive conduction through the 75 mm partition, with the divider door kept closed. **So the fruiting room's temperature is a by-product of a by-product**, and the 15.2–17.5 °C it currently holds is the envelope's doing as much as the equipment's.
+
+- **This is the honest frame for the "100% in band" result of 08-07.** In-band it is, and that is worth having — **but it is not evidence of control, and it will not survive a season change.** A Pretoria summer applies heat this arrangement has no way to reject in the fruiting room, and the aircon's cooling mode is the one that dehumidifies.
+- **➡️ It also re-prices item #4 of the room programme** (*"Aircon: can it be kept out of the humid air?"*). That item assumed a working unit whose placement was the problem. **The prior question is whether it meets its target at all** — relocating a unit that misses setpoint by 3–6 °C moves the shortfall, it does not fix it.
 
 ### ⛔ AND ONE THING GOT WORSE — humidifier duty is PINNED at 99.2% overnight, 98.0% overall, R433/mo
 
@@ -500,6 +593,91 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 
 ### ⚠️ Live issue — primary CO2 sensor zero shift
 
+#### 🔬 INKBIRD RECALIBRATED 2026-08-08 by the operator — the cross-check should be SIGHTED again, and two things below are now stale
+
+**Recording it immediately because the delta is about to move ~350 ppm and that must not be re-read later as a fault.** The room has been in a common-mode error since 07-27: **both** sensors ~350 low, agreeing with each other, so `co2_shelf_delta` read a healthy ≈ 0 while both under-read. Recalibrating one of them breaks that tie **on purpose**.
+
+- **✅ EXPECT `co2_shelf_delta` ≈ +350, AND THAT IS THE SIGNATURE OF SUCCESS, NOT A FAULT.** Inkbird now correct, primary still ~350 low, delta = Inkbird − primary. **A delta that stays near 0 would mean the recalibration did NOT take.** *(This file established there is **zero real vertical gradient** between the shelves — both historical "gradients" reconciled to calibration disagreement within a few ppm. So the delta is now a live readout of the primary's zero error and nothing else.)*
+- **🎯 AND IT UN-INVERTS THE POST-REFLASH VERIFICATION TEST — the original test is VALID AGAIN.** With both sensors wrong together, a successful +350 write would have driven the delta to ≈ −350, the exact signature the old text called failure; that is why the test was killed. **With the Inkbird correct, writing +350 to `0x006B` should collapse the delta from ≈ +350 back to ≈ 0** — which is the original test, working as originally written. ⚠️ **Conditional on the recalibration being sound.** The single-sensor check (primary's own displayed value jumps ~+350) remains valid regardless and is still the safer one.
+- **⛔ DO NOT REVISE THE +350 `0x006B` FIGURE on the strength of whatever the new delta reads.** It rests on the 24h co-location *and* the outdoor validation of the Inkbird **before** its 07-27 step. If the new delta comes in materially off +350, that is evidence about **this recalibration**, not about the primary.
+- **⚠️ IT IS ONLY SOUND IF IT WAS DONE IN FRESH OUTDOOR AIR (~425 ppm).** Recalibrating in room air at ~800 sets the zero ~375 high, and the Inkbird would then read **~50 outdoors** and ~425 in a room that is really at 800 — wrong in a new direction, and it would look plausible on the dashboard. **This is the one thing to confirm.**
+- **⬜ VALIDATE BEFORE TRUSTING IT AS A REFERENCE: take it outdoors, expect 400–430.** The standing lesson holds — **the Inkbird's zero does not survive handling** (it has moved twice, 07-27 and again on return to the shelf), so it must be re-validated outdoors after every handling, including this one. **Log the delta on its return to the bottom shelf** so any step is visible.
+- **✅ Timing is fine.** The 07-28 prohibition — *"do not recalibrate the Inkbird while this runs"* — was tied to the **vent experiment**, which closed at arm E on 08-01. Nothing is running that this disturbs.
+
+**📋 BASELINE CAPTURED FROM THE RECORDER BEFORE THE MOVE — so the step is measurable rather than remembered.** Hourly means, Inkbird − primary, 08-07 11:00 → 08-08 09:00 SAST: the delta sat in a **flat −12 to −71 band for 22 hours** (overnight 00:00–06:00: −19, −12, −19, −23, −31, −26, −18). **That is the blind common-mode state, confirmed as the starting point.**
+
+| 15-min bucket (SAST) | primary | Inkbird | **delta** |
+|---|---:|---:|---:|
+| 08:30 | 499 | 515 | +15 |
+| 08:45 | 493 | 519 | +26 |
+| 09:00 | 492 | 509 | +16 |
+| **09:15** | 525 | **657** | **+132** |
+| **09:21 spot** | **545** | **731** | **+186** |
+
+**⛔ DO NOT SCORE IT ON THESE NUMBERS — the step began at ~09:15 and the readings above are a sensor mid-transition, not a result.** Two things are moving at once: the calibration itself, and the sensor **physically re-equilibrating to room air after being in fresh air**. The 07-26 precedent is explicit — *"it rose for ~4h as the recalibration settled, then held a 340–360 band for twenty hours."*
+
+**🎯 PRE-REGISTERED READ, written 2026-08-08 09:25 before the outcome is known. Re-read the settled delta from ~13:30 SAST, on hourly means, not a spot value.**
+
+| Settled `co2_shelf_delta` | Verdict |
+|---|---|
+| **≈ +350** (say +300 to +400) | ✅ **Clean.** Recalibration took, Inkbird is a trustworthy reference again, cross-check is sighted, and the original post-reflash test is valid as written |
+| **+150 to +300** | ⚠️ **Ambiguous — two causes, and they need separating.** Either the recalibration only partly took, **or the primary's error is genuinely smaller than +350.** ➡️ **The outdoor check discriminates: if the Inkbird reads 400–430 outdoors it is sound, and the `0x006B` figure is what needs revising, not the Inkbird** |
+| **≈ 0** | ⛔ Recalibration did not take. Nothing has changed; the check is still blind |
+| Inkbird settles **below ~450 in the room** | ⛔ **Calibrated in ROOM air, not fresh air** — zero now set ~350 high, wrong in a new direction. Redo it outdoors |
+
+**⚠️ Hinges on:** *the +350 `0x006B` figure being right in the first place.* It rests on a 24h co-location and one outdoor validation, both from 07-26/27. **If the settled delta lands well short of 350 and the Inkbird passes its outdoor check, then `0x006B` should be written with the NEW number, not 350** — and writing 350 would over-correct the primary by that difference.
+
+**✅ OUTDOOR CHECK PASSED — operator, 2026-08-08: calibrated OUTSIDE, read 401, now back on the bottom shelf.** That is inside the 400–430 band this file specified in advance, so **the recalibration was done in the right air and the Inkbird is validated as a reference.** It also reproduces its own prior behaviour almost exactly: it read **400–410 outdoors on 07-27** against a true ambient of ~425–430. **The same ~20–25 ppm under-read, twice, is a stable characteristic rather than a fault.**
+
+- **🎯 SO THE EXPECTED SETTLED DELTA SHARPENS TO ≈ +326, NOT +350.** If the Inkbird is ~24 low and the primary ~350 low, then Inkbird − primary = **+326**. Still inside the pre-registered "clean" band (+300 to +400), but **+326 is the number to expect, and +350 would actually be slightly high.**
+- **🔑 AND THE AMBIGUOUS BRANCH IS NOW HALF-RESOLVED IN ADVANCE, WHICH IS THE REAL VALUE OF THE OUTDOOR CHECK.** The +150 to +300 outcome had two candidate causes. **The outdoor pass eliminates one of them:** a settled delta materially below ~300 can no longer be blamed on a partial or botched recalibration. **It would mean the primary's zero error is genuinely smaller than 350 — and `0x006B` must then be written with the measured figure, not 350.**
+- **⛔⛔ BUT THE 07-27 FAILURE IS SET UP TO REPEAT, STEP FOR STEP — THIS IS THE THING TO WATCH.** Today's sequence is **identical** to the one that failed: recalibrate outdoors → validate against ambient (400–410 then, **401 now**) → **return to the bottom shelf**. On 07-27 the Inkbird then **stepped DOWN ~330 ppm at the moment it was returned**, and the outdoor validation it had just passed became worthless within hours.
+  - **➡️ SO SETTLING AT ~+326 IS NOT THE TEST. HOLDING THERE IS.** The pre-registered read above scores the delta at ~13:30; **that is necessary but not sufficient. Re-read it again at 24h (2026-08-09 morning).** A delta that climbs to ~326 and then decays back toward 0 is the 07-27 failure recurring, and it means the Inkbird's zero does not survive being moved **even when the recalibration itself was correct.**
+  - **If it does recur, that is the trigger the "third CO2 sensor" decision has been waiting for** — not because detection is missing, but because it would establish that **this sensor cannot hold two jobs**: it cannot both live on the bottom shelf and serve as a movable calibration reference. Spec is already recorded under *Decided against*. **Do not buy on one recurrence; record it and see.**
+- **✅ Bottom-shelf monitoring is live again** and, with vertical gradient established at ≈ 0, `co2_shelf_delta` is once more a direct readout of the **primary's zero error** rather than a mix of gradient and calibration.
+
+**📊 SETTLED READ, 2026-08-08 19:56 — ~10.5 h after the step. IT LANDED IN THE AMBIGUOUS BAND, AT ≈ +200, NOT +326.** Hourly means, Inkbird − primary:
+
+| hour SAST | 09 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| **delta** | 176 | 222 | 208 | 209 | 235 | 210 | 210 | 195 | 191 | 194 | 204 |
+
+**✅ IT SETTLED AND IT HELD — which is the part that matters most, because it is what failed on 07-27.** From 10:00 the delta sits in a **191–235 band with no trend** (mean ~205 over ten hours). **On 07-27 the Inkbird collapsed ~330 ppm within hours of returning to the shelf. That has NOT happened.** ⬜ **The 24 h confirmation is still due 2026-08-09 morning** — do not close this until then.
+
+**🔴 BUT IT FALSIFIES THE +350 FIGURE, AND THAT HAS A DIRECT CONSEQUENCE: DO NOT WRITE +350 TO `0x006B`.** The pre-registered rule said a settled delta materially below ~300, **with the outdoor check passed**, means the primary's zero error is genuinely smaller than 350. Both conditions are met.
+
+- **Cross-check on the room's true value, independent of the delta:** the Inkbird reads **401 outdoors against a true ambient of ~425**, so it sits ~24 low. At 19:00 it read **759**, putting the room at **~783 true**. The primary read **554**. **Primary error ≈ 229.** The delta and the absolute route agree at roughly **+200 to +230, not +350.**
+- **⛔ Writing +350 would OVER-correct by ~120–150 ppm**, making the room display ~900 when it is really ~780 — and every ventilation decision reads off that number. **The vent series was argued to the ppm on figures like these.**
+
+**⚠️ TWO EXPLANATIONS REMAIN, AND ONE CHEAP TEST SEPARATES THEM. Do not write any value until it is run.**
+
+1. **The primary's error really is ~+205–230**, and the original +350 was wrong — it came from a single 24 h co-location whose reference sensor stepped twice afterwards.
+2. **The Inkbird has partially drifted down again**, ~150 ppm, the same failure as 07-27 but milder. **The 401 outdoor reading does NOT rule this out** — it was taken *at* calibration, which is precisely when a sensor reads correctly by construction. **07-27 also passed its outdoor check and then drifted.**
+
+**➡️ THE DISCRIMINATOR — take the Inkbird OUTSIDE AGAIN and read it. Free, ~10 minutes, settles it outright.**
+- **Still ~400–430** → its zero held, explanation 1 is right, and **`0x006B` should be written with ~+210, not +350.**
+- **Now ~250–290** → it drifted ~150 after return, explanation 2 is right, **the +350 stands**, and the standing lesson hardens: *this sensor cannot be moved and then trusted, even after a clean calibration.* That would also be the second recurrence, which is the trigger to reconsider a third sensor.
+
+**⚠️ Hinges on:** *the primary itself not having drifted since 07-27.* Nothing has cross-checked it in twelve days, and its own zero moved once already on 07-25 for reasons never established. **If both sensors have moved, neither the +350 nor the +210 is trustworthy and the outdoor check is the only sound reference.**
+
+#### ✅✅ DISCRIMINATOR RUN 2026-08-08 20:05–20:15 — THE INKBIRD'S ZERO HELD. EXPLANATION 1. **`0x006B` IS ~+210, NOT +350.**
+
+**The operator took it outside and it settled at 457–460**, flat across four consecutive reads a minute apart, having fallen 760 → 491 → 476 → 464 → 460 over ten minutes as it equilibrated.
+
+| Outcome predicted in advance | Reading | Verdict |
+|---|---|---|
+| ~400–430 → zero held, `0x006B` ≈ +210 | **457–460** | ✅ **this branch** |
+| ~250–290 → drifted ~150, +350 stands | — | ⛔ **decisively excluded** |
+
+- **⛔ THE 07-27 FAILURE DID NOT RECUR.** That is the result this test existed to get. The sensor was calibrated outdoors, returned to the bottom shelf, ran ten hours in a 191–235 band with no trend, and then **re-read outdoors near ambient.** On 07-27 the same sequence produced a ~330 ppm collapse. **This time the zero survived handling.**
+- **🎯 SO THE PRIMARY IS THE ONE THAT IS WRONG, BY ~205–230 — AND THE ORIGINAL +350 IS FALSIFIED.** Two independent routes agree: the ten-hour settled delta (**~205**) and the absolute route via room-minus-primary (**~229**). **The +350 rested on a single 24 h co-location whose reference sensor then stepped twice; it does not survive a reference that holds.**
+- **➡️ ACTION WHEN THE ESP32 IS NEXT FLASHED: write ~+210 to `0x006B`, NOT +350.** Writing 350 over-corrects by ~120–150 ppm — the room would display ~900 while sitting at ~780, and **every ventilation decision in this file is argued at that resolution.** ⬜ Confirm against the 24 h hold first (2026-08-09 morning).
+- **✅ And the post-reflash verification test is valid as originally written**, now that the two sensors genuinely differ: after the write, `co2_shelf_delta` should collapse from ~+205 to ≈ 0. The single-sensor check (primary's own displayed value rises ~+210) remains the safer confirmation.
+
+**↩️ RETURNED TO THE BOTTOM SHELF 2026-08-08 ~20:20 SAST, logged as the standing instruction requires** — this is the exact action that broke it on 07-27, so the timestamp is the thing that makes any step visible. **First reading back in, 20:26: Inkbird 737, primary 562, delta 175**, still climbing out of outdoor air toward room level. **No collapse in the first six minutes. ⬜ The 24 h hold check on 2026-08-09 morning is what closes this** — expect the delta back in the 191–235 band.
+
+**⚠️ ONE METHOD CORRECTION, so 457–460 is not later misread as the sensor sitting ~30 ppm HIGH: THE OUTDOOR CHECK MUST BE DONE IN DAYLIGHT.** The *"expect 400–430"* band in this file was set from **daytime** ambient. **Outdoor CO2 near ground level is genuinely elevated at night** — a stable nocturnal boundary layer plus soil and plant respiration routinely puts a suburban garden at 450–550 after dark, against ~420–430 by day. **This read was taken at 20:10.** So 457–460 at night and 401 at ~09:00 are consistent with the *same* sound sensor, and **neither reading establishes an absolute offset.** ➡️ **Amend the standing instruction: re-validate outdoors in daylight, in open air, and treat a night-time check as directional only.** It was still decisive here, because a 150 ppm drift would have read ~300 whatever the hour.
+
 `sensor.fruiting_room_fruiting_room_controller_co2` took a **one-off ~90 ppm downward zero shift** at ~08:35 on 2026-07-25. It is a single discrete step, not a runaway — the Inkbird-minus-primary offset went from a settled ~+185 to a settled ~+276 and has held there. Trigger unknown; a power cycle is ruled out (no reporting gap).
 
 - **Carry it as an explicit +350 ppm mental offset** (was +90 until the 2026-07-27 co-location corrected it). It is applied nowhere in software.
@@ -522,7 +700,8 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
     - **Replacement check, and it needs no second instrument:** after writing +350, the **primary's own displayed value** should jump ~+350 (to ~800 overnight trough, not ~450). That is a before/after on one sensor and cannot be confused by the Inkbird's state. Confirm against the pre-flash hourly means recorded above.
     - **Re-validate the Inkbird separately** whenever it next matters: take it outdoors, confirm it reads ~400–430, and only then treat it as a reference again.
   - **The "free bonus" horizontal-uniformity read did not work — don't retry it this way.** With the Inkbird on the left wall and the primary on the right, `temp_shelf_delta` / `rh_shelf_delta` should have measured horizontal uniformity. But the Inkbird reports temperature at **1 °C resolution** and logged only **61 points in 24h** (going stale by 10:18), so subtracting its +0.9 °C offset is meaningless against 1 °C quantisation. Horizontal uniformity needs its own method and a sensor with usable resolution.
-- **Ongoing drift detection is built and free — but ⛔ IT IS CURRENTLY BLIND.** `sensor.co2_shelf_delta` catches a *step*, meaning one sensor moved relative to the other. It caught the 07-25 primary shift and it caught the 07-27 Inkbird shift. **What it cannot catch is what the room is now in: both sensors wrong by the same ~350, so the delta reads a healthy ≈ 0 while both under-read.** A common-mode error is invisible to a differential check, by construction. Until `0x006B` is written, **the only trustworthy CO2 check is the physical-impossibility argument** — if the room reads at or below the ~425 outdoor ambient, it is wrong, whatever the delta says.
+- **Ongoing drift detection is built and free — ⛔ it was BLIND from 07-27, and the 2026-08-08 recalibration is the fix.** `sensor.co2_shelf_delta` catches a *step*, meaning one sensor moved relative to the other. It caught the 07-25 primary shift and it caught the 07-27 Inkbird shift. **What it could not catch was the state the room then sat in: both sensors wrong by the same ~350, so the delta read a healthy ≈ 0 while both under-read.** A common-mode error is invisible to a differential check, by construction — **and the only way out of it is to move one sensor's zero deliberately, which is what the recalibration did.**
+  - **Until the recalibration is validated outdoors, keep using the physical-impossibility argument as the backstop** — if the room reads at or below the ~425 outdoor ambient, it is wrong, whatever the delta says. It needs no second instrument and it convicted both sensors in turn.
   - This is the concrete cost of the Inkbird holding two incompatible jobs (continuous bottom-shelf monitoring *and* cross-check reference), which the "Decided against" section already names. It does **not** yet meet that section's stated trigger for buying a third sensor — CO2 still controls nothing, so a wrong reading misleads a human but cannot mis-actuate. **Writing the `0x006B` correction is the fix; a third sensor is not.**
 
 ## Hardware — current configuration
