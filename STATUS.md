@@ -717,8 +717,33 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **No tacho on either fan** — HA cannot tell a spinning fan from a dead one. **After any reboot, reflash or power event, physically confirm both fans are turning.**
 - **⛔ Never buy another SEAFLO SFIB1-130-01** for a 24/7 position — a marine bilge blower rated 600–700h *intermittent*, i.e. a ~1–3 month consumable here. Both original fans died this way.
 - **Sensors:** RS485 DFRobot SEN0659 (CO2) + SEN0438 (temp/RH) on the shared TB7 bus, Modbus addresses 1 and 2 (3 is free). Grow-room DHT22 monitoring-only. Inkbird as secondary/verification only, never control.
-- **Home Assistant** at **10.0.0.110** (wired). ESP32 is on `pret208-ext` (D-Link extender, channel 11).
+- **Home Assistant** — reach it as **`homeassistant.local`**, not by IP (see the network block below). ESP32 is on `pret208-ext` (D-Link extender, channel 11) and answers to **`fruiting-room-controller.local`**.
 - **Lovelace can be edited programmatically** — via the WebSocket API (`lovelace/config`, `lovelace/config/save`, `url_path: fruiting-room`), **not** by writing `.storage` directly, which HA clobbers. Back up first; a save replaces the whole view.
+
+### 🌐 THE NETWORK — rebuilt from scratch 2026-08-10 after a factory reset, and now addressed by NAME
+
+**What happened.** Sunday 2026-08-09: no internet. Root cause was an **authentication failure at Openserve** (the fibre infrastructure provider) — **not a fault on this property, and nothing here caused or could have prevented it.** During Afrihost's troubleshooting the operator was instructed to **factory-reset the TP-Link EX511 main router**, and later to connect the workstation directly to the fibre box. The line came back. **The router's entire configuration did not** — and because nobody had a backup of it, the LAN silently re-addressed itself from `10.0.0.0/24` to `192.168.0.0/24`, breaking every hard-coded address in this repo at once. Rebuilt and verified 2026-08-10.
+
+**✅ Current configuration — measured, not assumed:**
+
+| | Value | Notes |
+|---|---|---|
+| LAN | `10.0.0.0/24`, router **`10.0.0.2`** | TP-Link EX511 in router mode |
+| DHCP pool | **`10.0.0.120`–`10.0.0.200`** | **Deliberately above the reservations — see the trap below** |
+| HA Pi | **`homeassistant.local`**, reserved `10.0.0.110`, MAC `2c:cf:67:65:1a:b7` | wired |
+| Fruiting-room ESP32 | **`fruiting-room-controller.local`**, reserved `10.0.0.111`, MAC `80:f3:da:54:9b:14` | on `pret208-ext`, firmware 2025.10.5 |
+| Inkbird | `10.0.0.107`, MAC `1c:90:ff:9d:9b:7a` | bridge add-on `device_ip` must match |
+| Main SSID | **`pret208-2.4G`**, 2.4G **fixed channel 1**, 5G ch 36 | channel 1 is the printer's lifeline, `DECISIONS.md` 2026-07-22 |
+| Extender | `pret208-ext` ch 11, `10.0.0.99` | D-Link, Ethernet-backhauled, **bridging not NAT-ing** |
+| Printer | `10.0.0.106` | HP DeskJet 3835, 2.4GHz-only |
+
+**🎯 THE STRUCTURAL CHANGE, AND THE REASON THIS DAY WAS WORTH SOMETHING: EVERYTHING IS NOW ADDRESSED BY mDNS NAME, NOT BY IP.** `homeassistant.local` and `fruiting-room-controller.local` are answered by the devices themselves over link-local multicast — **no router DNS, no internet, and they survive a subnet change.** They kept resolving on 2026-08-10 when every hard-coded address in these files was dead. `LEDGER.md`'s deploy path and panel URL were re-pointed at the hostname the same day, and the phone's home-screen icon should be too.
+
+**⚠️ THE TRAP THAT COST AN EXTRA ROUND-TRIP: a DHCP reservation inside the active DHCP pool is not guaranteed.** `10.0.0.110` was reserved for the Pi while the pool still ran from `.100`, and **a phone with a randomised MAC already held that lease** — so the router quietly ignored the reservation and the Pi came up on `.114` instead. **Reservations must sit BELOW the pool**, which is why the pool now starts at `.120`.
+
+**📌 THE STANDING LESSON: there was no router configuration backup, and a factory reset is one support call away.** ISP support asks for a reset as a matter of routine — it is their cheapest diagnostic and costs them nothing. **What it cost here was every static address on the property, silently**, on the day before a batch, discovered only because someone went looking. **⬜ Take the config backup** (EX511 admin → System Tools → Backup & Restore) and store it as a **Bitwarden attachment — not in git**, per `SAFETY.md`, since it may carry the PPPoE credential.
+
+**🔍 And the failure that started it was invisible from inside.** A PPPoE authentication failure at the ISP looks, from the LAN, exactly like a working network: the router is up, WiFi is up, devices have addresses. **Anything cloud-hosted simply reports an error that does not mention the network** — which is how the outage was misread for a while. Home Assistant, by contrast, is on the LAN and *should* stay reachable through any WAN outage; it did not, only because it was being reached by an address that had moved. **With mDNS names in place that specific failure cannot repeat.**
 
 ### ⚠️ Next reflash — read this whole block before touching the firmware
 
@@ -736,7 +761,7 @@ Nothing here is urgent alone. The point is that these are all **gated on the sam
 
 ## Ledger
 
-**In use since 2026-07-24** (Phase C). Supabase, captured via `stock-control/index.html`, hosted on the HA Pi at `/config/www/mushroom-control.html` → `http://10.0.0.110:8123/local/mushroom-control.html`, with a home-screen icon added via **Samsung Internet** (Chrome won't offer it for plain-HTTP LAN pages). Updating it = copy the repo's `index.html` over that file.
+**In use since 2026-07-24** (Phase C). Supabase, captured via `stock-control/index.html`, hosted on the HA Pi at `/config/www/mushroom-control.html` → `http://homeassistant.local:8123/local/mushroom-control.html`, with a home-screen icon added via **Samsung Internet** (Chrome won't offer it for plain-HTTP LAN pages). Updating it = copy the repo's `index.html` over that file.
 
 **Current data:** batches `SUB-2026-W23` and `SUB-2026-W25`–`W30`, reconciled against a physical bag count on 2026-07-26. Raw stock 2,366 g.
 
@@ -879,8 +904,6 @@ Found while testing the bag-movement migration. **`stock-control/supabase/migrat
   - **⏳ Aircon deliberately NOT next, despite being the larger load.** (1) Metering it while the floor-vent experiment runs samples a room in a deliberately altered configuration — a transient, not a baseline. (2) It is likely hard-wired, so it needs a **clamp meter at the DB** that we do not have. (3) Its follow-up test (can the aircon work less?) is already barred from running concurrently with the vent experiment. **Revisit once the vents are resolved and the room has settled.**
   - **Worth one sanity check on the freezer reading**, since 32.7 W average is low for the form factor: watch the meter's instantaneous watts until the compressor cycles on, and confirm it shows ~80–120 W. If it never does, the meter isn't seeing the compressor and the 24h figure is wrong. Cheap to do, and everything above rests on this one number.
 - **`weather.forecast_home` is not reporting Pretoria** (found 2026-07-27). It forecast lows of 15.9–21.3 °C and highs of 26.8–29.6 °C for the week of 27 July; Pretoria late-July norms are ~5 °C min / ~19.6 °C max, and a 29.6 °C July day would be near-record. The HA home location or the weather integration is misconfigured. **Cosmetic today — nothing depends on it — but do not use it as an outdoor reference** (it was nearly used as one when sizing the floor-vent infiltration question).
-- **DHCP reservation** for the HA Pi's Ethernet MAC at 10.0.0.110.
-- **Fix the TP-Link 2.4G channel** to 1 rather than Auto, so an outage reboot can't re-pick congested channel 2.
 - **RS485 poll timing** — seen once at 341 ms against a 340 ms budget (two back-to-back 150 ms blocking delays in one tick). No functional failure yet; if it worsens, split the two sensor queries across alternating ticks.
 - **Watch the WF-150 and fresh-air fan bearings** in the ~90% RH airstream. Better than the SEAFLO, not immortal.
 - **Lower-shelf crop observation** — verdict due ~2026-07-29. Largely mooted now the bottom shelf matches the top.
