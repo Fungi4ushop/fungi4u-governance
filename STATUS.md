@@ -250,6 +250,17 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 
 ## Room state (verified 2026-08-05 off a 48h `room_check.py` run)
 
+### 🔬 LIVE EXPERIMENT — 20 of ~80 exhaust holes closed 2026-08-09; the CO2 cost did not materialise, and the target metric is still unread
+
+**The operator closed every 4th hole in the front-wall 50 mm exhaust strip on Sunday morning 2026-08-09** — 20 holes, open area ~63 → ~47 cm², a **25% cut in the room's only passive exhaust.** This is option (3) from `MICROCLIMATE.md`'s own fix list, run partially: block the openings, watch the bottom gradient and CO2, *before* committing to the permanent 45° Isoboard cover.
+
+- **✅ The documented risk did not appear.** `MICROCLIMATE.md` warns that sealing trades easier humidity for less CO2 venting, with a tripwire at an overnight trough that stops falling to ~680 and holds >1000. **The first night after measured a trough of 503 ppm — the lowest of six nights.** Large headroom remains.
+- **✅ Humidifier duty fell ~9 points** overnight (89.2 → 79.7 against 08-08, the closest match on temperature), RH held in band, and the room carried nearly the same absolute humidity while working less for it.
+- **⛔ The bottom-shelf gradient — the thing this change is FOR — has not been read at all.** All three shelf deltas derive from the Inkbird, which froze on 08-09 morning and returned only at 07:42 on 08-10. **The experiment has so far measured its side effects and not its purpose.**
+- **➡️ The 08-10→08-11 night is the clean window, and then it closes:** batch day is 08-11 and disturbs the room. **Do not close more holes until one clean night of shelf-delta data exists** — a partial closure only earns its keep if it answers whether the full cover is needed.
+
+**⚠️ Hinges on:** *the Inkbird staying up overnight.* It has a known WiFi-drop history, it has now failed through one entire experiment, and it is the sole instrument for this measurement. **A smart plug for auto power-cycling it is already an open item in `DECISIONS.md` and is the cheap fix.** Full working and the per-night table: `stock-control/docs/MICROCLIMATE.md`.
+
 ### ✅ CLOSED 2026-08-07 — THE ROOMS COOLED, THE FILTER WAS THE CAUSE, AND BOTH HAVE RECOVERED
 
 **Full recovery confirmed. Temperature is 100% in band** — 15.20–17.50 °C, mean 16.28, against **78.4% when the fault was found**. VPD and absolute humidity both 100%. **The grow room is at 17.78 °C overnight, slightly above its pre-fault 17.25.**
