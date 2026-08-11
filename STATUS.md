@@ -74,15 +74,19 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 **🔴 CORRECTED 2026-08-11 (operator) — THE ROOMS ARE ~2700 mm WIDE, NOT 7000. FLOOR AND VOLUME WERE OVERSTATED ~2.6×.** The fruiting and grow rooms occupy the **old drive-through garage — a ~2700 mm-wide internal strip on the LEFT of the outbuilding, against the fence.** The **7000 mm is the OUTBUILDING's width** and was wrongly applied to these rooms. ✅ **The 08-06 divider survey stands** — 1820 mm front / 2280 mm back / 75 mm partition = 4175 mm internal correctly identifies **4650 mm as the front-to-back axis**, and the drive-through runs that way. **It was only the width that was wrong.** Full working: `stock-control/docs/MICROCLIMATE.md` §1.
 
-| | Depth | Width | Floor | Volume |
-|---|---:|---:|---:|---:|
-| **Fruiting** (front) | 1820 mm | ~2700 mm | **4.9 m²** | **~13 m³** |
-| **Grow** (rear) | 2280 mm | ~2700 mm | **6.2 m²** | **~16 m³** |
-| **Combined** | 4175 mm | ~2700 mm | **11.3 m²** | **~29 m³** |
+**📐 REFINED 2026-08-11 (operator) — the depths now close EXACTLY.** Front→divider **1820 mm**, divider **50 mm** *(not 75)*, divider→back **2280 mm**. **1820 + 50 + 2280 = 4150 = 4650 − 2 × 250.** *(The 08-06 survey's 25 mm discrepancy was the divider thickness.)* **Plus a recess:** the old garage-door opening is closed by drywall on the **outside** face, so along **2490 mm of the ~2700 mm back wall the grow room is 250 mm deeper** — +0.62 m², +1.6 m³.
+
+| | Depth | Width | Floor (total) | Floor (**usable**) | Volume |
+|---|---:|---:|---:|---:|---:|
+| **Fruiting** (front) | 1820 mm | ~2700 mm | **4.91 m²** | **4.91 m²** | **~13.2 m³** |
+| **Grow** (rear) | 2280 mm *(+250 recess)* | ~2700 mm | **6.78 m²** | **6.16 m²** | **~17.6 m³** |
+| **Combined** | 4150 mm | ~2700 mm | **11.69 m²** | **11.07 m²** | **~30.8 m³** |
+
+- **⚠️ TOTAL floor for climate, USABLE floor for capacity — the recess is 250 mm deep and trolleys are 450 mm.** Nothing stands in it.
 
 - **⛔ SUPERSEDED: 12.7 / 16.0 / 28.7 m² and ~34 / ~41 / ~76 m³.** ⚠️ **The 2700 mm is "about" — a proper width measurement would firm all of this.**
 - **✅ THE FRUITING ROOM IS STILL THE SMALLER OF THE TWO**, and the wall is still a **~2.2× volume / ~2.3× floor** increase — **the RATIO is unaffected**, so arguments resting on the ratio survive. Any resting on **absolute** volume do not: the wall adds **~16 m³ to a ~13 m³ room**, not 40 to 34.
-- **✅ BAG DENSITY STILL CORROBORATES — only the absolute number moves.** Fruiting **76 / 4.9 = 15.5/m²**; grow **96 / 6.2 = 15.6/m²**. **Still within 1%**, because the two rooms were stocked independently. **The figure is ~15.5 bags/m², not ~6.**
+- **✅ BAG DENSITY STILL CORROBORATES — on USABLE floor.** Fruiting **76 / 4.91 = 15.5/m²**; grow **96 / 6.16 = 15.6/m²**. **Still within 1%**, because the two rooms were stocked independently. **The figure is ~15.5 bags/m², not ~6.** *(Include the recess and the grow room reads 14.2 and the agreement breaks — itself evidence that the recess is not stood on.)*
 - **⚠️ AND ~6 BAGS/m² WAS THE TELL THAT SHOULD HAVE CAUGHT THIS.** It is implausibly sparse for an oyster fruiting room, where ~15/m² is ordinary. It was read repeatedly — including as "corroborated to within 1%" — without anyone asking whether the absolute value was *plausible*. **Internal consistency is not correctness: both rooms agreed because both used the same wrong width.**
 
 **🎯 THE SECOND-FLUSH CAPACITY ANSWER SURVIVES — BY ARITHMETIC ACCIDENT, AND IT IS WORTH KNOWING WHY.** Old: 28.7 m² × 5.97 = **171 bags**. New: 11.3 m² × 15.5 = **175 bags**. **Area and density were wrong by the same factor, so their product was right.** The combined room still holds **~7 batches ≈ 7 weeks of residence** against the **4–6 weeks** two flushes require, so **the wall removal still clears the constraint with margin.**
@@ -111,7 +115,11 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 - **Remove the wall and that buffer goes.** The humidifier is at **63–85% duty** *now*, on the smaller room, with the coil one door away. **This is the number to worry about, and it is not a volume calculation.**
 - **The spare 12-disc unit and the fresh discs stop being "margin" and become a prerequisite** — but adding humidifier capacity to out-run a dehumidifier is fighting the symptom. **The real question is whether the aircon can be relocated, ducted, or run in a mode that does not condense** — and that should be answered *before* the wall comes down, not after.
 
-**⚠️ Hinges on:** *that the rear half's envelope is no leakier than the front.* The rear wall is insulated drywall + Isoboard with its own external access door. **If that door or the drywall leaks materially, steady-state load rises with it** and the "infiltration does not change" argument weakens. One smoke-pencil pass would settle it.
+**🔴 CANDIDATE NAMED 2026-08-11 — THE BACK WALL IS ~92% DRYWALL, AND IT IS ON NO FAULT LIST.** The old garage-door opening is **2490 mm of a ~2700 mm back wall**, closed by drywall from outside — so **~6 m² of panel, not 250 mm masonry, on a room with 6.2 m² of floor.**
+- **➡️ It is a candidate for the grow room sitting 3.2–5.9 °C BELOW its 21 °C setpoint.** The recorded causes are stratification deceiving the thermostat, airflow obstruction, sensor position and capacity shortfall. **Envelope loss through a panelled door opening is not among them — and it is the only one that would explain a PERSISTENT shortfall rather than a sensing artefact.**
+- **⚠️ Candidate, not conclusion.** The rear wall is recorded as *insulated* drywall + Isoboard, so the question is the **joints around a panel filling a door opening**, not the panel itself. **A smoke pencil settles it and answers the hinges-on below at the same time.**
+
+**⚠️ Hinges on:** *that the rear half's envelope is no leakier than the front* — **now materially less safe, see directly above.** The rear wall is insulated drywall + Isoboard with its own external access door. **If that door or the drywall leaks materially, steady-state load rises with it** and the "infiltration does not change" argument weakens. One smoke-pencil pass would settle it.
 
 **✅ And the ducts are in better shape than feared.** `MICROCLIMATE.md` §1: *"**Airflow ducts are already run for the full room**; unused duct openings are sealed for now."* **The duct runs were sized for the combined space from the start.** What is unvalidated is the **hole pattern** — and note that the room currently runs with **both end caps off**, which the same doc calls *"a live interim workaround, not the settled design."*
 
