@@ -72,36 +72,36 @@ _Operator, 2026-08-01: **"a very good checkpoint but definitely not the end of t
 
 _Operator's concern, and it is the right one to raise: **"I am not sure the equipment will be able to maintain the microclimate in the bigger fruiting room."**_
 
-**📐 MEASURED 2026-08-06 — the divider position was captured and it revises the numbers this section was built on.** It sits **1820 mm from the front wall, 2280 mm from the back**; with the 75 mm partition that is 4175 mm internal, which identifies **4650 mm as the front-to-back axis and 7000 mm as the width** (the 7000 axis cannot fit 1820 + 2280). Full working: `stock-control/docs/MICROCLIMATE.md` §1.
+**🔴 CORRECTED 2026-08-11 (operator) — THE ROOMS ARE ~2700 mm WIDE, NOT 7000. FLOOR AND VOLUME WERE OVERSTATED ~2.6×.** The fruiting and grow rooms occupy the **old drive-through garage — a ~2700 mm-wide internal strip on the LEFT of the outbuilding, against the fence.** The **7000 mm is the OUTBUILDING's width** and was wrongly applied to these rooms. ✅ **The 08-06 divider survey stands** — 1820 mm front / 2280 mm back / 75 mm partition = 4175 mm internal correctly identifies **4650 mm as the front-to-back axis**, and the drive-through runs that way. **It was only the width that was wrong.** Full working: `stock-control/docs/MICROCLIMATE.md` §1.
 
-| | Depth | Floor | Volume |
-|---|---:|---:|---:|
-| **Fruiting** (front) | 1820 mm | **12.7 m²** | **~34 m³** |
-| **Grow** (rear) | 2280 mm | **16.0 m²** | **~41 m³** |
-| **Combined** | 4175 mm | **28.7 m²** | **~76 m³** |
+| | Depth | Width | Floor | Volume |
+|---|---:|---:|---:|---:|
+| **Fruiting** (front) | 1820 mm | ~2700 mm | **4.9 m²** | **~13 m³** |
+| **Grow** (rear) | 2280 mm | ~2700 mm | **6.2 m²** | **~16 m³** |
+| **Combined** | 4175 mm | ~2700 mm | **11.3 m²** | **~29 m³** |
 
-- **⛔ THE FRUITING ROOM IS THE SMALLER OF THE TWO.** Nothing in these files said so, and the wall discussion has read throughout as though the fruiting room were the larger space being modestly extended. **It is not.**
-- **⛔ "~86 m³ for the whole building" is an EXTERNAL-dimension figure** and overstates the usable interior by ~13%. **Internal is ~76 m³.** *(The ~40 m³ added by removing the divider was right; the base it is added to was not.)*
-- **➡️ So the wall is a 2.2× VOLUME and 2.25× FLOOR increase to the fruiting room, not an extension.** Every argument below that turns on "how much bigger" should be read at that scale.
-- **✅ And bag density is now a MEASURED figure, corroborated across two independently stocked rooms:** fruiting 76 bags / 12.7 m² = **5.97/m²**; grow 96 bags / 16.0 m² = **6.02/m²**. **Agreement to within 1%.**
+- **⛔ SUPERSEDED: 12.7 / 16.0 / 28.7 m² and ~34 / ~41 / ~76 m³.** ⚠️ **The 2700 mm is "about" — a proper width measurement would firm all of this.**
+- **✅ THE FRUITING ROOM IS STILL THE SMALLER OF THE TWO**, and the wall is still a **~2.2× volume / ~2.3× floor** increase — **the RATIO is unaffected**, so arguments resting on the ratio survive. Any resting on **absolute** volume do not: the wall adds **~16 m³ to a ~13 m³ room**, not 40 to 34.
+- **✅ BAG DENSITY STILL CORROBORATES — only the absolute number moves.** Fruiting **76 / 4.9 = 15.5/m²**; grow **96 / 6.2 = 15.6/m²**. **Still within 1%**, because the two rooms were stocked independently. **The figure is ~15.5 bags/m², not ~6.**
+- **⚠️ AND ~6 BAGS/m² WAS THE TELL THAT SHOULD HAVE CAUGHT THIS.** It is implausibly sparse for an oyster fruiting room, where ~15/m² is ordinary. It was read repeatedly — including as "corroborated to within 1%" — without anyone asking whether the absolute value was *plausible*. **Internal consistency is not correctness: both rooms agreed because both used the same wrong width.**
 
-**🎯 WHICH SETTLES THE SECOND-FLUSH CAPACITY QUESTION — it is now arithmetic, not assertion.** At ~6 bags/m² the combined room holds **~171 bags ≈ 7 batches**. At one batch per week that is **~7 weeks of fruiting residence**, against the **4–6 weeks** two flushes require. **The wall removal clears the constraint with margin** — where this morning the same claim rested on "roughly half the building".
+**🎯 THE SECOND-FLUSH CAPACITY ANSWER SURVIVES — BY ARITHMETIC ACCIDENT, AND IT IS WORTH KNOWING WHY.** Old: 28.7 m² × 5.97 = **171 bags**. New: 11.3 m² × 15.5 = **175 bags**. **Area and density were wrong by the same factor, so their product was right.** The combined room still holds **~7 batches ≈ 7 weeks of residence** against the **4–6 weeks** two flushes require, so **the wall removal still clears the constraint with margin.**
 
 **🔴🔴 AND THEN THE RACKING WAS MEASURED THE SAME DAY, WHICH CHANGES THE RECOMMENDATION: THE CONSTRAINT IS TROLLEYS, NOT FLOOR AREA — SO THE WALL IS NOT THE CHEAPEST ROUTE TO A SECOND FLUSH, OR EVEN A NEEDED ONE.**
 
 **Trolleys are 1200 × 450 mm, four racks at 400 mm pitch. The fruiting room has 3 of them, 8 bags per shelf, ONE TROLLEY PER BATCH** (operator, 2026-08-06).
 
 - **3 × 4 × 8 = 96 bag capacity, holding 76 — and one trolley per batch means exactly 3 batches, which is what `v_batch_residence` independently shows.** Two records agreeing.
-- **⛔ That uses 1.62 m² of the fruiting room's 12.7 m² — 13% of the floor.** Five trolleys across the 7000 mm width, two rows plus a 920 mm aisle, gives **10 trolleys / 320 bags on 43% of the floor: 3.3× current capacity inside the existing room.**
+- **⛔⛔ WITHDRAWN 2026-08-11 — THE HEADLINE CLAIM HERE IS PHYSICALLY IMPOSSIBLE.** *(It read: "That uses 1.62 m² of the fruiting room's 12.7 m² — 13% of the floor. **Five trolleys across the 7000 mm width**, two rows plus a 920 mm aisle, gives **10 trolleys / 320 bags on 43% of the floor: 3.3× current capacity inside the existing room**.")* **The room is ~2700 mm wide. Five 1200 mm trolleys will not fit across it — two side by side leave 300 mm and no aisle.** The 3 trolleys use **1.62 m² of 4.9 = 33% of the floor**, not 13%.
 - **🎯 Trolley count IS residence in weeks, at one batch per week: 3 → 21 days (now), 4 → 28 days, 6 → 42 days. One extra trolley reaches the two-flush window; three clear it.**
 
-**➡️ SO THE WALL'S YIELD CASE, MADE ABOVE, IS DEMOTED — NOT WITHDRAWN.** It remains true that the wall would deliver ~7 batches of capacity. **But the same outcome is available for the price of one to three trolleys, with no aircon question, no new grow room and no construction.** ⚠️ **Do not spend on the wall for capacity reasons until the trolley route has been tried and found wanting.** The wall's *climate* case — the documented three-way tension between separation, temperature and grow-room ventilation — is untouched and stands on its own.
+**⛔ THE DEMOTION OF THE WALL'S YIELD CASE IS ITSELF WITHDRAWN, 2026-08-11 — IT RESTED ENTIRELY ON THE 7000 mm WIDTH.** *(It read: "the same outcome is available for the price of one to three trolleys… **do not spend on the wall for capacity reasons until the trolley route has been tried and found wanting**.")* **At ~2700 mm the cheap in-room expansion route is far more limited than recorded, so the wall's capacity argument is BACK IN PLAY.** ⬜ **What in-room expansion remains has not been re-derived** — at 2700 mm the practical layout is a single trolley row with a working aisle, plus the **vertical** headroom below. **Do that arithmetic before any capacity decision.** ⚠️ **This does not make the wall cheap** — the aircon gate, the new grow room and the revert test all still stand in front of it. The wall's *climate* case — the documented three-way tension between separation, temperature and grow-room ventilation — is untouched and stands on its own.
 
 **⚠️ Hinges on:** *that the environment carries the extra load, which is the real open question.* **CO2 has no active control** since the fresh-air fan was removed, so more biomass raises it with nothing to correct it. Humidifier duty could move either way — a fruiting crop transpires, so bags may be a net moisture *source* — but that is untested. **Establish both, plus the cost of a trolley, before buying.**
 
 **➡️ Volume is NOT the binding constraint. The AIR CONDITIONER is.**
 
-- **The fill transient is trivial.** Raising the added volume from ~50% to 92% RH at 17.5 °C is a step of **6.3 g/m³** (7.45 → 13.7). Over ~40 m³ that is **~250 g of water — a quarter of a litre.** A 12-disc ultrasonic does litres per hour. **Minutes, not a capacity problem.**
+- **The fill transient is trivial.** Raising the added volume from ~50% to 92% RH at 17.5 °C is a step of **6.3 g/m³** (7.45 → 13.7). Over the **~16 m³** actually added *(✏️ corrected 2026-08-11 from ~40 m³)* that is **~100 g of water — a teacup.** A 12-disc ultrasonic does litres per hour. **Minutes, not a capacity problem.**
 - **Steady-state load is set by outside-air exchange, not by volume** — and the leak paths do not move. The infiltration this room fights is the **front-wall floor openings**, which are already in the fruiting room (they are what five nights of vent experiments were about). **Removing the divider adds volume, not infiltration.**
 - **A larger volume actually helps stability** — more moisture and thermal mass per unit of disturbance, so slower swings and a longer buffer when a door opens.
 
