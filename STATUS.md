@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-08-10
+Last updated: 2026-08-11
 
 **What this document is.** A plain answer to *what is true right now*. It is deliberately short.
 
@@ -166,12 +166,14 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 **⛔ AND IT KILLS A RECOMMENDATION MADE EARLIER THE SAME DAY.** An "insulate the roof" case was built here — ~8 kW of summer solar gain, ~1.75 kW of winter loss, R6,500–11,000 of Isoboard, two-year payback. **It was explicitly conditioned on the roof being uninsulated, and it is not. The whole calculation is void. Do not resurrect those numbers.** *Recorded rather than deleted because the reasoning pattern was sound and the failure was one of premise: absence of documentation was treated as evidence of absence.* **This file did not describe the ceiling; that is not the same as there being no ceiling.**
 
-**⬜ BUT THE CONSTRUCTION RAISES TWO QUESTIONS THAT ARE NOT ANSWERED ANYWHERE, AND BOTH ARE CHEAP TO CHECK. ⚠️ These are questions, not findings — do not act on them until looked at.**
+**✅ RESOLVED 2026-08-11 — THE SHADE CLOTH IS NOT PERMEABLE (operator).** The 08-05 entry flagged this as its own load-bearing assumption — *"Hinges on: whether the shade cloth is genuinely permeable once painted. Paint may have sealed it into something much closer to an air barrier, which would answer question 2 on its own."* **It did.** Both questions below are answered or downgraded by it.
 
-1. **Is the wool still dry, and therefore still working?** Mineral and glass wool lose a large fraction of their R-value when damp and do not readily dry out. **This room runs at 90–95% RH under a *permeable* ceiling with no vapour barrier recorded**, so there is a continuous moisture drive upward into the insulation, and the underside of a flat iron roof radiates to the night sky and can fall below ambient. **If the wool is wet, the room has less working insulation than anyone believes — and wet wool over a food crop is also a mould and drip risk.** *Check: feel it, look for sagging, compression, staining or condensation marks on the underside of the iron.*
-2. **Shade cloth is not an air barrier — so is humidified air continuously escaping into the roof void?** The design deliberately runs the room at **slight positive pressure**, and the plenum and both ducts are mounted at ceiling level. **Positive pressure beneath a permeable fabric ceiling would push moist air up through it by design, giving a standing, unmeasured moisture-loss path.** This has never been considered in any of the humidifier-duty investigations, which have looked at the tub, the ducts, the discs and the room temperature. *Check: smoke pencil held just under the ceiling — does air move up through the cloth?*
+1. **⤵️ DOWNGRADED — is the wool still dry?** The original concern was a **continuous moisture drive upward from a 90–95% RH room through a permeable ceiling.** **That mechanism is closed.** ⚠️ **But an air barrier is not a vapour barrier** — vapour can still *diffuse* slowly through painted cloth and condense in the wool against cold iron, and the underside of a flat iron roof radiates to the night sky and can fall below ambient. **So this drops from a live concern to a slow one.** *Still worth a look — and **9.4 mm fell overnight 08-10→11, the first real rain in this record**, which is exactly when a leak or damp patch shows. Feel it; look for sagging, compression, staining or condensation marks on the underside of the iron.*
+2. **✅ ANSWERED — humidified air is NOT continuously escaping into the roof void.** The standing, unmeasured ceiling moisture-loss path **does not exist.** No smoke-pencil test needed.
 
-**⚠️ Hinges on:** *whether the shade cloth is genuinely permeable once painted.* Paint may have sealed it into something much closer to an air barrier, which would answer question 2 on its own. **The smoke pencil settles it in a minute and costs nothing.**
+**➡️ TWO CONSEQUENCES, AND THE SECOND IS OPERATIONAL.**
+- **✅ It makes the vent-experiment results cleaner.** With the ceiling ruled out, **the front-wall floor openings and the exhaust strip are the dominant controllable loss paths** — which removes a competing unmeasured explanation for the 08-10→11 humidifier-duty fall and **strengthens attributing it to the hole closure.**
+- **🔴 It makes closing MORE holes riskier, for a reason independent of CO2.** A sealed ceiling means positive pressure now relieves **only** through the floor openings and the exhaust strip — **there is no diffuse ceiling bleed to take up slack.** `stock-control/docs/MICROCLIMATE.md`'s *"do not seal them all — the fan needs a relief path"* **binds harder than it did when the ceiling was assumed leaky.**
 
 ## Business snapshot
 
@@ -250,16 +252,41 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 
 ## Room state (verified 2026-08-05 off a 48h `room_check.py` run)
 
-### 🔬 LIVE EXPERIMENT — 20 of ~80 exhaust holes closed 2026-08-09; the CO2 cost did not materialise, and the target metric is still unread
+### 🔬 LIVE EXPERIMENT — 20 of ~80 exhaust holes closed 2026-08-09; the clean night is READ (08-11): the gradient was already flat, the win is humidifier duty
 
 **The operator closed every 4th hole in the front-wall 50 mm exhaust strip on Sunday morning 2026-08-09** — 20 holes, open area ~63 → ~47 cm², a **25% cut in the room's only passive exhaust.** This is option (3) from `MICROCLIMATE.md`'s own fix list, run partially: block the openings, watch the bottom gradient and CO2, *before* committing to the permanent 45° Isoboard cover.
 
-- **✅ The documented risk did not appear.** `MICROCLIMATE.md` warns that sealing trades easier humidity for less CO2 venting, with a tripwire at an overnight trough that stops falling to ~680 and holds >1000. **The first night after measured a trough of 503 ppm — the lowest of six nights.** Large headroom remains.
+- **✅ The documented risk did not appear.** `MICROCLIMATE.md` warns that sealing trades easier humidity for less CO2 venting, with a tripwire at an overnight trough that stops falling to ~680 and holds >1000. **The first night after measured a trough of 503 ppm — the lowest of six nights.** Large headroom remains. *(⚠️ Qualified 08-11: that night — 08-09→10, stack 5.2 K, wind 5.7 — is a **mid-range** ventilation night and remains the better of the two CO2 datapoints. **The 08-10→11 trough of 482 is NOT** — see the CO2 inversion below. **Neither is the weak-drive night the risk actually lives in.**)*
 - **✅ Humidifier duty fell ~9 points** overnight (89.2 → 79.7 against 08-08, the closest match on temperature), RH held in band, and the room carried nearly the same absolute humidity while working less for it.
 - **⛔ The bottom-shelf gradient — the thing this change is FOR — has not been read at all.** All three shelf deltas derive from the Inkbird, which froze on 08-09 morning and returned only at 07:42 on 08-10. **The experiment has so far measured its side effects and not its purpose.**
-- **➡️ The 08-10→08-11 night is the clean window, and then it closes:** batch day is 08-11 and disturbs the room. **Do not close more holes until one clean night of shelf-delta data exists** — a partial closure only earns its keep if it answers whether the full cover is needed.
 
-**⚠️ Hinges on:** *the Inkbird staying up overnight.* It has a known WiFi-drop history, it has now failed through one entire experiment, and it is the sole instrument for this measurement. **A smart plug for auto power-cycling it is already an open item in `DECISIONS.md` and is the cheap fix.** Full working and the per-night table: `stock-control/docs/MICROCLIMATE.md`.
+#### ✅ THE CLEAN NIGHT WAS READ, 2026-08-11 — AND THE TARGET METRIC TURNS OUT TO HAVE BEEN ALREADY FLAT. THE PAYOFF IS ELSEWHERE.
+
+**⛔ FIRST, A DATA TRAP THAT MUST NOT BE RE-WALKED: THE SHELF DELTAS KEPT REPORTING NUMBERS THROUGH THE INKBIRD FREEZE, AND THEY WERE ARITHMETIC ON A DEAD SENSOR.** The deltas are **template sensors that recompute whenever the *other* input changes**, so a frozen Inkbird still yields a moving delta. Proof: 08-09→10 shows `inkbird_co2` **n=1 at 646** while `co2_shelf_delta` reports **mean +116.6** — and **646 − 529.4 (primary mean) = 116.6 exactly.** ➡️ **08-08→09 and 08-09→10 shelf deltas are VOID.** *(This also explains the "offset moved" step `room_check.py` flagged at 08-10 10:00 — that is the freeze **ending**, not a calibration shift.)*
+
+| night | outdoor | stack ΔT | AH deficit | wind | duty 00–08 | temp Δ | rh Δ | co2 Δ |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 08-06→07 *(open)* | 13.1 | 2.9 K | 8.9 | 7.9 | **100.0%** | −0.2 | +1.1 | −69.5 |
+| 08-07→08 *(open)* | 11.4 | 5.4 K | 6.4 | 5.1 | 85.2% | −0.1 | +1.8 | −20.9 |
+| 08-09→10 *(closed)* | 11.6 | 5.2 K | 8.3 | 5.7 | 83.1% | — VOID — |
+| **08-10→11 *(clean)*** | **6.1** | **10.3 K** | 6.6 | **15.3** | **72.4%** | **+0.3** | **+0.6** | **−20.9** |
+
+*Deltas are bottom minus top. Outdoor from Open-Meteo 22:00–06:00; duty from the relay history.*
+
+- **⛔ THE STATED TARGET WAS ALREADY MET BEFORE THE EXPERIMENT RAN.** Pre-closure nights show temp **−0.1 to −0.2 °C** and RH **+1.1 to +1.8** — which is precisely what `MICROCLIMATE.md`'s 07-21 scorecard already called *"flat"* and passing. **The hole closure was aimed at a gradient the fan work had largely closed.** Post-closure the bottom sits **0.3 °C warmer** than the top and RH is flatter at **+0.6** — real, right direction, small.
+- **✅ THE ACTUAL PAYOFF IS HUMIDIFIER DUTY, AND IT WAS WON ON THE HARDEST NIGHT OF THE WEEK.** Duty is trending **100.0 → 83.1 → 72.4%** across the closure. Against **08-07, which had an almost identical moisture deficit (6.4 vs 6.6) but half the stack drive**, duty fell **85.2 → 72.4**. **First time the KPI's <70% target has been within reach.**
+- **✅ THE RAIN OBJECTION WAS TESTED AND STRENGTHENS THE RESULT (operator raised it, 2026-08-11).** **9.4 mm fell inside the night window** and outdoor RH hit **85%** against 32–66% on other nights. **But in ABSOLUTE terms the rainy night was marginally DRIER: outdoor AH 6.3 vs 6.8 on 08-07**, because saturated air at 6.1 °C holds only **7.3 g/m³**. **The temperature drop cancelled the humidity rise, so the humidifier saw no relief from the rain.** *(Textbook `MICROCLIMATE.md` §3 — "it rained so the air was humid" is an RH intuition; what the humidifier replaces is absolute moisture.)*
+- **✅ AND THE WIND MAKES IT HARDER STILL — 15.3 km/h against 2.4–7.9, roughly triple.** `MICROCLIMATE.md` records that on a front wall, gusts can locally reverse flow through the apertures regardless of fan pressure. **So stack effect was at double, wind at triple, and the moisture deficit unchanged — every infiltration driver at its weekly maximum — and duty still hit its weekly low.**
+- **🔴 WHICH INVERTS THE CO2 READING: LAST NIGHT WAS THE EASIEST POSSIBLE CO2 TEST, NOT A REASSURING ONE.** Cold plus wind means the room ventilated harder than on any other night this week, and **stack effect IS this room's ventilation now the fresh-air fan is gone.** The **482 ppm trough therefore says almost nothing about whether sealing is safe.**
+- **➡️ THE CONDITION ON CLOSING MORE HOLES IS NOW A MILD, STILL NIGHT — ~13 °C outdoors and light wind, like 08-06 — when stack drive is weakest.** That is the state the sealing risk actually lives in, and it has not been sampled. **⚠️ Reinforced independently by the ceiling finding above: with the shade cloth confirmed non-permeable, the exhaust strip and floor openings are the ONLY relief path.**
+
+**🛠️ ONE TOOLING DEFECT FOUND WHILE READING THIS — ✅ FIXED 2026-08-11.**
+- **`room_check.py` reported a failing KPI as a pass.** It printed `Cycling — has headroom (KPI: not pinned, under ~70%)` for **any** overnight duty ≤95%, so **76.9% read as "has headroom" while failing the 70% target stated on the same line.** Now three-state against the KPI itself — `OK` / `FAILS KPI` / `PINNED`, thresholds as named constants. Verified live and at the 70/95 boundaries.
+- **✏️ A second "defect" was reported and was WRONG — recorded so it is not re-raised.** `--since` **does** exist and does what `MICROCLIMATE.md` §6 documents. **It marks the co-location start for the offset calculation; it is not a window selector** — the window is always `--hours`. Passing it alone appears to be ignored, which is what caused the misreading.
+
+**⚠️ Hinges on:** *the Inkbird staying up overnight.* It has a known WiFi-drop history, it failed through the first half of this experiment, and it is the sole instrument for the shelf deltas. **⛔ Note the smart-plug fix is WITHDRAWN — the device has an internal battery (`DECISIONS.md` 2026-07-19).** Full working and the per-night table: `stock-control/docs/MICROCLIMATE.md`.
+
+**⚠️ And this is n=1.** One clean post-closure night with a live Inkbird, and **batch day 08-11 disturbs the room**. The duty trend is convincing directionally; the shelf-delta result is a single observation.
 
 ### ✅ CLOSED 2026-08-07 — THE ROOMS COOLED, THE FILTER WAS THE CAUSE, AND BOTH HAVE RECOVERED
 
@@ -733,7 +760,7 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
   - **⚠️ BUT THE JUSTIFICATION HAS BEEN SUPERSEDED.** On **2026-07-25** the real cause of that shortfall was found: **the humidifier was misting into a sealed tub**, condensing and draining back. Cutting a hole in the tub side fixed it at roughly half the duty, same RH. **So the fan is on high and two end caps are off to compensate for a problem that was somewhere else entirely.** The room is running further from the distributed-low-velocity design bet than intended, for a reason that no longer holds.
   - **The cost is crop quality, not power** — the WF-150 draws 23/26 W, so the speed difference is trivial on the bill. What it spends is the core design bet: low-velocity, well-mixed, **no direct draft on the caps** (`MICROCLIMATE.md` KPI 5 — too much airflow dries caps and raises local VPD).
   - **🎯 REVERT TEST, one variable at a time, after the floor-vent experiment resolves** (do not run concurrently — circulation changes would confound it). Cheapest and most reversible first: **(1) fan to LOW** — free, instant, watch overnight humidifier duty against the 76.3% baseline; if the tub fix did the real work, duty should hold. **(2) return duct end cap back on** — same metric, another 24h. **(3) supply duct end cap last**, since that has governed room behaviour since 07-10 and is the deepest change.
-- **Fresh-air fan: 100mm 2-speed AC inline (ACDC)**, mains, on LOW. Governs five coupled jobs — CO2, temperature coupling to the grow-room aircon, grow-room ventilation, positive pressure, humidifier drying load.
+- **Fresh-air fan: 100mm 2-speed AC inline (ACDC)**, mains, **on HIGH** — ✏️ *corrected 2026-08-11; this line read "on LOW" and had been stale since the **2026-07-30 Arm C decision to leave it on HIGH**, where high beat low on every axis.* Governs five coupled jobs — CO2, temperature coupling to the grow-room aircon, grow-room ventilation, positive pressure, humidifier drying load. **It is a 2-speed switch: there is no "slightly slower" without fitting the variac, which has been rejected on measurement twice.**
 - **Both fans run off-controller** (mains, not on MOSFET/GPIO). The ESP firmware does not bind relay sockets 1 and 4 to them, so `switch.…_socket_1` / `_socket_4` read `off` while the fans run on manually-forced power.
 - **The HA fan entities `fan.*_circ_fan` and `fan.*_fresh_fan` drive nothing.** Masked by an entity-registry name override reading "PHANTOM … drives nothing"; `entity_id`s unchanged so automations are unaffected.
 - **No tacho on either fan** — HA cannot tell a spinning fan from a dead one. **After any reboot, reflash or power event, physically confirm both fans are turning.**
