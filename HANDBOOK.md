@@ -62,6 +62,19 @@ Every step above is logged through the control panel (`stock-control/index.html`
 
 **⚠️ Status as of 2026-08-04: the filter is the operator's diagnosis and the data is consistent with it, but the clean has not yet been done and the cause is UNCONFIRMED.** The recorder can only say "reduced heat output" — low refrigerant, a fouled coil, or a changed setpoint would look identical. The filter is the right first move because it is free, not because it is proven. **Confirmation test: clean it, change nothing else, and expect the grow room to recover first with the fruiting room following toward ~17.3 °C within a day.** If it does not recover, the filter was not the cause and the next candidates cost money. Re-run `room_check.py` ~24h after.
 
+### ⚠️ Grow-room air conditioner — the fan MUST stay on manual HIGH
+
+**Added 2026-08-12, the day the unit was properly diagnosed. `Alliance INAA18`, 5790 W heating — 3–5× oversized for the 17.7 m³ grow room, and healthy (16 °C supply-to-return rise, no ice, no condensate). It was still leaving the room 5–6 °C below its 21 °C setpoint on cold nights, and the reason is a feedback loop, not a fault in the unit.**
+
+**Required settings: mode `HEAT` · fan `MANUAL HIGH` · setpoint 21 °C.**
+
+**⛔ DO NOT PUT THE FAN BACK ON `AUTO`.** The unit's intake is on **top of the indoor unit, 100 mm below the ceiling**. In heating, its ~40 °C output is buoyant and rises — straight back into its own intake. That makes the air the thermostat senses run **~8 °C hotter than the room**, so the unit believes it has nearly arrived, throttles down, and on `AUTO` **drops the fan to low — which removes the jet's throw, so even less air reaches the floor and the recirculation gets worse.** A self-reinforcing loop that ends with the crop cold and the unit convinced it is finished.
+
+- **Manual HIGH breaks the loop** by denying the unit the ability to throttle its own airflow. **It is a workaround, and it reverts silently** — a power cut, a remote battery change, or someone "restoring auto" is enough.
+- **⛔ Nothing will tell you it has reverted.** There is **no `climate.*` entity in Home Assistant** and no alarm on this unit; the only instrument that sees it is the weekly `room_check.py` temperature scorecard, and only indirectly. **Same failure shape as `DECISIONS.md` 2026-07-10, where an ESPHome `restore_mode` default silently defeated the room's continuous-circulation design.**
+- **Also set the louvres as steeply DOWN as they go**, for the same reason: throw the air at the floor so it must warm the room before it can return.
+- **➡️ The permanent repair is geometric** — deflect or duct the supply so it cannot reach the intake. **That is what would make `AUTO` safe again**, and it is the only version that does not depend on someone remembering a button. Until then, treat the setting as part of the equipment.
+
 ### Production consumables — reorder points
 
 **Added 2026-08-04, after cable ties ran out on a Tuesday and blocked the bagging of an already-pasteurised batch.** These are cheap items whose absence stops production outright. **None of them appear in `stock-control/finance/CASHFLOW.md`'s cost list**, which is defensible on materiality but is also why nobody was watching the level.
@@ -84,6 +97,7 @@ Listed here so the list is complete; the detail stays where it lives.
 
 | Item | Cadence | Where |
 |---|---|---|
+| **⚠️ Confirm the grow-room aircon is still `HEAT` · `FAN = MANUAL HIGH` · setpoint 21 °C** | After **any** power event, remote battery change, or if the room runs cold — and at handover | **See directly below** — this is a load-bearing setting, not a preference |
 | **`room_check.py` room health check** | **Weekly**, and after anything physical changes | `todo.fungi4u`, `MICROCLIMATE.md` §6 |
 | **Roof water tank fill** | **Daily, manual, ~18 min** — ⚠️ a single manual action stands between this business and no water, and nothing alarms on it | `STATUS.md` |
 | **Straw chopping** | **Weekly, Mondays** — bespoke converted lawnmower, no backup and no spare | `HANDBOOK.md` production cycle, `STATUS.md` |
