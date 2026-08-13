@@ -82,7 +82,17 @@ The objective is income for the family, via *committable* supply → new clients
 
 - **🔑 THE UNEXPLAINED PART POINTS AT WATER: total batch weight runs 93–135 kg against what should be a FIXED input.** `HANDBOOK.md` — two bales → one 110 L drum → *"exactly one batch"*. **A fixed drum of dry straw cannot vary 45% in mass; hydration can.**
 - **➡️ IF IT IS WATER IT IS A YIELD LEVER, AND FREE.** BE divides by **wet** weight, so excess water depresses it mechanically — dividing by mass that was never food. **And over-hydrated substrate goes anaerobic in pockets**, which costs colonisation and invites contamination. **If it is straw, it is instead a cost line: ~16% more substrate bought and processed than the plan assumes.**
-- **⬜ Two questions for the operator, and they decide which:** *is the water added by measure or by feel*, and *does the drum reliably make one batch, or does its yield vary?*
+- **✅ ANSWERED SAME DAY (operator): NO WATER IS ADDED AT ALL.** The drum is drained, then the liner and its soaked straw are **left to drain further**, and that wet straw is bagged. **So the 28% spread is RESIDUAL DRAINAGE WATER, set by how long it is left — same dry straw in, variable water out.** ➡️ **The control variable is drain time, and it is free.**
+- **⛔ THE CONTAMINATION LINK IS NOT ESTABLISHED — r = +0.44, n = 10, and it should not be quoted as support.** The two heaviest batches do hold the two highest cull rates (W27 5.20 kg → 21.7%, W25 4.96 → 13.6%), **but W30 is the LIGHTEST batch and culled 10.7%**, and the three newest batches' 0% is *"only 2–16 days old"*, not clean. **Watch it; do not act on it.** *(Note the failure modes differ too: W27's five culls were all in FRUITING, W30's three in GROW.)*
+- **🔑 THE SOLID CONSEQUENCE IS MEASUREMENT, NOT BIOLOGY: BE divides by WET weight, so a 28% moisture spread makes cross-batch comparison partly a drainage measurement.**
+
+  | | kg/bag | BE (wet, as recorded) | BE normalised to 4 kg |
+  |---|---:|---:|---:|
+  | W25 | 4.955 | 6.1% | **7.6%** |
+  | W26 | 4.489 | 9.7% | **10.9%** |
+  | W27 | 5.200 | 11.2% | **14.5%** |
+
+  **Same harvest, different denominator — W27 moves to within touching distance of the 15% industry floor purely by removing carried water.** Neither column is wrong: wet-basis is what happened, normalised is what the biology did. **⚠️ But you cannot detect a 10% yield gain through a 28% moisture wobble** — and proving a yield gain is what the whole room programme is for. **➡️ Standardising the drain (a timer, or "until it stops dripping" — and recording which) removes the largest noise source from the only yield instrument, for free.**
 - **🔬 W30 IS THE NATURAL EXPERIMENT AND IT IS ALREADY RUNNING — nothing to set up.** At **4.050 kg it is the only on-target batch**, currently 25 bags in the grow room, not yet moved to fruiting. **When it fruits it gives a clean read on whether on-target bags outperform**, against nine batches that ran 9–30% heavy. ⚠️ **Do not lose track of which batch it is.**
 
 
