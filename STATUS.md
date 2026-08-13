@@ -403,8 +403,32 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 |---|---|
 | Fruiting mean **falls below 18.5** and VPD returns under 0.40 | ✅ **The fan carries the coupling. LOW is the afternoon setting** — and the room needs a diurnal answer, not one speed |
 | Temp falls but **humidifier duty stays pinned** | ◐ Heat import solved, **moisture deficit is separate** — the spare 12-disc unit is then the next single variable |
-| Temp barely moves (**< 0.5 °C**) | ⛔ **The heat comes through the partition, not the fan.** No free lever remains — **and the divider wall and a separately conditioned room move to the front of the queue** |
+| Temp barely moves (**< 0.5 °C**) | ⛔⛔ **THIS BRANCH IS WITHDRAWN — SEE THE CORRECTION BELOW. IT CANNOT LEGITIMATELY FIRE.** |
 | **Shelf delta past −1.5 and still falling** | 🔴 **ABORT, back to HIGH.** The pressure floor binds before the heat benefit arrives — the 07-25 failure mode |
+
+**✏️✏️ CORRECTED 2026-08-13 19:30 — THE TEMPERATURE BRANCH IS INVALID, AND IT WAS INVALID WHEN WRITTEN. THE ACTUATOR IS TOO WEAK TO TEST THE HYPOTHESIS.**
+
+`HARDWARE_REFERENCE.md` §"Fan failure mode" already records it, from the manufacturer's table captured 2026-08-11: **these ACDC fans' two speeds are only ~7–13% apart** *(WF-150 2500/2700 rpm; WF-100 2300/2600)*. The file says it outright — ***"the two-speed switch is a near-useless flow actuator… the revert test's 'fan → LOW' step will move almost nothing (~7%)"***, and ***"Arm C's LOW→HIGH result (temp +0.2 °C) was measuring a 7% flow change."***
+
+**➡️ SO A NULL TEMPERATURE RESULT MEANS NOTHING ABOUT COUPLING.** It cannot distinguish *"the fan does not carry the heat"* from *"a ~10% flow change is too small to see"*. **Reading a null as evidence for the partition would promote a building project on a measurement that cannot support it.** ⚠️ **The passage was read the same afternoon, while checking something else, and not applied to the experiment already running.**
+
+**📊 THE 2-HOUR READ (17:20 → 19:20, 20-minute means — not spot values):**
+
+| | 17:20 | 19:20 | |
+|---|---:|---:|---|
+| **VPD** | 0.435 | **0.395** | ✅ back in band |
+| **Absolute humidity** | 13.88 | **13.92** | ✅ **fell all afternoon (14.47 → 13.88), TURNED at the change** |
+| RH | 81.2% | 82.5% | +1.3 |
+| Fruiting temp | 19.78 | 19.63 | −0.15 |
+| Grow temp | 23.76 | 23.59 | −0.17 |
+| **Room-to-room gap** | **3.98 K** | **3.96 K** | **unchanged — they cooled together, that is evening** |
+| Shelf delta | −0.78 | −0.62 | ✅ improved, no abort |
+| CO2 | 681 | 690 | ~110 ppm/day, not the 275 feared off one noisy pair |
+
+- **✅ THE HUMIDITY RESULT IS REAL AND IS THE REASON TO LEAVE IT ON LOW OVERNIGHT.** AH had fallen monotonically all afternoon and **reversed at 17:20**. That is moisture retained, not a temperature artefact — it passes the doctrine's own test.
+- **⛔ THE TEMPERATURE RESULT IS NULL AND UNINFORMATIVE.** 0.15 °C against Arm C's 0.20 °C for the same swing: **the test reproduced Arm C, and both measured the actuator's weakness.**
+- **➡️ THE COUPLING QUESTION IS STILL OPEN AND NEEDS A REAL FLOW CHANGE — the variac, which is OWNED BUT NOT FITTED.** `HARDWARE_REFERENCE.md`: *"if this fan ever genuinely needs slowing, the variac is the only tool that can do it."* **Until it is fitted, neither the trolley/wall case nor the "separate room is forced" case can be tested on this fan.**
+- **⚠️ Spot readings vs means:** the 19:31 monitor spot pair showed the gap narrowing 3.90 → 3.50 K. **The 20-minute means show it flat.** Trust the means — the spot pair caught the grow room mid-cycle. *(`MICROCLIMATE.md`: never judge from a spot check.)*
 
 - **⚠️ THE SHELF IS ALREADY AT −0.80 BEFORE THE CHANGE**, against the −0.1/−0.2 this file calls flat, and −0.3 this morning. **The abort tripwire is nearer than it looks.**
 - **⚠️ CO2 is the cost and it is already climbing** (~150 ppm/day, 665 displayed). **If the primary is still near-accurate per the 08-11 outdoor check, headroom to the 800 target is ~135 ppm — about one day.** Acceptable for one night, not unattended.
