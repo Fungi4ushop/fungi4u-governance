@@ -348,430 +348,50 @@ The fan draws from the **grow room**, not outdoors. The grow room warmed 7.3 °C
 
 ⚠️ **Hinges on:** *that the Inkbird is trustworthy enough to calibrate against.* It is explicitly a **secondary, verification-only** sensor with a known WiFi fault, and it drifts low over days — so this measures a *difference between two imperfect sensors*, not truth. **It is still worth far more than the circular estimate in use now.** **Size of the move if wrong: the sealing decision, and whether the room is currently failing its CO2 KPI or passing it comfortably.**
 
-### 🔴 BOTH ROOMS ARE COOLING AGAIN — the grow room is back at 14.52 °C, the exact trough of the "closed" 08-01 event (weekly check, 2026-08-12) — ⛔ SUPERSEDED 2026-08-13, see directly above
+### ✅ THE AIRCON INVESTIGATION, 2026-08-01 → 08-13 — CLOSED. Compressed 2026-08-13; full narrative in git.
 
-**The weekly `room_check.py` was 9 days overdue** (due 08-03, last run 08-05) **and it caught the room out of band.**
+**Cause: a recirculation feedback loop, not a fault.** The indoor unit's intake sits 100 mm below the ceiling, so its ~40 °C output rose straight back into it, the thermostat read ~8 °C hotter than the room, the unit throttled, and on `AUTO` it dropped the fan — removing the jet's throw, worsening the recirculation. Self-reinforcing.
 
-| | 48h to 08-12 09:00 | last 24h | claimed 08-07 |
-|---|---|---|---|
-| **Temperature in band (15–18 °C)** | **88.2%** | **75.6%** | **100%** |
-| mean / min | 16.18 / **14.70** | **15.53** / **14.70** | 16.28 / 15.20 |
-| VPD · absolute humidity | 100% · 100% | 100% · 100% | 100% · 100% |
+**Fix: `HEAT` · fan `MANUAL HIGH` · setpoint 21 °C, louvres steeply down.** **Proven 2026-08-13: grow-room overnight mean 14.48 → 21.84 °C, at setpoint for the first time in this record.** ➡️ **Operating rule and its silent-revert risk: `HANDBOOK.md`.** The permanent repair is geometric — deflect or duct the supply away from the intake — and that is what would make `AUTO` safe again.
 
-**➡️ THE REGULATION TEST THIS FILE SET UP HAS NOW RUN, AND IT FAILED.** The 08-07 entry below closed the filter event but named its own outstanding test: *"The regulation test is the next cold night: does it hold ~17.5 as outdoor falls?"* **Outdoor fell 11.7 → 6.6 °C, and it did not hold — it went to 15.0.**
+**⛔ RULED OUT — do not re-litigate these. Each was a live theory that cost time:**
 
-**Overnight means, 22:00–06:00, both rooms plus outdoors** *(fruiting + duty from `arm_read.py`; grow room from the recorder; outdoor from `outdoor_history.py`)*:
-
-| night | outdoor | grow | fruiting | grow − outdoor | duty 00–08 | CO2 displayed |
-|---|---:|---:|---:|---:|---:|---:|
-| 08-08 | 11.8 | **18.23** | 17.3 | 6.4 | 61.9% | 554 |
-| 08-09 | 11.7 | 17.49 | 16.9 | 5.8 | 79.8% | 528 |
-| 08-10 | **7.1** | 16.67 | 16.7 | **9.6** | 67.8% | 497 |
-| **08-11** | **6.6** | **14.52** | **15.0** | 7.9 | 72.1% | **404** |
-
-- **🔑 14.52 IS NOT AN ARBITRARY NUMBER — it is the grow room's exact trough from the 08-01 → 08-04 event** that `HANDBOOK.md` records as the filter failure signature *(fruiting 17.29 → 14.73, grow 17.73 → **14.52**)*. **Four nights after "both have recovered", the recovery is fully given back.**
-- **⛔ BUT THE DISCRIMINATOR DOES NOT MATCH, AND THAT MATTERS — DO NOT JUST RE-DIAGNOSE THE FILTER.** The 08-01 event's decisive evidence was that **outdoor nights *warmed* 8.2 → 12.8 °C while both rooms fell** — *"two rooms falling while the outdoors rises cannot be weather."* **This time outdoors fell 5.2 K.** So weather is a live explanation now in a way it explicitly was not then, and the clean signature is absent.
-- **✅ AND ONE READING ARGUES THE AIRCON IS STILL PUTTING OUT HEAT: grow − outdoor WIDENED, 6.4 → 9.6 → 7.9 K.** Under passive-envelope decay that gap should *shrink* toward the no-heat balance point. **The likeliest read is therefore a CAPACITY limit, not a re-fouled filter** — a unit already documented as delivering **3.2–5.9 °C below its 21 °C setpoint**, now facing a 5 K colder outdoors.
-- **⚠️ Against that: the fall is ACCELERATING, not decelerating** — grow room −0.74, −0.82, **−2.15** °C/night. `HANDBOOK.md`'s signature says deceleration toward a new equilibrium distinguishes *weak* output from *absent* output. **Part of that is lag** (the outdoor step landed on 08-10, the big room fall on 08-11), **but it is the one reading consistent with output having dropped again.**
-- **📐 The fruiting−grow sign has inverted: −0.93 → −0.59 → +0.03 → +0.48.** The fruiting room is now the *warmer* of the two. Consistent with `HANDBOOK.md`'s documented *"0.2–0.5 °C above"* relationship, but it has moved 1.4 K in four nights and no one has explained why.
-
-**🔴 AND IT IS NOT A NIGHT-TIME DIP — THE ROOM IS STILL AT THE FLOOR AT 09:29 (6h window, 08-12).** **Mean 14.84, max 15.10, min 14.70 — only 13.3% of the last six hours in band**, against an outdoor that has *warmed* to 8.9 °C. **So the room is not recovering with the morning**, which is what a purely weather-driven dip would do. *(Humidity is clean throughout: VPD and absolute humidity both 100% in band. Sensor health over the same 6h is spotless — longest gap 2.0–7.0 min — so the 57.5-min hole at 08-11 11:33 was a one-off, not an ongoing fault.)*
-
-**➡️ TODAY IS THE BEST DAY THIS MONTH TO TAKE THE FOUR AIRCON READINGS, and that is the whole recommendation.** The unit is visibly under-delivering *right now*, so a weak supply−return split will show at maximum contrast; on a mild day it would be ambiguous. **The queued todo item is the right instrument and it costs nothing.**
-
-**🔬 THE FREE DISCRIMINATOR, straight from `HANDBOOK.md`'s own signature: does the grow room GAIN HEAT THROUGH THE AFTERNOON?** During the 08-01 event it did, *"confirming it was running"* — that is what separated **weak** output from **absent** output. **Check it this afternoon before spending anything.** A room that gains is a capacity problem; a room that stays flat at 14.8 all day is a unit that has stopped heating.
-
-**✅✅ ANSWERED THE SAME MORNING — THE FOUR AIRCON READINGS WERE TAKEN AT 10:20 AND THEY SUPERSEDE THE READING ABOVE. ⛔ "CAPACITY LIMIT" IS WITHDRAWN.** The unit delivers a **16 °C rise (supply 47, return 31)** with **no ice and no condensate** — it is healthy, and neither a weak unit nor defrost cycling is the cause. **The two actual faults are (1) supply air short-circuiting into the return, so the thermostat reads 31 °C against a 21 °C setpoint and shuts off, and (2) confirmed air leaks around the grow room's external door.** **✅ AND A THIRD FINDING WAS RAISED AND THEN WITHDRAWN THE SAME HOUR — the per-night table above is UNAFFECTED and its absolute values STAND.** A probe read 21 °C where the grow-room DHT22 read 15.5, which briefly looked like a 6 °C sensor error; **an outdoor cross-check (meter 18 °C vs Open-Meteo ~11.3 °C) put the offset on the MULTIMETER, and an ice-water bath then MEASURED it at +7 °C.** **The DHT22 was right, the recorded shortfall stands, and nothing in this entry's numbers changes.** Full results, scoring, the withdrawal and next actions: the RESULTS block under *"THE TEMPERATURE READINGS TO TAKE"* below.
-
-**⚠️ Hinges on:** *whether the aircon is still running, at the same setpoint and in the same mode.* **Unestablished, and it is the cheap check that comes before any theory** — the operator was in the room on **08-11 (batch day)**, `room_check.py` logs sharp CO2 disturbances at **11:19–13:45**, and there is a **57.5-minute recorder gap at 11:33 across every controller entity *and* the Inkbird**. ⬜ **Ask what was done in there before costing anything.** *(Both devices gapping together, on different paths, points at the Pi/HA or the network rather than the controller.)*
-
-**➡️ CONSEQUENCES, and the first one blocks work already queued:**
-1. **⛔ DO NOT CLOSE MORE EXHAUST HOLES.** The condition recorded below is *"a mild, still night — ~13 °C outdoors and light wind"*, and **08-11 was 6.6 °C. That night is still not sampled.** Worse, overnight duty went **72.4 → 76.6%** while the room got colder, so **the duty trend has stopped improving** — do not read the 100 → 83 → 72% series as continuing.
-2. **The crop is out of spec but not in danger.** 14.70 °C against a 15 °C band floor, on a cool-fruiting crop. It slows fruiting; it does not threaten it. **No emergency action.**
-3. **✅ The CO2 offset is still uncorrected, and the physical-impossibility check re-confirms it.** Displayed overnight trough **402 ppm against ~425 outdoor ambient** — impossible for a room of respiring mushrooms, so the **~350 ppm under-read stands** and the `0x006B` write is still pending the reflash. **True trough ≈ 750 ppm, still under the 800 target.** *(The four-night displayed fall 554 → 404 tracks the cooling: a bigger indoor−outdoor ΔT drives harder stack ventilation.)*
-4. **`room_check.py` flagged an "OFFSET MOVED" step at 08-11 15:00 (−31 → −1 ppm, score 1.7) — not actionable.** It is 30 ppm on a differential that is **blind by construction** while both sensors share a ~350 ppm common-mode error, and it sits inside the batch-day disturbance window. **Do not spend a reflash on it.**
-
-**🛠️ TWO `room_check.py` DEFECTS FOUND WHILE RUNNING THIS — ✅ BOTH FIXED 2026-08-12.**
-- **It hard-coded an IP.** `HA_URL` defaulted to `http://10.0.0.110:8123`, against `DECISIONS.md` 2026-08-10's *"address by name"* decision — it worked only because the reservation had been rebuilt, and **it is exactly the class of thing that broke every tool here on 08-09.** Now `http://homeassistant.local:8123`. Verified live.
-- **It crashed on any short `--hours` window.** A window that does not span 10:00–16:00 gives `midday = None`, and the duty line formatted it unguarded — `TypeError: unsupported format string passed to NoneType`. **So `--hours 6` could not run at all**, which is the window you want when checking whether the room is recovering *today*. Now prints *"— (no data in window)"*. **Regression-checked: the 48h run reproduces 74.5% overnight / 79.0% midday unchanged.**
-
-### 🔬 LIVE EXPERIMENT — 20 of ~80 exhaust holes closed 2026-08-09; the clean night is READ (08-11): the gradient was already flat, the win is humidifier duty
-
-**The operator closed every 4th hole in the front-wall 50 mm exhaust strip on Sunday morning 2026-08-09** — 20 holes, open area ~63 → ~47 cm², a **25% cut in the room's only passive exhaust.** This is option (3) from `MICROCLIMATE.md`'s own fix list, run partially: block the openings, watch the bottom gradient and CO2, *before* committing to the permanent 45° Isoboard cover.
-
-- **✅ The documented risk did not appear.** `MICROCLIMATE.md` warns that sealing trades easier humidity for less CO2 venting, with a tripwire at an overnight trough that stops falling to ~680 and holds >1000. **The first night after measured a trough of 503 ppm — the lowest of six nights.** Large headroom remains. *(⚠️ Qualified 08-11: that night — 08-09→10, stack 5.2 K, wind 5.7 — is a **mid-range** ventilation night and remains the better of the two CO2 datapoints. **The 08-10→11 trough of 482 is NOT** — see the CO2 inversion below. **Neither is the weak-drive night the risk actually lives in.**)*
-- **✅ Humidifier duty fell ~9 points** overnight (89.2 → 79.7 against 08-08, the closest match on temperature), RH held in band, and the room carried nearly the same absolute humidity while working less for it.
-- **⛔ The bottom-shelf gradient — the thing this change is FOR — has not been read at all.** All three shelf deltas derive from the Inkbird, which froze on 08-09 morning and returned only at 07:42 on 08-10. **The experiment has so far measured its side effects and not its purpose.**
-
-#### ✅ THE CLEAN NIGHT WAS READ, 2026-08-11 — AND THE TARGET METRIC TURNS OUT TO HAVE BEEN ALREADY FLAT. THE PAYOFF IS ELSEWHERE.
-
-**⛔ FIRST, A DATA TRAP THAT MUST NOT BE RE-WALKED: THE SHELF DELTAS KEPT REPORTING NUMBERS THROUGH THE INKBIRD FREEZE, AND THEY WERE ARITHMETIC ON A DEAD SENSOR.** The deltas are **template sensors that recompute whenever the *other* input changes**, so a frozen Inkbird still yields a moving delta. Proof: 08-09→10 shows `inkbird_co2` **n=1 at 646** while `co2_shelf_delta` reports **mean +116.6** — and **646 − 529.4 (primary mean) = 116.6 exactly.** ➡️ **08-08→09 and 08-09→10 shelf deltas are VOID.** *(This also explains the "offset moved" step `room_check.py` flagged at 08-10 10:00 — that is the freeze **ending**, not a calibration shift.)*
-
-| night | outdoor | stack ΔT | AH deficit | wind | duty 00–08 | temp Δ | rh Δ | co2 Δ |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|
-| 08-06→07 *(open)* | 13.1 | 2.9 K | 8.9 | 7.9 | **100.0%** | −0.2 | +1.1 | −69.5 |
-| 08-07→08 *(open)* | 11.4 | 5.4 K | 6.4 | 5.1 | 85.2% | −0.1 | +1.8 | −20.9 |
-| 08-09→10 *(closed)* | 11.6 | 5.2 K | 8.3 | 5.7 | 83.1% | — VOID — |
-| **08-10→11 *(clean)*** | **6.1** | **10.3 K** | 6.6 | **15.3** | **72.4%** | **+0.3** | **+0.6** | **−20.9** |
-
-*Deltas are bottom minus top. Outdoor from Open-Meteo 22:00–06:00; duty from the relay history.*
-
-- **⛔ THE STATED TARGET WAS ALREADY MET BEFORE THE EXPERIMENT RAN.** Pre-closure nights show temp **−0.1 to −0.2 °C** and RH **+1.1 to +1.8** — which is precisely what `MICROCLIMATE.md`'s 07-21 scorecard already called *"flat"* and passing. **The hole closure was aimed at a gradient the fan work had largely closed.** Post-closure the bottom sits **0.3 °C warmer** than the top and RH is flatter at **+0.6** — real, right direction, small.
-- **✅ THE ACTUAL PAYOFF IS HUMIDIFIER DUTY, AND IT WAS WON ON THE HARDEST NIGHT OF THE WEEK.** Duty is trending **100.0 → 83.1 → 72.4%** across the closure. Against **08-07, which had an almost identical moisture deficit (6.4 vs 6.6) but half the stack drive**, duty fell **85.2 → 72.4**. **First time the KPI's <70% target has been within reach.**
-- **✅ THE RAIN OBJECTION WAS TESTED AND STRENGTHENS THE RESULT (operator raised it, 2026-08-11).** **9.4 mm fell inside the night window** and outdoor RH hit **85%** against 32–66% on other nights. **But in ABSOLUTE terms the rainy night was marginally DRIER: outdoor AH 6.3 vs 6.8 on 08-07**, because saturated air at 6.1 °C holds only **7.3 g/m³**. **The temperature drop cancelled the humidity rise, so the humidifier saw no relief from the rain.** *(Textbook `MICROCLIMATE.md` §3 — "it rained so the air was humid" is an RH intuition; what the humidifier replaces is absolute moisture.)*
-- **✅ AND THE WIND MAKES IT HARDER STILL — 15.3 km/h against 2.4–7.9, roughly triple.** `MICROCLIMATE.md` records that on a front wall, gusts can locally reverse flow through the apertures regardless of fan pressure. **So stack effect was at double, wind at triple, and the moisture deficit unchanged — every infiltration driver at its weekly maximum — and duty still hit its weekly low.**
-- **🔴 WHICH INVERTS THE CO2 READING: LAST NIGHT WAS THE EASIEST POSSIBLE CO2 TEST, NOT A REASSURING ONE.** Cold plus wind means the room ventilated harder than on any other night this week, and **stack effect is the VARIABLE part of this room's ventilation** *(✏️ corrected 2026-08-13: this read "IS this room's ventilation now the fresh-air fan is gone" — the fan was refitted 07-23 and runs on HIGH; it contributes a large but roughly CONSTANT flow, so night-to-night swings are still stack- and wind-driven).* The **482 ppm trough therefore says almost nothing about whether sealing is safe.**
-- **➡️ THE CONDITION ON CLOSING MORE HOLES IS NOW A MILD, STILL NIGHT — ~13 °C outdoors and light wind, like 08-06 — when stack drive is weakest.** That is the state the sealing risk actually lives in, and it has not been sampled. **⚠️ Reinforced independently by the ceiling finding above: with the shade cloth confirmed non-permeable, the exhaust strip and floor openings are the ONLY relief path.**
-
-**🛠️ ONE TOOLING DEFECT FOUND WHILE READING THIS — ✅ FIXED 2026-08-11.**
-- **`room_check.py` reported a failing KPI as a pass.** It printed `Cycling — has headroom (KPI: not pinned, under ~70%)` for **any** overnight duty ≤95%, so **76.9% read as "has headroom" while failing the 70% target stated on the same line.** Now three-state against the KPI itself — `OK` / `FAILS KPI` / `PINNED`, thresholds as named constants. Verified live and at the 70/95 boundaries.
-- **✏️ A second "defect" was reported and was WRONG — recorded so it is not re-raised.** `--since` **does** exist and does what `MICROCLIMATE.md` §6 documents. **It marks the co-location start for the offset calculation; it is not a window selector** — the window is always `--hours`. Passing it alone appears to be ignored, which is what caused the misreading.
-
-**🌐 ✅ THE 08-09 INSTRUMENT FAILURE WAS THE NETWORK, NOT THE DEVICES — established 2026-08-11, and it reattributes the Inkbird freeze.**
-
-`room_check.py`'s sensor-health section flagged a **simultaneous ~6 h gap across every controller entity — temp, CO2 AND the humidifier relay — on 08-09 13:11 → 19:14**, plus 47 min and 64 min dropouts earlier the same day. The Inkbird stopped at **12:00**, within the hour, and did not return until **07:42 on 08-10**.
-
-- **⛔ NOT a power cut, and the fans are confirmed turning (operator, 2026-08-11).** Cause was **the house network problems** that ended in the **08-10 router factory reset** (see §network). The mandated post-power-event fan check of `DECISIONS.md` 2026-07-17 is therefore satisfied.
-- **✅ CONTROL WAS NEVER LOST — this is a REPORTING gap, not a control gap.** With mains present the ESP32 kept running and kept driving its relays. **✏️ An inference made earlier on 08-11 — that the relays de-energised and the room went ~6 h without humidification — is WRONG and withdrawn.** It would have made the 08-09→10 night look harder than it was. *(That night's duty figure is unaffected regardless: the outage ended 19:14 and the window starts 22:00.)*
-- **✅ IT IS THE 2026-01-26 LOCAL-CONTROL DECISION WORKING AS SPECIFIED** — *"if the network, Supabase, or Home Assistant goes down, the climate control hardware must keep enforcing its own safety limits regardless."* **Six hours blind, room in band throughout. The cost fell entirely on the record, not the crop.**
-- **⚠️ But duty figures spanning 08-09 13:11–19:14 are computed across a hole in the relay history** and should not be quoted. The per-night numbers in the table above all sit outside it.
-- **🎯 AND IT REATTRIBUTES THE INKBIRD FREEZE, which this file has been blaming on the device.** The standing explanation is its *"known WiFi-drop history"*. **It stopped within an hour of the controller, during a house-wide network fault — so the network is the better explanation than a flaky sensor.** ✅ **Supporting evidence: on 08-10→11 it ran clean for the first time in this experiment — 737 points, no gaps — immediately after the network rebuild.** ⬜ **Two or three more clean nights would settle it.** The device may be materially more reliable than recorded.
-
-**⚠️ Hinges on:** *the Inkbird staying up overnight* — still the sole instrument for the shelf deltas, but see directly above: **the reliability estimate is now in question in the device's favour.** **⛔ Note the smart-plug fix is WITHDRAWN — the device has an internal battery (`DECISIONS.md` 2026-07-19).** Full working and the per-night table: `stock-control/docs/MICROCLIMATE.md`.
-
-**⚠️ And this is n=1.** One clean post-closure night with a live Inkbird, and **batch day 08-11 disturbs the room**. The duty trend is convincing directionally; the shelf-delta result is a single observation.
-
-### ⛔ REOPENED 2026-08-12 — was "CLOSED 2026-08-07: the filter was the cause and both have recovered"
-
-**✏️ THE RECOVERY DID NOT HOLD.** Kept in full below because the recovery *was* real when measured and the reasoning is worth preserving — **but the 100%-in-band claim is now four nights stale, and the regulation test this entry named has since run and failed.** See the cooling entry at the top of this section. **The filter verdict itself is NOT withdrawn** — cleaning it did produce a measured recovery. What is withdrawn is *"CLOSED"*.
-
-**Full recovery confirmed. Temperature is 100% in band** — 15.20–17.50 °C, mean 16.28, against **78.4% when the fault was found**. VPD and absolute humidity both 100%. **The grow room is at 17.78 °C overnight, slightly above its pre-fault 17.25.**
-
-| night | grow | fruiting | outdoor | fruiting − grow |
-|---|---:|---:|---:|---:|
-| 08-03 | 15.07 | 15.07 | 10.1 | 0.00 |
-| 08-04 *(filters cleaned)* | 15.96 | 15.62 | 11.8 | −0.34 |
-| 08-05 *(the clean test)* | 16.28 | 15.79 | 11.7 | −0.49 |
-| 08-06 | **17.78** | **16.32** | 13.4 | **−1.46** |
-
-**⚠️ One honest qualification, kept because it would otherwise be re-argued: the 08-06 rise was largely weather-assisted** — outdoor +1.7 and grow +1.50, near 1:1 — and **grow-minus-outdoor held flat at 4.2–5.0 K throughout the recovery, which is passive-envelope behaviour rather than thermostatic control** (the healthy period's slope was 0.02, i.e. decoupled). **The verdict rests on 08-05, where outdoor was flat and the room rose anyway. The regulation test is the next cold night: does it hold ~17.5 as outdoor falls?**
-
-### 🎯 AND THE PARTITION COUPLING MEASURED ITSELF — the setpoint experiment, run by the weather
-
-**The fruiting−grow gap widened 0.00 → −1.46 °C over four nights while the aircon recovered.** Grow rose **+2.71**, fruiting **+1.25** — so **coupling is 46% over the recovery, 35% on the last night alone.** This is the number `MICROCLIMATE.md` set up a deliberate experiment to obtain; it arrived free.
-
-| Grow setpoint | Fruiting lands at | |
-|---|---|---|
-| 20 °C | 17.1–17.3 | ✅ in band |
-| **21 °C** | **17.4–17.8** | ✅ **in band — available now, for nothing** |
-| 22 °C | 17.8–18.3 | ⛔ out of band |
-| 25 °C | 18.8–19.6 | ⛔ out of band |
-
-**➡️ So the grow room can run ~3 °C warmer without pushing fruiting out of band — but 24–27 °C is unreachable while the rooms share a wall.** That splits the colonisation question in two: **21 °C is free and testable on W31/W32 now; the 24–27 °C optimum needs the separate grow room.** It is a partial win, and it prices the new grow room against a real alternative for the first time.
-
-**⚠️ Hinges on:** *this being conduction rather than both rooms responding independently to outdoor.* **Probably conservative** — the fruiting room has the front-wall floor openings, so it is *more* outdoor-exposed and should have risen *more*, not less.
-
-#### 🔴🔴 THE SETPOINT IS ALREADY 21 °C AND HAS BEEN "FOR A LONG TIME" (operator, 2026-08-08) — WHICH VOIDS THE TABLE ABOVE AND THE 08-06 RECOMMENDATION
-
-**The grow room is asked for 21 °C. It has delivered 15.07, 15.96, 16.28 and 17.78 on the last four nights. That is a standing shortfall of 3.2–5.9 °C against its own setpoint, and it is not new.**
-
-- **⛔ THE "FREE SETPOINT DIAL" IS GONE. There is nothing to turn up.** The 08-06 entry recommended *"raise the grow setpoint one step to ~20 °C"* and called 21 °C *"available now, for nothing"*. **It was already there the whole time.** The proposal was to move a control that is already past where it was going to be moved to.
-- **⛔ AND THE COUPLING TABLE IS NOT A MENU OF OPTIONS.** Its rows (20 → 17.1–17.3, 21 → 17.4–17.8, 22 → 17.8–18.3, 25 → 18.8–19.6) were extrapolated from four nights of recovery **on the assumption that a setpoint is reached.** The room does not reach 21, so **22 and 25 are not choices that were rejected for pushing fruiting out of band — they are states this equipment cannot produce.** The measured 35–46% coupling figure still stands; **what it was used to predict does not.**
-- **✅ AND IT EXPLAINS AN ANOMALY THIS FILE ALREADY RECORDED BUT COULD NOT ACCOUNT FOR.** The 08-07 entry notes *"grow-minus-outdoor held flat at 4.2–5.0 K throughout the recovery, which is passive-envelope behaviour rather than thermostatic control"*, and that the 08-06 rise tracked outdoor near 1:1. **A room that never reaches setpoint has no thermostatic behaviour to show.** The observation was right and the explanation was missing; this is it.
-- **🔴 SO THE 08-07 "FULL RECOVERY" VERDICT IS PARTIAL, NOT WRONG.** *"Temperature is 100% in band"* was scored against the **fruiting room's** 15–18 °C band. **The grow room's own target was never checked, because nobody in these files knew what it was.** A unit sitting 3.2 °C below setpoint on its best night has not demonstrably recovered — the filter clean helped, and that is all that was shown.
-
-**➡️ THE STRATEGIC CONSEQUENCE, AND IT RUNS THE OTHER WAY FROM 08-06: THIS STRENGTHENS THE NEW GROW ROOM RATHER THAN DEFERRING IT.** The 08-06 finding was read as *"a setpoint, not a build"* — that colonisation temperature was a dial, which *"prices the new grow room against a real alternative for the first time."* **That alternative does not exist.** The dial is already at 21 and the room delivers 17.8, so **24–27 °C is not merely blocked by the shared wall — it is beyond what this equipment delivers in this space at all.** A separate, independently heated colonisation space is back to being the only route.
-
-**⬜ WHY IT MISSES SETPOINT IS UNKNOWN, AND THE CHEAP CAUSES MUST BE ELIMINATED FIRST — do not book a technician or price refrigerant on this.** In rough order of cost to check:
-
-1. ~~**MODE** — a unit set to COOL at 21 °C in a room at 17.8 °C is satisfied and never runs.~~ **⛔ ELIMINATED — but ✏️ CORRECTED 2026-08-12: THE MODE IS `HEAT`, NOT `AUTO`.** *(This entry recorded AUTO from 2026-08-08 onward; the operator has now stated it is set to heating.)* **The elimination stands — HEAT at 21 °C in a room at 15–19 °C calls for heat just as surely as AUTO would — but it stood on a wrong fact for four days.**
-   - **✅ AND `HEAT` IS THE SAFER SETTING, WHICH MATTERS GIVEN WHAT THE 08-12 READINGS FOUND.** In **AUTO** the unit chooses heating or cooling by comparing its *sensed* temperature against setpoint — and its sensed temperature runs **~8 °C above the room** because of the intake recirculation. **An AUTO unit reading 24 °C against a 21 °C setpoint would have concluded the room was too warm and ACTIVELY COOLED a room sitting at 15 °C.** ⛔ **On `HEAT` the worst it can do is stop. That failure mode is excluded by the setting** — and it was never flagged while the file believed the mode was AUTO.
-   - **✅ It also raises the value of "no ice, no water" at the outdoor unit.** Heating in Pretoria winter frosts the outdoor coil, and during a defrost the indoor fan normally **stops or crawls** — an alternative explanation for *"the fan is on slow all the time"*. **No meltwater is evidence against regular defrost**, so defrost stays ruled out and the recirculation explanation keeps the field.
-   - **✅✅ ANSWERED 2026-08-12: THE FAN SPEED WAS ON `AUTO`. THE FEEDBACK LOOP IS CONFIRMED AND THE FAULT IS MECHANISTIC, NOT A CARELESS SETTING.** **Had it been manually on LOW, the whole shortfall would have been one wrong button and the recirculation story would have been unnecessary. It was not.** ➡️ **The chain stands as derived:** *intake recirculates ~⅓ of supply → sensed temperature ~8 °C above the room → unit believes it is near setpoint → **`AUTO` drops the fan to low** → no throw → buoyant supply floats back into the ceiling intake → recirculation worsens.* **The geometry is the root cause; the slow fan was its symptom.**
-   - **🔴🔴 SO FORCING THE FAN TO HIGH IS A WORKAROUND, NOT A REPAIR — AND IT WILL SILENTLY REVERT.** The intake is still 100 mm below the ceiling and the supply still wants to float into it. **Put the fan back on `AUTO` and the fault returns in full.** ⚠️ **And nothing would tell you:** the aircon has **no telemetry, no `climate.*` entity and no alarm** — this file already warns *"nothing will tell you it has degraded."* **A power cut, a remote battery change, or someone helpfully "restoring auto" undoes it.** **Same shape as `DECISIONS.md` 2026-07-10, where ESPHome's `restore_mode` default silently worked against the room's continuous-circulation design bet.**
-     - **➡️ `FAN = MANUAL HIGH` IS NOW A LOAD-BEARING SETTING, NOT A PREFERENCE. Logged in `HANDBOOK.md`'s routine-maintenance list** so it survives handover and post-power-event checks, rather than living in a status note.
-     - **➡️ THE REAL REPAIR IS THE GEOMETRY** — deflect or duct the supply so it cannot reach the intake. **That is what would make `AUTO` safe again**, and it is the only version of this fix that does not depend on a human remembering a button.
-2. ~~**Is it actually running** — idle, fan-only, or on a timer.~~ **⛔ ELIMINATED 2026-08-08: operator confirms it runs 24 × 7.**
-3. **⭐ STRATIFICATION OR RECIRCULATION DECEIVING THE THERMOSTAT — the leading candidate.** The unit is mounted high, above the rear door, and regulates on **its own return-air temperature**. If the ceiling zone reaches 21 °C while the bags sit at 17.8, the unit is "at setpoint" exactly where its sensor is looking and nowhere else. **The grow room has no circulation of any kind**, which is precisely the condition that lets a room stratify. *Check: a thermometer at bag level vs up at the unit.* **Same fault class as the fruiting room's bottom-shelf gradient, which circulation fixed.**
-4. **Airflow obstruction — still live, still free to check, and it feeds candidate 3.** 96 bags are stacked in that room, and the 08-05 entry notes *"if any of it obstructs the aircon's air path or return it would reduce delivered heat progressively."* **Obstruction can also short-circuit supply straight back into the return**, so the unit reads its own warm output and cuts out early.
-5. **Where is the grow-room sensor?** If it sits low, near the external door, or in a draught, it may be reading a genuine cold spot rather than the room. **Cheapest of all to check and it has never been asked.**
-6. **Output or capacity shortfall.** Only after 3–5.
-
-#### ⛔ CORRECTION, 2026-08-08 20:30 — "24 × 7" MEANS POWERED, NOT RUNNING CONTINUOUSLY. **THE COMPRESSOR CYCLES.**
-
-**Operator: *"The aircon is switched on 24 × 7 but it starts and stops all the time. It is not stuck at on."*** **An earlier version of this section took "runs 24 × 7" to mean the compressor never stops, eliminated stratification on that basis, and concluded the unit was running flat out and losing. All of that is withdrawn.** *(It was flagged at the time as the load-bearing assumption — *"'runs 24×7' meaning the compressor genuinely never cycles off, rather than the unit merely being left switched on… the distinction decides everything above."* It did.)*
-
-**🔑 AND CYCLING IS THE MORE INFORMATIVE FACT, BECAUSE IT MEANS SOMETHING IS STOPPING THE UNIT WHILE THE ROOM IS 3 °C BELOW ITS SETPOINT.** A unit that is genuinely undersized would run and run. **This one stops.** So either it believes it has arrived, or it is stopping for its own reasons. **Two families, and they need different fixes:**
-
-- **A — IT THINKS IT IS SATISFIED (a sensing problem).** Candidates 3, 4 and 5 above. **The unit is fine; the air it measures is not the air the bags are in.** ➡️ Fix is circulation or sensor placement, and it is cheap.
-- **B — IT IS STOPPING FOR ITS OWN REASONS (a plant problem).** ⭐ **DEFROST CYCLING is the strongest new candidate and it fits every symptom.** In heating mode at Pretoria winter temperatures the **outdoor coil frosts**, and the unit periodically reverses to melt it — delivering **no heat, or briefly cold air**, while it does. Frequent defrost is a large net loss of heat output, it presents exactly as *"starts and stops all the time"*, and **it is invisible from indoors.** It would also explain the room tracking outdoor rather than holding setpoint.
-
-**➡️ ONE HOUR OF WATCHING SEPARATES THEM, AND IT COSTS NOTHING.**
-
-| Observation | Reads as |
+| Candidate | How it died |
 |---|---|
-| Cycle interval **regular** (~30–60 min) regardless of room temperature; outdoor unit **steams, drips or is iced**; indoor air goes **cool** during a stop | **B — defrost** |
-| Cycle interval **varies with load**; indoor air stays **warm** right up to each stop; outdoor coil **clean and dry** | **A — sensing** |
+| **Dirty filter** | The 08-01 event's diagnosis. Filter attended to; the shortfall persisted |
+| **Capacity / undersizing** | **Measured 16 °C supply-to-return rise.** Nameplate `Alliance INAA18`, 5790 W heating — **3–5× oversized** for 17.7 m³ |
+| **Defrost cycling** | **No ice, no condensate** on the outdoor unit |
+| **Low refrigerant** | Same 16 °C rise — a healthy unit cannot be short of gas |
+| **Back-wall drywall / envelope loss** | Leading candidate on 08-11. **A fan speed fixed the room; an envelope leak cannot be cured by a fan speed** |
+| **Grow-room door leaks** | Same test, same disposal |
+| **Grow-room sensor reading low** | A probe said 21 °C where the DHT22 said 15.5. **An ice-water bath put the +7 °C error on the MULTIMETER.** The DHT22 was right |
 
-**⭐ AND TAKE THE SUPPLY-AIR TEMPERATURE WHILE IT IS RUNNING — still the single best diagnostic and still never taken.** A healthy reverse-cycle split in heating delivers **35–50 °C** at the outlet. **20–25 °C means it is barely heating even when it is on.** One thermometer in the outlet stream, one minute.
+**🔧 THE FOUR-READING DIAGNOSTIC, kept because it is reusable and it is what actually cracked this.** Take all four **at the same moment, while the compressor is running:** ① supply air at the outlet louvres, ② return air at the intake grille, ③ bag level mid-room out of the blast, ④ ceiling height. **① − ② is the rise: 15–25 °C is healthy, under ~8 °C is a plant problem.** **② vs ③ is the load-bearing pair** — return warmer by 2–4 °C means the unit is cutting out on air the crop never sees. Use a cheap instant-read probe; **verify it against ice water first.**
 
-**⬜ Then, cheapest first:** look at the **outdoor unit for ice** (settles B outright); **thermometer at bag level vs at the unit** (settles A); **check the bag stacking** against supply and return; and the **smoke-pencil pass on the rear wall and its external door**, which the wall-removal section already wants for its own reasons — **run it once, use it twice.**
+**⛔ THE EXTRAPOLATED COUPLING TABLE (20 °C → fruiting 17.1, 25 °C → 19.6) IS SUPERSEDED.** It was inferred from four nights of weather-driven drift. **Coupling was measured directly on 2026-08-13 at ~44%** — see the fan-fix block at the top of this section, including the open question of how much of it the fresh-air fan carries.
 
-**⚠️ Hinges on:** *the grow-room temperature sensor being representative of the room.* Everything above treats 17.8 °C as what the room is. **If that sensor is in a cold spot, the room may be nearer setpoint than these files think and the whole shortfall shrinks.** **Establish where it physically sits before spending anything.**
+### 🔬 THE FRONT-WALL VENT SERIES — CLOSED 2026-08-01. Compressed 2026-08-13; five arms' data in git.
 
-##### 🌡️ THE TEMPERATURE READINGS TO TAKE — procedure, written 2026-08-08. Four readings, one visit, ~5 minutes.
+**20 of ~80 holes in the 50 mm exhaust strip were closed on 2026-08-09** (open area ~63 → ~47 cm², −25%).
 
-**⚠️ Take all four AT THE SAME MOMENT and WHILE THE COMPRESSOR IS RUNNING, and write down which it was.** Mixing readings from a running and a stopped cycle produces a rise figure that means nothing. **If the unit stops partway through, wait for it to restart and take the whole set again.**
+- **⛔ THE STATED TARGET WAS ALREADY MET BEFORE IT RAN.** The bottom-shelf gradient it aimed at was already flat — temp −0.1 to −0.2 °C, RH +1.1 to +1.8 — closed by the earlier fan work. **The experiment measured its side effects, not its purpose.**
+- **✅ THE REAL PAYOFF WAS HUMIDIFIER DUTY: 100 → 83.1 → 72.4% overnight**, and it was won on the week's *hardest* night — stack drive doubled, wind tripled, moisture deficit unchanged. **First time the <70% KPI came within reach.** *(⚠️ That series is now void as a baseline: the 08-12 fan fix stepped room temperature 3.3 °C. 72.4% and today's ~100% are not comparable numbers.)*
+- **✅ The rain objection was tested and STRENGTHENS the result.** 9.4 mm fell inside the window, but saturated air at 6.1 °C holds only 7.3 g/m³ — in absolute terms that night was *drier*. **"It rained so the air was humid" is an RH intuition; the humidifier replaces absolute moisture.**
 
-| # | Reading | Where exactly |
-|---|---|---|
-| **①** | **Supply air** | **In** the airstream leaving the indoor unit, a few cm in front of the outlet louvres, mid-flow. Wait 20–30 s for the reading to stop climbing |
-| **②** | **Return air** | At the unit's **intake grille** (top or front face of a high wall split), a few cm off it. **This is the air the thermostat senses and it is what decides when the unit stops** |
-| **③** | **Bag level** | Mid-room, at the height the bags actually sit, **out of the direct blast** from the unit |
-| **④** | **Unit height / ceiling** | Near the ceiling, away from the outlet. If only one extra reading is possible, make it this one |
-
-**Also record: where the grow-room HA sensor physically sits** (height, distance from the external door or a wall) **and its reading at the same moment.**
-
-**📋 HOW TO READ THE RESULT**
-
-| Comparison | Outcome | Verdict |
-|---|---|---|
-| **① − ②** *(the rise)* | **15–25 °C** | ✅ Unit is heating properly |
-| | **under ~8 °C** | ⛔ Barely heating even when on — **family B, a plant problem** |
-| **② vs ③** | within ~1 °C | No stratification — the thermostat is not being fooled |
-| | **② warmer by 2–4 °C** | ⭐ **STRATIFICATION CONFIRMED — family A.** It cuts out on air the bags never see |
-| **④ vs ③** | large gap | Same finding, seen directly as a vertical gradient |
-| **③ vs the HA sensor** | disagree | The sensor is in a cold spot — **part of the shortfall is measurement, not heat** |
-
-- **🔑 THE LOAD-BEARING PAIR IS ② AGAINST ③.** If the return reads ~21 while the bags read ~17.8, **the mystery is solved and the fix is circulation — cheap — not a new aircon.**
-- **⚠️ Use the RISE (① − ②), not the absolute supply figure.** A heat pump's outlet temperature depends on how warm the air entering it is, so 35 °C means something quite different in a 17 °C room than in a 21 °C one. **Judging output off ① alone will mislead.**
-- **Instrument: a cheap instant-read probe thermometer.** ⚠️ **The Inkbird will do at a pinch but reports at 1 °C resolution**, which is coarse for a 3 °C question — the same limitation that already killed the horizontal-uniformity read on 07-27.
-
-##### 🎯 THE GROW ROOM REACHED 21 °C FOR THE FIRST TIME IN THIS RECORD — 2026-08-12, within an hour of the intervention. ⚠️ ATTRIBUTION NOT YET ESTABLISHED.
-
-**Operator set the FAN TO HIGH and the LOUVRES AS LOW AS THEY GO, setpoint unchanged at 21 °C.** The recorder then showed this, in 10-minute means (SAST):
-
-| | Grow | Fruiting | Outdoor (Open-Meteo) |
-|---|---:|---:|---:|
-| 10:00 | 15.27 | 15.19 | 10.9 |
-| 10:20 | 17.19 | 15.48 | |
-| 10:40 | 19.38 | 16.19 | |
-| **11:10** | **20.02** *(max **21.10**)* | 17.05 | 12.1 |
-| 11:30 | 19.74 | **17.27** | |
-| 11:40 | 18.26 | 16.98 | 12.7 |
-
-- **🔑 THE GROW ROOM HIT ITS SETPOINT.** This file has recorded it topping out at **17.8 °C on its best night** and called the 3.2–5.9 °C gap *"a unit not meeting its target"*. **21.1 °C is the first time it has been met.**
-- **✅ AND THE FRUITING ROOM CAME BACK INTO BAND on the back of it — 17.27 °C**, against the 14.70 low that opened this whole investigation.
-- **✅ NOT WEATHER. Outdoors rose ~1.8 °C over the window; the grow room rose 4.75 and the fruiting room 2.08.** Same building, same weather, **and the grow room moved 2.6× more than either** — so the change is local to that room.
-- **✅ THE SHAPE FITS THE DIAGNOSIS: it climbed to setpoint by 11:10, then fell back to 18.26 — a unit reaching setpoint and CUTTING OUT.** Normal cycling, for the first time in this record.
-- **⛔ THE "FIRST TIME IT REACHED SETPOINT" FRAMING ABOVE IS TRUE BUT MISLEADING AS WRITTEN, AND IS QUALIFIED IMMEDIATELY BELOW.** The room did reach 21.1 °C — **but it did so BEFORE the intervention, and it reaches it repeatedly every ~8 minutes as it short-cycles.** **The correct statement is: this room reaches 21 °C at MIDDAY, in mild conditions, and has presumably been doing so on other mild middays that were never sampled at minute resolution.** ⚠️ **What has never happened is holding 21 °C OVERNIGHT, and that is still unachieved and still the thing that matters for colonisation.**
-- **⛔⛔ ATTRIBUTION RESOLVED AND THE CREDIT WITHDRAWN — operator: the settings were changed at ~11:40, 15 minutes before this was read. THE 10:20 → 11:10 CLIMB PREDATES THE INTERVENTION AND IS NOT CAUSED BY IT.** *(Recorded because it was one question away from being written up as a documented mechanism — exactly how a lucky coincidence becomes a mechanism.)* **✅ And "21 °C" is the SETPOINT, not a new return reading — so ② has NOT been re-measured and the success test is still outstanding.**
-
-**🔬 WHAT THE MINUTE-BY-MINUTE DATA ACTUALLY SHOWS: THE ROOM IS SHORT-CYCLING ON AN ~8–9 MINUTE PERIOD, SWINGING ~19 → 21 °C.**
-
-| Peak | | Trough | |
-|---|---:|---|---:|
-| 11:17 | **21.1** | 11:13 | 18.8 |
-| 11:26 | 20.9 | 11:21 | 19.1 |
-| 11:34 | 20.8 | 11:30 | 19.2 |
-| 11:51 | 20.9 | **11:45** | **17.4** ← operator in the room, door open |
-
-- **🔑 IT WAS ALREADY REACHING 21.1 AT 11:17, BEFORE ANYTHING WAS CHANGED.** ➡️ **The likeliest cause of the morning climb is the falling heat load:** outdoors went **10.9 → 12.7 °C**, and a marginal unit that cannot hold 21 against a 7 °C night manages it against a 13 °C midday. **This fits the whole record — the shortfall has only ever been measured OVERNIGHT**, where means run 14.52–18.23.
-- **⛔ THE POST-CHANGE RECOVERY IS INDISTINGUISHABLE FROM THE PRE-CHANGE ONES.** 17.4 → 20.9 in 6 min = **0.58 °C/min**; the 11:13 recovery was also **0.58**, the others 0.36–0.40. **One cycle, fifteen minutes — not evidence either way.**
-- **✅ The 17.4 trough at 11:45 is the operator in the room with the door open — an artefact, not the room crashing.**
-- **⭐ AND THE SHORT-CYCLING SHARPENS THE DIAGNOSIS RATHER THAN CONTRADICTING IT.** An oversized **inverter** should modulate, not switch every 8 minutes. A 2 °C room swing on that period is what happens when **the SENSED temperature moves far faster than the room does** — precisely what local recirculation at the intake produces: the unit samples its own output, sees a fast rise, cuts out early, then sees a fast fall and restarts. **➡️ Short-circuiting produces SHORT-CYCLING, and on a cold night that premature cut-out leaves the room 5–6 °C short instead of 1 °C short. One fault, load-dependent severity.**
-- **⚠️ CAVEAT ON THE 10:20 FOUR READINGS: they were taken inside a fast thermal transient** — that 10-minute bin ran **15.35 → 18.2 °C**. Spatial gradients are larger and less stable mid-transient, so **③ 14 °C true against the DHT22's 15.5 is within transient noise and should not be pressed.** ✅ **The ① − ② rise and the ② − ④ gap are unaffected — both are same-instant differences.**
-
-**⚠️⚠️ THE CRITICAL SEQUENCING POINT: MIDDAY CANNOT TEST THIS FIX.** The room reaches setpoint at midday **whether or not the short-circuit is fixed**, because the load is low enough. **The fault only bites under high load, so the ONLY valid test is the OVERNIGHT mean.**
-
-**➡️ THE TEST: tomorrow morning, compare the 22:00–06:00 grow-room mean against the recorded run 18.23 → 17.49 → 16.67 → 14.52.** **Success is tonight BREAKING that downward series while outdoors stays cold** — pull outdoor with `outdoor_history.py` and normalise, since a mild night would flatter it. ⚠️ **Do not judge this on the next hour, and CHANGE NOTHING ELSE TONIGHT** — a second variable makes the night unreadable.
-
-**⬜ STILL TO DO: re-measure ② (return) while the compressor runs.** ⚠️ **Both traps apply: subtract 7 from the meter, and the ① − ② rise SHOULD FALL now the fan is faster — that is success, not deterioration.**
-
-##### ✅ RESULTS — TAKEN 2026-08-12 10:20, compressor RUNNING. THE UNIT IS HEALTHY; THE RETURN IS LYING TO IT.
-
-| # | Reading | Value |
-|---|---|---:|
-| **①** | Supply air | **47 °C** |
-| **②** | Return air | **31 °C** |
-| **③** | Bag level, mid-room | **21 °C** |
-| **④** | Ceiling | **23 °C** |
-| | Outdoor ambient | 18 °C |
-| | Outdoor unit | **no ice, no water, no steam** |
-| | **HA grow-room sensor, same minute** | **15.5 °C** |
-
-**✅ FAMILY B (a plant problem) IS ELIMINATED TWICE OVER. ⛔ Do NOT book a technician, price refrigerant, or cost a replacement unit.**
-- **The rise ① − ② is 16 °C, squarely inside the table's healthy 15–25 °C band**, and supply at 47 °C sits at the top of the 35–50 °C range a working reverse-cycle split delivers in heating.
-- **No ice and no condensate kills the defrost-cycling candidate**, which the 08-08 entry called *"the strongest new candidate"* for family B.
-
-**⭐⭐ AND IT IS NOT STRATIFICATION EITHER — IT IS SHORT-CIRCUITING, WHICH IS A SHARPER DIAGNOSIS THAN THE TABLE ANTICIPATED.** The table expected **② warmer than ③ by 2–4 °C**; the measured gap is **10 °C**. **But ④ says the ceiling is only 23 °C.** Stratification would concentrate the heat *at the ceiling*, and the room's actual vertical gradient is an unremarkable **2 °C (③ 21 → ④ 23)**. **So the return is not sampling hot room air — it is sampling its own output.**
-- **📐 The mix arithmetic closes it: 31 = f×47 + (1−f)×23 ⇒ f ≈ 1/3.** **About a third of the return stream is recirculated supply air.**
-- **🎯 THIS EXPLAINS THE CYCLING COMPLETELY, AND IT IS THE MECHANISM THIS FILE ALREADY NAMED.** Candidate 4 of the 08-08 list: *"obstruction can also short-circuit supply straight back into the return, so the unit reads its own warm output and cuts out early."* **The thermostat senses 31 °C against a 21 °C setpoint — it believes the room is 10 °C OVER target, so it stops.** A unit that stops while the room is cold, explained without any fault in the unit.
-- **🔑🔑 THE GEOMETRY IS THE CAUSE — operator, 2026-08-12: THE INTAKE IS ON TOP OF THE UNIT AND THERE IS ONLY 100 mm TO THE CEILING.** This moves the short-circuit from *accidental obstruction* to **structural**, and it is a better explanation than the 96 bags.
-  - **A high wall split is designed around COOLING: cold output is DENSE, so it sinks, crosses the room and returns warm to a top intake. That cycle works because the output falls away from the inlet.** **In HEATING the physics inverts — 40 °C output is BUOYANT, it rises, and the intake is at the ceiling. The unit's own supply floats straight back into its own inlet.**
-  - **✅ AND IT EXPLAINS THE ONE READING THAT DID NOT FIT.** A ceiling-level intake should imply hard stratification, yet **④ − ③ is only 2 °C**. **Because the unit continuously STRIPS the hot ceiling layer back into itself** — so the room never stratifies *and* the heat never reaches the crop. **Bags 14 · ceiling 16 · return 24: the 24 is a short loop running at ceiling height, and it is the only warm air in the room.**
-- **🔴🔴 AND THE INDOOR FAN IS ON SLOW, CONTINUOUSLY — operator, 2026-08-12. THIS IS THE KEYSTONE, AND IT REVISES THE "HEALTHY RISE" READING ABOVE.**
-  - **⛔ A 16 °C RISE DOES NOT MEAN HEALTHY HEAT DELIVERY. Heat delivered = airflow × ΔT, and the scoring table's 15–25 °C band implicitly assumes normal fan speed.** **On a slow fan you get a LARGE rise across LITTLE air** — impressively hot at the outlet, very little heat into the room. ✅ **The refrigeration circuit is still fine and family B is still eliminated; what is throttled is DELIVERY, not the plant.** *(It also explains the high supply temperature: restricted airflow over the coil raises leaving-air temperature.)*
-  - **🔑 A SLOW FAN IS PRECISELY WHAT LETS THE CEILING LOOP WIN.** A weak jet has **no throw**. Buoyant 40 °C air leaving slowly rises at once and floats the 100 mm back into the intake — **momentum is the only thing that can beat buoyancy, and a slow fan has none.** The two findings are not independent; together they are sufficient.
-  - **⭐⭐ THE FAULT IS A SELF-REINFORCING LOOP, and naming it is the point of this entry:** *short-circuit → thermostat reads 24 against a 21 setpoint → unit believes it is at target → **throttles the fan down** → less throw → worse short-circuit → thermostat reads higher still.* **Most splits reduce fan speed as they approach setpoint. This one believes it has arrived, so it idles the fan, which guarantees it never arrives.**
-  - **⬜ NEEDED FROM THE OPERATOR, and it decides which fault this is: is the fan SET to low on the remote, or on AUTO and choosing low?** **Set to low ⇒ a two-second fix that was available all along. On AUTO ⇒ the feedback loop above is confirmed.**
-- **⬜ THE FIX IS FREE, and success has a measurable definition. Cheapest first:**
-  0. **⭐⭐ SET THE FAN TO HIGH, MANUALLY — not AUTO.** Three effects at once: **more mass flow** (more heat actually delivered), **more jet momentum** (the air reaches the floor instead of the intake), and **it breaks the feedback loop.** **Highest-value free action on this whole investigation.**
-  1. **⭐ AIM THE LOUVRES AS STEEPLY DOWN AS THEY GO.** This is *the* standard fix for a heating-mode short-circuit on a top-intake unit: it forces the output to the floor, so it must warm the room and rise before it can return. **Horizontal — or an AUTO swing setting — feeds the loop.** Do this before anything else.
-  2. **Clear anything stacked in the supply or return path.** Still worth doing; **no longer the leading explanation.**
-  3. **If that is not enough, the grow room needs CIRCULATION** — a cheap fan to break the ceiling loop and mix heat down to bag level. **This file already calls it *"the same fault class as the fruiting room's bottom-shelf gradient, which circulation fixed"*, and separately records the grow room as having *essentially zero air exchange*.** Same intervention that worked next door.
-  - **📋 SUCCESS TEST — re-measure ② alone. The return should fall from 24 toward the room's 14–16 °C**, i.e. **21–23 raw on the meter, before subtracting its +7.** Once the return reports the room, the unit runs to setpoint unaided.
-  - **⚠️⚠️ A TRAP IN THAT TEST, created by the fan fix: WHEN THE FAN SPEEDS UP, THE ① − ② RISE WILL FALL.** Same heat spread over more air. **THAT IS SUCCESS, NOT DETERIORATION** — do not read a smaller rise as the unit getting worse, and do not "restore" the fan to low to get the big rise back. **Judge by (a) the RETURN falling and (b) the ROOM rising on the HA grow-room sensor over the following hours.** (b) is the one that actually matters; the rise is diagnostic of *airflow*, not of output.
-- **✅✅ NAMEPLATE PHOTOGRAPHED 2026-08-12 — `Alliance INAA18`, serial `22022016001952`. IT ANSWERS THREE THINGS.**
-
-  | | |
-  |---|---|
-  | **Heating capacity** | **5790 W** (range 1550–6740) |
-  | Cooling capacity | 5490 W (1494–6450) |
-  | **Heating input** | **1461 W** (range 350–2000) |
-  | Rated input / current | 2750 W / 12.5 A |
-  | Refrigerant | R410A, 1500 g · IP24 outdoor |
-
-  - **✅ 1. REVERSE-CYCLE CONFIRMED — the 08-08 hinge is CLOSED.** It carries a **heating capacity**, so it heats on the refrigeration cycle. That entry said: *"Hinges on that the unit is genuinely reverse-cycle rather than cooling-only with a separate heat source… it changes the whole seasonal argument."* **➡️ In heating the indoor coil is the CONDENSER — hot, not cold — so nothing is stripped from the room, and the "aircon is a dehumidifier inside a 90–95% RH space" objection that gates the WALL REMOVAL is a SUMMER-ONLY problem.** The wall needs a summer answer, not a year-round one.
-  - **✅ 2. THE CAPACITY HYPOTHESIS IS DEAD ON THE NAMEPLATE — a second independent line after the 16 °C rise.** **5790 W of heating into a 17.7 m³ room with 6.8 m² of floor.** Holding 21 °C against a 6 °C night in a space that size needs order **1–2 kW even leaky** — **the unit is 3–5× OVERSIZED.** ➡️ **It was never short of power. It is short of DELIVERY**, which is precisely what the short-circuit and the slow fan describe.
-  - **⭐ 3. THE WIDE CAPACITY RANGE CONFIRMS AN INVERTER — SO THE SLOW FAN IS A SYMPTOM, NOT A SETTING.** *(`DECISIONS.md` 2026-07-16 already calls it an inverter unit; the 1550–6740 W range confirms it.)* **An inverter throttles output as it approaches setpoint — and this one believes it is AT setpoint, because the return reads 24 against 21.** So it modulates toward its **1550 W floor and idles the fan.** **➡️ THE LOOP IS NOW COMPLETE AND MECHANISTIC:** *short-circuit → return reads 24 vs 21 → **inverter throttles toward minimum** → fan slows → no throw → worse short-circuit.* **The fan was slow because the unit CHOSE to be slow, for a false reason** — which is exactly why forcing it to HIGH manually breaks the loop regardless of what the compressor decides.
-  - **⚠️⚠️ AND A COST CONSEQUENCE THAT MUST BE BOOKED, NOT DISCOVERED: FIXING DELIVERY WILL RAISE THE ELECTRICITY BILL.** Heating input is **1461 W at standard conditions** against the **~330 W average** `DECISIONS.md` 2026-07-17 records today. A unit that stops short-cycling **runs more**, and electricity is already **the business's single largest cost at ~R1,470–1,680/mo, bigger than Jesca**. ⚠️ **Hinges on:** *how far duty actually rises* — unmeasured, and it could be a material fraction of that line. **➡️ THIS REFRAMES THE DOOR SEAL: weatherstripping is not tidying up, it is what makes running the aircon properly AFFORDABLE.** Heat not lost through the leaks is heat not bought at R5.12/kWh. **Do the seal and the settings together.** *(Worth it, on the evidence: colonisation is the long pole at 21–30 days — more than half of each batch's life — and shortening it compounds across every batch forever.)*
-  - **📐 USEFUL FOR TODO 5(a), the clamp-meter measurement:** expect the heating input to sit between **350 W and 2000 W**, nameplate 1461 W. **The unit is hard-wired, so this is a clamp at the DB, not a plug meter.**
-  - **⬜ STILL NOT ANSWERED BY THE NAMEPLATE: the minimum clearance above the indoor unit.** That lives in the **installation manual** for the INAA18. ⚠️ **But it is now a secondary question** — a unit 3–5× oversized is not failing for want of 50 mm of plenum. **Do not chase it ahead of the free settings fixes.** *(Alliance is a South African brand, so the manual and local support are obtainable.)*
-
-- **🗄️ Superseded by the nameplate above — the original request, kept for its reasoning.** ~~GET THE MODEL NUMBER OFF THE NAMEPLATE — it answers TWO open questions at once.~~ (1) The manufacturer's **minimum clearance above the unit**: 100 mm is often exactly the stated minimum, so this may be in spec but marginal — and if it is *below* spec that is an installation defect, though not one fixable without remounting. (2) **Whether the unit is genuinely REVERSE-CYCLE**, which the 08-08 entry flagged as its own hinge — *"cheap to confirm by looking at the nameplate, and it changes the whole seasonal argument"* for the wall removal, since the dehumidifier objection applies in cooling mode only.
-
-**🔴 THE EXTERNAL DOOR LEAKS — operator, 2026-08-12: *"many air leaks around the door."* THIS CLOSES A STANDING HINGE, UNFAVOURABLY.** The wall-removal section has carried it explicitly: *"⚠️ Hinges on: that the rear half's envelope is no leakier than the front… if that door or the drywall leaks materially, steady-state load rises with it. One smoke-pencil pass would settle it."* **Settled by eye instead, and the answer is that it does leak.** It also **confirms the 08-11 candidate** — the back wall is ~92% drywall over the old garage-door opening, flagged as *"the only one that would explain a PERSISTENT shortfall rather than a sensing artefact."*
-- **⬜ Weatherstrip the door. Cheap, and it is now evidenced rather than suspected.**
-- **⚠️ But do NOT make that room airtight.** This file already records the grow room as having *essentially zero air exchange* and *going stuffy* — a logged contamination and heat-build-up risk. **Seal the uncontrolled leaks; designed ventilation is a requirement on the new-grow-room list, not something to solve by leaving gaps around a door.**
-- **➡️ The two faults compound and both point the same way:** the unit cuts out early *and* the envelope bleeds heat. **Neither requires the unit to be weak, and the measurements say it is not.**
-
-**⛔⛔ WITHDRAWN WITHIN THE HOUR, 2026-08-12 — THE EVIDENCE NOW POINTS AT THE MULTIMETER, NOT THE DHT22. THE BLOCK BELOW IS WRONG AND IS KEPT ONLY SO IT IS NOT RE-DERIVED.**
-
-**Two further checks arrived after it was written, and both put the meter ~6 °C high:**
-1. **The probe beside the DHT22 read 21 °C against the sensor's 15.5** *(sensor position: **70 mm from the back wall, 100 mm from the right wall, 1200 mm off the floor**)*. **This ELIMINATES the cold-spot explanation** — the air at the sensor's own location matches mid-room — **but it does NOT validate the meter**, which is what the block below assumed. It only narrows the disagreement to *one of the two instruments*.
-2. **⭐ THE DECIDER: outdoor. The operator's reading was 18 °C; Open-Meteo's analysed hourly for the same moment is ~11.3 °C.** That is **+6.7**, the same magnitude as the DHT22 gap.
-
-**🔑 OCCAM SETTLED IT, and the ice bath then MEASURED it at +7 (see the confirmation above): one meter offset explains BOTH disagreements. The alternative needs two independent errors of near-identical size** — a DHT22 reading 5.5 low *and* an outdoor reading 6.7 high. **Apply −6 and every number reconciles:** outdoor 18→~11 *(matches Open-Meteo)*, sensor location 21→~15 *(matches the DHT22's 15.5)*, mid-room 21→~15, ceiling 23→~17, and **fruiting reads 15.3 on the trusted RS485 primary in the adjacent room.** Three independent references, all ~6 below the meter.
-
-**✅ WHAT SURVIVES REGARDLESS, AND IT IS THE IMPORTANT HALF: every DIFFERENCE, because a constant instrument offset cancels in a subtraction.**
-- **The rise ① − ② = 16 °C stands** ⇒ **the unit is heating properly and family B is still eliminated.** *(Absolutes shift: supply ~41, return ~25 — still a healthy delivery.)*
-- **The short-circuit finding stands** ⇒ ② is still **8 °C above ④**, still outside the room's 2 °C vertical gradient, still ~1/3 recirculation.
-- **⛔ What does NOT survive is any claim that the grow room is "really at 21 °C".** It is ~15, the DHT22 was right, and **the recorded 3.2–5.9 °C shortfall stands unchanged.**
-
-**⚠️ SO THE STRATEGIC ALARM BELOW IS FALSE AND MUST NOT BE ACTED ON.** *"The premise of the new grow room is in doubt"*, *"the coupling story inverts"*, *"the partition may be doing its job"* — **all three rested on the grow room being 6 °C warmer than recorded. It is not.** **Colonisation still runs at 15–18 °C, 24–27 °C is still out of reach, and the separate grow room is still the only route.** ✅ **The rooms really do track within 0.2–0.5 °C** — both read 15.2 this morning, exactly as this file has always said.
-
-**✅✅ CONFIRMED AND CLOSED, 2026-08-12 — ICE-WATER BATH READS 7 °C. THE METER HAS A +7 °C OFFSET. THE DHT22 WAS RIGHT.**
-
-**Ice water, mostly ice and stirred, is 0.0 °C to within a tenth. The probe read 7.** *(Operator's phrasing was "lowest read", so if it had not fully stabilised the true offset is ≤7 — but the outdoor cross-check independently gives +6.7, so ~7 is right.)*
-
-**📐 TWO POINTS ON THE CURVE, both ~+7, so the offset is near-constant in this range** — the signature of a cold-junction compensation error: **0 °C → +7.0** and **~11 °C → +6.7**. Corrected readings, and the cross-checks now close to the degree:
-
-| | Raw | **True (−7)** | Cross-check |
-|---|---:|---:|---|
-| Outdoor | 18 | **11** | Open-Meteo **11.3** ✅ |
-| **①** Supply | 47 | **40** | inside the healthy 35–50 °C band ✅ |
-| **②** Return | 31 | **24** | |
-| **③** Bag level | 21 | **14** | DHT22 **15.5** ✅ |
-| **④** Ceiling | 23 | **16** | |
-| **① − ②** rise | **16** | **16** | unchanged — a difference cancels the offset |
-
-**🎯 AND THE CORRECTION MAKES THE SHORT-CIRCUIT DIAGNOSIS *STRONGER*, WHICH IS WORTH STATING PLAINLY BECAUSE THE RAW NUMBERS OVERSTATED IT INTO IMPLAUSIBILITY.** The raw reading had the thermostat sensing **31 against a 21 setpoint — 10 °C over, which would mean the unit essentially never runs.** **True is 24 against 21: just past the cutout threshold.** ➡️ **So it cuts out, drifts down, restarts, cuts out — exactly the *"it starts and stops all the time"* the operator reported on 08-08 — while the bags sit at 14 °C and the thermostat believes the room is 3 °C OVER target.** Recirculation is unchanged on corrected figures: **24 = ⅓ × 40 + ⅔ × 16.**
-
-**✅ THE PRIZE, now quantified: fix the short-circuit and the return reports ~14–16 °C against a 21 °C setpoint, so the unit runs CONTINUOUSLY instead of short-cycling.** That is the entire shortfall, addressed by re-aiming louvres and moving bags. **No spend.**
-
-**⛔ AND IT CONFIRMS EVERY WITHDRAWAL BELOW WAS CORRECT.** The DHT22 is accurate, the grow room genuinely runs **~14–16 °C**, the recorded 3.2–5.9 °C shortfall stands *(and on this cold spell is nearer 5–7)*, colonisation is still too cold, **and the separate grow room is still the only route.** ⚠️ **Note ③ corrects to 14 °C — slightly BELOW the fruiting room's 15.3 on the trusted RS485.** Within combined instrument uncertainty, so do not build anything on it, but it does *not* support the grow room being the warmer of the two right now.
-
-**📌 THE METER IS NOW A USABLE INSTRUMENT: subtract 7.** Needed again to re-measure ② after the louvres are re-aimed. ⚠️ **The offset is verified at 0 and ~11 °C only — it is NOT verified at supply-air temperatures (~40 °C), so treat the corrected supply figure as indicative.** The **rise** is immune either way.
-
-**🗄️ The sun hypothesis, now moot — kept because it was the right question to ask.** ✅ **Eliminated by the operator: the outdoor reading was NOT in direct sun.** That was the one way the meter could be accurate and the outdoor figure still wrong by 6.7 °C. **Only two possibilities remain: the meter reads high, or Open-Meteo's *analysed* hourly is wrong by 6.7 °C for shaded air** — and that is the source `outdoor_history.py` and every night of the vent experiment already depend on. **The meter is now much the likelier of the two.**
-
-**⭐ THE DEFINITIVE TEST IS AN ABSOLUTE REFERENCE, NOT ANOTHER COMPARISON — and it supersedes the "probe beside the RS485" suggestion made earlier.** **An ice-water bath — mostly ice, stirred — is 0.0 °C to within a tenth, anywhere, with no calibration.** Probe in, let it settle. **Reads ~0 ⇒ the meter is sound and this whole withdrawal needs revisiting; reads ~+6 ⇒ the offset is confirmed and the argument is closed.** It needs no second instrument, no assumption about placement, and no trust in a model — **which is exactly why it beats arbitrating between two sensors, the error this entry already made once today.**
-
-**➡️ AND IF IT IS +6, DO NOT DISCARD THE METER — CHARACTERISE IT.** A DMM thermocouple's cold-junction offset is roughly constant, so **subtract 6 and keep using it.** The meter is needed again to re-measure ② after the louvres are re-aimed, and **a known offset is a usable instrument while an unknown one is not.** ⬜ **Record the ice-bath result here with the date** — an uncharacterised probe will otherwise mislead the next person who picks it up.
-
-**📌 THE LESSON, AND IT IS THE THIRD INSTANCE IN THESE FILES: when two instruments disagree, find an INDEPENDENT third reference before arbitrating.** `DECISIONS.md` 2026-07-27 says exactly this — *"prefer a check that doesn't require trusting either instrument… look for the physical impossibility before arbitrating between them."* **Here the third reference was free, thirty seconds away, and the wrong answer was already written into this file before it was consulted.** The probe-beside-the-sensor test was designed to be decisive and was not: **it could distinguish *position* from *instrument*, but never *which* instrument.**
-
-**🗄️ ⛔ THE ORIGINAL, WRONG BLOCK FOLLOWS — DO NOT ACT ON IT.** ~~AND THE FINDING WITH THE WIDEST CONSEQUENCES: THE GROW-ROOM HA SENSOR READS ~6 °C LOW.~~ **⚠️ NOT YET CONFIRMED — one reading settles it.** Probe **21 °C** at bag level against the DHT22's **15.5 °C** at the same minute — **5.5 °C**, and **7.5 °C** against the ceiling. The table's own rule: *"③ vs the HA sensor disagree → the sensor is in a cold spot, part of the shortfall is measurement, not heat."* **Both gaps are far past the 3 °C threshold that instrument accuracy could explain.** Supporting evidence: the recorder shows that sensor swinging **15.1 → 18.2 °C inside 25 minutes**, which is what a draught-exposed sensor does — **and leaks have just been found around the door it may sit near.**
-- **✅ WHAT SURVIVES: every TREND.** A constant offset preserves direction, so *"both rooms cooled together, grow 18.23 → 14.52"* stands as a trend, as does the fall's timing and shape.
-- **⛔ WHAT DOES NOT: every ABSOLUTE grow-room claim in these files** — *"the room is asked for 21 and delivers 17.8"*, the **3.2–5.9 °C shortfall**, and most importantly **"this grow room runs 15–18 °C"**, which is the load-bearing premise of *"colonisation at 24–27 °C is beyond what this equipment delivers in this space at all"* — **the argument that a NEW GROW ROOM is the only route.** ⚠️ **That is a building-sized conclusion resting on one unvalidated DHT22.**
-- **⛔ AND IT INVERTS THE COUPLING STORY, in the favourable direction.** These files hold that the rooms track within **0.2–0.5 °C** and therefore *cannot be held apart*. At 10:20: fruiting **15.3 °C on the trusted RS485 primary**, grow **21 °C on the probe** — **5.7 °C apart.** If that holds, the partition separates the rooms far better than recorded, and the 35–46% coupling figures need re-deriving against a validated sensor.
-- **⚠️ Hinges on:** *the multimeter thermocouple's absolute accuracy, and on one mid-morning moment generalising.* **Both are real limits.** The readings are a single instant with the compressor running and outdoor at 18 °C; **overnight at 6 °C outdoors the room will look very different, and colonisation depends on the mean, not the late-morning peak.** **Do not restate the colonisation verdict off this reading — restate only that its premise is now in doubt.**
-- **⭐ THE NEXT ACTION, 30 SECONDS, AND IT IS THE CHEAPEST HIGH-VALUE MEASUREMENT ON THIS BOARD: hold the probe right beside the DHT22.** Agreement there ⇒ the meter is sound and **the sensor is in a cold spot**; a 6 °C disagreement there too ⇒ **the meter has an offset** and every room figure shifts down. **✅ Either way the short-circuit finding survives, because a rise and a difference both cancel instrument error** — only the cold-spot claim depends on calibration.
-- **⬜ STILL NOT RECORDED: where that sensor physically sits** (height, distance from the external door, anything blocking it). **It was asked for and is the one item of the four not brought back.**
-
-**✅ HINGE CLOSED 2026-08-08 — operator: *"it is in the grow room so it can only directly control the grow room."*** The 21 °C is unambiguously the **grow room's** setpoint. **The shortfall reading stands as written: the room is asked for 21 and delivers 17.8.** *(The alternative — that it was set for the fruiting room's benefit, which would have inverted the whole reading — is ruled out.)*
-
-**➡️ AND STATING IT PLAINLY, BECAUSE NO SINGLE LINE IN THIS FILE HAS: NEITHER ROOM IS UNDER EFFECTIVE TEMPERATURE CONTROL.** The grow room has a setpoint and misses it by 3.2–5.9 °C. **The fruiting room has no setpoint at all** — this file already records that its only temperature control is passive conduction through the 75 mm partition, with the divider door kept closed. **So the fruiting room's temperature is a by-product of a by-product**, and the 15.2–17.5 °C it currently holds is the envelope's doing as much as the equipment's.
-
-- **This is the honest frame for the "100% in band" result of 08-07.** In-band it is, and that is worth having — **but it is not evidence of control, and it will not survive a season change.** A Pretoria summer applies heat this arrangement has no way to reject in the fruiting room, and the aircon's cooling mode is the one that dehumidifies.
-- **➡️ It also re-prices item #4 of the room programme** (*"Aircon: can it be kept out of the humid air?"*). That item assumed a working unit whose placement was the problem. **The prior question is whether it meets its target at all** — relocating a unit that misses setpoint by 3–6 °C moves the shortfall, it does not fix it.
-
+**🔴 THE STANDING CONDITION, STILL LIVE AND STILL UNSAMPLED: DO NOT CLOSE MORE HOLES UNTIL A MILD, STILL NIGHT (~13 °C, light wind) HAS BEEN READ.** Every CO2 result so far came from cold or windy nights, when stack effect ventilates hardest — **the easiest possible test, not a reassuring one.** The sealing risk lives in weak-drive conditions that have never been measured. **⚠️ Reinforced by the sealed ceiling** (painted shade cloth is not permeable) — the exhaust strip and floor openings are now the *only* relief path, so `MICROCLIMATE.md`'s *"do not seal them all"* binds harder than when written.
 ### ⛔ AND ONE THING GOT WORSE — humidifier duty is PINNED at 99.2% overnight, 98.0% overall, R433/mo
 
 **Exactly as predicted: a warmer room needs more absolute moisture at the same RH, so recovery raised duty rather than lowering it.** It is now **the only failing KPI**. **➡️ Arm D is unblocked and is the next move** — free, ~13 duty points, and the aircon verdict it waited on is in.
 
 ---
 
-### 🗄️ RESOLVED — the original fault report, kept for the signature
+### 🗄️ The 2026-08-01 → 08-04 aircon fault report — RESOLVED, compressed 2026-08-13
 
-**This is the first thing to action. It was found by the weekly `room_check.py` on 2026-08-04 (the run was one day overdue).** The fruiting room has fallen **17.29 → 14.73 °C** in daily mean over four days and is **still falling**; today's minimum is **14.20 °C — below the 15 °C band floor and at the ESP32's own `temp_floor` of 14 °C.**
+**The failure signature lives in `HANDBOOK.md`** §"Grow-room air conditioner — filter cleaning", which is the right home for it: it is a maintenance-recognition pattern, not current state. **The cause was NOT the filter** — see the closed investigation directly above.
 
-| Daily mean | 07-31 | 08-01 | 08-02 | 08-03 | 08-04 |
-|---|---:|---:|---:|---:|---:|
-| **Fruiting room** | 17.29 | 16.54 | 15.76 | 15.50 | **14.73** |
-| **Grow room** | 17.73 | 16.84 | 15.95 | 15.79 | **14.52** |
-| **Outdoor, 22:00–06:00** | 8.2 | 9.2 | 10.1 | 10.1 | **12.8** |
+**The one durable process point:** it was found by the **weekly `room_check.py`, run one day late**, and nothing else was watching. The aircon still has no telemetry, no `climate.*` entity and no alarm. **That scorecard remains the only instrument that sees this unit.**
 
-- **⛔ The outdoors got 4.6 °C WARMER while both rooms fell ~3 °C.** That inverse correlation rules out weather as the cause. Measured with `tools/outdoor_history.py`.
-- **The grow room is the driver, not the fruiting room.** It fell further (−3.2 vs −2.6 °C) and the fruiting room tracks it **0.2–0.5 °C above, throughout** — which is the documented coupling working exactly as designed.
-- **✅ This RULES OUT a fan death, cheaply and without a physical check.** Tight tracking between the two rooms means the fresh-air fan is moving air. The expensive theory is disposed of first, not last.
-- **➡️ So the question is what stopped heating the GROW room, and the aircon is the only candidate with no telemetry.** It is still not linked to HA (no `climate.*` entity exists), so a mode change, a setpoint change, a tripped breaker or a failure would be **invisible to every dashboard**.
-- **🔧 OPERATOR DIAGNOSIS 2026-08-04: the aircon filter needs cleaning — and the data is consistent with it.** Two details support *weak* output rather than *absent* output: the decline **decelerates** toward a new equilibrium near ~14.5 °C (−0.85, −0.92, −0.34, −0.38 °C/day on a like-for-like 00:00–09:00 window) instead of falling toward the envelope's no-heat balance point, and **the grow room still gains heat every afternoon** (16.6 → 18.35 °C between 11:00 and 16:00 on 08-01, with daily peaks 19.2 → 18.6 → 18.0 → 18.0). The unit is running and delivering progressively less.
-- **⚠️ UNCONFIRMED — the recorder can only say "reduced heat output".** Low refrigerant, a fouled coil or a changed setpoint would look identical from the data. **The filter is the right first move because it is free, not because it is proven.** **Confirmation test: clean it, change nothing else (leave the vents alone — changing two things at once is how the vent series lost four nights), and expect the grow room to recover first with the fruiting room following toward ~17.3 °C within a day.** Re-run `room_check.py` ~24h after. If it does not recover, the filter was not the cause and the remaining candidates cost money or a technician.
-- **🔬 FILTERS CLEANED 2026-08-04 ~09:30 SAST (plural — there was more than one). ⚖️ READ OUT 2026-08-05: THE DECLINE STOPPED AND REVERSED, BUT THE TEST WAS CONFOUNDED AND THE VERDICT IS NOT PROVEN.** Nothing else was changed: the vents stay in arm E and the fan stays HIGH, so this was intended as a single-variable test.
-  - **The four-day slide broke.** Overnight 22:00–06:00 means, grow room: 15.61 → 15.32 → 15.07 → **15.96** for the nights of 08-01 → 08-04. The trend had been −0.25 to −0.29 °C/night; this night came in **+0.89**, about **+1.15 °C against the extrapolated trend**. Fruiting room followed at **15.6** (from 15.1), **0.2–0.5 °C above the grow room throughout** — the predicted signature, grow room leading.
-  - **✅ The room stopped breaching the band floor.** Overnight minimum **15.2 °C**, back above the 15 °C floor and off the ESP32's 14 °C `temp_floor`; the 48h in-band figure rose 78.4% → **84.9%**.
-  - **⛔ BUT THE NIGHT WAS 1.7 °C WARMER OUTDOORS, AND THE FORECAST WAS WRONG AGAIN — BY 1.3 °C, FOR THE THIRD TIME.** The test was designed on a forecast 22:00–06:00 mean of 10.5 °C against 10.1 on both deep pre-clean nights. **Measured actual: 11.8 °C** (`tools/outdoor_history.py`). So the ΔT was **not** comparable and the confound the design was built to exclude is present after all. *The standing instruction to confirm retrospectively against measurement, never on the forecast, has now paid for itself three times — treat it as a rule, not a caution.*
-  - **⚠️ And read the size honestly: +0.89 °C is LESS than a passive envelope would give for a 1.7 °C warmer night.** That is not proof of failure — the building's 250 mm walls mean one night's outdoor step does not fully propagate — but it is the opposite of a result that clears the bar with room to spare.
-  - **⛔ Recovery is far short of target.** The confirmation criterion was the room heading toward **~17.3 °C** within a day. The grow room is at **15.96**, against **17.75 on 07-30**. Roughly a third of the lost ground, at best.
-  - **⛔ Humidifier duty did NOT come off its pin** — the other half of the predicted signature. Overnight **91.3%** on the post-clean night (100% on 08-03, 87.6% on 08-02), and **98.9% overnight / 97.7% overall** across the 48h window. No headroom, no improvement.
-  - **⛔⛔ THIRD CONFOUND, AND IT IS THE ONE THAT KILLS THE TEST: 08-04 WAS A TUESDAY — the weekly heavy-access day for packing, removing bags and taking the last harvest (operator, 2026-08-05). THERE IS A RECURRING TUESDAY WARM BUMP, AND IT HAS A CLEAN CONTROL CASE.**
-    - **Grow-room overnight means, Tuesday minus the Monday before:** 07-28 **17.85 vs 17.05 = +0.80**; 08-04 **15.96 vs 15.07 = +0.89**. **Near-identical bumps.**
-    - **🎯 07-28 IS THE CONTROL — no filter was cleaned that week, and the weather moved the WRONG WAY.** Outdoor fell 11.8 → 10.2 °C (**−1.6**) between Mon 07-27 and Tue 07-28 while the grow room *rose* 0.80 °C. **Weather cannot produce that, and no maintenance was performed. The bump is the access day itself.**
-    - **The bump decays:** Wed 07-29 fell back to 17.35 (**−0.50** off the Tuesday peak).
-    - **✅ THE TUESDAY CADENCE IS CONFIRMED FROM THE LEDGER, NOT FROM RECOLLECTION** (`v_batch_bag_state`, read 2026-08-05). **Every substrate batch on record was packed on a Tuesday** — W26 06-23, W27 06-30, W28 07-07, W29 07-14, W30 07-21, W31 07-28, W32 08-04 (only W25, 06-18, is off-cadence). **Both batch removals were Tuesdays too**: W23 on 07-28 11:15 SAST, W25 on 08-04 13:58 SAST. **The access day is a fixed weekly rhythm and is already captured — future experiment windows can and must be checked against it.**
-    - **🎯 AND THE TUESDAY STEP LANDS IN THE GROW ROOM, WHICH IS THE ROOM UNDER INVESTIGATION.** Fresh bags are packed into the **grow** room — `moved_to_fruiting` is **0** for W29, W30, W31 and W32. So each Tuesday adds a batch of freshly-packed, actively-colonising blocks to the *same room* whose heat source the aircon investigation is trying to explain, and removes a spent one. **This is not a passing disturbance to discount; it is a recurring step change in the grow room's own thermal load, on the exact day the filter was cleaned.**
-    - **➡️ So the +0.89 °C on 08-04 is fully accounted for by the ordinary Tuesday effect (+0.80 measured the week before), with no residual left to attribute to the filter.** The clean happened at 09:30 on the one day of the week the rooms are opened up all day. **The single-variable test was never single-variable — the confound is weekly, predictable, and was in the recorder the whole time.**
-    - **The underlying decline is real and untouched — the week-over-week shift is uniform across matched weekdays:** Mon 17.05 → 15.07 (**−1.98**), Tue 17.85 → 15.96 (**−1.89**). **A ~1.9 °C/week loss, on top of which Tuesday adds a ~0.85 °C one-night bump.** Reading the bump as recovery inverts the picture.
-  - **⚠️ Duty corroborates the Tuesday effect, and points the same way:** overnight duty on Tue 07-28 was **66.5% — the lowest of that week** (Mon 76.3, Sat/Sun ~74.8), and Tue 08-04's 91.3% sits below Mon 08-03's 100%. **The access day leaves the room warmer AND the humidifier working less.** Mechanism not established — see the open question below; **do not write one down until the operator confirms what physically changes in the room on a Tuesday.**
-  - **📏 DOCTRINE NOTE — sparse `humidifier_duty_1h` logging is itself the pin signal, not missing data.** The sensor only writes on change, so a pinned humidifier stops logging: n=228 on Tue 07-28 (cycling healthily) against **n=1 on Mon 08-03** — that lone "100.0%" is not a thin sample to be distrusted, it is the room sitting at 100% all night. **Read n alongside the mean; a collapsing n is a leading indicator of the pin.**
-  - **✅✅ VERDICT 2026-08-06 — THE FILTER CLEAN WORKED. The Wednesday-night test passed cleanly, and it was the test designed to fail if it had not.** *(This supersedes the 08-05 verdict of "no surviving evidence in its favour", which was correct on the one confounded Tuesday night then available. The Wednesday night is the discriminating datum.)*
-
-    | Night | Grow room | Outdoor | Note |
-    |---|---:|---:|---|
-    | 08-01 Sat | 15.61 | 9.2 | declining |
-    | 08-02 Sun | 15.32 | 10.1 | declining |
-    | 08-03 Mon | 15.07 | 10.1 | declining |
-    | 08-04 Tue | 15.96 | 11.8 | **filters cleaned 09:30** — confounded by the access day |
-    | 08-05 Wed | **16.28** | **11.7** | **the clean test** |
-
-    - **🎯 THE PREDICTION WAS EXPLICIT AND IT WAS FALSIFIED IN THE RIGHT DIRECTION.** Off the 07-28 → 07-29 precedent, an *unimproved* room should have shed the Tuesday bump and **fallen to ~15.4–15.5**. It **rose to 16.28** — about **+0.8 above the no-improvement prediction**, and **+1.7 above the pre-clean decline trend extrapolated** (−0.25 to −0.29/night from Monday's 15.07 gives ~14.5 by Wednesday).
-    - **✅ WEATHER IS EXCLUDED, AND MORE STRONGLY THAN PLANNED.** Outdoor was **flat: 11.8 → 11.7**. Better still, the **forecast said 13.8 and the measured night came in at 11.7** — 2.1 °C *colder* than forecast, the fourth miss on the trot, but this time in the direction that makes the result harder, not easier. **The room warmed on a night that was marginally colder.**
-    - **✅ THE DECOUPLING SIGNATURE IS PRESENT.** Room-minus-outdoor widened **4.16 → 4.58 K** while outdoor held. A room tracking the weather cannot do that; a regulating heat source can. **This is the test set up on 08-05 that needed no matched night, and it fired.**
-    - **✅ THE CAUSAL ORDERING IS RIGHT — the grow room leads and the fruiting room follows.** The fruiting-minus-grow offset has inverted through the episode: **+0.22, +0.10, 0.00, −0.34, −0.49** across 08-01 → 08-05. During the decline the fruiting room sat *above* the grow room; now that the grow room is being heated it sits *below* it. **The room with the heat source leads in whichever direction heat is flowing — exactly the documented coupling, with its sign flipped.**
-  - **⬜ RECOVERY IS REAL BUT INCOMPLETE — about 1 °C short.** Pre-decline the grow room ran a ~**17.25** overnight mean (07-26 → 07-31). It is at 16.28 and rising, with the rate decelerating (+0.89, then +0.32), so it is approaching an equilibrium that may or may not be the old one. **Do not close the item until it settles; if it asymptotes near ~16.5 the filter was a partial fix and something else remains.**
-  - **⚠️ HUMIDIFIER DUTY DID NOT COME OFF ITS PIN (91.3 → 93.7%), BUT THAT PREDICTION WAS BAD PHYSICS AND SHOULD NOT BE READ AS A REFUTATION.** It was written expecting duty to fall as the room recovered. **At constant RH a WARMER room needs MORE absolute moisture, not less** — so a recovering room should raise humidifier demand, not lower it. The duty leg of the confirmation criteria was wrong when it was written; **the temperature leg is the one that carries the verdict.**
-  - **⏳ AND THE CLEAN WINDOW HAS NOW CLOSED — reading it today was not optional.** Outdoor jumps to a **~15.3 °C** mean tonight, up 3.6 °C. **Every night from here is confounded by a warming trend, so 08-05 was the last cleanly interpretable night. The verdict rests on it.**
-  - **✅ Room in band through the test:** RH 91.5%, VPD 0.2 kPa, overnight minimum 15.3 °C — back above the 15 °C floor and clear of the ESP32's 14 °C `temp_floor`.
-  - **➡️ THE NEXT DISCRIMINATOR IS BETTER THAN WAITING FOR A MATCHED NIGHT — and matched nights are not coming: outdoor is already at a 13.8 °C mean tonight and warming.** Over the healthy period 07-26 → 07-31 the grow room's overnight mean regressed on outdoor temperature with a slope of **+0.02 °C/°C — statistically nil.** *A working aircon regulates, so a healthy room is decoupled from outdoors.* **That is the test: over the next 2–3 nights, does the room climb toward ~17.3 °C independently of outdoor, or does it merely track outdoor upward?** Climbing while outdoor holds or falls confirms the filter. Tracking outdoor 1:1 means the aircon is still weak and the remaining candidates — refrigerant, fouled coil, changed setpoint — are live. **This needs no matched night, which is what makes it usable now.**
-  - **⛔ Do NOT read this afternoon as the result.** The grow room climbs naturally from ~11:00 to ~16:00 every day (daily peaks 19.2 → 18.6 → 18.0 → 18.0 through the decline), so a rise today proves nothing. **The discriminator is the overnight window**, where the pre-clean nights are already in the recorder and directly comparable via `tools/arm_read.py`.
-  - **Pre-clean baseline, like-for-like 00:00–09:00 SAST** — fruiting 17.23 / 16.38 / 15.46 / 15.12 / **14.74** and grow 17.24 / 16.26 / 15.00 / 14.80 / **14.52** for 07-31 → 08-04. **As of 09:00 on 08-04, every hour from 06:00 was still colder than the same hour on 08-03**, so the decline had not yet turned of its own accord.
-  - **⛔ FALSIFIED BY MEASUREMENT — this claim is kept only as the record of how the test was lost.** It read: *"Tonight is a well-matched night… Open-Meteo forecasts outdoor 22:00–06:00 at mean 10.5 °C, against 10.1 on both 08-02 and 08-03 — so ΔT is near-identical and cannot explain a recovery."* **The night came in at 11.8 °C measured.** The forecast had already been wrong by 3.1 °C and 3.6 °C on the two prior occasions it was checked; it was wrong by 1.3 °C again here, and the note warning about exactly this sat one line below the claim it should have blocked. **A forecast is never a control variable — do not design a single-variable test on one again.**
-  - **The confirm/refute criteria as written were:** grow room recovers first, fruiting follows 0.2–0.5 °C above it, toward ~17.3 °C, humidifier duty off its pin; refuted by an overnight window at or below 08-03's on a comparable ΔT. **Outcome: the first two clauses passed, the ~17.3 °C and the duty clauses failed, and "comparable ΔT" never held — so neither branch fires.** Superseded by the decoupling test above, which does not need a matched night.
-- **📋 Written up as a maintenance item — `HANDBOOK.md` §"Routine maintenance".** There was no maintenance list anywhere in these docs until 2026-08-04; recurring physical obligations were scattered through this file as one-off notes. The new section carries the failure signature above so it is recognisable next time, and collects the other recurring obligations (weekly `room_check.py`, the daily water-tank fill, Monday straw chopping, post-reflash fan confirmation). **Cleaning interval deliberately left unset until the first clean shows how dirty it actually is.**
-- **⚠️ Hinges on:** *that the grow room's heat source changed.* **If the aircon is found running normally at its usual setpoint, the alternative is a new envelope leak in the grow room** — its external door or the rear drywall — which is the same smoke-pencil check already flagged for the divider-wall question. Either way the answer is in that room, not in the fruiting room.
-
+*(Full original report: `git show 18f3846:STATUS.md`.)*
 ### 🔴 LIVE — THE FRUITING ROOM HOLDS THREE BATCHES AGAINST A WEEKLY PACK CADENCE (found in the ledger 2026-08-05)
 
 **This was found while chasing the aircon, and it outranks it — it lands on priority #1, committable supply.**
@@ -907,50 +527,14 @@ The fan draws from the **grow room**, not outdoors. The grow room warmed 7.3 °C
 
 **✅ Humidity control itself is NOT broken — verified, not assumed.** RH held at **90.4–91.2%** every day through the fall. The absolute-humidity drop (13.38 → 11.53 g/m³) is **fully explained by the temperature drop at constant RH**: predicted from T and RH alone it comes out 13.36 / 12.78 / 12.18 / 11.96 / 11.49 — matching measurement to **within 0.05 g/m³ on all five days**. The humidifier is pinned because it is chasing a colder, leakier room, not because it has failed. *(This is the "use absolute humidity, not RH" method from `DECISIONS.md` 2026-07-17, run in the other direction to exonerate a component.)*
 
-### Scorecard, 48h to 2026-08-05 10:40
+### 🗄️ Scorecard, 48h to 2026-08-05 — SUPERSEDED, compressed 2026-08-13
 
-| KPI | State |
-|---|---|
-| Temperature | ⛔ **84.9% in band** — 14.20–16.50 °C, mean 15.55. **Decline arrested** (was 78.4%, trending down); the 14.20 min is the pre-clean night still inside the window |
-| VPD | ✅ 100% in band — 0.13–0.25, mean 0.17 |
-| Absolute humidity | ✅ 99.9% in band — 10.9–12.6 g/m³, mean 12.02 — still at the bottom of the band |
-| RH | ⚠️ 75.3% in band, mean 90.48 — read via VPD/AH, not raw |
-| Humidifier duty | ⛔ **97.7% overall, 98.9% overnight — PINNED and WORSE than a day ago** (was 93.7/95.4; KPI is under ~70%). Power 117.3 W avg, 2.81 kWh/day, **~R432/mo** |
-| Bottom-shelf gradient | ✅ Flat — overnight `temp_shelf_delta` mean +0.1 |
-| CO2 | ✅ displayed trough 450 ≈ **800 true** — on target |
-| Sensor health | ✅ Clean — 0.0% bad on all three controller entities, 1.1% on the Inkbird |
-| **Both** CO2 sensors | ⛔ Still reading ~**350 ppm low** — the primary since 07-25, the Inkbird since 07-27. The cross-check is blind; see the live issue below. |
+**Every figure in it is superseded** by the 08-13 readings at the top of this section. Two things from it are durable and are kept:
 
-**⚠️ `room_check.py` flagged a CO2 offset step of −51 ppm at 08-04 11:00 — this is almost certainly the filter cleaning, not drift.** The disturbance list puts someone in the room at 10:32–11:02 the same morning, ~1 h after the 09:30 clean. Per §6 doctrine the step detector flags but does not diagnose; a known physical event at the same timestamp is the explanation. **No action — but do not let it be re-read later as fresh evidence of sensor drift.**
+- **The CO2 row was an ARTEFACT, and it is the trap to remember.** It read *"displayed trough 450 ≈ 800 true — on target"* and looked like the best result of the whole vent series. **It was cold-night stack ventilation flattering the number, not the seal working.** Judge CO2 on a mild, still night or not at all.
+- **Humidifier duty went the wrong way** (93.7 → 97.7%) **while the arm-D revert stayed un-actioned.** The pattern — a recommendation recorded, not run, and the metric drifting meanwhile — is the one to watch for.
 
-**⚠️ Humidifier duty went the WRONG WAY and the arm-D revert is still not actioned.** The 08-01 recommendation to revert from arm E to **arm D (every fourth hole sealed, fan HIGH)** — worth ~13 duty points — remains outstanding. With duty now pinned at 98.9% overnight and costing ~R432/mo in power, this is the cheapest lever on the board and it is free. **⚠️ But do not run it while the aircon decoupling test is live** — that is the mistake the vent series already paid four nights for. Sequence it after the aircon verdict.
-
-**Note the trap in that CO2 row: it looks like the best result of the whole vent series, and it is an artefact of the fault.** A colder room with a stronger stack effect flushes harder. Do not read arm E's configuration as vindicated by it.
-
-- **Temperature was fixed by the fresh-air fan**, which buffers the fruiting room against the grow room. The aircon itself hasn't changed and is still not linked to HA. Consequence: aircon IR integration (TB11) is now a nice-to-have, not the only control path.
-- **The humidifier was fixed by cutting a hole in one side of the tub** (2026-07-25). It had been running flat out feeding a sealed box — mist condensed on the tub walls and drained back. Same RH and AH across the step, roughly half the duty.
-  - **⛔ CORRECTION 2026-08-05 — this file said "the discs were never worn". That was an INFERENCE presented as a fact, and it does not follow.** The tub result proves the tub was *a* bottleneck, and the larger one. **It says nothing about the condition of the discs**, which have never been measured. Do not carry "the discs are fine" forward as established.
-  - **➡️ AND THE DISC SWAP IS AN ENERGY PLAY, NOT JUST SPARE CAPACITY — operator, 2026-08-05.** Disc output is what sets duty at a given RH target, and **duty is what the power bill is made of.** The humidifier draws **117.3 W average, 2.81 kWh/day, ~R432/mo** — about **28% of the fruiting room's entire ~10 kWh/day** and a material slice of what this file already calls the business's single largest cost. **A 10% duty reduction is ~R43/mo; 20% is ~R86/mo — on parts already bought, for zero cash.** Filing this as "redundancy only" understated it.
-  - **⚠️ BUT IT CANNOT BE MEASURED YET, AND THE REASON IS SHARPER THAN SEQUENCING ETIQUETTE: at 98.9% overnight duty the humidifier is essentially never cycling off.** There are almost no ON/OFF transitions to compare, and **you cannot measure an improvement in a device that is already flat out.** Fit fresh discs now and the result is unreadable.
-  - **➡️ The right metric is NOT duty — it is RH-lift per minute of ON time**, which isolates the humidifier from the room's leakiness and temperature. **That is derivable from the recorder with no new hardware** (which is also the cheapest version of what the power-monitoring plug was for). **It needs the room off the pin first.**
-  - **🎯 AND LOWERING THE TUB SIDES OUTRANKS THE DISC SWAP — operator, 2026-08-05. The reason is evidential, not preference.** Cutting **one hole** in one side halved duty at the same RH. **The tub is the only humidifier intervention with a demonstrated effect on this room; disc wear remains an untested hypothesis.** Lowering the sides is the fuller version of the change that already worked — more escape area above the water line, less fog condensing on wall and draining back — and it acts on the **proven** bottleneck rather than the assumed one. **It is also free: no parts, just cutting.** Try the mechanism that has already paid before the one that has not.
-  - **⚠️ Two constraints on how far to lower it.** (1) **The tub is the reservoir** — the ultrasonic discs need their operating depth, so the walls can come down to just above the working water line **plus a splash margin**, not to it. (2) **Watch for carryover**: too low and agitation may throw droplets into the airflow instead of fog, putting free water in the supply duct. The plenum's sloped base and drain absorb some of that, but wet duct walls or drips in the room are the signal to stop.
-  - **⚠️ AND UNLIKE THE DISCS, THIS ONE IS IRREVERSIBLE.** A disc swap can be undone by refitting the old discs; a cut tub cannot be un-cut. **So lower it in STEPS, measuring between them** — the first hole already showed the response is large, so there is no need to go far in one go.
-  - **⛔ RESOLVED 2026-08-12 — DO NOT CUT. The cold-snap test that `todo.fungi4u` item 7 was waiting for has RUN, on the two coldest nights in this record, and the tub passed.** Item 7's own pre-registered rule: *"Look at `humidifier_duty_1h` between 04:00 and 07:00… if a colder night pins it back at 100%, cut more; if it tops out ~80%, leave it."*
-
-    | night (04:00–07:00) | outdoor mean | max duty | mean duty |
-    |---|---:|---:|---:|
-    | 08-09 | 11.7 | 93.3% | 80.8% |
-    | **08-10** | **7.1** | **78.4%** | 65.9% |
-    | **08-11** | **6.6** | **82.5%** | 73.6% |
-
-    **Outdoors fell 4.6 K below the nights that set the rule, and duty did not pin — it topped out at 78–83%, i.e. the "leave it" branch, twice.** ✅ **So an irreversible cut is decided against on the strongest available evidence rather than deferred**, which is the whole point of having written the rule down first. *(Note 08-09, the *warmer* night, was the worst of the three at 93.3% — duty here is not a simple function of outdoor temperature, so a single night would not have settled this either way.)*
-  - **⚠️ Read this alongside the cooling entry at the top of the Room state section: the room was BELOW its temperature band on both test nights.** A colder room needs less absolute moisture to hold the same RH, so **the humidifier had an easier job than it will once temperature is restored.** ⬜ **Re-check the 04:00–07:00 figure after the aircon is settled** — if duty pins at 17 °C the question genuinely reopens. **The "do not cut" verdict is safe in the direction it matters** (it declines an irreversible action), but it is not the final word on tub capacity.
-
-**➡️ Revised humidifier queue, cheapest-and-most-proven first:** aircon verdict → **arm D** (free, ~13 duty points) → **baseline the RH-lift rate** → **lower the tub sides one step** (free, proven mechanism) → **discs last**, only if still short. **Every step after the first is a duty/energy play on a load costing ~R432/mo.**
-- **The fresh-air fan must run overnight.** Its load-bearing job is **positive pressure**, not CO2 venting — switching it off (tested 07-25) let cold dry air pool in through the front floor openings and crashed the bottom shelf within hours. It came back within an hour of the fan restarting.
-- **Weekly health check: `stock-control/tools/room_check.py`.** In-band scorecard, humidifier duty overnight vs midday, CO2 trough-to-trough, two-sensor drift cross-check. Run it weekly and after anything physical changes. Doctrine in `MICROCLIMATE.md` §6.
-
+*(Full scorecard: `git show 18f3846:STATUS.md`, §Room state.)*
 ### ⚠️ Live issue — primary CO2 sensor zero shift
 
 #### 🔴🔴 READ THIS FIRST — OUTDOOR CHECK 2026-08-11 08:45 INVERTS THE WHOLE SECTION. **THE INKBIRD IS THE STABLE SENSOR; THE PRIMARY IS THE ONE THAT MOVES. ⛔ DO NOT WRITE +210 OR +350 TO `0x006B`.**
