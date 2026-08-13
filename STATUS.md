@@ -296,6 +296,33 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **The 08-11 11:33 recorder gap (57.5 min) hit all four entities *including the Inkbird*** — different device, different transport. **Points at the Pi/HA or the network, not the controller.** Second occurrence noted; still no action.
 - **`room_check.py` flags an offset step at 08-13 05:00 (−17 → −100 ppm, score 2.6).** **Low score, and it sits inside the largest thermal transient in this record** — a 3.3 °C warmer room plausibly changes the vertical gradient between a top-mounted primary and a bottom-shelf Inkbird. **Not actionable as drift.**
 
+### 🔬 LIVE — FRESH-AIR FAN HIGH → LOW, 2026-08-13 17:21 SAST. Pre-registered read.
+
+**Why now, and it is NOT the reason Arm C decided HIGH on 07-30.** The afternoon data exposed a **diurnal** conflict the overnight figures could not show: **the grow room runs 2.4–2.8 °C ABOVE its 21 °C setpoint all afternoon (23.4–23.8), and the aircon is in HEAT mode so it is OFF and cannot cool.** That is solar and envelope gain, and `FAN = MANUAL HIGH` was pumping it into the fruiting room. **The setting that fixed the cold nights is wrong every afternoon.**
+
+**⛔ THE FAN CHANGED IS THE `ACDC` 100 mm FRESH-AIR FAN, NOT THE WF-150.** The operator asked which one, which was the right question — **slowing the WF-150 would have made this worse.** On 2026-07-21 the room had this identical symptom set (RH below band, humidifier pinned 24h) *with the WF-150 on LOW*, and the fix was putting it on **HIGH**: the plenum is what carries the humidifier's fog to the room, so low circulation starves moisture *delivery*. **Fresh-air = heat and drying import, reduce it. WF-150 = moisture delivery, do not touch it.** Same room, same symptom, opposite answers.
+
+| Baseline 17:21 | | Baseline 17:21 | |
+|---|---:|---|---:|
+| Fruiting temp | **19.80 °C** ⛔ | Grow temp | 23.70 °C |
+| Fruiting RH | **81.80 %** ⛔ | Grow RH | 50.90 % |
+| VPD | **0.42 kPa** ⛔ | CO2 primary | 665 ppm |
+| Absolute humidity | 14.00 g/m³ ✅ | CO2 inkbird | 561 ppm |
+| Humidifier duty 24h | **99.8 %** ⛔ | **Shelf delta (temp)** | **−0.80 °C** ⚠️ |
+
+**🎯 PRE-REGISTERED, written before the outcome is known. Read the overnight window 00:00–08:00 on 08-14:**
+
+| Outcome | Verdict |
+|---|---|
+| Fruiting mean **falls below 18.5** and VPD returns under 0.40 | ✅ **The fan carries the coupling. LOW is the afternoon setting** — and the room needs a diurnal answer, not one speed |
+| Temp falls but **humidifier duty stays pinned** | ◐ Heat import solved, **moisture deficit is separate** — the spare 12-disc unit is then the next single variable |
+| Temp barely moves (**< 0.5 °C**) | ⛔ **The heat comes through the partition, not the fan.** No free lever remains — **and the divider wall and a separately conditioned room move to the front of the queue** |
+| **Shelf delta past −1.5 and still falling** | 🔴 **ABORT, back to HIGH.** The pressure floor binds before the heat benefit arrives — the 07-25 failure mode |
+
+- **⚠️ THE SHELF IS ALREADY AT −0.80 BEFORE THE CHANGE**, against the −0.1/−0.2 this file calls flat, and −0.3 this morning. **The abort tripwire is nearer than it looks.**
+- **⚠️ CO2 is the cost and it is already climbing** (~150 ppm/day, 665 displayed). **If the primary is still near-accurate per the 08-11 outdoor check, headroom to the 800 target is ~135 ppm — about one day.** Acceptable for one night, not unattended.
+- **⛔ Change nothing else until this is read.** One variable.
+
 ### 🔴 CO2 IS CLIMBING — the warming raised production far more than it raised ventilation (2026-08-13)
 
 **✏️ CORRECTS AN ENTRY MADE THE SAME DAY.** The block above first read *"CO2 itself is healthy: overnight trough 402 displayed, unchanged, well under target."* **That was read off the 48h `room_check.py` window, which straddles the fan change and averages the cold half in.** The 24h trend says the opposite.
