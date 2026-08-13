@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-08-12
+Last updated: 2026-08-13
 
 **What this document is.** A plain answer to *what is true right now*. It is deliberately short.
 
@@ -258,9 +258,45 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **Food labelling** — name, net weight, producer, batch/date, origin, barcode. Overlaps the Spar label work.
 - **Business/tax registration** — CIPC / SARS / VAT threshold. May already be sorted.
 
-## Room state (verified 2026-08-12 off a 48h `room_check.py` run)
+## Room state (verified 2026-08-13 off a 48h `room_check.py` run plus a 240h recorder pull)
 
-### 🔴 BOTH ROOMS ARE COOLING AGAIN — the grow room is back at 14.52 °C, the exact trough of the "closed" 08-01 event (weekly check, 2026-08-12)
+### ✅✅ THE FAN FIX WORKED, COMPLETELY — the grow room is AT SETPOINT for the first time in this record. And it has moved the problem, not removed it (2026-08-13)
+
+**`FAN = MANUAL HIGH` was set on 08-12 at ~09:30** *(the step is in the recorder between 09:00 and 10:00)*. **The grow room went from 5–6 °C below its 21 °C setpoint to holding 21.8 °C overnight, in one step, with nothing else changed.**
+
+| overnight mean 00:00–08:00 | 08-12 *(before)* | 08-13 *(after)* | change |
+|---|---:|---:|---:|
+| **Grow room** | 14.48 | **21.84** | **+7.36** |
+| **Fruiting room** | 14.92 | **18.17** | **+3.25** |
+| Grow room min | 14.10 | **20.80** | +6.70 |
+| Fruiting RH | 90.4 | **87.0** | −3.4 |
+| Humidifier duty 00–08 | 76.6% | **~100% (pinned)** | — |
+
+- **⛔ "THE GROW ROOM IS 3.2–5.9 °C BELOW SETPOINT" IS CLOSED.** It ran **21.7–22.0 °C all night** and 20.8 at its coldest. **The recirculation diagnosis is confirmed by intervention, not just by inference** — the unit was always able to deliver this, and the fan setting was the whole of it.
+- **⛔ SO ARE THE COMPETING CANDIDATES, and they should not be re-opened.** The **back-wall drywall** (named 08-11 as the leading envelope candidate), the **grow-room door leaks**, and the residual **capacity** worry all predicted a persistent shortfall that a fan speed could not fix. **A fan speed fixed it.** Envelope work on the back wall has **no temperature case left** — if it is done, it must be justified on something else.
+- **⚠️ AND IT REVERTS SILENTLY. Nothing alarms on it.** See `HANDBOOK.md` — this is now a **load-bearing setting**, and today's data is the first hard evidence of what it is worth: **7.4 °C.**
+
+**🔑 THE COUPLING IS ~45%, NOT ~25% — MEASURED, AND IT SETTLES THE OPEN QUESTION IN THIS FILE.** The 08-08 entry left it hanging: *"Fruiting rising ~1 °C per 4 °C of grow rise means ~25% coupling and room to push further; tracking near 1:1 means the rooms cannot be held apart and a separate colonisation space is needed after all."* **+3.25 on +7.36 is 44%.** There is **no room to push further.**
+
+- **➡️ COLONISATION TEMPERATURE IS UNREACHABLE IN THIS GEOMETRY. This is now measured, not hypothesised.** At 44% coupling, running the grow room at the **24–27 °C** grey oyster wants would drag the fruiting room to **19.2–20.5 °C** — **1.2 to 2.5 °C above its 18 °C ceiling**, on a cool-fruiting crop. The rooms cannot be held apart across a 50 mm partition.
+- **➡️ SO THE SEPARATE GROW ROOM IS CONFIRMED NECESSARY, not preferred.** It was the *"undesigned half of the wall plan"* resting on an unmeasured hinge. **The hinge is now closed in the direction that requires the build.** The ~10 days/batch colonisation prize stands and is only reachable that way.
+- **✅ One hinge from 08-05 is also closed in passing:** *"that colonisation here is temperature-limited"* is still **unmeasured** — but the grow room is now warm, so **W32/W33 colonising at 21.8 °C against the recorded 21–30 day range is a free, running experiment.** Do not disturb it; just read the dates.
+
+**🔴 BUT THE FRUITING ROOM IS NOW OUT OF BAND AT THE TOP, AND THE HUMIDIFIER IS PINNED AND LOSING GROUND.** This is the cost side and it is live right now.
+
+- **Temperature 18.1–18.8 °C continuously since 08-12 13:00, against a 15–18 °C band.** `room_check.py`'s 47.9% in-band is flattered by the cold pre-fix half of its window; **since the fix it is essentially 0%.** *(48h scorecard: mean 16.82, min 14.70, max 18.90.)*
+- **🔴 The humidifier has not cycled since 08-12 15:08 — ~18 hours continuously ON.** `humidifier_duty_24h` reads **98%**. **This is the first time it has been genuinely out-run rather than merely working hard.**
+- **🔑 AND IT IS A REAL MOISTURE DEFICIT, NOT THE RH/TEMPERATURE ARTEFACT THIS FILE KEEPS WARNING ABOUT.** Across 08-13 00:00–08:00 the **temperature was flat (18.22 → 18.30)** while **AH fell 13.74 → 13.26 g/m³** and RH fell **88.3 → 84.8** — a steady **−0.44 RH points/hour**. **Absolute moisture is leaving with the humidifier at 100%**, so this passes the doctrine's own test and cannot be dismissed as temperature confounding.
+- **⚠️ VPD IS STILL IN BAND BUT CLOSING ON THE CEILING: 0.246 → 0.320 kPa overnight, ~+0.009/h against a 0.40 limit.** At 18.3 °C, **VPD leaves band at ~81% RH — 3.8 points below where it now sits.** **On a straight-line read that is this afternoon.** *(Projection, not a measurement — the rate may flatten. But the direction has been monotonic for 8 hours.)*
+- **⛔ THE EXHAUST-HOLE DUTY TREND IS VOID FROM HERE.** The 100 → 83 → 72.4% series was the strongest evidence for closing more holes. **A 3.3 °C step change in room temperature has invalidated the baseline** — 72.4% and 98% are not comparable numbers. **Do not read the pinning as the hole closure failing, and do not close more holes to fix it.** *(The standing condition — a mild, still night — is unchanged and still unsampled.)*
+
+**➡️ THE DECISION THIS FORCES, and it is the operator's:** the fruiting room's 15–18 °C band and the grow room's 21 °C setpoint are **now in direct conflict at 44% coupling**, and 21 °C is the *low* end of what colonisation wants. **Either the fruiting room gets moisture capacity to hold 90% RH at 18.3 °C, or the aircon setpoint comes back down and the colonisation gain is given back.** The **spare 12-disc humidifier and fresh discs are already on hand** — item #5 on the room programme, which said *"size it after #4 (the aircon)"*. **#4 is now answered, so #5 is live.** ⚠️ **Hinges on:** *that the deficit is a humidifier-capacity shortfall rather than the aircon condensing.* **In HEAT mode the indoor coil is the condenser and strips nothing** *(nameplate-confirmed reverse-cycle, 08-12)*, so capacity is the likelier read — **but a warmer room also drives more vapour out through the front-wall openings, and that is a loss no amount of disc capacity fixes cheaply.** **Size of the move if wrong: adding discs treats a symptom and the room stays out of band.** ⬜ **Cheapest discriminator: run the spare unit for one night and see whether AH stops falling.** If it holds, it was capacity.
+
+**⬜ Two smaller reads, neither urgent.**
+- **The 08-11 11:33 recorder gap (57.5 min) hit all four entities *including the Inkbird*** — different device, different transport. **Points at the Pi/HA or the network, not the controller.** Second occurrence noted; still no action.
+- **`room_check.py` flags an offset step at 08-13 05:00 (−17 → −100 ppm, score 2.6).** **Low score, and it sits inside the largest thermal transient in this record** — a 3.3 °C warmer room plausibly changes the vertical gradient between a top-mounted primary and a bottom-shelf Inkbird. **Not actionable as drift.** CO2 itself is healthy: **overnight trough 402 displayed**, unchanged, well under target. *(The ~350 ppm common-mode under-read still stands — true trough ≈ 750.)*
+
+### 🔴 BOTH ROOMS ARE COOLING AGAIN — the grow room is back at 14.52 °C, the exact trough of the "closed" 08-01 event (weekly check, 2026-08-12) — ⛔ SUPERSEDED 2026-08-13, see directly above
 
 **The weekly `room_check.py` was 9 days overdue** (due 08-03, last run 08-05) **and it caught the room out of band.**
 
