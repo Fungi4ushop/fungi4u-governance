@@ -83,7 +83,19 @@ The objective is income for the family, via *committable* supply → new clients
 - **🔑 THE UNEXPLAINED PART POINTS AT WATER: total batch weight runs 93–135 kg against what should be a FIXED input.** `HANDBOOK.md` — two bales → one 110 L drum → *"exactly one batch"*. **A fixed drum of dry straw cannot vary 45% in mass; hydration can.**
 - **➡️ IF IT IS WATER IT IS A YIELD LEVER, AND FREE.** BE divides by **wet** weight, so excess water depresses it mechanically — dividing by mass that was never food. **And over-hydrated substrate goes anaerobic in pockets**, which costs colonisation and invites contamination. **If it is straw, it is instead a cost line: ~16% more substrate bought and processed than the plan assumes.**
 - **✅ ANSWERED SAME DAY (operator): NO WATER IS ADDED AT ALL.** The drum is drained, then the liner and its soaked straw are **left to drain further**, and that wet straw is bagged. **So the 28% spread is RESIDUAL DRAINAGE WATER, set by how long it is left — same dry straw in, variable water out.** ➡️ **The control variable is drain time, and it is free.**
-- **⛔ THE CONTAMINATION LINK IS NOT ESTABLISHED — r = +0.44, n = 10, and it should not be quoted as support.** The two heaviest batches do hold the two highest cull rates (W27 5.20 kg → 21.7%, W25 4.96 → 13.6%), **but W30 is the LIGHTEST batch and culled 10.7%**, and the three newest batches' 0% is *"only 2–16 days old"*, not clean. **Watch it; do not act on it.** *(Note the failure modes differ too: W27's five culls were all in FRUITING, W30's three in GROW.)*
+- **⛔⛔ THE CONTAMINATION LINK IS DEAD, AND THE ANALYSIS THAT SUGGESTED IT WAS MEASURING THE WRONG THING (operator, 2026-08-13).** ~~r = +0.44 across 10 batches, heaviest bags holding the highest cull rates.~~ **WITHDRAWN. Bags are also culled to be USED AS SPAWN when grain spawn runs short — a productive reuse, not a loss — and it is recorded only in the note field.**
+
+  | The 12 culls | Bags | |
+  |---|---:|---|
+  | **Contamination** | **5** | W25 ×1, W26 ×1, W30 ×3 — **all GROW room** |
+  | **Used as spawn** | **6** | W25 ×2, W27 ×4 — **all FRUITING** |
+  | Unlabelled | 1 | W27 2026-07-27, no note |
+
+  **➡️ TRUE CONTAMINATION IS 5 BAGS IN 233 PACKED ≈ 2.1%, AND THE PATTERN INVERTS: W30 — the LIGHTEST batch at 4.05 kg — is the worst at 10.7%, while W27, the heaviest at 5.20 kg, is 0–4.3%.** *(Corrected rates: W30 10.7%, W25 4.5%, W26 3.7%, W27 0–4.3%, rest 0%.)* **So if anything the data leans the other way, and the over-wet-is-risky idea has no support at all.**
+
+- **🔴 AND IT IS A SCHEMA DEFECT, NOT JUST A MISREADING — `v_batch_contamination` COUNTS EVERY CULL AS CONTAMINATION.** It is `round(100.0 * culled_total / packed_bags, 1)` off `v_batch_bag_state`, so **it overstates W27 by 5× and W25 by 3×.** **There is ONE reason code, `CULLED`; the distinction between *a bag that died* and *a bag deliberately taken for spawn* exists nowhere in the schema** — only in free text, and **one of the six records has no note at all.**
+  - **⚠️ This file already uses cull rate as the contamination signal** *(W30's 10.7%, W31 as the test)*. **That particular number survives — all three of W30's were genuine — but the metric it rests on does not.**
+  - **⬜ Minimum fix: a distinct reason code for spawn harvest**, so the two are separable in the ledger rather than in prose. **Worth doing on its own merits too — a fruiting bag taken as spawn SUBSTITUTES FOR GRAIN SPAWN, so it is an input saving, not merely a non-loss, and nothing currently counts it.** ⛔ **Do not fix this by grepping the note text in a view** — rules belong in the schema (`SAFETY.md`).
 - **🔑 THE SOLID CONSEQUENCE IS MEASUREMENT, NOT BIOLOGY: BE divides by WET weight, so a 28% moisture spread makes cross-batch comparison partly a drainage measurement.**
 
   | | kg/bag | BE (wet, as recorded) | BE normalised to 4 kg |
