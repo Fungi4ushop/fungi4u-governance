@@ -113,6 +113,46 @@ Listed here so the list is complete; the detail stays where it lives.
 - **Physical control**: Home Assistant, running on a Raspberry Pi (Home Assistant OS) on the home network.
 - **Credentials**: see "Credentials" below — do not go looking in Git or chat history for these.
 
+## Finding out what a document *used to* say (added 2026-08-13)
+
+**Why this exists.** `STATUS.md` answers *what is true now*. It is meant to be pruned — superseded entries are removed rather than accumulated, or it grows until nobody reads it *(it reached 300 KB before this was written down)*. **So the record of how something was worked out lives in git, not in the file.** That is only a safe trade if the retrieval actually works, so here it is, tested.
+
+**Everything below was verified on 2026-08-13.** Run from inside the repo (`~/projects/fungi4u-governance` or `~/projects/stock-control`).
+
+**1. What changed, and why — this is the main one.** Commit messages here are long and describe *findings*, not chores, so this alone often answers the question:
+
+```
+git log --oneline -- STATUS.md          # one line each, newest first
+git log -- STATUS.md                    # with the full reasoning of each
+```
+
+**2. Find when a specific claim appeared or disappeared.** Searches the *content* of every version — you do not need to know the date:
+
+```
+git log --oneline -S 'MANUAL HIGH' -- STATUS.md
+```
+
+> Worked example: that exact command returns **`18f3846`** *(Aircon diagnosed: healthy unit defeated by a recirculation feedback loop)* and **`d81cdfe`** *(Fan fix confirmed…)* — the two commits where the grow-room fan setting was reasoned out and then proven. Quote a distinctive phrase, in quotes.
+
+**3. Read the whole document as it stood at that moment.** This is how deleted material is recovered — **not** by reading diffs:
+
+```
+git show 18f3846:STATUS.md > /tmp/old-status.md
+```
+
+You get the complete file, exactly as it was, and can read it normally.
+
+**⛔ Do NOT use `git log -p` on these files.** Paragraphs here are single lines up to 2,500 characters, so a three-word edit renders as a whole line deleted and re-added. One ordinary commit produces a **61 KB** diff, and `--word-diff` barely helps. **Use the three commands above instead.**
+
+### If you don't use a terminal
+
+Everything above is on **GitHub** (`Fungi4ushop` org, private). Open the file → **History** → pick a commit → **View file at this point**. That is the same as commands 1 and 3. GitHub's search box does *not* search history, so command 2 has no web equivalent — ask someone to run it, or read down the History list, where the commit titles usually give it away.
+
+### ⚠️ Two limits, both real
+
+- **Content moved BETWEEN the two repos loses its trail.** Git history does not follow a file from `fungi4u-governance` into `stock-control`. On 2026-08-13 the hardware/network/reflash sections moved from `STATUS.md` to `stock-control/docs/HARDWARE_REFERENCE.md`; **their history stayed behind in `fungi4u-governance`, and the copy in `stock-control` begins at commit `bc2ad28` with no past.** The pointer left in `STATUS.md` is the only bridge. **Whenever text crosses repos, leave a note saying where it went and where its history stayed** — otherwise it is genuinely lost, not merely hard to find.
+- **This all rests on commit messages staying good.** They currently average ~1,000 characters and name the actual finding. **A run of commits called "update STATUS" would make the history a haystack** and quietly break everything above. **When removing material from a document, say in the commit message what was removed and where the conclusion now lives** — that is what makes command 2 find it later.
+
 ## Credentials
 
 All real account credentials (GitHub, Supabase, Home Assistant login, router admin, MQTT broker, **Sage accounting, Capitec business banking**) belong in **one password manager** — Bitwarden, since that's already the one referenced as a critical recovery account elsewhere in this repo's history. If you find a credential anywhere else (a chat transcript, a config file, a browser's saved passwords), treat that as a temporary leak to clean up, not a legitimate second home for it.
