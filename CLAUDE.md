@@ -17,6 +17,22 @@ A grey oyster mushroom cultivation business, run from home in Pretoria by one op
 
 This is a real failure, not a hypothetical: on **2026-08-13** a session read three long write-ups of the fresh-air fan's *removal* (2026-07-18), never reached the one-line record of its *replacement* (2026-07-23), declared the room passively ventilated, and built two recommendations on it. **Do not copy configuration facts back into `STATUS.md`** — one home, or it drifts again.
 
+### ⛔ TRIGGER: the operator mentions a physical change → RE-READ current-configuration BEFORE analysing
+
+*"X was changed"* · *"we fitted Y"* · *"is Z fine?"* — **assume it is already recorded and you have forgotten. Read the section first, then respond.**
+
+- **The rule above was not enough, and failed the same day it was written.** It fires on *"before claiming what hardware exists"*, which requires correctly classifying the question. The operator said *"the bottom duct was changed"*; the session heard *"something new happened, assess it"*, went to the recorder to date it, **attributed an unrelated door-open disturbance to it, and asked for hole counts that had been in the file for two days.** **A rule conditioned on recognising the situation does not fire when the situation is misread.** This one triggers on an observable event instead.
+- **Assume no memory across a long session.** The relevant commits — `return cap on`, `return duct drilled to 69 × 12 mm` — were in the `git log` at that session's *first tool call*, and were gone forty messages later. **Rules that depend on recall will fail. Rules that force a re-read at the moment of use will hold.** The section is short and near the top of the file precisely so re-reading is cheap: **do it again rather than trusting that you read it earlier.**
+- **This applies while editing that file too.** The same session *edited* `HARDWARE_REFERENCE.md` that morning and never read the block 250 lines below, which flatly contradicted the one it was moving.
+
+### ⛔ EMPHASIS MARKS IMPORTANCE, NOT DECIDEDNESS — read to the end of the block before quoting it
+
+**These documents deliberately preserve superseded reasoning, and they use 🎯 / ⛔ / bold caps on candidates, hypotheses and withdrawn claims exactly as heavily as on conclusions.** So **skimming for emphasis finds the loudest sentence, not the settled one** — and in a file that keeps the arguments it lost, the loudest sentence is often the one that got argued down.
+
+- **The failure, 2026-08-13:** a session read **"🎯 THE FIX IS IN THE SAME TABLE: the WF-100"** and reported a replacement fan had been identified. **Four bullets later the same block says *"Still run the free revert test first… that either saves the purchase or proves it necessary"*, notes the flow figure is *"class-typical, not derived"*, and records that the manufacturer publishes no airflow at all — so the part cannot be sized against the duct even in principle.** The block argues *against* buying. **It was nearly written into the current-configuration summary as a decision.**
+- **Before quoting a bolded claim, read to the end of its bullet group.** Look specifically for the qualifier that usually follows: *"still run the test first"*, *"hinges on"*, *"not derived"*, *"⛔ WITHDRAWN"*, *"do not act on this yet"*.
+- **A candidate named is not a decision taken.** If it were decided, it would be in **CURRENT CONFIGURATION** — which is the whole reason that section exists.
+
 ## Read additionally, depending on the task
 
 - **Climate control / microclimate / hardware / GPIO / wiring / RS485 / Modbus / sensor configuration work** → `stock-control/docs/HARDWARE_REFERENCE.md` (**current configuration first**, then the detail) and `stock-control/docs/MICROCLIMATE.md`
