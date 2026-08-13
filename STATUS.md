@@ -310,6 +310,12 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 | Absolute humidity | 14.00 g/m³ ✅ | CO2 inkbird | 561 ppm |
 | Humidifier duty 24h | **99.8 %** ⛔ | **Shelf delta (temp)** | **−0.80 °C** ⚠️ |
 
+**⛔ THE INKBIRD CO-LOCATION CANNOT RUN CONCURRENTLY — IT WOULD BLIND THIS TEST'S ABORT CONDITION (noted 2026-08-13, operator raised it).**
+
+**`temp_shelf_delta` IS the Inkbird** — bottom minus top, 19.0 − 19.8 = −0.80. **Move it up beside the CO2 sensor and the delta collapses toward zero because both sensors are then in the same place**, not because the shelf recovered. **The abort tripwire would read healthy through an actual crash.** ⚠️ **This file has already been burned by exactly that mechanism**: the shelf deltas are **template sensors that recompute whenever the OTHER input changes**, so they produced plausible numbers right through the 08-09 Inkbird freeze and two nights were voided.
+
+**➡️ SEQUENCE, and it is not interchangeable:** ① read this fan test → ② settle the fan at HIGH or LOW and give the room a day → ③ **then** co-locate for 24 h with nothing else changing → ④ read the offset → ⑤ return it to the bottom shelf **and log that you did**. **⚠️ While co-located there is no bottom-shelf instrument at all, so it must not span any airflow change.** *(The co-location gates the sealing decision, which is not being made this week — it can wait for a stable room. The pinned humidifier cannot.)*
+
 **🎯 PRE-REGISTERED, written before the outcome is known. Read the overnight window 00:00–08:00 on 08-14:**
 
 | Outcome | Verdict |
