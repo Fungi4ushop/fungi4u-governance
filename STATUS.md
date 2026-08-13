@@ -48,6 +48,26 @@ The objective is income for the family, via *committable* supply → new clients
 
 **This outranks every remaining microclimate item**, because it is the difference between knowing the work succeeded and believing it did.
 
+### 🔴 THE SECOND FLUSH IS MISSED BY ONE DAY, NOT BY WEEKS — and "4–6 weeks" is not our number (2026-08-13)
+
+**W27 decomposed from `v_batch_residence` + the picking timestamps. It is the ONLY batch that has ever reached a second flush.**
+
+```
+day  3      first pick                    (lag from move-in: 3 days)
+day  3–18   FLUSH 1 — 13,052 g
+day 18–22   rest — 4.2 days
+day 22      FLUSH 2 STARTS                (budget with 3 trolleys = 21 days)
+```
+
+- **⛔ THIS FILE'S "a second flush needs ~4–6 weeks" AND "incompatible by roughly a factor of two" ARE NOT SUPPORTED BY OUR OWN DATA.** Those are literature figures. **Measured here: flush-2 onset at day 22 against a 21-day budget — a miss of ONE DAY.** The trolley/wall case has been argued on the wrong magnitude.
+- **🔑 THE LEVER IS SYNCHRONY, NOT SPEED. Flush 1 ran days 3–18 — a 15-day span for 23 bags.** That is not a flush, it is bags pinning individually across a fortnight. **76% of the grams landed days 10–14; the day-18 picking was a 624 g straggler (4.8%) — and it is what pushes the rest period, and therefore flush 2, out to day 22.** If the bags pinned together, flush 1 would close ~day 14, the same 4-day rest puts flush 2 at ~day 18, and **three days of it fall inside the existing budget with no extra trolley.**
+- **➡️ SO MICROCLIMATE CAN PLAUSIBLY DELIVER THE SECOND FLUSH WITHOUT BUYING ANYTHING** — bags pin on local conditions, and this room currently runs **0.8 °C top-to-bottom with VPD swinging 0.19–0.42 across a day.** Uneven conditions produce uneven pinning almost by definition. **This is the first argument that makes microclimate work income-tier rather than enabler-tier.**
+- **📐 And the right metric while slots are the constraint is `grams_per_bag_per_week`, not BE** — the view already computes it. **W25 106.0 · W26 173.6 · W27 176.6.** BE says what a batch can do; g/bag/week says what a *trolley earns*.
+
+⚠️ **Hinges on n = 1.** W27 is the only batch to reach flush 2. **W25 and W26 were both removed ON THE DAY of their last picking**, so nobody knows whether they were about to flush again. **Size of the move if wrong: the entire trolley-and-wall yield case.**
+
+**🔬 THE TEST THAT SETTLES IT IS NEARLY FREE, AND IT NOW OUTRANKS THE TROLLEY PURCHASE: hold ONE batch 4–5 days past normal removal and weigh flush 2.** Cost is a few days of cadence disruption, once. **If flush 2 lands at 30–50% of flush 1, the compression case is made and you know how many days to find. If it is tiny, the second flush is not worth its slot-time and BOTH the trolleys and the wall lose their yield argument.**
+
 ### ✅✅ BIOLOGICAL EFFICIENCY IS MEASURED — 2026-08-13, first time. And the flush-2 column is the finding.
 
 **Computed exactly as `v_substrate_biological_kpi` defines it**, over all **33 pickings** in the ledger *(the anon-readable `v_recent_captures` is capped at `limit 20` by design — do not compute yield from it, it truncates at 08-01)*. Route: `supabase db dump --linked`, CLI already authenticated.
