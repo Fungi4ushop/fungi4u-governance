@@ -66,7 +66,26 @@ The objective is income for the family, via *committable* supply → new clients
 - **➡️ THE YIELD GAP IS THEREFORE A RESIDENCE PROBLEM, NOT (YET) A BIOLOGY PROBLEM.** *"The room harvests half of each batch and discards the rest"* is now the measured reading. **This is the strongest evidence yet for more fruiting slots — trolleys or the wall — and it outranks every microclimate item, because no amount of climate tuning recovers a flush that was never allowed to happen.**
 - **⚠️ Trend 6.1 → 9.7 → 11.2% across W25/W26/W27 is the direction the room work predicts, but is NOT clean** — W27 had a 20-day picking window against 11–12 days. **Do not bank it.**
 
-⚠️ **Hinges on the substrate basis, and it is unresolved.** The ledger records **5.2 kg/bag** (119,600 ÷ 23); `HANDBOOK.md` says *"~24 × 4 kg bags"*. **If 4 kg is correct every figure above is ~30% too low** — W26 becomes 12.6% and most of the gap closes. **Size of the move if wrong: it decides whether there is a yield problem at all.** ⬜ **Settle the bag weight and whether the recorded grams are wet substrate including water, before this number is quoted anywhere.**
+✅ **HINGE CLOSED SAME DAY (operator): 4 kg is the AIM, not the actual.** `total_substrate_grams` is the **measured total batch weight**, so BE divides by real substrate and **the figures above stand as computed.** *(`HANDBOOK.md`'s "~24 × 4 kg bags" is a target and should be read as one.)*
+
+### ⚖️ AND THE BAGS MISS THAT AIM EVERY TIME, ALWAYS HEAVY — mean 4.64 kg, +16% (2026-08-13)
+
+| | kg/bag | vs 4 kg | | kg/bag | vs 4 kg |
+|---|---:|---:|---|---:|---:|
+| W30 | **4.050** | **+1%** | W33 | 4.665 | +17% |
+| W29 | 4.354 | +9% | W32 | 4.705 | +18% |
+| W26 | 4.489 | +12% | W31 | 4.747 | +19% |
+| W23 | 4.600 | +15% | W25 | 4.955 | +24% |
+| W28 | 4.645 | +16% | W27 | **5.200** | **+30%** |
+
+**Mean 4.641 kg · spread 28% · CV 6.4% · not one batch under target.** A one-directional miss is a systematic bias, not scatter.
+
+- **🔑 THE UNEXPLAINED PART POINTS AT WATER: total batch weight runs 93–135 kg against what should be a FIXED input.** `HANDBOOK.md` — two bales → one 110 L drum → *"exactly one batch"*. **A fixed drum of dry straw cannot vary 45% in mass; hydration can.**
+- **➡️ IF IT IS WATER IT IS A YIELD LEVER, AND FREE.** BE divides by **wet** weight, so excess water depresses it mechanically — dividing by mass that was never food. **And over-hydrated substrate goes anaerobic in pockets**, which costs colonisation and invites contamination. **If it is straw, it is instead a cost line: ~16% more substrate bought and processed than the plan assumes.**
+- **⬜ Two questions for the operator, and they decide which:** *is the water added by measure or by feel*, and *does the drum reliably make one batch, or does its yield vary?*
+- **🔬 W30 IS THE NATURAL EXPERIMENT AND IT IS ALREADY RUNNING — nothing to set up.** At **4.050 kg it is the only on-target batch**, currently 25 bags in the grow room, not yet moved to fruiting. **When it fruits it gives a clean read on whether on-target bags outperform**, against nine batches that ran 9–30% heavy. ⚠️ **Do not lose track of which batch it is.**
+
+
 
 ### 🧭 ROOM PROGRAMME — where it stands, 2026-08-01 (a checkpoint, not the end)
 
