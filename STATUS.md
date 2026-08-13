@@ -294,7 +294,35 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 
 **⬜ Two smaller reads, neither urgent.**
 - **The 08-11 11:33 recorder gap (57.5 min) hit all four entities *including the Inkbird*** — different device, different transport. **Points at the Pi/HA or the network, not the controller.** Second occurrence noted; still no action.
-- **`room_check.py` flags an offset step at 08-13 05:00 (−17 → −100 ppm, score 2.6).** **Low score, and it sits inside the largest thermal transient in this record** — a 3.3 °C warmer room plausibly changes the vertical gradient between a top-mounted primary and a bottom-shelf Inkbird. **Not actionable as drift.** CO2 itself is healthy: **overnight trough 402 displayed**, unchanged, well under target. *(The ~350 ppm common-mode under-read still stands — true trough ≈ 750.)*
+- **`room_check.py` flags an offset step at 08-13 05:00 (−17 → −100 ppm, score 2.6).** **Low score, and it sits inside the largest thermal transient in this record** — a 3.3 °C warmer room plausibly changes the vertical gradient between a top-mounted primary and a bottom-shelf Inkbird. **Not actionable as drift.**
+
+### 🔴 CO2 IS CLIMBING — the warming raised production far more than it raised ventilation (2026-08-13)
+
+**✏️ CORRECTS AN ENTRY MADE THE SAME DAY.** The block above first read *"CO2 itself is healthy: overnight trough 402 displayed, unchanged, well under target."* **That was read off the 48h `room_check.py` window, which straddles the fan change and averages the cold half in.** The 24h trend says the opposite.
+
+| night trough, displayed | 08-10 | 08-11 | **08-12** |
+|---|---:|---:|---:|
+| Primary | 482 | 393 | **570** |
+
+**Hour by hour since the fan change it is monotonic: 412 ppm at 08-12 09:00 → 609 at 08-13 09:00. +197 ppm in 24 hours, still rising, no plateau.**
+
+- **🔑 THE TREND IS OFFSET-INDEPENDENT, WHICH IS WHY IT CAN BE TRUSTED.** It is a *differential* over one sensor, so the unmeasured zero error cancels. **Whatever the absolute value is, the direction is unambiguous and it is the wrong way.**
+- **➡️ THE MECHANISM IS BIOLOGICAL, AND IT SWAMPS THE VENTILATION GAIN.** Warming raised passive ventilation only slightly — stack ΔT went **8.0 → 9.1 K** *(the outdoors warmed 6.9 → 9.1 °C the same night, cancelling most of the room's 3.3 °C gain)*, which is **~+7% flow** on a square-root law. **But respiration scales with temperature: at Q10 ≈ 2 the fruiting room's +3.3 °C is ~+26% CO2 production, and the grow room's +7.3 °C is ~+66% — from 96 colonising bags, which are metabolically the most active thing on the property, in a room with essentially zero air exchange.** Production up tens of percent against ventilation up 7% is the whole story.
+- **⚠️ IT HAS NOT PLATEAUED, so the ceiling is not yet known.** 24 h is less than one settling time for a passively-vented room that just took a step change. **Do not price the final level off today's number** — read it again after a full 48–72 h at the new temperature.
+
+**⛔ SO THE HUMIDITY-BY-SEALING ROUTE IS BLOCKED, AND NOW FOR TWO INDEPENDENT REASONS.** Closing more of the 50 mm exhaust strip is the natural answer to the moisture deficit above — it cuts the loss directly, without touching moisture delivery. **But the standing gate (a mild, still night, never sampled) is now joined by a second: the CO2 KPI is moving the wrong way at ~200 ppm/day.** Cutting the only passive exhaust while production is rising is the one change guaranteed to compound it.
+
+**🔴 AND THE DECISION CANNOT BE MADE AT ALL UNTIL THE SENSOR'S ZERO IS MEASURED — THE TWO DOCUMENTED ESTIMATES STRADDLE THE ANSWER.**
+
+| offset assumed | source | current true CO2 | vs <800 target |
+|---|---|---:|---|
+| **+90 ppm** | `MICROCLIMATE.md` §scorecard, from the 07-25 zero shift | **~700** | **passes, with headroom** |
+| **+350 ppm** | `STATUS.md`, from the physical-impossibility argument | **~960** | **fails, already over** |
+
+- **⚠️ THE +350 IS NOT A MEASUREMENT, AND THIS FILE SHOULD STOP TREATING IT AS ONE.** Its stated derivation — *"displayed trough 402 against ~425 outdoor ambient — impossible for a room of respiring mushrooms"* — **only establishes that the offset exceeds ~23 ppm.** The jump to 350 comes from assuming the true trough *ought* to be ~750, which is the thing being derived. **It is circular.** The +90 has a real event behind it but predates months of drift.
+- **➡️ SO THE FREE TEST THAT HAS BEEN OUTSTANDING FOR WEEKS IS NOW THE GATE ON A LIVE DECISION: co-locate the Inkbird beside the primary for 24 h.** `MICROCLIMATE.md` notes this *"has never actually been done for CO2"* — the 07-21 baseline used the temp/RH sensor 3.85 m away. **It costs nothing, it needs no reflash, and until it is done nobody can say whether this room is at 700 ppm or 960.** Run it with `room_check.py --inkbird colocated --since '<time>'`, and give it 24 h before reading — a freshly moved NDIR reads low until it settles.
+
+⚠️ **Hinges on:** *that the Inkbird is trustworthy enough to calibrate against.* It is explicitly a **secondary, verification-only** sensor with a known WiFi fault, and it drifts low over days — so this measures a *difference between two imperfect sensors*, not truth. **It is still worth far more than the circular estimate in use now.** **Size of the move if wrong: the sealing decision, and whether the room is currently failing its CO2 KPI or passing it comfortably.**
 
 ### 🔴 BOTH ROOMS ARE COOLING AGAIN — the grow room is back at 14.52 °C, the exact trough of the "closed" 08-01 event (weekly check, 2026-08-12) — ⛔ SUPERSEDED 2026-08-13, see directly above
 
