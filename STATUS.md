@@ -48,6 +48,26 @@ The objective is income for the family, via *committable* supply → new clients
 
 **This outranks every remaining microclimate item**, because it is the difference between knowing the work succeeded and believing it did.
 
+### ✅✅ BIOLOGICAL EFFICIENCY IS MEASURED — 2026-08-13, first time. And the flush-2 column is the finding.
+
+**Computed exactly as `v_substrate_biological_kpi` defines it**, over all **33 pickings** in the ledger *(the anon-readable `v_recent_captures` is capped at `limit 20` by design — do not compute yield from it, it truncates at 08-01)*. Route: `supabase db dump --linked`, CLI already authenticated.
+
+| Batch | Substrate | Flush 1 | Flush 2 | **BE** | Status |
+|---|---:|---:|---:|---:|---|
+| W25 | 109,000 g | 6,676 | **0** | **6.1%** | ✅ removed 08-04 — final |
+| W26 | 121,200 g | 11,782 | **0** | **9.7%** | ✅ removed 08-11 — final |
+| W27 | 119,600 g | 13,052 | 294 | 11.2% | in room |
+| W28 | 134,700 g | 4,234 | 0 | 3.1% | 1 picking |
+| W29 | 104,500 g | 2,584 | 0 | 2.5% | 2 pickings |
+| **All** | **589,000 g** | | | **6.6%** | 33 pickings, 07-24 → 08-13 |
+
+- **⛔ AGAINST THE 15–25% WET-BASIS BENCHMARK, THE TWO COMPLETED BATCHES ARE AT A THIRD TO A HALF OF THE LOW END.** The question this file has called *"the objective of all the room work is not being measured"* now has a number.
+- **🔑 BUT FLUSH 2 IS ZERO ON BOTH COMPLETED BATCHES, AND THAT REFRAMES IT.** They were pulled having given **one flush**. This file already establishes why: **3 fruiting slots against a weekly pack cadence caps residence at ~21 days; a second flush needs 4–6 weeks.** **So the batches were removed mid-cycle by the room's geometry, not because they were spent.** A second flush typically adds 30–50% of the first — **double W26 and you get ~19%, inside the band.**
+- **➡️ THE YIELD GAP IS THEREFORE A RESIDENCE PROBLEM, NOT (YET) A BIOLOGY PROBLEM.** *"The room harvests half of each batch and discards the rest"* is now the measured reading. **This is the strongest evidence yet for more fruiting slots — trolleys or the wall — and it outranks every microclimate item, because no amount of climate tuning recovers a flush that was never allowed to happen.**
+- **⚠️ Trend 6.1 → 9.7 → 11.2% across W25/W26/W27 is the direction the room work predicts, but is NOT clean** — W27 had a 20-day picking window against 11–12 days. **Do not bank it.**
+
+⚠️ **Hinges on the substrate basis, and it is unresolved.** The ledger records **5.2 kg/bag** (119,600 ÷ 23); `HANDBOOK.md` says *"~24 × 4 kg bags"*. **If 4 kg is correct every figure above is ~30% too low** — W26 becomes 12.6% and most of the gap closes. **Size of the move if wrong: it decides whether there is a yield problem at all.** ⬜ **Settle the bag weight and whether the recorded grams are wet substrate including water, before this number is quoted anywhere.**
+
 ### 🧭 ROOM PROGRAMME — where it stands, 2026-08-01 (a checkpoint, not the end)
 
 _Operator, 2026-08-01: **"a very good checkpoint but definitely not the end of the work on the rooms."** Correct, and it corrects an overstatement made the same day — "nothing left worth building" was true of the **vent experiment series**, not of the room programme. **The tuning phase is closed. The design is not finished.** Phases below are `stock-control/docs/MICROCLIMATE.md`'s own._
