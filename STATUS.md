@@ -276,6 +276,13 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 **✅ WHAT THE TIMESTAMP DOES BUY: A CLEAN BASELINE.** **Everything to 12:00 is settled pre-change data on the new fan setting**, so tonight's paired window is a genuine one-variable comparison. **Nothing is readable before this evening — the room must first refill, and the afternoon peak is still ahead.**
 
+**⚠️ HARVEST IS ALSO HAPPENING TODAY (operator), AND IT IS NOT JUST A TRANSIENT — IT MOVES THE READ.**
+
+- **✅ THE DAYTIME DISTURBANCE IS ALREADY HANDLED — that is WHY the window is 00:00–08:00.** An afternoon harvest sits **~8 h clear** of it, and the room settles. **Do not delay picking for an experiment: quality is time-sensitive, the crop is the business, and this test is instrumentation.**
+- **⛔ BUT HARVESTING REMOVES TRANSPIRING BIOMASS, WHICH IS A LASTING STEP, NOT A BLIP.** `MICROCLIMATE.md`: *"a fruiting crop **transpires**, so bags can be a net moisture SOURCE rather than a load"* — **untested here.** ➡️ **So tonight carries TWO variables pulling OPPOSITE ways: new discs (better) and less transpiring biomass (worse).**
+- **🎯 WHICH MAKES THE READ ASYMMETRIC, AND THAT IS STILL USABLE.** **An IMPROVEMENT survives the confound and is a STRONGER result — it was won against a headwind.** **A NULL does not: it cannot separate "discs did nothing" from "discs worked and the harvest ate it."** ➡️ **If tonight comes back null or ambiguous, the clean read is the FOLLOWING night (08-16), once the room has settled at the new biomass.**
+- **⬜ AND THE CONFOUND CAN BE A NUMBER RATHER THAN A CAVEAT — LOG THE HARVEST WEIGHT AND TIME.** **The ledger already captures per-picking weights**, so the biomass removed is recorded rather than estimated. **Do it in the same session; it is the difference between a quantified confound and an excuse.**
+
 **🎯 PRE-REGISTERED — TWO READS, written now:**
 
 | when | outcome | verdict |
