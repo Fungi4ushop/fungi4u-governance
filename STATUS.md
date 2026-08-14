@@ -249,6 +249,28 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 - **✅✅ HINGE CLOSED 2026-08-12 — THE NAMEPLATE CONFIRMS REVERSE-CYCLE.** ~~*Hinges on: that the unit is genuinely reverse-cycle rather than cooling-only with a separate heat source.*~~ **`Alliance INAA18` carries a HEATING CAPACITY of 5790 W** *(range 1550–6740; heating input 1461 W)*, so it heats on the refrigeration cycle. **➡️ The seasonal argument above therefore STANDS: in winter this unit can serve the combined fruiting room with no dehumidification conflict, and the wall needs a SUMMER answer rather than a year-round one.** Full nameplate and its other two consequences — the capacity hypothesis killed, and the inverter throttling that explains the slow fan — are in the aircon RESULTS block under *"Room state"*.
 - **⬜ The summer question is still open and is now the real one:** cooling a 90–95% RH room without condensing. Candidates not yet assessed — evaporative cooling (thermodynamically the right tool for a room that wants moisture, but limited by wet-bulb and only effective on dry make-up air), conditioning outside air and supplying it via the plenum, or a coil held above the room's ~15.8 °C dewpoint, which a conventional split cannot do. **Do not treat this as solved by the relocation idea.**
 
+### 🔬 LIVE — HUMIDIFIER DISCS REPLACED, 2026-08-14. **Pre-registered read, written before the outcome is known.**
+
+**Operator replaced the discs — PLAN step 1, the free test that can invalidate the mixing-box build.** ⬜ **TIME OF CHANGE NOT YET RECORDED — get it, the read is a paired night and the window matters.**
+
+**⛔ DUTY IS THE WRONG METRIC TO READ THIS EARLY, AND "STILL PINNED" IS NOT A FAILURE YET.** The firmware hysteresis is **ON below 88% RH, OFF above 92%** *(`fruiting-room-controller.yaml`)*. **RH is 86.6%, so the relay CANNOT cut out until the room is refilled to 92% — and it starts from a deficit.** ➡️ **A stronger humidifier must first RAISE ABSOLUTE MOISTURE; only then can it cycle. Reading duty today would score a working unit as a failure.** *(Relay confirms: 14 h, zero off-periods.)*
+
+**📈 WHAT IS ALREADY VISIBLE, AND THE DIRECTION IS RIGHT:** from the 07:00 trough, **AH 13.08 → 15.08 g/m³ by 12:00** and **RH 81.2 → 86.6% — while temperature ROSE 18.82 → 20.09 °C.** ➡️ **🔑 RH rising against a rising temperature is the signature that matters: moisture input now exceeds losses in a way it did not.** Before, the room warmed and RH FELL *(08-13/08-14 both)*. **15.08 g/m³ is the highest AH in this record** *(previous max 14.50)*. ⚠️ **But the morning warm-up raises AH anyway, no step is visible at any hour, and the change time is unknown — so this is ENCOURAGING, NOT A RESULT.**
+
+**🎯 PRE-REGISTERED — TWO READS, written now:**
+
+| when | outcome | verdict |
+|---|---|---|
+| **today, before the ~15:00–16:00 peak** | **RH reaches 92% and the relay CUTS OUT** | ✅ **Decisive. First off-period in this record. The discs WERE degraded and output is restored** |
+| | RH stalls below 92% as temperature peaks | ◐ inconclusive — the afternoon rise fights it; wait for the night |
+| **overnight 00:00–08:00, 08-15 vs 08-14** *(fan LOW both nights, one variable)* | **duty falls below 100%** | ✅ **Headroom exists. The mixing box is affordable in moisture terms** |
+| | **duty still 100% AND AH no higher than 13.72** | ⛔ **The unit is at its ceiling. A BIGGER HUMIDIFIER COMES BEFORE THE MIXING BOX — PLAN steps 6–8 re-order** |
+| | duty 100% but AH clearly above 13.72 | ◐ output rose, deficit still wins — the damper's water cost is the binding number *(PLAN step 3)* |
+
+- **⚠️ CONFOUND, AND IT IS REAL: the room is 1.5 °C warmer than the 08-14 baseline night** *(19.3 vs 18.2 at 22:00)*. **A warmer room needs more absolute moisture for the same RH**, so **an unchanged duty at a HIGHER AH is a genuine improvement, not a null.** **Score AH and RH together, never duty alone.**
+- **⬜ WATCH: if RH now overshoots toward 95%+ at 19–20 °C, VPD approaches the 0.1 band floor and free water on caps becomes a contamination risk.** The 92% cut-out should prevent it; **confirm it actually fires** — this room has never reached that threshold, so **the OFF branch of that automation has never been exercised in production.**
+
+
 ### 🗺️ ROOM CLIMATE — WHERE BOTH SEASONS STAND, 2026-08-14. **Read this before the five blocks below it.**
 
 **Operator asked: do we now have a plan for summer and winter? ➡️ We have TWO DIFFERENT THINGS, and calling them both "a plan" would flatter one of them.**
