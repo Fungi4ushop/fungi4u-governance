@@ -274,6 +274,45 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 **⬜ TIMING: BUILD EARLY, MEASURE LATE.** Sep–Oct is when the uncontrolled front-wall path does the most damage, so the intake earns most if it is in **before** September. **But it is the worst window in the year to READ a commissioning result** — 39.4% of hours over 12 km/h. ➡️ **Commission it for protection now; postpone any before/after measurement to November or later, or it will be voided the same way the fan test was.**
 
+### ☀️ THE SUMMER PLAN — 2026-08-14. **Evaporative cooling is ruled OUT on measurement. The load has never been measured, and that is the gate.**
+
+**⛔ CANDIDATE 1 — EVAPORATIVE COOLING: DEAD, AND ON TWO INDEPENDENT GROUNDS.** `STATUS.md` has carried it as *"thermodynamically the right tool for a room that wants moisture."* **Measured, it is not.**
+
+| Pretoria summer, Dec–Feb, 3 seasons, n=6,504 h | dry bulb | **wet bulb** |
+|---|---:|---:|
+| 03:00–06:00 | 17.4–18.0 | 15.5–15.7 |
+| **10:00–17:00** | **26.5–27.3** | **18.4 mean** ⛔ |
+| all summer hours | 21.2 | 17.1 *(min 8.9, max 21.8)* |
+| **% of summer hours with wet-bulb under 15 °C** | | **13.5%** |
+
+- **⛔ WET-BULB IS THE FLOOR AN EVAPORATIVE COOLER CAN REACH, AND THE SUMMER DAYTIME FLOOR IS 18.4 °C — ABOVE THE 18 °C BAND CEILING.** **A theoretically perfect 100%-efficient cooler misses the band on an average summer afternoon, before any efficiency loss, any duct gain, or any envelope load.** Real units reach 70–85% of the wet-bulb depression, so the practical figure is worse still.
+- **⛔ AND THE SECOND REASON IS MORE FUNDAMENTAL: THE EVAPORATIVE POTENTIAL IS ALREADY SPENT.** **The ultrasonic humidifier IS an evaporative cooler** — it takes its latent heat from the room. **The room already sits at 90–95% RH, which is air with almost no capacity to evaporate anything more.** ➡️ **There is no unexploited evaporative headroom to buy. A dedicated evaporative stage could only act on the make-up fraction, and even there it is floored at 18.4 °C.** **Strike it from the candidate list.**
+
+**🔴 AND THE REAL GAP IS NOT A MISSING TECHNOLOGY — IT IS THAT NOBODY KNOWS WHAT THIS ROOM ACTUALLY DOES IN JANUARY.** **Instrumentation only starts around July 2026.** ➡️ **Every summer conclusion in this file is derived from OUTDOOR climate, not from the room.** **The 95-hour run proves the cold SOURCE is unavailable; it does NOT prove the ROOM goes out of band** — the ceiling is insulated, the walls are 250 mm, the front wall carries 100 mm Isoboard, and there is thermal mass and an aircon. **⛔ Do not size or buy a cooling solution against a load that has never been measured** — that is this file's own standing rule, and it has already been broken three times *(the 867 W aircon, the variac ΔT, the R707 fridge saving)*.
+
+**➡️ SO THE PLAN IS SEQUENCED AROUND MEASUREMENT, AND SPRING IS THE WINDOW.**
+
+**PHASE 0 — MEASURE, Sept–Nov. Nothing here is speculative and most is already queued.**
+- **⬜ Buy the outdoor `SEN0438` NOW (R653.20).** ➡️ **It is not only the damper's feedforward — it is the instrument that makes a summer load reading INTERPRETABLE.** **Room temperature without outdoor temperature is the same unreadable pair that voided the fan test.**
+- **⬜ Log the room through the hottest days of Oct–Nov.** **Late spring gives 30 °C+ days before the January crunch**, so **you enter December with a measured load curve instead of an estimate.** ➡️ **`room_check.py` already produces this; it just has to be run on the right days.**
+- **⬜ Item 5(a) — CLAMP-METER THE AIRCON. This is the gate on every mechanical candidate below**, and it has been queued since July without being done. **Nameplate `Alliance INAA18` implies ~5.3 kW cooling; whether that holds ~34 m³ of fruiting room plus ~40 m³ of grow room on a 32 °C day is exactly the unanswered question.**
+- **⬜ Item 7c — the CO2-decay flow measurement.** Same number is needed to size any make-up-air treatment.
+
+**PHASE 1 — REDUCE THE LOAD BEFORE BUYING CAPACITY. Cheapest first, and the roof is already done.**
+- **✅ The "insulate the roof" case is VOID and must not be resurrected — the ceiling is insulated** *(that calculation was built on it being bare and the premise was wrong)*. ➡️ **Remaining load levers are EXTERNAL: shading, and a reflective coating on the flat iron roof.** **⬜ Neither has been costed.**
+
+**PHASE 2 — THE CROP-SIDE ANSWER, AND IT MAY DOMINATE THE ENGINEERING ONE.**
+- **🎯 SUMMER IS HOSTILE TO FRUITING AND FAVOURABLE TO COLONISATION — the building's problem inverts with the season.** **Colonisation wants 24–27 °C and `STATUS.md` records it is *"beyond what this equipment delivers in this space at all"* in winter.** ➡️ **In summer that comes free.** **Weighting the summer months toward colonisation and the winter months toward fruiting uses the building's natural swing instead of paying to fight it.**
+- **⬜ A WARM-FRUITING SPECIES FOR SUMMER — pink oyster (*Pleurotus djamor*) fruits at roughly 24–30 °C**, which turns the January problem into a non-problem for the cost of different spawn. ⚠️ **Its costs are commercial, not technical: a different product to sell, a notably shorter shelf life, and a market that has not been tested.** ⛔ **`CLAUDE.md` says cultivation technique is undocumented here — ask, do not assume.**
+- ⚠️ **These are not defeatist options. They are the only ones on this page that cost near-zero capital**, against mechanical candidates that have never been costed at all.
+
+**PHASE 3 — MECHANICAL COOLING, ONLY IF 1 AND 2 DO NOT CLOSE IT.**
+- **✅ CANDIDATE 2 — CONDITION THE MAKE-UP AIR — is now the front-runner, and the winter build sets it up.** A cooling coil on the **outside-air branch only**: **it sits OUTSIDE the humid room, so its condensate drains away instead of fighting the humidifier in the growing space**, and the plenum re-humidifies downstream, which it already does. ➡️ **🎯 SO SIZE THE MIXING BOX TO ACCEPT A COIL ON THAT BRANCH LATER. That costs nothing now and preserves the whole option** — build it cramped and Phase 3 needs the box rebuilt.
+- **⬜ CANDIDATE 3 — chilled water held above the room's ~15.8 °C dewpoint.** **The technically correct answer and what commercial farms use**; a 1.2 K control window a conventional split cannot hold. **Almost certainly out of budget — price it only to know what "proper" costs.**
+- **⬜ CANDIDATE 4 — a split in the fruiting room, fought with humidifier capacity.** **Cheapest capital, worst running cost**; the file's *"two appliances fighting and a large electricity bill"*. **Keep it on the list as the fallback it is.**
+
+**⚠️ PRIORITY, UNCHANGED: this is enabler tier and demand is still the binding constraint.** **Phase 0 is the only part that should happen before there is a second customer** — it is cheap, it is mostly already queued, and **without it every later decision is a guess.**
+
 ### 📋 IS THE WINTER SOLUTION COMPLETE? — audit, 2026-08-14. **Temperature: yes on paper. Humidity: a prediction with one unmeasured term. Build: two-thirds designed.**
 
 **Operator asked directly, and the answer is worth being precise about rather than encouraging.**
