@@ -377,62 +377,39 @@ A landscape to check with each authority, **not legal advice**. It mostly gates 
 - **The 08-11 11:33 recorder gap (57.5 min) hit all four entities *including the Inkbird*** — different device, different transport. **Points at the Pi/HA or the network, not the controller.** Second occurrence noted; still no action.
 - **`room_check.py` flags an offset step at 08-13 05:00 (−17 → −100 ppm, score 2.6).** **Low score, and it sits inside the largest thermal transient in this record** — a 3.3 °C warmer room plausibly changes the vertical gradient between a top-mounted primary and a bottom-shelf Inkbird. **Not actionable as drift.**
 
-### 🔬 LIVE — FRESH-AIR FAN HIGH → LOW, 2026-08-13 17:21 SAST. Pre-registered read.
+### ✅ CLOSED 2026-08-14 — FRESH-AIR FAN HIGH → LOW. **VOID AS A COUPLING TEST: the disturbance moved 3× while the actuator moves ~10%.**
 
-**Why now, and it is NOT the reason Arm C decided HIGH on 07-30.** The afternoon data exposed a **diurnal** conflict the overnight figures could not show: **the grow room runs 2.4–2.8 °C ABOVE its 21 °C setpoint all afternoon (23.4–23.8), and the aircon is in HEAT mode so it is OFF and cannot cool.** That is solar and envelope gain, and `FAN = MANUAL HIGH` was pumping it into the fruiting room. **The setting that fixed the cold nights is wrong every afternoon.**
+**Run 2026-08-13 17:21, read over the pre-registered window 00:00–08:00 on 08-14. ⛔ NONE OF THE FOUR PRE-REGISTERED BRANCHES FIRES.** The fruiting room got **warmer** on LOW — **+0.87 °C** — which is the opposite of what the mechanism predicts, and the pre-registration did not anticipate a warming.
 
-**⛔ THE FAN CHANGED IS THE `ACDC` 100 mm FRESH-AIR FAN, NOT THE WF-150.** The operator asked which one, which was the right question — **slowing the WF-150 would have made this worse.** On 2026-07-21 the room had this identical symptom set (RH below band, humidifier pinned 24h) *with the WF-150 on LOW*, and the fix was putting it on **HIGH**: the plenum is what carries the humidifier's fog to the room, so low circulation starves moisture *delivery*. **Fresh-air = heat and drying import, reduce it. WF-150 = moisture delivery, do not touch it.** Same room, same symptom, opposite answers.
+| overnight mean 00:00–08:00, time-weighted | 08-13 *(HIGH)* | 08-14 *(LOW)* | change |
+|---|---:|---:|---:|
+| **Fruiting temp** | 18.16 | **19.03** | **+0.87** ⛔ |
+| Grow temp | 21.84 | 22.41 | +0.57 |
+| **Room-to-room gap** | **3.67** | **3.37** | **−0.30 — narrowed** ⛔ |
+| VPD | 0.26 | 0.35 *(max 0.42)* | +0.09 |
+| RH | 87.28 | 84.00 | −3.28 |
+| Absolute humidity | 13.54 | 13.72 | +0.18 |
+| **Humidifier duty** | **100.0%** | **100.0%** | **0** ⛔ |
+| `temp_shelf_delta` | −0.17 | −0.03 | +0.13 ✅ |
+| CO2 primary, displayed | 593 | 651 | +58 |
 
-| Baseline 17:21 | | Baseline 17:21 | |
-|---|---:|---|---:|
-| Fruiting temp | **19.80 °C** ⛔ | Grow temp | 23.70 °C |
-| Fruiting RH | **81.80 %** ⛔ | Grow RH | 50.90 % |
-| VPD | **0.42 kPa** ⛔ | CO2 primary | 665 ppm |
-| Absolute humidity | 14.00 g/m³ ✅ | CO2 inkbird | 561 ppm |
-| Humidifier duty 24h | **99.8 %** ⛔ | **Shelf delta (temp)** | **−0.80 °C** ⚠️ |
+**⛔ WHY IT IS VOID, AND IT IS NOT THE SAME OBJECTION AS LAST TIME.** The 08-13 correction voided the *temperature branch* because the two-speed switch is only a ~7–13% flow actuator *(`HARDWARE_REFERENCE.md` §"Fan failure mode"; Arm C measured 0.20 °C for the same swing)*. **That still stands — but this night adds a second, independent invalidator: the dominant disturbance changed by 3× underneath the test.** Open-Meteo for the two windows: **outdoors 5.90 → 5.28 °C (test night was COLDER, so ambient cannot explain a warming) but wind 14.3 → 4.6 km/h, and cloud 20% → 0%.**
 
-**⛔ THE INKBIRD CO-LOCATION CANNOT RUN CONCURRENTLY — IT WOULD BLIND THIS TEST'S ABORT CONDITION (noted 2026-08-13, operator raised it).**
+- **🔑 THE WIND IS THE FRUITING ROOM'S DOMINANT THERMAL TERM, AND THIS FILE ALREADY SAID SO.** `MICROCLIMATE.md`: *"the aircon is at the back and the fruiting room is chilled from the front by cold outside air through the floor openings"* — the front-wall grate and the 50 mm strip. **A calm night removes that draft, and the room floats up toward the grow room.** That single mechanism explains **both** anomalies — the warming **and** the narrowing gap — and it predicts them in the right direction, which the fan hypothesis does not.
+- **⛔ THE MECHANISM'S OWN PREDICTION IS CONTRADICTED, WHICH IS THE CLEANEST READING HERE.** `MICROCLIMATE.md` §"Fresh air": the fan **is not ducted to outside** — outside air enters a 15 mm hole in the grow room's rear wall, crosses the grow room, and is drawn into the plenum already tempered to grow-room temperature. **So its intake is ~22 °C air, warmer than the fruiting room: less fan must mean less heat imported, and a WIDER gap.** Both went the other way.
+- **📐 THE MOST THE FAN COULD OWN IS ~0.30 °C.** The grow room warmed +0.57 on the same night with its aircon idle *(above setpoint, HEAT mode, so free-running)*. Treat that as the common-mode calm-night term and the fruiting room's excess is **+0.30 °C** — the same order as Arm C's 0.20 °C, i.e. the actuator's weakness again. **⚠️ Hinges on:** *that the calm-night effect is common-mode across the two rooms.* **It is not: the fruiting room owns the floor openings and the exhaust strip, so it is the leakier of the two and gains MORE from a still night.** **So 0.30 °C is a ceiling, and the honest estimate is nearer zero. Size of the move if wrong: the entire 0.87 °C is weather, and there is no fan signal in this night at all.** *(Wind is Open-Meteo's modelled 10 m value on a ~1 km grid cell, not measured on site — there is no anemometer here.)*
 
-**`temp_shelf_delta` IS the Inkbird** — bottom minus top, 19.0 − 19.8 = −0.80. **Move it up beside the CO2 sensor and the delta collapses toward zero because both sensors are then in the same place**, not because the shelf recovered. **The abort tripwire would read healthy through an actual crash.** ⚠️ **This file has already been burned by exactly that mechanism**: the shelf deltas are **template sensors that recompute whenever the OTHER input changes**, so they produced plausible numbers right through the 08-09 Inkbird freeze and two nights were voided.
+**✅ THREE RESULTS DO SURVIVE, because none of them depends on attributing the temperature.**
 
-**➡️ SEQUENCE, and it is not interchangeable:** ① read this fan test → ② settle the fan at HIGH or LOW and give the room a day → ③ **then** co-locate for 24 h with nothing else changing → ④ read the offset → ⑤ return it to the bottom shelf **and log that you did**. **⚠️ While co-located there is no bottom-shelf instrument at all, so it must not span any airflow change.** *(The co-location gates the sealing decision, which is not being made this week — it can wait for a stable room. The pinned humidifier cannot.)*
+1. **✅ LOW DOES NOT TRIP THE PRESSURE FLOOR — the abort branch did not fire, and it was the thing genuinely at risk.** `temp_shelf_delta` **improved** through the night, −0.23 at 00:00 → **+0.18 by 07:00**, i.e. the bottom shelf ended *warmer* than the top. The 07-25 failure mode did not recur. ➡️ **`HARDWARE_REFERENCE.md`'s "never leave this fan off overnight" was written about OFF; LOW is now measured and is safe for a night.** *(It had entered the window at −0.80 on 08-13 evening, which is why this was the watched risk.)*
+2. **✅ CO2 DID NOT RUN AWAY, AND THE MONOTONIC CLIMB IS BROKEN.** The pre-registration priced ~135 ppm of headroom at ~150 ppm/day — about one night. **Actual: it peaked at 699 (08-13 21:00) and then FELL monotonically to 646 by 04:00–06:00, 637 by 09:00.** Night-over-night the *level* is still up (+58 displayed), but **+197 ppm/24h has become +58, and the within-night direction has reversed.** ➡️ **The block below predicted a plateau needing 48–72 h; this is it arriving.**
+3. **⛔ THE HUMIDIFIER GOT ZERO RELIEF — 100.0% both nights, off relay transitions.** The evening 2-hour read's AH reversal at 17:20 was real but **did not convert into any duty headroom at all.** ➡️ **This is branch 2's second clause and it stands on its own: the moisture deficit is independent of the fan.** **The spare 12-disc unit is the next single variable**, and it no longer has to wait behind the fan question.
 
-**🎯 PRE-REGISTERED, written before the outcome is known. Read the overnight window 00:00–08:00 on 08-14:**
+**🔴 AND THE COST SIDE GOT WORSE: the room was out of band ALL NIGHT — 18.70–19.40 °C against a 15–18 band, 0% in band**, against 17.90–18.40 on 08-13. **VPD peaked at 0.42, over the 0.40 limit.** The conflict recorded above is not diurnal any more; it is now overnight too.
 
-| Outcome | Verdict |
-|---|---|
-| Fruiting mean **falls below 18.5** and VPD returns under 0.40 | ✅ **The fan carries the coupling. LOW is the afternoon setting** — and the room needs a diurnal answer, not one speed |
-| Temp falls but **humidifier duty stays pinned** | ◐ Heat import solved, **moisture deficit is separate** — the spare 12-disc unit is then the next single variable |
-| Temp barely moves (**< 0.5 °C**) | ⛔⛔ **THIS BRANCH IS WITHDRAWN — SEE THE CORRECTION BELOW. IT CANNOT LEGITIMATELY FIRE.** |
-| **Shelf delta past −1.5 and still falling** | 🔴 **ABORT, back to HIGH.** The pressure floor binds before the heat benefit arrives — the 07-25 failure mode |
+**➡️ WHAT IS STILL OPEN, and it is narrower than before.** The **coupling question is untestable on this fan** — for two reasons now, not one: a ~10% actuator, *and* a disturbance that moves 3× between nights. **It needs the variac** *(owned, unfitted)* **and results normalised against wind.** Until then neither the trolley/wall case nor "a separate room is forced" can be settled here. **⛔ No disturbance in the window** (no sharp CO2 moves; the door entity is not physically installed and reads floating — ignore it), so the night itself was clean; it is the weather that voids it.
 
-**✏️✏️ CORRECTED 2026-08-13 19:30 — THE TEMPERATURE BRANCH IS INVALID, AND IT WAS INVALID WHEN WRITTEN. THE ACTUATOR IS TOO WEAK TO TEST THE HYPOTHESIS.**
-
-`HARDWARE_REFERENCE.md` §"Fan failure mode" already records it, from the manufacturer's table captured 2026-08-11: **these ACDC fans' two speeds are only ~7–13% apart** *(WF-150 2500/2700 rpm; WF-100 2300/2600)*. The file says it outright — ***"the two-speed switch is a near-useless flow actuator… the revert test's 'fan → LOW' step will move almost nothing (~7%)"***, and ***"Arm C's LOW→HIGH result (temp +0.2 °C) was measuring a 7% flow change."***
-
-**➡️ SO A NULL TEMPERATURE RESULT MEANS NOTHING ABOUT COUPLING.** It cannot distinguish *"the fan does not carry the heat"* from *"a ~10% flow change is too small to see"*. **Reading a null as evidence for the partition would promote a building project on a measurement that cannot support it.** ⚠️ **The passage was read the same afternoon, while checking something else, and not applied to the experiment already running.**
-
-**📊 THE 2-HOUR READ (17:20 → 19:20, 20-minute means — not spot values):**
-
-| | 17:20 | 19:20 | |
-|---|---:|---:|---|
-| **VPD** | 0.435 | **0.395** | ✅ back in band |
-| **Absolute humidity** | 13.88 | **13.92** | ✅ **fell all afternoon (14.47 → 13.88), TURNED at the change** |
-| RH | 81.2% | 82.5% | +1.3 |
-| Fruiting temp | 19.78 | 19.63 | −0.15 |
-| Grow temp | 23.76 | 23.59 | −0.17 |
-| **Room-to-room gap** | **3.98 K** | **3.96 K** | **unchanged — they cooled together, that is evening** |
-| Shelf delta | −0.78 | −0.62 | ✅ improved, no abort |
-| CO2 | 681 | 690 | ~110 ppm/day, not the 275 feared off one noisy pair |
-
-- **✅ THE HUMIDITY RESULT IS REAL AND IS THE REASON TO LEAVE IT ON LOW OVERNIGHT.** AH had fallen monotonically all afternoon and **reversed at 17:20**. That is moisture retained, not a temperature artefact — it passes the doctrine's own test.
-- **⛔ THE TEMPERATURE RESULT IS NULL AND UNINFORMATIVE.** 0.15 °C against Arm C's 0.20 °C for the same swing: **the test reproduced Arm C, and both measured the actuator's weakness.**
-- **➡️ THE COUPLING QUESTION IS STILL OPEN AND NEEDS A REAL FLOW CHANGE — the variac, which is OWNED BUT NOT FITTED.** `HARDWARE_REFERENCE.md`: *"if this fan ever genuinely needs slowing, the variac is the only tool that can do it."* **Until it is fitted, neither the trolley/wall case nor the "separate room is forced" case can be tested on this fan.**
-- **⚠️ Spot readings vs means:** the 19:31 monitor spot pair showed the gap narrowing 3.90 → 3.50 K. **The 20-minute means show it flat.** Trust the means — the spot pair caught the grow room mid-cycle. *(`MICROCLIMATE.md`: never judge from a spot check.)*
-
-- **⚠️ THE SHELF IS ALREADY AT −0.80 BEFORE THE CHANGE**, against the −0.1/−0.2 this file calls flat, and −0.3 this morning. **The abort tripwire is nearer than it looks.**
-- **⚠️ CO2 is the cost and it is already climbing** (~150 ppm/day, 665 displayed). **If the primary is still near-accurate per the 08-11 outdoor check, headroom to the 800 target is ~135 ppm — about one day.** Acceptable for one night, not unattended.
-- **⛔ Change nothing else until this is read.** One variable.
+**➡️ SEQUENCE FOR THE INKBIRD, UNCHANGED AND STILL NOT INTERCHANGEABLE:** ① settle the fan and give the room a day → ② co-locate for 24 h with nothing else changing → ③ read the offset → ④ return it to the bottom shelf **and log that you did**. **⛔ `temp_shelf_delta` IS the Inkbird** (bottom minus top), so moving it up collapses the delta toward zero **because both sensors are then in the same place** — the tripwire would read healthy through an actual crash. This file has already been burned by that exact mechanism: the shelf deltas are **template sensors that recompute when the OTHER input changes**, and they produced plausible numbers right through the 08-09 Inkbird freeze, voiding two nights. **While co-located there is no bottom-shelf instrument at all, so it must not span any airflow change.**
 
 ### 🔴 CO2 IS CLIMBING — the warming raised production far more than it raised ventilation (2026-08-13)
 
