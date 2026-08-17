@@ -376,6 +376,20 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 </details>
 
 
+### 🔬 LIVE — **FOUR CHANGES ON 2026-08-17, AND THE FIRST NUMBERS ARE THE BEST THIS ROOM HAS PRODUCED. Read overnight 08-18.**
+
+| ~08:35 | **humidifier feed pipe bled** — it was air-locked *(new failure mode, see the reopened disc block)* |
+|---|---|
+| — | **reservoir refilled** to its proper level as a result |
+| ~10:50 | **tub slotted**, ~700 mm total — the tub is retired as a constraint |
+| ~11:30 | **aircon setpoint 21 → 19 °C** *(operator; todo 6c)* |
+
+**Baseline at 11:31, after the room had settled (CO2 back to 619):** grow **22.2 °C**, fruiting **18.7 °C**, RH **89.5%**, **AH 14.3 g/m³**, VPD 0.23.
+
+- **🎯 AH 14.3 IS HIGHER THAN ANYTHING IN THE TEN-NIGHT RECORD**, against **13.5–13.9 all week** and **13.1 at 08:40 the same morning** — **and the aircon had not yet had time to act.** ➡️ **The water fixes worked, and the first three changes were FAULT REPAIRS rather than experiments, so they need no validation.** **The aircon is the live variable.**
+- **🔴 AND IT MOVES THE CEILING THIS FILE COMPUTED YESTERDAY — WHICH MAY MEAN THE AIRCON IS NOW OVER-COOLING.** The **~17.2 °C** limit for 92% RH was derived from a humidifier delivering **13.5 g/m³ — a figure measured while the feed was air-locked.** **At 14.3 g/m³ the limit is ~18.2 °C.** ➡️ **⬜ If the overnight read lands comfortably ≥92% RH with the room well under 17.6 °C, RAISE THE AIRCON BACK toward 20 and re-read: that recovers colonisation for free.** ⛔ **Do not leave it at 19 by default merely because it works** — that pays the 21–30 day long pole for headroom the humidity may not need.
+- ⚠️ **The grow room was at 22.2 °C and must shed ~3 °C. It may not settle before the 00:00–08:00 window opens** — a room with bags in it has real thermal mass. **If the grow-room mean comes in well above 19, the fruiting-room figure is reading a room still in transit, and the TRUER read is the following night.**
+
 ### ✅ ITEM 7c DONE — **THE ROOM'S AIRFLOW IS MEASURED FOR THE FIRST TIME: 4.02 ACH = ~137 m³/h. Run 2026-08-16, fan off 18:13, fan on 18:32.**
 
 **The decay fit is strong: λ = 4.02 /h, r = −0.9952 over 60 samples across 45 minutes.** ✅ **Independently validated by its own asymptote — the fit lands at 612 ppm against an observed overnight trough of 587.** ✅ **And it is offset-tolerant exactly as this file predicted: a decay RATE is a differential over one sensor, so the disputed ~350 ppm zero cancels.**
