@@ -642,6 +642,27 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 - ⚠️ **Hinges on:** *the grow room's dewpoint tracking outdoor rather than being lifted by the crop's own respiration in a closed room.* **Unmeasured — and measurable now**, since the grow-room DHT22 reports RH as well as temperature. **Size of the move if wrong: chilled water versus a split, i.e. the difference between "probably out of budget" and "cheapest capital".**
 - **📋 REPRODUCIBLE.** `https://archive-api.open-meteo.com/v1/archive` · `latitude=-25.77&longitude=28.21` · `start_date=2025-12-01&end_date=2026-02-28` · `hourly=temperature_2m,dew_point_2m,relative_humidity_2m` · `timezone=Africa/Johannesburg`. *(`tools/outdoor_history.py` cannot do this — it uses the forecast endpoint, which reaches back only ~90 days and does not request dewpoint.)*
 
+#### 📅 AND THE MONTHLY BREAKDOWN CHANGES THE ANSWER — added 2026-08-18, same archive, Sep 2025 – Mar 2026
+
+**The Dec–Feb average hid both the shape of the season and the shape of the day. Neither is a detail.**
+
+| | mean | night 00–06 | day 12–16 | <24 °C *(heat)* | 24–27 *(band)* | >27 *(cool)* | dewpt mean | dewpt >17 °C |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| **Sep 25** | 20.3 | 15.7 | 26.0 | 71.8% | 17.4% | 10.8% | **5.0** | **0.0%** |
+| **Oct 25** | 19.6 | 15.1 | 24.9 | 75.9% | 14.1% | 9.9% | **9.1** | **0.0%** |
+| **Nov 25** | 18.3 | 15.3 | **21.6** | **93.6%** | 5.3% | 1.1% | 13.8 | 0.7% |
+| **Dec 25** | 20.1 | 16.7 | 23.9 | 81.5% | 14.9% | 3.6% | 14.8 | 5.4% |
+| **Jan 26** | 21.5 | 17.7 | 25.9 | 72.6% | 16.7% | 10.8% | **15.0** | **13.4%** |
+| **Feb 26** | **22.0** | **18.1** | **26.5** | 68.0% | 14.1% | **17.9%** | 13.4 | 5.2% |
+| **Mar 26** | 19.8 | 16.8 | 23.5 | 86.0% | 10.9% | 3.1% | 14.6 | 12.5% |
+
+- **✅ "DIRECTION OF DUTY UNKNOWN" IS NOW ANSWERED, AND IT WAS THE WRONG QUESTION — THE DIRECTION FLIPS EVERY DAY, NOT EVERY MONTH.** Peak-summer hourly means run **16.6 °C at 05:00 to 25.7 °C at 13:00**. ➡️ **Every night of the year sits 5–7 °C BELOW the 24 °C colonisation floor — midsummer included.** **So the grow room wants trim HEATING every night, all year**, and cooling is only ever an *afternoon* question — 11:00–17:00, and only in Sep, Jan and Feb. ⚠️ **What is still unmeasured is the room's OFFSET above ambient** *(solar gain + metabolic heat)*, which sets the magnitude. **The shape is now known; the size is not.**
+- **⛔ FEBRUARY IS THE HOT MONTH, NOT JANUARY — this file has said "the crunch lands late January".** Feb leads on mean **22.0**, on afternoons **26.5**, and on hours above 27 °C at **17.9%** *(against January's 10.8%)*. **Both claims are true and they measure different things:** late January owns the **95-hour unbroken run with no cold air** *(a duration)*; February owns the **intensity**. **Do not let one stand in for the other when sizing anything.**
+- **🎯 NOVEMBER IS THE SEASON'S ANOMALY AND IT IS FREE CAPACITY.** Afternoon mean **21.6 °C** — the coolest of the entire warm season, cooler than October — with **93.6%** of hours below 24 °C. The cloudy onset of the wet season. ➡️ **If a summer fruiting push is ever scheduled, November is the month that costs least.**
+- **🔴🔴 AND IT EXPOSES A TRAP IN PHASE 0 AS WRITTEN — "MEASURE SEPT–NOV" CANNOT ANSWER THE HUMIDITY QUESTION, BECAUSE THE PROBLEM DOES NOT EXIST YET IN THAT WINDOW.** Hours above a 17 °C dewpoint: **Sep 0.0% · Oct 0.0% · Nov 0.7%**, against **Jan 13.4%** and **Mar 12.5%**. **September air is desert-dry here — a 5.0 °C mean dewpoint.** ➡️ **Measuring the coil's condensation behaviour Sept–Nov would sample a season in which it cannot condense, and conclude that it never does.**
+  - **✅ THE HEAT HALF OF PHASE 0 IS STILL SOUND, AND THAT IS THE EXPENSIVE HALF.** **September afternoons average 26.0 °C against February's 26.5** — within 0.5 °C. **So the envelope's thermal response, the aircon's clamp-metered draw, and the room-versus-ambient offset are all properly samplable from September.** ⛔ **It is only the DEWPOINT/condensation question that must wait for Dec–Mar.** **Split the Phase 0 read in two and do not let the dry-month result close the wet-month question.**
+- **✏️ AND IT PUTS A HONEST NUMBER ON THE COIL CLAIM ABOVE.** *"Above 17 °C only 8.1% of hours"* was the **Dec–Feb pooled** figure. **Per month it is Dec 5.4% · Jan 13.4% · Feb 5.2% · Mar 12.5%.** ➡️ **In the wettest month roughly one hour in seven would condense on a coil held at 17 °C.** **Still a minority, and the conclusion holds — but January and March are the test, not the average.**
+
 **🔑 AND THE WINTER FINDING, WHICH FALLS OUT OF THE 08-13 FAN TEST: THE COLD SIDE HAS NO ACTUATOR, AND IT HAS ROUGHLY 3× THE AUTHORITY OF THE ONE WE HAVE BEEN ADJUSTING.**
 
 **The warm side is controlled** — the fresh-air fan, and it is a ~7–13% flow switch worth **<0.3 °C**. **The cold side is not controlled at all**: the front-wall floor grate and the 50 mm strip are permanently open holes. **On 08-14 the wind fell 3× and the room moved ~0.9 °C** *(full read: the CLOSED fan-test block)*. ➡️ **We have spent two nights trimming a 0.3 °C actuator while a 0.9 °C input swings on the weather with no damper on it.** That is why the fan tests keep returning null, and **the missing part is a damper on the cold side, not a better fan.**
