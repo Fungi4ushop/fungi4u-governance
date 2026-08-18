@@ -442,13 +442,13 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 | # | the missing number | serves | cost | status |
 |---|---|---|---|---|
-| 1 | **Humidifier's real ceiling** — fresh discs | both | **R0**, on hand | ⬜ item 6b |
-| 2 | **Fresh-air fan FLOW** — CO2 decay | both | **R0** | ⬜ item 7c |
+| 1 | ~~Humidifier's real ceiling — fresh discs~~ | both | R0 | ✅ **DONE 2026-08-18 — discs did nothing, on a clean comparison** |
+| 2 | ~~Fresh-air fan FLOW — CO2 decay~~ | both | R0 | ✅ **DONE 2026-08-16 — 4.02 ACH ≈ 137 m³/h** |
 | 3 | **Outdoor temp + RH** | both | **R653.20** | ⬜ buy |
-| 4 | **Aircon draw & capacity** — clamp meter | both | meter | ⬜ item 5(a), queued since July |
+| 4 | **Aircon draw & capacity** — energy meter | both | **R720** | 🔓 **item 5(a) — UNBLOCKED 2026-08-18, part sourced** *(Shelly EM Gen3 + 50 A CT; the vent experiment that deferred it is resolved)* |
 | 5 | Room load on a hot day | summer | R0 *(Oct–Nov)* | ⬜ |
 
-- **➡️ #1 AND #2 ARE FREE AND UNDONE, AND EITHER COULD INVALIDATE THE BUILD.** **If the humidifier has no headroom after re-disking, the mixing blade will out-run it and the room needs a bigger humidifier BEFORE it needs a box.** **Do them first.**
+- **✅ #1 AND #2 ARE NOW BOTH DONE, AND NEITHER INVALIDATED THE BUILD** *(updated 2026-08-18)* — the humidifier has headroom *(duty off its pin)* and the fan's flow is known. ➡️ **#4 is therefore the front of this queue, and it is no longer blocked.** ~~#1 AND #2 ARE FREE AND UNDONE, AND EITHER COULD INVALIDATE THE BUILD.~~ **If the humidifier has no headroom after re-disking, the mixing blade will out-run it and the room needs a bigger humidifier BEFORE it needs a box.** **Do them first.**
 - **📅 THE CALENDAR DOES THE SEQUENCING, because the seasons gate the readings.** **Now–Aug:** the two free measurements. **Before Sept:** build, if going ahead — **Sept–Oct is the windiest period (39.4% of hours over 12 km/h), so it is when the uncontrolled path costs most AND the worst window in the year to READ a result.** **Build for protection, do not measure.** **Oct–Nov:** hot days give the summer load curve. **Nov:** a calm month — read the build's actual benefit. **Dec:** choose the summer candidate against real numbers. **Late Jan:** the 95-hour crunch.
 - **⛔ WHAT IS STILL UNSCOPED, and it is not small: the FRONT-WALL half.** The mixing box is the **intake** only. The 07-23 design is **intake + defined exhaust + sealed grate**, and item 10 now needs a **MODULATING** front-wall damper *(shut at 03:00 in winter, open at 05:00 in summer)* **which nobody has designed.** **Until it exists, a controlled intake runs in parallel with an uncontrolled one and the weather still moves the room ~0.9 °C.**
 
@@ -690,6 +690,25 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 
 - **3 customers, ~31 punnets/week @ R40 → ~R5,370/mo.** Lynnpark 20 (cash on delivery), Vula 4 (monthly), Orchard 6–8 (prompt). About a quarter of the R20,000/mo objective.
 - **Known costs ~R3,100/mo** (Jesca R1,430, Capitec fee R400, substrate R680, punnets R270, gas R320) **plus electricity ≈R1,470–1,680/mo** — fruiting room ~10.0 kWh/day plus chest freezer 0.784 kWh/day (measured 07-28) = **~10.8 kWh/day, ~328 kWh/mo, ~38% of the property**. Electricity is the single largest cost, bigger than Jesca. **The business electricity total is now fully measured — no unmeasured business load remains.**
+
+### 💰 WHERE THE SAVINGS ACTUALLY ARE — ranked 2026-08-18. **And the first correction is to this file's own R5.12/kWh.**
+
+**Electricity is the business's largest cost — ~328 kWh/mo, R1,470–1,680, bigger than Jesca's R1,430.** Breakdown of the fruiting room's measured 10.0 kWh/day:
+
+| | kWh/day | ~R/mo @ R5.12 | basis |
+|---|---:|---:|---|
+| Humidifier | 2.76 | 424 | ✅ measured 2026-08-18 |
+| Circulation fan (WF-150 on HIGH) | 1.32 | 203 | nameplate 55 W |
+| **Aircon + fresh-air fan + lights + controller** | **~5.9** | **~900** | ⛔ **by subtraction — never itemised** |
+
+- **🔴🔴 BUT R5.12/kWh IS THE WRONG MARGINAL RATE FOR THIS PROPERTY, AND IT INVALIDATES EVERY RAND FIGURE IN THE TABLE ABOVE.** `stock-control/docs/SOLAR.md`: **the whole property runs off the Sunsynk 5 kW inverter** *(stove plates excepted)*, and **"the meter sees only the shortfall left after solar and battery, so the same load costs nothing at midday and full price at 02:00."** ➡️ **A kWh has no single price here. Load REDUCTION and load TIMING are different levers and this file has only ever costed the first.**
+- **🎯 WHICH PROMOTES A LEVER THAT IS NOT IN THE ROOM AT ALL, AND MAY BE THE LARGEST ON THE BOARD.** `SOLAR.md` records the inverter sitting in **"emergency-backup posture"** rather than **cost-saving self-consumption**. **If the 5.12 kWh battery is not being cycled daily, that is up to ~5 kWh/day of grid import not being displaced — of order R500–770/mo**, against every room-side lever here worth R37–250. ⚠️ **Hinges on:** *there being surplus PV to charge it beyond the house's daytime load, and on the "emergency-backup" description still being current.* **Both unmeasured — nothing solar is in HA; `SOLAR.md` confirms the Power Flow Card has no data integration behind it.** **Size of the move if wrong: the whole figure, which is exactly why it must be measured before it is believed.**
+- **➡️ SO THE HONEST RANKING IS MEASUREMENT-FIRST, AND THE TWO INSTRUMENTS COST ABOUT THE SAME.**
+  1. **⬜ Aircon circuit — Shelly EM Gen3 + 50 A CT, R720** *(SmartPad SA, priced 2026-08-18)*. Closes item 5(a), which gates **every** mechanical candidate for summer. **Cheaper than a decent handheld true-RMS clamp** *(UNI-T UT202A+ R950 at Communica; Fluke 305 R5,319)* **and it measures the RIGHT thing** — this file's own rule is *"read kWh over 24h, NOT instantaneous watts, everything here cycles"*, and a handheld cannot integrate. Logs to HA, permanent, and doubles as the Phase 0 summer-load instrument. **Takes 2 CTs, so one unit can meter the aircon AND the room's multiplug feed** — that splits the ~R900 unattributed block.
+  2. **⬜ Sunsynk telemetry bridge, R750–1,100** — fully scoped in `SOLAR.md`, deferred on cost. **This is the one that prices everything else**, because without it no saving can be converted to rands at all.
+- **🥇 THE ROOM-SIDE LEVER, ONCE THE ABOVE IS PRICED: THE FRONT-WALL DAMPER.** It is the only build that attacks both large lines at once, and **it is already required by the future view for summer** — so the saving is a by-product of a build that is happening anyway. **Air exchange is the humidifier's dominant load and the front-wall holes are 2.3× more expensive per m³ than the fan**; the cold side has **no actuator at all**, and an uncontrolled 0.9 °C weather swing is what the aircon is paying to fight. ✅ **Measured precedent: closing 20 of ~80 holes (−25% area, free) moved humidifier duty 100% → 83% → 72%.** ⛔ **That is an argument for a MODULATING damper, not more permanent closure — item 10's blockers stand.**
+- **🥉 FREE AND AVAILABLE TODAY: circulation fan HIGH → LOW, ~R37/mo** *(55 → 45 W)*, and **its justification was superseded on 2026-07-25** when the tub, not airflow, proved to be the humidity cause. Also cuts cap-drying risk. **This is step 3 of the revert test.**
+- **⚖️ AND THE COMPARISON THAT KEEPS THIS HONEST: the Capitec fee is R400/mo — within R24 of the entire humidifier's running cost**, needs no measurement, no build, no seasonal window and no risk. **If the question is strictly rands-per-effort, a cheaper business account beats every item above.** ➡️ **And all of it together is worth less than one new customer.** Savings are the right work *while demand is blocked*, not instead of it.
 - **The operation is near true break-even, not comfortably positive.** Most of any transfer to Wessel reimburses power he already pays personally.
 - **Filling the room is what turns power from a burden into leverage** — the room costs much the same half-full as full. This strengthens the demand case.
 - The Lynnpark cash (~R800/wk) is the real margin and is **untracked**. Banking it is the cash equivalent of ledger discipline.
