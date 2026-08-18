@@ -691,6 +691,28 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 - **3 customers, ~31 punnets/week @ R40 → ~R5,370/mo.** Lynnpark 20 (cash on delivery), Vula 4 (monthly), Orchard 6–8 (prompt). About a quarter of the R20,000/mo objective.
 - **Known costs ~R3,100/mo** (Jesca R1,430, **Sage R400** ✏️ *(corrected 2026-08-18 — recorded as a "Capitec fee" because that is how it appears on the statement; it is the Sage subscription)*, substrate R680, punnets R270, gas R320) **plus electricity ≈R1,470–1,680/mo** — fruiting room ~10.0 kWh/day plus chest freezer 0.784 kWh/day (measured 07-28) = **~10.8 kWh/day, ~328 kWh/mo, ~38% of the property**. Electricity is the single largest cost, bigger than Jesca. **The business electricity total is now fully measured — no unmeasured business load remains.**
 
+### 🔌 THE AIRCON'S DRAW, OFF WHOLE-PROPERTY `load_power` — run 2026-08-18. **~1,000 W when running, ~33% duty on a mild night. A BOUND, not a closure.**
+
+**The free route proposed this morning, run before spending ~R1,600 on a Shelly.** Method: the Sunsynk add-on publishes `load_power` every ~5 min; overnight 00:00–05:00 the rest of the property is quiet, so a large cycling load should separate out.
+
+| night | load p25 | median | mean | grow °C | outdoor °C |
+|---|---:|---:|---:|---:|---:|
+| 08-11 | 605 | 702 | 1,173 | 16.6 | 7.0 |
+| 08-12 | 592 | 878 | 1,201 | 14.5 | 6.5 |
+| 08-13 | 705 | 1,374 | 1,364 | 21.9 | 6.5 |
+| 08-14 | 590 | 1,382 | 1,361 | 22.7 | 5.7 |
+| 08-15 | 813 | 1,777 | 1,693 | 22.4 | 6.7 |
+| 08-16 | 891 | 1,532 | 1,728 | 21.6 | 8.2 |
+| **08-17** | **2,137** | **2,902** | **2,943** | 21.3 | 8.8 |
+| 08-18 | 584 | 750 | 1,035 | 20.1 | **12.1** |
+
+- **✅ TWO INDEPENDENT READS AGREE, WHICH IS WHY THIS IS WORTH KEEPING.** *(1)* **Bimodality on a quiet night:** 08-18 overnight splits into a **400–800 W** cluster *(33 of 58 samples)* and a **1,400–2,000 W** cluster *(19 samples)* — **a gap of ~1,000 W, at ~33% duty.** *(2)* **Before/after the 08-12 aircon fix:** nights with the grow room COLD *(08-11/12, 14.5–16.6 °C, aircon not holding)* averaged **~1,190 W**; nights with it AT setpoint *(08-13→16, 21.6–22.7 °C)* averaged **~1,360–1,730 W**. **Difference ~170–540 W.** ➡️ **Both land on the aircon drawing ~1,000 W WHEN RUNNING, averaging ~300–500 W overnight.**
+- **🔑 AND THAT ALONE CORRECTS AN ASSUMPTION: IT IS NOT A 1.5 kW CONSTANT LOAD.** The nameplate heating input is **1,461 W**, and this file's ~R900/mo estimate-by-subtraction implicitly treated it as near-continuous. **It is an inverter unit and it modulates** — the average is a *third* of the running figure on a mild night.
+- **⛔ BUT THE HEADLINE READING IS A TRAP AND IS WITHDRAWN BEFORE ANYONE QUOTES IT.** 08-17 (2,943 W) against 08-18 (1,035 W) looks like the **21 → 19 °C setpoint change saving ~1,900 W**. **It is not.** *(a)* **08-18 was 12.1 °C outdoors against 5.7–8.8 on every other night** — far less heating needed regardless of setpoint. *(b)* **08-17 is anomalously high against its own neighbours** *(08-16 at 1,728 W, same configuration)* **by ~1,200 W, and nothing explains it** — a house load, most likely. ➡️ **The unexplained night-to-night noise is LARGER than the signal being measured.**
+- **⚖️ SO: A BOUND, NOT A CLOSURE. Item 5(a) is NOT closed by this.** ✅ **What it does buy:** the running draw to within a few hundred watts, the fact that duty is well under 100%, and the knowledge that **monthly cost cannot be pinned this way** — duty tracks outdoor temperature *(33% at 12.1 °C; far higher at 6 °C)* and one mild night cannot be annualised.
+- **🎯 THE DECISIVE FREE TEST IS STILL AVAILABLE, AND IT IS THE SAME SHAPE AS THE CO2-DECAY RUN THAT MEASURED THE FAN FOR R0: SWITCH THE AIRCON OFF FOR ~30 MIN AT 02:00–04:00 AND READ THE STEP IN `load_power`.** **That converts a bound into a number without buying anything.** ⚠️ **Preconditions, learned from the 7c buildup half that came back void:** let the property sit **undisturbed ~30 min before** the switch; **no one in either room**; pick a night with **no other change running**; and record the exact off/on times. **Cost: the grow room loses maybe 0.3 °C for half an hour — reversible and negligible against a 21–30 day colonisation.**
+- ⚠️ **Hinges on:** *the 5-min cloud poll resolving a cycle at all.* **If the aircon's cycle is shorter than ~10 minutes the sampling will alias and even the off-test will be noisy** — in which case the Shelly is the answer and R1,600 is the price of knowing. **Size of the move if wrong: one night, and you are no worse off.**
+
 ### 💰 WHERE THE SAVINGS ACTUALLY ARE — ranked 2026-08-18. **And the first correction is to this file's own R5.12/kWh.**
 
 **Electricity is the business's largest cost — ~328 kWh/mo, R1,470–1,680, bigger than Jesca's R1,430.** Breakdown of the fruiting room's measured 10.0 kWh/day:
