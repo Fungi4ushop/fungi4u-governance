@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-08-13
+Last updated: 2026-08-18
 
 **What this document is.** A plain answer to *what is true right now*. It is deliberately short.
 
@@ -376,19 +376,24 @@ _Operator's concern, and it is the right one to raise: **"I am not sure the equi
 </details>
 
 
-### 🔬 LIVE — **FOUR CHANGES ON 2026-08-17, AND THE FIRST NUMBERS ARE THE BEST THIS ROOM HAS PRODUCED. Read overnight 08-18.**
+### ✅ READ 2026-08-18 — **THE RELAY CUT OUT FOR THE FIRST TIME. But the "record AH" was a midday value read against overnight ones, and the ceiling it moved was wrong.**
 
-| ~08:35 | **humidifier feed pipe bled** — it was air-locked *(new failure mode, see the reopened disc block)* |
-|---|---|
-| — | **reservoir refilled** to its proper level as a result |
-| ~10:50 | **tub slotted**, ~700 mm total — the tub is retired as a constraint |
-| ~11:30 | **aircon setpoint 21 → 19 °C** *(operator; todo 6c)* |
+**Four changes went in on 2026-08-17:** feed pipe bled ~08:35 *(air-locked — new failure mode)* · reservoir refilled · tub slotted ~10:50 · **aircon 21 → 19 °C ~11:30** *(todo 6c)*. The first three were fault repairs; the aircon was the live variable. Overnight 00:00–07:00 read below, against the pre-registered branches.
 
-**Baseline at 11:31, after the room had settled (CO2 back to 619):** grow **22.2 °C**, fruiting **18.7 °C**, RH **89.5%**, **AH 14.3 g/m³**, VPD 0.23.
+| | 08-14 | 08-15 | 08-16 | 08-17 | **08-18** |
+|---|---:|---:|---:|---:|---:|
+| overnight AH g/m³ | 13.80 | 13.93 | 13.52 | 13.23 | **13.71** |
+| overnight temp °C | 19.07 | 18.76 | 18.42 | 18.48 | **17.68** |
+| overnight RH % | 84.4 | 86.6 | 85.8 | 83.7 | **90.8** |
+| **overnight duty %** | 100.0 | 100.0 | 100.0 | 100.0 | **86.4** |
 
-- **🎯 AH 14.3 IS HIGHER THAN ANYTHING IN THE TEN-NIGHT RECORD**, against **13.5–13.9 all week** and **13.1 at 08:40 the same morning** — **and the aircon had not yet had time to act.** ➡️ **The water fixes worked, and the first three changes were FAULT REPAIRS rather than experiments, so they need no validation.** **The aircon is the live variable.**
-- **🔴 AND IT MOVES THE CEILING THIS FILE COMPUTED YESTERDAY — WHICH MAY MEAN THE AIRCON IS NOW OVER-COOLING.** The **~17.2 °C** limit for 92% RH was derived from a humidifier delivering **13.5 g/m³ — a figure measured while the feed was air-locked.** **At 14.3 g/m³ the limit is ~18.2 °C.** ➡️ **⬜ If the overnight read lands comfortably ≥92% RH with the room well under 17.6 °C, RAISE THE AIRCON BACK toward 20 and re-read: that recovers colonisation for free.** ⛔ **Do not leave it at 19 by default merely because it works** — that pays the 21–30 day long pole for headroom the humidity may not need.
-- ⚠️ **The grow room was at 22.2 °C and must shed ~3 °C. It may not settle before the 00:00–08:00 window opens** — a room with bags in it has real thermal mass. **If the grow-room mean comes in well above 19, the fruiting-room figure is reading a room still in transit, and the TRUER read is the following night.**
+- **✅✅ THE DECISIVE BRANCH FIRED: THE HUMIDIFIER RELAY CUT OUT AT 2026-08-17 19:26:32**, after running **continuously since before 08-16 00:00**. It then cycled **13 times overnight** (~30–60 min on, 8–11 min off). ➡️ **The firmware's 92% OFF branch has now run in production for the first time** — it had never been exercised, and this file has carried that as an open question since 08-09. **It works. Close it.**
+- **✅ AND THE SECOND PRE-REGISTERED BRANCH FIRED: DUTY CAME OFF THE PIN — 100/100/100/100 → 86.4%.** The disc block's table reads *"duty falls below 100% → **headroom exists. The mixing box is affordable in moisture terms**"*. ➡️ **The humidifier is NOT at its ceiling.** ⚠️ **Hinges on:** one night, and the room was 0.8 °C cooler — a cooler room needs less moisture for the same RH, so part of the headroom is the aircon's, not the unit's. **Size of the move if wrong: the PLAN 6–8 re-order, i.e. whether a bigger humidifier comes before the mixing box.**
+- **⛔ "AH 14.3 IS HIGHER THAN ANYTHING IN THE TEN-NIGHT RECORD" IS WITHDRAWN — IT COMPARED A MIDDAY SPOT VALUE AGAINST OVERNIGHT MEANS.** Like-for-like, **daytime 12:00–16:00: 08-14 **14.86** · 08-15 **14.54** · 08-16 13.87 · 08-17 **14.21***(post-bleed)*. **The post-bleed figure is BELOW the two days before it.** Overnight, 13.71 is below 08-14's 13.80 and 08-15's 13.93. ➡️ **The bleed RECOVERED a three-night dip (13.52, 13.23) back to normal. It did not raise output, and there is no record.** *(This is the file's own §3 error — comparing humidity figures taken at different temperatures and times of day — committed in the entry that warns about it.)*
+- **⛔ SO THE ~18.2 °C CEILING IS WRONG, AND IT IS THE NUMBER THE AIRCON DECISION RESTED ON.** It was computed from that same 14.3 spot value. **On sustained overnight delivery (13.71 g/m³) the limit for 92% RH is ~17.5 °C** — only **0.3 °C** above the original ~17.2, not 1.0. **The room ran 17.68 °C all night, i.e. just ABOVE its own ceiling** — which is exactly why RH sat at 90.8% and touched 92.1% only briefly. *(Arithmetic: AH = 216.7·es(T)·RH/T_K. The 18.2 figure is correct **for** AH 14.3; the input was the error, not the algebra.)*
+- **➡️ THEREFORE: DO NOT RAISE THE AIRCON BACK TOWARD 20.** The over-cooling condition — *"comfortably ≥92% RH with the room well under 17.6 °C"* — **did not fire on either half**: RH 90.8 mean, temp 17.68 mean. **It was framed on a ceiling ~0.7 °C too optimistic.** ⚠️ **Hinges on:** the ceiling being a real equipment limit rather than a loss-rate one. **Size of the move if wrong: the 21–30 day colonisation long pole, which is why the question is worth re-asking, not dropping.**
+- **⚠️ AND THE READ IS INCOMPLETE — THE PRE-REGISTERED CAVEAT FIRED EXACTLY AS WRITTEN. The grow room had NOT settled.** Overnight mean **19.96 °C**, still descending at dawn *(04:00–06:45 mean 19.68, min 19.00)* against its **19 °C** setpoint — it shed ~1.1 of the ~3 °C it owed. ➡️ **The fruiting-room figure is reading a room still in transit, so 08-19 is the truer read** — and it should run **cooler**, which could still carry RH past 92%. **The aircon verdict is deferred by one night, not decided.**
+- **✅ AND THE DISC TEST IS NOW SETTLED CLEANLY — NO RE-RUN NEEDED. This night WAS the unconfounded re-run.** The 08-16 verdict *"the discs did nothing"* was **biased against the discs**: its test night (13.52) fell inside the starvation window and its 13.72 baseline did not, so a real disc gain could have been masked. ➡️ **Now compare like with like — new discs + unstarved feed = 13.71 against the pre-disc unstarved baseline 13.72. Delta −0.01.** **The discs did nothing, and it now rests on a fair comparison rather than a biased one.** *(This answers the todo item's own title question: the disc test does NOT need re-running.)*
 
 ### ✅ ITEM 7c DONE — **THE ROOM'S AIRFLOW IS MEASURED FOR THE FIRST TIME: 4.02 ACH = ~137 m³/h. Run 2026-08-16, fan off 18:13, fan on 18:32.**
 
